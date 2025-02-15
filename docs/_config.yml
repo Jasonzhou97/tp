@@ -1,4 +1,4 @@
-title: "AB-3"
+title: "ay2425s2-cs2103t-t09-3"
 theme: minima
 
 header_pages:
@@ -8,6 +8,7 @@ header_pages:
 
 markdown: kramdown
 
+baseUrl: "/tp"
 repository: "se-edu/addressbook-level3"
 github_icon: "images/github-icon.png"
 
