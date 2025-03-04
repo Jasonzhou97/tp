@@ -22,7 +22,7 @@ You can reach us at the email `e1155424@nus.edu.sg`
 
 <img src="images/wengsheng.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/CVincent0907)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
