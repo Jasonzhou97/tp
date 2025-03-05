@@ -21,7 +21,7 @@ You can reach us at the email `e1121279.nus.edu.sg` (Leonard's Email for tempora
 
 ### Xinyang
 
-<img src="images/xinyang.png" width="200px">
+<img src="images/JasonZhou97.png" width="200px">
 
 [[github](https://github.com/Jasonzhou97)]
 
