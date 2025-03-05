@@ -28,6 +28,14 @@ You can reach us at the email `e1121279.nus.edu.sg` (Leonard's Email for tempora
 
 * Role: Project Advisor
 
+### Yang Qingru
+
+<img src="images/caroline1233456.png" width="200px">
+
+[[github](http://github.com/caroline1233456)] [[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Data
 
 ### Jean Doe
 <img src="images/johndoe.png" width="200px">
