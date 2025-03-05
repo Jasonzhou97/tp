@@ -9,7 +9,7 @@ You can reach us at the email `e1121279.nus.edu.sg` (Leonard's Email for tempora
 
 ## Project team
 
-### John Doe
+### Leonard Ong
 
 <img src="images/frozennfishh.png" width="200px">
 
