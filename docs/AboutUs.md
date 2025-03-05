@@ -29,7 +29,7 @@ You can reach us at the email `e1121279.nus.edu.sg` (Leonard's Email for tempora
 
 ### Weng Sheng 
 
-<img src="images/wengsheng.png" width="200px">
+<img src="images/CVincent0907.png" width="200px">
 
 [[github](http://github.com/CVincent0907)]
 [[portfolio](team/johndoe.md)]
