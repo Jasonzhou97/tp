@@ -5,54 +5,55 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](https://www.comp.nus.edu.sg).
 
-You can reach us at the email `e1155424@nus.edu.sg`
+You can reach us at the email `e1121279.nus.edu.sg` (Leonard's Email for temporary usage)
 
 ## Project team
+
+### Leonard Ong
+
+<img src="images/frozennfishh.png" width="200px">
+
+[[github](https://github.com/Frozennfishh)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibility: Project Management, Quality Assurance
 
 ### Xinyang
 
 <img src="images/xinyang.png" width="200px">
 
-
 [[github](https://github.com/Jasonzhou97)]
 
 * Role: Project Advisor
 
-### Jane Doe
+### Weng Sheng 
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wengsheng.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/CVincent0907)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Project Management
 
-### Johnny Doe
 
-<img src="images/johndoe.png" width="200px">
+### Yang Qingru
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+<img src="images/caroline1233456.png" width="200px">
+
+[[github](http://github.com/caroline1233456)] 
+[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Juliette Liao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/geeliette.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/geeliette)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Design, UI, Testing
