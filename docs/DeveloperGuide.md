@@ -388,8 +388,46 @@ Use case ends.
     * 2a1. System displays "reservation has already been marked as unpaid"
     * Use case resumes at step1.
 
-*{More to be added}*
+---
+### **Use case: Exit the application**
 
+**MSS**
+1.  User exits the application
+
+Use case ends.
+
+---
+### **Use case: Find a reservation by name**
+
+**MSS**
+1. User finds the reservation by name.
+2. System displays all reservations that are made under the queried name.
+
+Use case ends.
+
+**Extensions**
+* 1a. The reservation does not exist.
+    * 1a1. System displays an error message.
+    * Use case resumes at step 1.
+
+---
+### **Use case: List all reservations for the day**
+
+**MSS**
+1. User queries to list all reservations for the day
+2. System displays all reservations that are made on the system date.
+
+Use case ends.
+
+**Extensions**
+* 1a. No reservations exist on the day queried.
+    * 1a1. System indicates that there are no reservations on given day.
+    * Use case resumes at step 1.
+
+
+
+
+*{More to be added}*
 
 
 
