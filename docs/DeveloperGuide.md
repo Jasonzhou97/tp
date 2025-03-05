@@ -279,36 +279,36 @@ GastroBook streamlines and collates restaurant reservations, allowing managers t
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| **Priority** | **As a …​**   | **I want to …​**                | **So that I can…​**                                                        |
-|------|---------------|---------------------------------|----------------------------------------------------------------------------|
-| `***` | Admin         | Add reservations                | Add bookings to the schedule for planning                                  |
-| `***` | Admin         | Delete reservations             | Cancel a reservation when no longer needed                                |
-| `***` | Admin         | Mark a reservation as paid      | Keep track of each reservation’s payment status                           |
-| `***` | Admin         | Unmark a reservation as paid    | Update status if payment is deleted or an error occurred                   |
-| `***` | Admin         | Exit the application            | Close the app after use                                                    |
-| `***` | Admin         | Find specific reservations      | Locate specific reservations by name or other parameters                  |
-| `***` | Admin         | Edit reservation details        | Update booking details (e.g., name, timeslot) without deleting and recreating|
-| `**` | Admin         | View all reservations for the day | Access the daily reservation schedule for planning resources             |
-| `**` | Admin         | Mark arrival status for customers | Track customer arrivals and handle no-shows                               |
-| `**` | Admin         | Unmark arrival status for customers | Update arrival status when customers don't show up within the designated time|
-| `**` | Admin         | Set reservation time limits     | Automatically release tables when customers do not arrive on time         |
-| `**` | Admin         | Add tables of various sizes     | Accommodate different types of reservations (group bookings, etc.)        |
-| `**` | Admin         | View/Tag reservations with special requests | Easily track special requests per reservation                           |
-| `**` | Admin         | Filter reservations by tags     | View reservations with specific requests at a glance                      |
-| `**` | Admin         | Apply discounts on bills        | Automate pricing adjustments for discounts                                |
-| `**` | New admin     | View help commands              | Get quick tips on how to use the system efficiently                       |
-| `**` | Admin         | Clear all reservations          | Reset the schedule for a new reservation plan                             |
-| `**` | Admin         | Find available slots            | Add new reservations into free slots                                      |
-| `**` | Admin         | Add multiple tables at once     | Handle large group bookings more efficiently                               |
-| `**` | Admin         | View customer details           | Know their booking time, allocated table, dishes ordered, spending, etc.   |
-| `**` | Admin         | Set reservation parameters      | Ensure reservations fit within the table/group limitations                |
-| `*`  | Admin         | Edit menu                       | Modify the restaurant menu to accommodate customer requests and dietary needs |
-| `*`  | Admin         | Find duplicate reservations     | Remove unnecessary or repeated reservations                                |
-| `*`  | New admin     | View history of past payments   | Keep track of payment history for better management                        |
-| `*`  | Admin         | Tag reservations for special requests | Track and manage special requests efficiently                             |
-| `*`  | Admin         | View menu offered by restaurant | Help customers with menu questions and options                            |
-| `*`  | Admin         | Set parameters for reservations  | Ensure proper handling based on table/group size and special requests      |
-| `*`  | Admin         | View reservation count by time  | Track reservations over different time periods for business insights       |
+| **Priority** | **As a …​** | **I want to …​**                            | **So that I can…​**                                                           |
+|--------------|-------------|---------------------------------------------|-------------------------------------------------------------------------------|
+| `***`        | Admin       | Add reservations                            | Add bookings to the schedule for planning                                     |
+| `***`        | Admin       | Delete reservations                         | Cancel a reservation when no longer needed                                    |
+| `***`        | Admin       | Mark a reservation as paid                  | Keep track of each reservation’s payment status                               |
+| `***`        | Admin       | Unmark a reservation as paid                | Update status if payment is deleted or an error occurred                      |
+| `***`        | Admin       | Exit the application                        | Close the app after use                                                       |
+| `***`        | Admin       | Find specific reservations                  | Locate specific reservations by name or other parameters                      |
+| `***`        | Admin       | Edit reservation details                    | Update booking details (e.g., name, timeslot) without deleting and recreating |
+| `**`         | Admin       | View all reservations for the day           | Access the daily reservation schedule for planning resources                  |
+| `**`         | Admin       | Mark arrival status for customers           | Track customer arrivals and handle no-shows                                   |
+| `**`         | Admin       | Unmark arrival status for customers         | Update arrival status when customers don't show up within the designated time |
+| `**`         | Admin       | Set reservation time limits                 | Automatically release tables when customers do not arrive on time             |
+| `**`         | Admin       | Add tables of various sizes                 | Accommodate different types of reservations (group bookings, etc.)            |
+| `**`         | Admin       | View/Tag reservations with special requests | Easily track special requests per reservation                                 |
+| `**`         | Admin       | Filter reservations by tags                 | View reservations with specific requests at a glance                          |
+| `**`         | Admin       | Apply discounts on bills                    | Automate pricing adjustments for discounts                                    |
+| `**`         | New admin   | View help commands                          | Get quick tips on how to use the system efficiently                           |
+| `**`         | Admin       | Clear all reservations                      | Reset the schedule for a new reservation plan                                 |
+| `**`         | Admin       | Find available slots                        | Add new reservations into free slots                                          |
+| `**`         | Admin       | Add multiple tables at once                 | Handle large group bookings more efficiently                                  |
+| `**`         | Admin       | View customer details                       | Know their booking time, allocated table, dishes ordered, spending, etc.      |
+| `**`         | Admin       | Set reservation parameters                  | Ensure reservations fit within the table/group limitations                    |
+| `*`          | Admin       | Edit menu                                   | Modify the restaurant menu to accommodate customer requests and dietary needs |
+| `*`          | Admin       | Find duplicate reservations                 | Remove unnecessary or repeated reservations                                   |
+| `*`          | New admin   | View history of past payments               | Keep track of payment history for better management                           |
+| `*`          | Admin       | Tag reservations for special requests       | Track and manage special requests efficiently                                 |
+| `*`          | Admin       | View menu offered by restaurant             | Help customers with menu questions and options                                |
+| `*`          | Admin       | Set parameters for reservations             | Ensure proper handling based on table/group size and special requests         |
+| `*`          | Admin       | View reservation count by time              | Track reservations over different time periods for business insights          |
 
 
 *{More to be added}*
@@ -325,7 +325,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User is prompted to confirm the reservation.
 4. System adds the reservation to the schedule.
 
-   Use case ends.
+Use case ends.
 
 **Extensions**
 * 2a. The provided timeslot is not available.
@@ -343,7 +343,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User confirms the cancellation.
 4. System removes the reservation from the schedule.
 
-   Use case ends.
+Use case ends.
 
 **Extensions**
 * 1a. The reservation does not exist.
@@ -359,11 +359,79 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. User selects the "mark as paid" option.
 3. System updates the reservation's payment status to "paid".
 
-   Use case ends.
+Use case ends.
+
+**Extensions**
+* 1a. The reservation does not exist.
+    * 1a1. System displays an error message.
+    * Use case resumes at step 1.
+* 2a. The reservation has already been marked as paid
+  * 2a1. System displays "reservation has already been marked as paid"
+  * Use case resumes at step1.
+
+---
+
+### **Use case: Unmark a reservation as paid**
+
+**MSS**
+1. User finds the reservation they want to unmark.
+2. User selects the "unmark as paid" option.
+3. System updates the reservation's payment status to "unpaid".
+
+Use case ends.
+
+**Extensions**
+* 1a. The reservation does not exist.
+    * 1a1. System displays an error message.
+    * Use case resumes at step 1.
+* 2a. The reservation has already been marked as unpaid
+    * 2a1. System displays "reservation has already been marked as unpaid"
+    * Use case resumes at step1.
+
+---
+### **Use case: Exit the application**
+
+**MSS**
+1.  User exits the application
+
+Use case ends.
+
+---
+### **Use case: Find a reservation by name**
+
+**MSS**
+1. User finds the reservation by name.
+2. System displays all reservations that are made under the queried name.
+
+Use case ends.
+
+**Extensions**
+* 1a. The reservation does not exist.
+    * 1a1. System displays an error message.
+    * Use case resumes at step 1.
+
+---
+### **Use case: List all reservations for the day**
+
+**MSS**
+1. User queries to list all reservations for the day
+2. System displays all reservations that are made on the system date.
+
+Use case ends.
+
+**Extensions**
+* 1a. No reservations exist on the day queried.
+    * 1a1. System indicates that there are no reservations on given day.
+    * Use case resumes at step 1.
+
 
 
 
 *{More to be added}*
+
+
+
+---
 
 ### Non-Functional Requirements
 
