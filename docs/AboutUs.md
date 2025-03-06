@@ -21,7 +21,7 @@ You can reach us at the email `e1121279.nus.edu.sg` (Leonard's Email for tempora
 
 ### Xinyang
 
-<img src="images/JasonZhou97.png" width="200px">
+<img src="images/jasonzhou97.png" width="200px">
 
 [[github](https://github.com/Jasonzhou97)]
 
@@ -29,7 +29,7 @@ You can reach us at the email `e1121279.nus.edu.sg` (Leonard's Email for tempora
 
 ### Weng Sheng 
 
-<img src="images/CVincent0907.png" width="200px">
+<img src="images/cvincent0907.png" width="200px">
 
 [[github](http://github.com/CVincent0907)]
 [[portfolio](team/johndoe.md)]
