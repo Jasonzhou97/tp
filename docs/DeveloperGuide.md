@@ -334,29 +334,32 @@ Use case ends.
 2a. The provided timeslot is not available. <br>
 &ensp; 2a1. System indicates that the provided timeslot is not available. <br>
 &ensp; 2a2. System shows available slots. <br>
-&ensp; 2a3. User selects a different timeslot. <br>
-&ensp; Use case resumes from step 3.
+&ensp; Use case resumes from step 1.
 
 3a. The user rejects the confirmation of the reservation <br>
 &ensp; 3a1. Confirmation prompt closes. <br>
-&ensp; Use case ends.
+&ensp; Use case resumes from step 1.
 
 ---
 
 ### **U2: Delete a reservation**
 
 **MSS**
-1. User selects the reservation they want to cancel.
+1. User inputs the reservation they want to cancel.
 2. System asks for confirmation to delete the reservation.
 3. User confirms the cancellation.
 4. System removes the reservation from the schedule.
 
 Use case ends.
 
-**Extensions**
-* 1a. The reservation does not exist.
-    * 1a1. System displays an error message.
-    * Use case resumes at step 1.
+**Extensions** <br>
+1a. The reservation does not exist. <br>
+&ensp; 1a1. System displays an error message. <br>
+&ensp; Use case resumes from step 1.
+
+3a. The user rejects the confirmation of the deletion <br>
+&ensp; 3a1. Confirmation prompt closes. <br>
+&ensp; Use case resumes from step 1.
 
 ---
 
