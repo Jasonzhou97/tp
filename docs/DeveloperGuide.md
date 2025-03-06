@@ -315,9 +315,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `GastroBook` and the **Actor** is the `admin`, unless specified otherwise)
+For all use cases below: <br>
+**System**: `GastroBook` <br>
+**Actor**: `admin` <br>
+unless specified otherwise
 
-### **Use case: Add a reservation**
+### **U1: Add a reservation**
 
 **MSS** (Main Success Scenario)
 1. User provides reservation details (name, table number, timeslot, special requests).
@@ -335,7 +338,7 @@ Use case ends.
 
 ---
 
-### **Use case: Delete a reservation**
+### **U2: Delete a reservation**
 
 **MSS**
 1. User selects the reservation they want to cancel.
@@ -352,12 +355,12 @@ Use case ends.
 
 ---
 
-### **Use case: Mark a reservation as paid**
+### **U3: Mark a reservation as paid**
 
 **MSS**
 1. User finds the reservation they want to mark.
-2. User selects the "mark as paid" option.
-3. System updates the reservation's payment status to "paid".
+2. User marks the reservation as paid.
+3. System updates the reservation's payment status as paid.
 
 Use case ends.
 
@@ -365,18 +368,18 @@ Use case ends.
 * 1a. The reservation does not exist.
     * 1a1. System displays an error message.
     * Use case resumes at step 1.
-* 2a. The reservation has already been marked as paid
-  * 2a1. System displays "reservation has already been marked as paid"
+* 2a. The reservation has already been marked as paid.
+  * 2a1. System indicates that reservation has already been marked as paid.
   * Use case resumes at step1.
 
 ---
 
-### **Use case: Unmark a reservation as paid**
+### **U4: Unmark a reservation as paid**
 
 **MSS**
 1. User finds the reservation they want to unmark.
-2. User selects the "unmark as paid" option.
-3. System updates the reservation's payment status to "unpaid".
+2. User unmarks the reservation as paid.
+3. System updates the reservation's payment status as unpaid.
 
 Use case ends.
 
@@ -384,12 +387,12 @@ Use case ends.
 * 1a. The reservation does not exist.
     * 1a1. System displays an error message.
     * Use case resumes at step 1.
-* 2a. The reservation has already been marked as unpaid
-    * 2a1. System displays "reservation has already been marked as unpaid"
+* 2a. The reservation has already been marked as unpaid.
+    * 2a1. System indicates that reservation has already been marked as paid.
     * Use case resumes at step1.
 
 ---
-### **Use case: Exit the application**
+### **U5: Exit the application**
 
 **MSS**
 1.  User exits the application
@@ -397,7 +400,7 @@ Use case ends.
 Use case ends.
 
 ---
-### **Use case: Find a reservation by name**
+### **U6: Find a reservation by name**
 
 **MSS**
 1. User finds the reservation by name.
