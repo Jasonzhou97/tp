@@ -456,6 +456,9 @@ Use case ends.
 2. **Performance**: The system should handle up to 1000 reservations without noticeable performance degradation during typical usage.
 3. **Usability**: A user with above-average typing speed for regular English text should be able to accomplish key tasks faster using the command-line interface than a GUI-based app.
 4. **Response Time**: The system should respond to commands within 1 second for typical tasks such as adding, editing, or deleting reservations.
+5. **Storage**: The system storage should be able to store and maintain at least 100 reservations with all necessary details.
+6. **Storage Access**: The system should be able to retrieve data with the given storage requirements in under 1 second.
+7. **User Access**: The system should be able to run locally with no more than 1 user with 1 database.
 
 *{More to be added}*
 
