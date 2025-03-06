@@ -334,11 +334,11 @@ Use case ends.
 2a. The provided timeslot is not available. <br>
 &ensp; 2a1. System indicates that the provided timeslot is not available. <br>
 &ensp; 2a2. System shows available slots. <br>
-&ensp; Use case resumes from step 1.
+&ensp; Use case resumes at step 1.
 
 3a. The user rejects the confirmation of the reservation <br>
 &ensp; 3a1. Confirmation prompt closes. <br>
-&ensp; Use case resumes from step 1.
+&ensp; Use case resumes at step 1.
 
 ---
 
@@ -355,11 +355,11 @@ Use case ends.
 **Extensions** <br>
 1a. The reservation does not exist. <br>
 &ensp; 1a1. System displays an error message. <br>
-&ensp; Use case resumes from step 1.
+&ensp; Use case resumes at step 1.
 
 3a. The user rejects the confirmation of the deletion <br>
 &ensp; 3a1. Confirmation prompt closes. <br>
-&ensp; Use case resumes from step 1.
+&ensp; Use case resumes at step 1.
 
 ---
 
@@ -405,7 +405,9 @@ Use case ends.
 ### **U5: Exit the application**
 
 **MSS**
-1.  User exits the application
+1. User inputs exit command.
+2. System saves all changes into storage.
+3. System exits.
 
 Use case ends.
 
@@ -415,16 +417,22 @@ Use case ends.
 **MSS**
 1. User finds the reservation by name.
 2. System displays all reservations that are made under the queried name.
+3. User selects relevant reservation.
+4. System displays all relevant information on the reservation.
 
 Use case ends.
 
-**Extensions**
-* 1a. The reservation does not exist.
-    * 1a1. System displays an error message.
-    * Use case resumes at step 1.
+**Extensions** <br>
+1a. The name does not exist. <br>
+&ensp; 1a1. System displays an error message. <br>
+&ensp; Use case resumes at step 1.
+
+3a. The user enters an invalid index.<br>
+&ensp; 3a1. System displays an error message <br>
+&ensp; Use case resumes at step 2.
 
 ---
-### **Use case: List all reservations for the day**
+### **U7: List all reservations for the day**
 
 **MSS**
 1. User queries to list all reservations for the day
