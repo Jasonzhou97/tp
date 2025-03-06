@@ -417,6 +417,7 @@ Use case ends.
 **MSS**
 1. User finds the reservation by name.
 2. System displays all reservations that are made under the queried name.
+<The following steps can be included as a seperate use case that can be used for other find functions> 
 3. User selects relevant reservation.
 4. System displays all relevant information on the reservation.
 
@@ -440,17 +441,12 @@ Use case ends.
 
 Use case ends.
 
-**Extensions**
-* 1a. No reservations exist on the day queried.
-    * 1a1. System indicates that there are no reservations on given day.
-    * Use case resumes at step 1.
-
-
-
+**Extensions** <br>
+1a. No reservations exist on the day queried. <br>
+&ensp; 1a1. System indicates that there are no reservations on given day. <br>
+&ensp; Use case resumes at step 1.
 
 *{More to be added}*
-
-
 
 ---
 
