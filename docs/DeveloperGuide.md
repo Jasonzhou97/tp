@@ -315,103 +315,125 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `GastroBook` and the **Actor** is the `admin`, unless specified otherwise)
+For all use cases below: <br>
+**System**: `GastroBook` <br>
+**Actor**: `admin` <br>
+unless specified otherwise
 
-### **Use case: Add a reservation**
+### **U1: Add a reservation**
 
 **MSS** (Main Success Scenario)
-1. User provides reservation details (name, table number, timeslot, special requests).
+1. User inputs reservation details (name, table number, timeslot, special requests).
 2. System confirms if the reservation slot is available.
 3. User is prompted to confirm the reservation.
 4. System adds the reservation to the schedule.
 
 Use case ends.
 
-**Extensions**
-* 2a. The provided timeslot is not available.
-    * 2a1. System shows available slots.
-    * 2a2. User selects a different timeslot.
-    * Use case resumes from step 3.
+**Extensions** <br>
+2a. The provided timeslot is not available. <br>
+&ensp; 2a1. System indicates that the provided timeslot is not available. <br>
+&ensp; 2a2. System shows available slots. <br>
+&ensp; Use case resumes at step 1.
+
+3a. The user rejects the confirmation of the reservation <br>
+&ensp; 3a1. Confirmation prompt closes. <br>
+&ensp; Use case resumes at step 1.
 
 ---
 
-### **Use case: Delete a reservation**
+### **U2: Delete a reservation**
 
 **MSS**
-1. User selects the reservation they want to cancel.
+1. User inputs the reservation they want to cancel.
 2. System asks for confirmation to delete the reservation.
 3. User confirms the cancellation.
 4. System removes the reservation from the schedule.
 
 Use case ends.
 
-**Extensions**
-* 1a. The reservation does not exist.
-    * 1a1. System displays an error message.
-    * Use case resumes at step 1.
+**Extensions** <br>
+1a. The reservation does not exist. <br>
+&ensp; 1a1. System displays an error message. <br>
+&ensp; Use case resumes at step 1.
+
+3a. The user rejects the confirmation of the deletion <br>
+&ensp; 3a1. Confirmation prompt closes. <br>
+&ensp; Use case resumes at step 1.
 
 ---
 
-### **Use case: Mark a reservation as paid**
+### **U3: Mark a reservation as paid**
 
 **MSS**
 1. User finds the reservation they want to mark.
-2. User selects the "mark as paid" option.
-3. System updates the reservation's payment status to "paid".
+2. User marks the reservation as paid.
+3. System updates the reservation's payment status as paid.
 
 Use case ends.
 
-**Extensions**
-* 1a. The reservation does not exist.
-    * 1a1. System displays an error message.
-    * Use case resumes at step 1.
-* 2a. The reservation has already been marked as paid
-  * 2a1. System displays "reservation has already been marked as paid"
-  * Use case resumes at step1.
+**Extensions** <br>
+1a. The reservation does not exist. <br>
+&ensp; 1a1. System displays an error message. <br>
+&ensp; Use case resumes at step 1. <br>
+
+2a. The reservation has already been marked as paid. <br>
+&ensp; 2a1. System indicates that reservation has already been marked as paid. <br>
+&ensp; Use case resumes at step1.
 
 ---
 
-### **Use case: Unmark a reservation as paid**
+### **U4: Unmark a reservation as paid**
 
 **MSS**
 1. User finds the reservation they want to unmark.
-2. User selects the "unmark as paid" option.
-3. System updates the reservation's payment status to "unpaid".
+2. User unmarks the reservation as paid.
+3. System updates the reservation's payment status as unpaid.
 
 Use case ends.
 
-**Extensions**
-* 1a. The reservation does not exist.
-    * 1a1. System displays an error message.
-    * Use case resumes at step 1.
-* 2a. The reservation has already been marked as unpaid
-    * 2a1. System displays "reservation has already been marked as unpaid"
-    * Use case resumes at step1.
+**Extensions** <br>
+1a. The reservation does not exist. <br>
+&ensp; 1a1. System displays an error message. <br>
+&ensp; Use case resumes at step 1.
+
+2a. The reservation has already been marked as unpaid. <br>
+&ensp; 2a1. System indicates that reservation has already been marked as paid. <br>
+&ensp; Use case resumes at step1.
 
 ---
-### **Use case: Exit the application**
+### **U5: Exit the application**
 
 **MSS**
-1.  User exits the application
+1. User inputs exit command.
+2. System saves all changes into storage.
+3. System exits.
 
 Use case ends.
 
 ---
-### **Use case: Find a reservation by name**
+### **U6: Find a reservation by name**
 
 **MSS**
 1. User finds the reservation by name.
 2. System displays all reservations that are made under the queried name.
+<The following steps can be included as a seperate use case that can be used for other find functions> 
+3. User selects relevant reservation.
+4. System displays all relevant information on the reservation.
 
 Use case ends.
 
-**Extensions**
-* 1a. The reservation does not exist.
-    * 1a1. System displays an error message.
-    * Use case resumes at step 1.
+**Extensions** <br>
+1a. The name does not exist. <br>
+&ensp; 1a1. System displays an error message. <br>
+&ensp; Use case resumes at step 1.
+
+3a. The user enters an invalid index.<br>
+&ensp; 3a1. System displays an error message <br>
+&ensp; Use case resumes at step 2.
 
 ---
-### **Use case: List all reservations for the day**
+### **U7: List all reservations for the day**
 
 **MSS**
 1. User queries to list all reservations for the day
@@ -419,17 +441,12 @@ Use case ends.
 
 Use case ends.
 
-**Extensions**
-* 1a. No reservations exist on the day queried.
-    * 1a1. System indicates that there are no reservations on given day.
-    * Use case resumes at step 1.
-
-
-
+**Extensions** <br>
+1a. No reservations exist on the day queried. <br>
+&ensp; 1a1. System indicates that there are no reservations on given day. <br>
+&ensp; Use case resumes at step 1.
 
 *{More to be added}*
-
-
 
 ---
 
@@ -439,6 +456,9 @@ Use case ends.
 2. **Performance**: The system should handle up to 1000 reservations without noticeable performance degradation during typical usage.
 3. **Usability**: A user with above-average typing speed for regular English text should be able to accomplish key tasks faster using the command-line interface than a GUI-based app.
 4. **Response Time**: The system should respond to commands within 1 second for typical tasks such as adding, editing, or deleting reservations.
+5. **Storage**: The system storage should be able to store and maintain at least 100 reservations with all necessary details.
+6. **Storage Access**: The system should be able to retrieve data with the given storage requirements in under 1 second.
+7. **User Access**: The system should be able to run locally with no more than 1 user with 1 database.
 
 *{More to be added}*
 
