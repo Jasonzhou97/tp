@@ -372,13 +372,14 @@ Use case ends.
 
 Use case ends.
 
-**Extensions**
-* 1a. The reservation does not exist.
-    * 1a1. System displays an error message.
-    * Use case resumes at step 1.
-* 2a. The reservation has already been marked as paid.
-  * 2a1. System indicates that reservation has already been marked as paid.
-  * Use case resumes at step1.
+**Extensions** <br>
+1a. The reservation does not exist. <br>
+&ensp; 1a1. System displays an error message. <br>
+&ensp; Use case resumes at step 1. <br>
+
+2a. The reservation has already been marked as paid. <br>
+&ensp; 2a1. System indicates that reservation has already been marked as paid. <br>
+&ensp; Use case resumes at step1.
 
 ---
 
