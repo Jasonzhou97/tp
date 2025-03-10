@@ -3,6 +3,10 @@ package seedu.address.model.reservation;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a start time in a reservation.
+ * Ensures that the time follows the valid 24-hour format: HHMM.
+ */
 public class StartTime {
     public static final String MESSAGE_CONSTRAINTS =
             "Time should be in the form of HHMM.";

@@ -28,9 +28,9 @@ import seedu.address.model.reservation.Duration;
 import seedu.address.model.reservation.Identification;
 import seedu.address.model.reservation.Name;
 import seedu.address.model.reservation.Pax;
-import seedu.address.model.reservation.Reservation;
 import seedu.address.model.reservation.Phone;
 import seedu.address.model.reservation.Remark;
+import seedu.address.model.reservation.Reservation;
 import seedu.address.model.reservation.StartDate;
 import seedu.address.model.reservation.StartTime;
 import seedu.address.model.reservation.Table;
@@ -103,7 +103,7 @@ public class EditCommand extends Command {
      * edited with {@code editPersonDescriptor}.
      */
     private static Reservation createEditedReservation(Reservation reservationToEdit,
-                                                                   EditReservationDescriptor editReservationDescriptor) {
+                                                       EditReservationDescriptor editReservationDescriptor) {
         assert reservationToEdit != null;
 
         Name updatedName = editReservationDescriptor.getName().orElse(reservationToEdit.getName());

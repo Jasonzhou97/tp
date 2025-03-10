@@ -3,6 +3,11 @@ package seedu.address.model.reservation;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a reservation duration in the system.
+ * Ensures that the duration follows the specified constraints.
+ * Duration must be a positive number in half-hour intervals (e.g., 0.5, 1, 1.5, 2, etc.).
+ */
 public class Duration {
     public static final String MESSAGE_CONSTRAINTS =
             "Duration should be positive intervals of half an hour greater than 0, given in hours.";

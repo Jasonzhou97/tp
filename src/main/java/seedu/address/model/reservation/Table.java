@@ -3,6 +3,11 @@ package seedu.address.model.reservation;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a table in a reservation system.
+ * Ensures that the table number follows the valid format:
+ * a capital letter followed by 1 to 3 digits.
+ */
 public class Table {
     public static final String MESSAGE_CONSTRAINTS =
             "Table number should start with a capital letter, followed by 1-3 numbers.";

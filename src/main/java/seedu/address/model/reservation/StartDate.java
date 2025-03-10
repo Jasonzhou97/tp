@@ -3,6 +3,10 @@ package seedu.address.model.reservation;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a start date in a reservation.
+ * Ensures that the date follows the valid format: DD/MM/YYYY with leading zeros for single digits.
+ */
 public class StartDate {
     public static final String MESSAGE_CONSTRAINTS =
             "Date should be in the form of DD/MM/YYYY, with leading zeros for single digits.";

@@ -3,6 +3,10 @@ package seedu.address.model.reservation;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents an identification number in the reservation system.
+ * Ensures that the ID consists only of integers.
+ */
 public class Identification {
     public static final String MESSAGE_CONSTRAINTS =
             "Identification should only contain integers";
