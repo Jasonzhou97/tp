@@ -1,6 +1,5 @@
 package seedu.address.model.reservation;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -78,7 +77,8 @@ public class ReservationTest {
     @Test
     public void toStringMethod() {
         /*
-        String expected = Reservation.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
+        String expected = Reservation.class.getCanonicalName() + "{name=" + ALICE.getName()
+        + ", phone=" + ALICE.getPhone()
                 + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
          */

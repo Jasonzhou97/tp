@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.Date;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -11,8 +10,8 @@ import seedu.address.model.reservation.Duration;
 import seedu.address.model.reservation.Identification;
 import seedu.address.model.reservation.Name;
 import seedu.address.model.reservation.Pax;
-import seedu.address.model.reservation.Reservation;
 import seedu.address.model.reservation.Phone;
+import seedu.address.model.reservation.Reservation;
 import seedu.address.model.reservation.StartDate;
 import seedu.address.model.reservation.StartTime;
 import seedu.address.model.reservation.Table;
@@ -82,7 +81,7 @@ public class EditReservationDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Duration of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Duration} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditReservationDescriptorBuilder withDuration(String duration) {
         descriptor.setDuration(new Duration(duration));

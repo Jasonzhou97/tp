@@ -90,7 +90,8 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
                 + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
-        EditCommand.EditReservationDescriptor descriptor = new EditReservationDescriptorBuilder().withName(VALID_NAME_AMY)
+        EditCommand.EditReservationDescriptor descriptor =
+                new EditReservationDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 

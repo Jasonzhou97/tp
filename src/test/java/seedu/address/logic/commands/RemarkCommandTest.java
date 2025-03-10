@@ -19,8 +19,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.reservation.Reservation;
 import seedu.address.model.reservation.Remark;
+import seedu.address.model.reservation.Reservation;
 import seedu.address.testutil.ReservationBuilder;
 
 /**
@@ -37,7 +37,8 @@ public class RemarkCommandTest {
         Reservation firstReservation = model.getFilteredReservationList().get(INDEX_FIRST_PERSON.getZeroBased());
         Reservation editedReservation = new ReservationBuilder(firstReservation).withRemark(REMARK_STUB).build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(editedReservation.getRemark().value));
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON,
+                new Remark(editedReservation.getRemark().value));
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedReservation);
 
@@ -68,10 +69,11 @@ public class RemarkCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Reservation firstReservation = model.getFilteredReservationList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Reservation editedReservation = new ReservationBuilder(model.getFilteredReservationList().get(INDEX_FIRST_PERSON.getZeroBased()))
-                .withRemark(REMARK_STUB).build();
+        Reservation editedReservation = new ReservationBuilder(model.getFilteredReservationList()
+                .get(INDEX_FIRST_PERSON.getZeroBased())).withRemark(REMARK_STUB).build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(editedReservation.getRemark().value));
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON,
+                new Remark(editedReservation.getRemark().value));
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedReservation);
 

@@ -50,7 +50,8 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validReservation);
         ModelStub modelStub = new ModelStubWithPerson(validReservation);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_RESERVATION, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand
+                .MESSAGE_DUPLICATE_RESERVATION, () -> addCommand.execute(modelStub));
     }
 
     @Test

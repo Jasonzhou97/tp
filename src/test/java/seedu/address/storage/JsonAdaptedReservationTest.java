@@ -1,19 +1,13 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.storage.JsonAdaptedReservation.MISSING_FIELD_MESSAGE_FORMAT;
-import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalReservations.BENSON;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.reservation.Name;
-import seedu.address.model.reservation.Phone;
 
 public class JsonAdaptedReservationTest {
     private static final String INVALID_NAME = "R@chel";
