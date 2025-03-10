@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RESERVATIONS;
 
 import java.util.List;
 
@@ -46,7 +46,7 @@ public class RemarkCommand extends Command {
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Reservation> lastShownList = model.getFilteredPersonList();
+        List<Reservation> lastShownList = model.getFilteredReservationList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -56,8 +56,8 @@ public class RemarkCommand extends Command {
         Reservation editedReservation = new Reservation(reservationToEdit.getName(), reservationToEdit.getPhone(), reservationToEdit.getEmail(),
                 reservationToEdit.getAddress(), remark, reservationToEdit.getTags());
 
-        model.setPerson(reservationToEdit, editedReservation);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setReservation(reservationToEdit, editedReservation);
+        model.updateFilteredReservationList(PREDICATE_SHOW_ALL_RESERVATIONS);
 
         return new CommandResult(generateSuccessMessage(editedReservation));
     }

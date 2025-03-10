@@ -31,7 +31,7 @@ public class AddCommandIntegrationTest {
         Reservation validReservation = new PersonBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addPerson(validReservation);
+        expectedModel.addReservation(validReservation);
 
         assertCommandSuccess(new AddCommand(validReservation), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validReservation)),
@@ -42,7 +42,7 @@ public class AddCommandIntegrationTest {
     public void execute_duplicatePerson_throwsCommandException() {
         Reservation reservationInList = model.getAddressBook().getPersonList().get(0);
         assertCommandFailure(new AddCommand(reservationInList), model,
-                AddCommand.MESSAGE_DUPLICATE_PERSON);
+                AddCommand.MESSAGE_DUPLICATE_RESERVATION);
     }
 
 }

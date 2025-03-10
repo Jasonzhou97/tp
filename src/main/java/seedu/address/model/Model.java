@@ -12,7 +12,7 @@ import seedu.address.model.reservation.Reservation;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Reservation> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Reservation> PREDICATE_SHOW_ALL_RESERVATIONS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -55,33 +55,33 @@ public interface Model {
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    boolean hasPerson(Reservation reservation);
+    boolean hasReservation(Reservation reservation);
 
     /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
-    void deletePerson(Reservation target);
+    void deleteReservation(Reservation target);
 
     /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
-    void addPerson(Reservation reservation);
+    void addReservation(Reservation reservation);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    void setPerson(Reservation target, Reservation editedReservation);
+    void setReservation(Reservation target, Reservation editedReservation);
 
     /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Reservation> getFilteredPersonList();
+    ObservableList<Reservation> getFilteredReservationList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Reservation> predicate);
+    void updateFilteredReservationList(Predicate<Reservation> predicate);
 }

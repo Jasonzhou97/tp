@@ -169,7 +169,7 @@ public class LogicManagerTest {
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
         Reservation expectedReservation = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedReservation);
+        expectedModel.addReservation(expectedReservation);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 }
