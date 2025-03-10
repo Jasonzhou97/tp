@@ -3,10 +3,8 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Reservation;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
@@ -45,13 +43,13 @@ public class PersonBuilder {
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public PersonBuilder(Person personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        remark = personToCopy.getRemark();
-        tags = new HashSet<>(personToCopy.getTags());
+    public PersonBuilder(Reservation reservationToCopy) {
+        name = reservationToCopy.getName();
+        phone = reservationToCopy.getPhone();
+        email = reservationToCopy.getEmail();
+        address = reservationToCopy.getAddress();
+        remark = reservationToCopy.getRemark();
+        tags = new HashSet<>(reservationToCopy.getTags());
     }
 
     /**
@@ -104,8 +102,8 @@ public class PersonBuilder {
 
 
 
-    public Person build() {
-        return new Person(name, phone, email, address, remark, tags);
+    public Reservation build() {
+        return new Reservation(name, phone, email, address, remark, tags);
     }
 
 }
