@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RESERVATIONS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalReservations.ALICE;
+import static seedu.address.testutil.TypicalReservations.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

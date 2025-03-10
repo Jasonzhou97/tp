@@ -27,9 +27,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.reservation.NameContainsKeywordsPredicate;
 import seedu.address.model.reservation.Reservation;
 import seedu.address.model.reservation.Remark;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.EditReservationDescriptorBuilder;
+import seedu.address.testutil.ReservationBuilder;
+import seedu.address.testutil.ReservationUtil;
 
 public class AddressBookParserTest {
 
@@ -37,8 +37,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Reservation reservation = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(reservation));
+        Reservation reservation = new ReservationBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(ReservationUtil.getAddCommand(reservation));
         assertEquals(new AddCommand(reservation), command);
     }
 
@@ -57,10 +57,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Reservation reservation = new PersonBuilder().build();
-        EditCommand.EditReservationDescriptor descriptor = new EditPersonDescriptorBuilder(reservation).build();
+        Reservation reservation = new ReservationBuilder().build();
+        EditCommand.EditReservationDescriptor descriptor = new EditReservationDescriptorBuilder(reservation).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + INDEX_FIRST_PERSON.getOneBased() + " " + ReservationUtil.getEditReservationDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 

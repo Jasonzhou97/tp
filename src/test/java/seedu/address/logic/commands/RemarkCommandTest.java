@@ -9,7 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalReservations.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +21,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.reservation.Reservation;
 import seedu.address.model.reservation.Remark;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ReservationBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for RemarkCommand.
@@ -35,7 +35,7 @@ public class RemarkCommandTest {
     @Test
     public void execute_addRemarkUnfilteredList_success() {
         Reservation firstReservation = model.getFilteredReservationList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Reservation editedReservation = new PersonBuilder(firstReservation).withRemark(REMARK_STUB).build();
+        Reservation editedReservation = new ReservationBuilder(firstReservation).withRemark(REMARK_STUB).build();
 
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(editedReservation.getRemark().value));
 
@@ -50,7 +50,7 @@ public class RemarkCommandTest {
     @Test
     public void execute_deleteRemarkUnfilteredList_success() {
         Reservation firstReservation = model.getFilteredReservationList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Reservation editedReservation = new PersonBuilder(firstReservation).withRemark("").build();
+        Reservation editedReservation = new ReservationBuilder(firstReservation).withRemark("").build();
 
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON,
                 new Remark(editedReservation.getRemark().toString()));
@@ -68,7 +68,7 @@ public class RemarkCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Reservation firstReservation = model.getFilteredReservationList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Reservation editedReservation = new PersonBuilder(model.getFilteredReservationList().get(INDEX_FIRST_PERSON.getZeroBased()))
+        Reservation editedReservation = new ReservationBuilder(model.getFilteredReservationList().get(INDEX_FIRST_PERSON.getZeroBased()))
                 .withRemark(REMARK_STUB).build();
 
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(editedReservation.getRemark().value));

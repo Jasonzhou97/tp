@@ -13,7 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalReservations.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,8 +25,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.reservation.Reservation;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.EditReservationDescriptorBuilder;
+import seedu.address.testutil.ReservationBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -37,11 +37,11 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Reservation editedReservation = new PersonBuilder().build();
-        EditReservationDescriptor descriptor = new EditPersonDescriptorBuilder(editedReservation).build();
+        Reservation editedReservation = new ReservationBuilder().build();
+        EditReservationDescriptor descriptor = new EditReservationDescriptorBuilder(editedReservation).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedReservation));
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_RESERVATION_SUCCESS, Messages.format(editedReservation));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setReservation(model.getFilteredReservationList().get(0), editedReservation);
@@ -54,15 +54,15 @@ public class EditCommandTest {
         Index indexLastPerson = Index.fromOneBased(model.getFilteredReservationList().size());
         Reservation lastReservation = model.getFilteredReservationList().get(indexLastPerson.getZeroBased());
 
-        PersonBuilder personInList = new PersonBuilder(lastReservation);
+        ReservationBuilder personInList = new ReservationBuilder(lastReservation);
         Reservation editedReservation = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
-        EditCommand.EditReservationDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+        EditCommand.EditReservationDescriptor descriptor = new EditReservationDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedReservation));
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_RESERVATION_SUCCESS, Messages.format(editedReservation));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setReservation(lastReservation, editedReservation);
@@ -75,7 +75,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditCommand.EditReservationDescriptor());
         Reservation editedReservation = model.getFilteredReservationList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedReservation));
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_RESERVATION_SUCCESS, Messages.format(editedReservation));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
@@ -87,11 +87,11 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Reservation reservationInFilteredList = model.getFilteredReservationList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Reservation editedReservation = new PersonBuilder(reservationInFilteredList).withName(VALID_NAME_BOB).build();
+        Reservation editedReservation = new ReservationBuilder(reservationInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditReservationDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedReservation));
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_RESERVATION_SUCCESS, Messages.format(editedReservation));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setReservation(model.getFilteredReservationList().get(0), editedReservation);
@@ -102,7 +102,7 @@ public class EditCommandTest {
     @Test
     public void execute_duplicatePersonUnfilteredList_failure() {
         Reservation firstReservation = model.getFilteredReservationList().get(INDEX_FIRST_PERSON.getZeroBased());
-        EditCommand.EditReservationDescriptor descriptor = new EditPersonDescriptorBuilder(firstReservation).build();
+        EditCommand.EditReservationDescriptor descriptor = new EditReservationDescriptorBuilder(firstReservation).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_RESERVATION);
@@ -115,7 +115,7 @@ public class EditCommandTest {
         // edit person in filtered list into a duplicate in address book
         Reservation reservationInList = model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder(reservationInList).build());
+                new EditReservationDescriptorBuilder(reservationInList).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_RESERVATION);
     }
@@ -123,7 +123,7 @@ public class EditCommandTest {
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredReservationList().size() + 1);
-        EditReservationDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditReservationDescriptor descriptor = new EditReservationDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_RESERVATION_DISPLAYED_INDEX);
@@ -141,7 +141,7 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditReservationDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_RESERVATION_DISPLAYED_INDEX);
     }

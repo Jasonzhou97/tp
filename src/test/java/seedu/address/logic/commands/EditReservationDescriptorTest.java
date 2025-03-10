@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -14,7 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.EditCommand.EditReservationDescriptor;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditReservationDescriptorBuilder;
 
 public class EditReservationDescriptorTest {
 
@@ -37,23 +35,23 @@ public class EditReservationDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditCommand.EditReservationDescriptor editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
+        EditCommand.EditReservationDescriptor editedAmy = new EditReservationDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
+        editedAmy = new EditReservationDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different email -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
+        editedAmy = new EditReservationDescriptorBuilder(DESC_AMY).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different address -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
+        editedAmy = new EditReservationDescriptorBuilder(DESC_AMY).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        editedAmy = new EditReservationDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 
@@ -63,9 +61,13 @@ public class EditReservationDescriptorTest {
         String expected = EditCommand.EditReservationDescriptor.class.getCanonicalName() + "{name="
                 + editReservationDescriptor.getName().orElse(null) + ", phone="
                 + editReservationDescriptor.getPhone().orElse(null) + ", email="
-                + editReservationDescriptor.getEmail().orElse(null) + ", address="
-                + editReservationDescriptor.getAddress().orElse(null) + ", tags="
-                + editReservationDescriptor.getTags().orElse(null) + "}";
+                + editReservationDescriptor.getDate().orElse(null) + ", date="
+                + editReservationDescriptor.getTime().orElse(null) + ", time="
+                + editReservationDescriptor.getDuration().orElse(null) + ", duration="
+                + editReservationDescriptor.getPax().orElse(null) + ", pax="
+                + editReservationDescriptor.getTable().orElse(null) + ", table="
+                + editReservationDescriptor.getTags().orElse(null) + ", id="
+                + editReservationDescriptor.getId().orElse(null) + "}";
         assertEquals(expected, editReservationDescriptor.toString());
     }
 }
