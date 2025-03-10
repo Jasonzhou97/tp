@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.reservation;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -19,16 +19,29 @@ public class Reservation {
     // Identity fields
     private final Name name;
     private final Phone phone;
+
+    // Data fields
+    private final StartDate date;
+    private final StartTime time;
+    private final Duration duration;
+    private final Pax pax;
+    private final Table table;
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Reservation(Name name, Phone phone, Remark remark, Set<Tag> tags) {
-        requireAllNonNull(name, phone, tags);
+    public Reservation(Name name, Phone phone, StartDate date, StartTime time,
+                       Duration duration, Pax pax, Table table, Remark remark, Set<Tag> tags) {
+        requireAllNonNull(name, phone, date, time, duration, pax, table);
         this.name = name;
         this.phone = phone;
+        this.date = date;
+        this.time = time;
+        this.duration = duration;
+        this.pax = pax;
+        this.table = table;
         this.remark = remark;
         this.tags.addAll(tags);
     }
@@ -40,6 +53,16 @@ public class Reservation {
     public Phone getPhone() {
         return phone;
     }
+
+    public StartDate getDate() {return date;}
+
+    public StartTime time() {return time;}
+
+    public Duration duration() { return duration;}
+
+    public Pax getPax() {return pax;}
+
+    public Table getTable() {return table;}
 
     public Remark getRemark() {
         return remark;
@@ -58,7 +81,7 @@ public class Reservation {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Reservation otherReservation) {
+    public boolean isSameReservation(Reservation otherReservation) {
         if (otherReservation == this) {
             return true;
         }

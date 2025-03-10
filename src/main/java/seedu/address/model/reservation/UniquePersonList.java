@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.reservation;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.reservation.exceptions.DuplicatePersonException;
+import seedu.address.model.reservation.exceptions.PersonNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -20,7 +20,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Reservation#isSamePerson(Reservation)
+ * @see Reservation#isSameReservation(Reservation)
  */
 public class UniquePersonList implements Iterable<Reservation> {
 
@@ -33,7 +33,7 @@ public class UniquePersonList implements Iterable<Reservation> {
      */
     public boolean contains(Reservation toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameReservation);
     }
 
     /**
@@ -61,7 +61,7 @@ public class UniquePersonList implements Iterable<Reservation> {
             throw new PersonNotFoundException();
         }
 
-        if (!target.isSamePerson(editedReservation) && contains(editedReservation)) {
+        if (!target.isSameReservation(editedReservation) && contains(editedReservation)) {
             throw new DuplicatePersonException();
         }
 
@@ -140,7 +140,7 @@ public class UniquePersonList implements Iterable<Reservation> {
     private boolean personsAreUnique(List<Reservation> reservations) {
         for (int i = 0; i < reservations.size() - 1; i++) {
             for (int j = i + 1; j < reservations.size(); j++) {
-                if (reservations.get(i).isSamePerson(reservations.get(j))) {
+                if (reservations.get(i).isSameReservation(reservations.get(j))) {
                     return false;
                 }
             }

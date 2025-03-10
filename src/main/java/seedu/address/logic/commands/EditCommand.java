@@ -21,10 +21,10 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Reservation;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Remark;
+import seedu.address.model.reservation.Name;
+import seedu.address.model.reservation.Reservation;
+import seedu.address.model.reservation.Phone;
+import seedu.address.model.reservation.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -78,7 +78,7 @@ public class EditCommand extends Command {
         Reservation reservationToEdit = lastShownList.get(index.getZeroBased());
         Reservation editedReservation = createEditedPerson(reservationToEdit, editPersonDescriptor);
 
-        if (!reservationToEdit.isSamePerson(editedReservation) && model.hasPerson(editedReservation)) {
+        if (!reservationToEdit.isSameReservation(editedReservation) && model.hasPerson(editedReservation)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 

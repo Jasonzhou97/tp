@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Reservation;
+import seedu.address.model.reservation.Reservation;
 
 /**
  * The API of the Model component.

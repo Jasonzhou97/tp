@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.reservation.Name;
+import seedu.address.model.reservation.Phone;
 
 public class JsonAdaptedReservationTest {
     private static final String INVALID_NAME = "R@chel";

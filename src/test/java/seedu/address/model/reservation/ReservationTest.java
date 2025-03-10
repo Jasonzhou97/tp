@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.reservation;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -27,28 +27,28 @@ public class ReservationTest {
     @Test
     public void isSamePerson() {
         // same object -> returns true
-        assertTrue(ALICE.isSamePerson(ALICE));
+        assertTrue(ALICE.isSameReservation(ALICE));
 
         // null -> returns false
-        assertFalse(ALICE.isSamePerson(null));
+        assertFalse(ALICE.isSameReservation(null));
 
         // same name, all other attributes different -> returns true
         Reservation editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        assertTrue(ALICE.isSameReservation(editedAlice));
 
         // different name, all other attributes same -> returns false
         editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        assertFalse(ALICE.isSameReservation(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
         Reservation editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        assertFalse(BOB.isSameReservation(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        assertFalse(BOB.isSameReservation(editedBob));
     }
 
     @Test

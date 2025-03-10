@@ -10,8 +10,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Reservation;
-import seedu.address.model.person.Remark;
+import seedu.address.model.reservation.Reservation;
+import seedu.address.model.reservation.Remark;
 
 /**
  * Changes the remark of an existing person in the address book.
