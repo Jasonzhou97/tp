@@ -4,7 +4,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditCommand.EditReservationDescriptor;
 import seedu.address.model.reservation.Name;
 import seedu.address.model.reservation.Reservation;
 import seedu.address.model.reservation.Phone;
@@ -15,21 +16,21 @@ import seedu.address.model.tag.Tag;
  */
 public class EditPersonDescriptorBuilder {
 
-    private EditPersonDescriptor descriptor;
+    private EditReservationDescriptor descriptor;
 
     public EditPersonDescriptorBuilder() {
-        descriptor = new EditPersonDescriptor();
+        descriptor = new EditReservationDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditPersonDescriptor descriptor) {
-        this.descriptor = new EditPersonDescriptor(descriptor);
+    public EditPersonDescriptorBuilder(EditReservationDescriptor descriptor) {
+        this.descriptor = new EditReservationDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
     public EditPersonDescriptorBuilder(Reservation reservation) {
-        descriptor = new EditPersonDescriptor();
+        descriptor = new EditReservationDescriptor();
         descriptor.setName(reservation.getName());
         descriptor.setPhone(reservation.getPhone());
         descriptor.setEmail(reservation.getEmail());
@@ -79,7 +80,7 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
-    public EditPersonDescriptor build() {
+    public EditCommand.EditReservationDescriptor build() {
         return descriptor;
     }
 }

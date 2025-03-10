@@ -13,7 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditReservationDescriptor;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditReservationDescriptorTest {
@@ -21,7 +21,7 @@ public class EditReservationDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditPersonDescriptor descriptorWithSameValues = new EditPersonDescriptor(DESC_AMY);
+        EditCommand.EditReservationDescriptor descriptorWithSameValues = new EditReservationDescriptor(DESC_AMY);
         assertTrue(DESC_AMY.equals(descriptorWithSameValues));
 
         // same object -> returns true
@@ -37,7 +37,7 @@ public class EditReservationDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditPersonDescriptor editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
+        EditCommand.EditReservationDescriptor editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false
@@ -59,13 +59,13 @@ public class EditReservationDescriptorTest {
 
     @Test
     public void toStringMethod() {
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        String expected = EditPersonDescriptor.class.getCanonicalName() + "{name="
-                + editPersonDescriptor.getName().orElse(null) + ", phone="
-                + editPersonDescriptor.getPhone().orElse(null) + ", email="
-                + editPersonDescriptor.getEmail().orElse(null) + ", address="
-                + editPersonDescriptor.getAddress().orElse(null) + ", tags="
-                + editPersonDescriptor.getTags().orElse(null) + "}";
-        assertEquals(expected, editPersonDescriptor.toString());
+        EditCommand.EditReservationDescriptor editReservationDescriptor = new EditReservationDescriptor();
+        String expected = EditCommand.EditReservationDescriptor.class.getCanonicalName() + "{name="
+                + editReservationDescriptor.getName().orElse(null) + ", phone="
+                + editReservationDescriptor.getPhone().orElse(null) + ", email="
+                + editReservationDescriptor.getEmail().orElse(null) + ", address="
+                + editReservationDescriptor.getAddress().orElse(null) + ", tags="
+                + editReservationDescriptor.getTags().orElse(null) + "}";
+        assertEquals(expected, editReservationDescriptor.toString());
     }
 }

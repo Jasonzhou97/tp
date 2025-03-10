@@ -49,7 +49,7 @@ public class RemarkCommand extends Command {
         List<Reservation> lastShownList = model.getFilteredReservationList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_RESERVATION_DISPLAYED_INDEX);
         }
 
         Reservation reservationToEdit = lastShownList.get(index.getZeroBased());
