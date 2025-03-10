@@ -6,10 +6,16 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.reservation.Duration;
+import seedu.address.model.reservation.Identification;
 import seedu.address.model.reservation.Name;
+import seedu.address.model.reservation.Pax;
 import seedu.address.model.reservation.Reservation;
 import seedu.address.model.reservation.Phone;
 import seedu.address.model.reservation.Remark;
+import seedu.address.model.reservation.StartDate;
+import seedu.address.model.reservation.StartTime;
+import seedu.address.model.reservation.Table;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,9 +27,10 @@ public class SampleDataUtil {
 
     public static Reservation[] getSamplePersons() {
         return new Reservation[] {
-            new Reservation(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"), EMPTY_REMARK,
-                getTagSet("friends")),
+            new Reservation(new Name("Alex Yeoh"), new Phone("87438807"), new StartDate("01/03/2025"),
+                    new StartTime("1800"), new Duration("2"), new Pax("2"), new Table("A1"), EMPTY_REMARK,
+                getTagSet("friends"), new Identification("0001"))
+                /*
             new Reservation(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), EMPTY_REMARK,
                 getTagSet("colleagues", "friends")),
@@ -38,7 +45,7 @@ public class SampleDataUtil {
                 getTagSet("classmates")),
             new Reservation(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"), EMPTY_REMARK,
-                getTagSet("colleagues"))
+                getTagSet("colleagues"))*/
         };
     }
 

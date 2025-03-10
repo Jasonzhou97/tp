@@ -39,12 +39,22 @@ public class Messages {
         builder.append(reservation.getName())
                 .append("; Phone: ")
                 .append(reservation.getPhone())
-                .append("; Email: ")
-                .append(reservation.getEmail())
-                .append("; Address: ")
-                .append(reservation.getAddress())
+                .append("; Date: ")
+                .append(reservation.getDate())
+                .append("; Time: ")
+                .append(reservation.getTime())
+                .append("; Duration: ")
+                .append(reservation.getDuration())
+                .append("; Pax: ")
+                .append(reservation.getPax())
+                .append("; Table: ")
+                .append(reservation.getTable())
                 .append("; Tags: ");
         reservation.getTags().forEach(builder::append);
+        builder.append("; Remark: ")
+                .append(reservation.getRemark())
+                .append("; ID: ")
+                .append(reservation.getId());
         return builder.toString();
     }
 
