@@ -28,12 +28,13 @@ public class Reservation {
     private final Table table;
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
+    private final Identification id;
 
     /**
      * Every field must be present and not null.
      */
     public Reservation(Name name, Phone phone, StartDate date, StartTime time,
-                       Duration duration, Pax pax, Table table, Remark remark, Set<Tag> tags) {
+                       Duration duration, Pax pax, Table table, Remark remark, Set<Tag> tags, Identification id) {
         requireAllNonNull(name, phone, date, time, duration, pax, table);
         this.name = name;
         this.phone = phone;
@@ -44,6 +45,7 @@ public class Reservation {
         this.table = table;
         this.remark = remark;
         this.tags.addAll(tags);
+        this.id = id;
     }
 
     public Name getName() {
@@ -67,6 +69,8 @@ public class Reservation {
     public Remark getRemark() {
         return remark;
     }
+
+    public Identification getId() {return id;}
 
 
     /**
@@ -108,13 +112,19 @@ public class Reservation {
         Reservation otherReservation = (Reservation) other;
         return name.equals(otherReservation.name)
                 && phone.equals(otherReservation.phone)
-                && tags.equals(otherReservation.tags);
+                && date.equals(otherReservation.date)
+                && time.equals(otherReservation.time)
+                && duration.equals(otherReservation.duration)
+                && pax.equals(otherReservation.pax)
+                && table.equals(otherReservation.table)
+                && tags.equals(otherReservation.tags)
+                && id.equals(otherReservation.id);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, tags);
+        return Objects.hash(name, phone, date, time, duration, pax, table, tags, id);
     }
 
     @Override
@@ -122,7 +132,13 @@ public class Reservation {
         return new ToStringBuilder(this)
                 .add("name", name)
                 .add("phone", phone)
+                .add("date", date)
+                .add("time", time)
+                .add("duration", duration)
+                .add("pax", pax)
+                .add("table", table)
                 .add("tags", tags)
+                .add("id", id)
                 .toString();
     }
 
