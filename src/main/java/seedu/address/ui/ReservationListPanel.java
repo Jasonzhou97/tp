@@ -13,26 +13,26 @@ import seedu.address.model.reservation.Reservation;
 /**
  * Panel containing the list of persons.
  */
-public class PersonListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+public class ReservationListPanel extends UiPart<Region> {
+    private static final String FXML = "ReservationListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(ReservationListPanel.class);
 
     @FXML
-    private ListView<Reservation> personListView;
+    private ListView<Reservation> reservationListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Reservation> reservationList) {
+    public ReservationListPanel(ObservableList<Reservation> reservationList) {
         super(FXML);
-        personListView.setItems(reservationList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        reservationListView.setItems(reservationList);
+        reservationListView.setCellFactory(listView -> new ReservationListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    class PersonListViewCell extends ListCell<Reservation> {
+    class ReservationListViewCell extends ListCell<Reservation> {
         @Override
         protected void updateItem(Reservation reservation, boolean empty) {
             super.updateItem(reservation, empty);
@@ -41,7 +41,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(reservation, getIndex() + 1).getRoot());
+                setGraphic(new ReservationCard(reservation, getIndex() + 1).getRoot());
             }
         }
     }

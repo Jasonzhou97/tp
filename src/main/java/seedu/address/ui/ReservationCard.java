@@ -11,11 +11,11 @@ import seedu.address.model.reservation.Reservation;
 
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * A UI component that displays information of a {@code Person}.
  */
-public class PersonCard extends UiPart<Region> {
+public class ReservationCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "ReservationListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -36,10 +36,6 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
-    @FXML
-    private Label email;
-    @FXML
     private Label remark;
     @FXML
     private FlowPane tags;
@@ -47,14 +43,12 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Reservation reservation, int displayedIndex) {
+    public ReservationCard(Reservation reservation, int displayedIndex) {
         super(FXML);
         this.reservation = reservation;
         id.setText(displayedIndex + ". ");
         name.setText(reservation.getName().fullName);
         phone.setText(reservation.getPhone().value);
-        address.setText(reservation.getAddress().value);
-        email.setText(reservation.getEmail().value);
         remark.setText(reservation.getRemark().value);
         reservation.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
