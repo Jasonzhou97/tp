@@ -10,11 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Table {
 
-    // Additional message is added behind (ie:last parameter to be accepted)
-    // This is done to allow user to know no more parameter is allowed after /table
     public static final String MESSAGE_CONSTRAINTS =
-            "Table number should start with a capital letter, followed by 1-3 numbers."
-            + "This is the last parameter to be accepted.";
+            "Table number should start with a capital letter, followed by 1-3 numbers.";
     public static final String VALIDATION_REGEX = "^[A-Z]\\d{1,3}$";
 
     public final String value;
