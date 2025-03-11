@@ -15,6 +15,8 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Reservation {
+    // static Counter Field
+    private static int reservationCount = 1;
 
     // Identity fields
     private final Name name;
@@ -84,6 +86,13 @@ public class Reservation {
         return id;
     }
 
+    public static String getReservationCountString() {
+        return String.valueOf(reservationCount);
+    }
+
+    public static void incReservationCountbyOne() {
+        Reservation.reservationCount += 1;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -129,8 +138,7 @@ public class Reservation {
                 && duration.equals(otherReservation.duration)
                 && pax.equals(otherReservation.pax)
                 && table.equals(otherReservation.table)
-                && tags.equals(otherReservation.tags)
-                && id.equals(otherReservation.id);
+                && tags.equals(otherReservation.tags);
     }
 
     @Override
