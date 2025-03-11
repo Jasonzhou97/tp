@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PAX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -61,11 +60,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Table table = ParserUtil.parseTable(argMultimap.getValue(PREFIX_TABLE).get());
         Remark remark = new Remark("");
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        // Make use of last 4 digits of phone and current reservation count to form a unique key id
-        Identification id = new Identification(phone.getLastFourDigitsString() + Reservation.getReservationCountString() );
+        // Make use of current date ddMMyyyy and last 4 digits of phone and current reservation count to form a unique key id
+        Identification id = new Identification(date.formatStartDate() + phone.getLastFourDigitsString());
 
         Reservation reservation = new Reservation(name, phone, date, time, duration, pax, table, remark, tagList, id);
-        Reservation.incReservationCountbyOne();
         return new AddCommand(reservation);
     }
 

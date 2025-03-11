@@ -32,6 +32,10 @@ public class StartDate {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public  String formatStartDate() {
+        return this.value.replace("/","");
+    }
+
     @Override
     public String toString() {
         return value;
