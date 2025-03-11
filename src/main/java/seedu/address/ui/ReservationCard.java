@@ -36,22 +36,42 @@ public class ReservationCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
+    private Label date;
+    @FXML
+    private Label time;
+    @FXML
+    private Label duration;
+    @FXML
+    private Label pax;
+    @FXML
+    private Label table;
+    @FXML
     private Label remark;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label reservationId;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
     public ReservationCard(Reservation reservation, int displayedIndex) {
         super(FXML);
+        System.out.println(reservation.getDate().toString());
         this.reservation = reservation;
         id.setText(displayedIndex + ". ");
         name.setText(reservation.getName().fullName);
         phone.setText(reservation.getPhone().value);
+        date.setText(reservation.getDate().value);
+        time.setText(reservation.getTime().value);
+        duration.setText(reservation.getDuration().value);
+        pax.setText(reservation.getPax().value);
+        table.setText(reservation.getTable().value);
         remark.setText(reservation.getRemark().value);
         reservation.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        reservationId.setText(reservation.getId().value);
+        System.out.println(reservation.getDate().toString());
     }
 }
