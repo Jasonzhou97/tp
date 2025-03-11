@@ -15,8 +15,6 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Reservation {
-    // static Counter Field
-    private static int reservationCount = 1;
 
     // Identity fields
     private final Name name;
@@ -84,14 +82,6 @@ public class Reservation {
 
     public Identification getId() {
         return id;
-    }
-
-    public static String getReservationCountString() {
-        return String.valueOf(reservationCount);
-    }
-
-    public static void incReservationCountbyOne() {
-        Reservation.reservationCount += 1;
     }
 
     /**
