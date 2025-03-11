@@ -34,7 +34,6 @@ public class AddCommand extends Command {
             + PREFIX_PAX + "PAX "
             + PREFIX_TABLE + "TABLE "
             + "[" + PREFIX_TAG + "TAG]..."
-            + PREFIX_ID + "ID \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
@@ -44,8 +43,7 @@ public class AddCommand extends Command {
             + PREFIX_PAX + "2 "
             + PREFIX_TABLE + "A1 "
             + PREFIX_TAG + "regular "
-            + PREFIX_TAG + "event "
-            + PREFIX_ID + "0001";
+            + PREFIX_TAG + "event ";
 
     public static final String MESSAGE_SUCCESS = "New reservation added: %1$s";
     public static final String MESSAGE_DUPLICATE_RESERVATION = "This reservation already exists in the address book";
