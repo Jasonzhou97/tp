@@ -103,7 +103,7 @@ public class Reservation {
         }
 
         return otherReservation != null
-                && otherReservation.getName().equals(getName());
+                && this.equals(otherReservation);
     }
 
     /**
@@ -122,7 +122,7 @@ public class Reservation {
         }
 
         Reservation otherReservation = (Reservation) other;
-        return name.equals(otherReservation.name)
+        return name.toLowerCase().equals(otherReservation.name.toLowerCase())
                 && phone.equals(otherReservation.phone)
                 && date.equals(otherReservation.date)
                 && time.equals(otherReservation.time)
