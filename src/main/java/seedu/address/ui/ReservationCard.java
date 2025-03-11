@@ -71,6 +71,5 @@ public class ReservationCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         reservationId.setText(reservation.getId().value);
-        System.out.println(reservation.getDate().toString());
     }
 }
