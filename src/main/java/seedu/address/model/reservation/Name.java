@@ -44,6 +44,10 @@ public class Name {
         return fullName;
     }
 
+    public String toLowerCase() {
+        return fullName.toLowerCase();
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -56,6 +60,7 @@ public class Name {
         }
 
         Name otherName = (Name) other;
+
         return fullName.equals(otherName.fullName);
     }
 
