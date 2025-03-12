@@ -1,5 +1,9 @@
 package seedu.address.model.reservation;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Objects;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -9,7 +13,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class StartDate {
     public static final String MESSAGE_CONSTRAINTS =
-            "Date should be in the form of DD/MM/YYYY, with leading zeros for single digits.";
+            "Date should only be today or tomorrow in the form of DD/MM/YYYY, with leading zeros for single digits.";
     public static final String VALIDATION_REGEX = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\\d{4}$";
 
     public final String value;
@@ -29,7 +33,11 @@ public class StartDate {
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && isValidDateRange(test);
+    }
+
+    public  String formatStartDate() {
+        return this.value.replace("/","");
     }
 
     @Override
@@ -55,5 +63,17 @@ public class StartDate {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    private static boolean isValidDateRange(String userInputDate) {
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String dateToday = date.format(formatter);
+        String dateTomorrow = date.plusDays(1).format(formatter);
+
+        if (!Objects.equals(userInputDate, dateToday) && !Objects.equals(userInputDate, dateTomorrow)) {
+            return false;
+        }
+        return true;
     }
 }

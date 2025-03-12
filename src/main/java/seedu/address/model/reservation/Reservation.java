@@ -84,7 +84,6 @@ public class Reservation {
         return id;
     }
 
-
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -103,7 +102,7 @@ public class Reservation {
         }
 
         return otherReservation != null
-                && otherReservation.getName().equals(getName());
+                && this.equals(otherReservation);
     }
 
     /**
@@ -122,15 +121,14 @@ public class Reservation {
         }
 
         Reservation otherReservation = (Reservation) other;
-        return name.equals(otherReservation.name)
+        return name.toLowerCase().equals(otherReservation.name.toLowerCase())
                 && phone.equals(otherReservation.phone)
                 && date.equals(otherReservation.date)
                 && time.equals(otherReservation.time)
                 && duration.equals(otherReservation.duration)
                 && pax.equals(otherReservation.pax)
                 && table.equals(otherReservation.table)
-                && tags.equals(otherReservation.tags)
-                && id.equals(otherReservation.id);
+                && tags.equals(otherReservation.tags);
     }
 
     @Override
