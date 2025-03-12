@@ -53,7 +53,7 @@ public class UniqueReservationList implements Iterable<Reservation> {
      * {@code target} must exist in the list.
      * The reservation identity of {@code editedReservation} must not be the same as another existing reservation in the list.
      */
-    public void setPerson(Reservation target, Reservation editedReservation) {
+    public void setReservation(Reservation target, Reservation editedReservation) {
         requireAllNonNull(target, editedReservation);
 
         int index = internalList.indexOf(target);
@@ -79,16 +79,16 @@ public class UniqueReservationList implements Iterable<Reservation> {
         }
     }
 
-    public void setPersons(UniqueReservationList replacement) {
+    public void setReservations(UniqueReservationList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code reservations}.
+     * {@code reservations} must not contain duplicate reservations.
      */
-    public void setPersons(List<Reservation> reservations) {
+    public void setReservations(List<Reservation> reservations) {
         requireAllNonNull(reservations);
         if (!reservationsAreUnique(reservations)) {
             throw new DuplicatePersonException();
@@ -135,7 +135,7 @@ public class UniqueReservationList implements Iterable<Reservation> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code reservations} contains only unique persons.
      */
     private boolean reservationsAreUnique(List<Reservation> reservations) {
         for (int i = 0; i < reservations.size() - 1; i++) {

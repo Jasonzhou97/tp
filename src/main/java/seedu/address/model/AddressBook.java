@@ -45,7 +45,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code reservations} must not contain duplicate reservations.
      */
     public void setReservation(List<Reservation> reservations) {
-        this.reservations.setPersons(reservations);
+        this.reservations.setReservations(reservations);
     }
 
     /**
@@ -83,7 +83,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setReservation(Reservation target, Reservation editedReservation) {
         requireNonNull(editedReservation);
 
-        reservations.setPerson(target, editedReservation);
+        reservations.setReservation(target, editedReservation);
     }
 
     /**
