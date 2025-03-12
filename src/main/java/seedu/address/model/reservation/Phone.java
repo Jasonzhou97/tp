@@ -38,6 +38,10 @@ public class Phone {
         return value;
     }
 
+    public String getLastFourDigitsString() {
+        return this.value.substring(value.length() - 4);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

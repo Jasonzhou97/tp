@@ -84,7 +84,6 @@ public class Reservation {
         return id;
     }
 
-
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -129,8 +128,7 @@ public class Reservation {
                 && duration.equals(otherReservation.duration)
                 && pax.equals(otherReservation.pax)
                 && table.equals(otherReservation.table)
-                && tags.equals(otherReservation.tags)
-                && id.equals(otherReservation.id);
+                && tags.equals(otherReservation.tags);
     }
 
     @Override
