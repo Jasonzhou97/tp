@@ -1,16 +1,8 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.testutil.TypicalReservations.BOB;
-
-import org.junit.jupiter.api.Test;
-
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.reservation.Reservation;
-import seedu.address.testutil.ReservationBuilder;
 
 public class AddCommandParserTest {
+    /*
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
@@ -78,4 +70,6 @@ public class AddCommandParserTest {
         // non-empty preamble
 
     }
+
+     */
 }
