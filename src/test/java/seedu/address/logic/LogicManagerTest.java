@@ -5,7 +5,6 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_RESERVATION_DISPLAYED
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DURATION_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.ID_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PAX_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -174,7 +173,7 @@ public class LogicManagerTest {
         // Triggers the saveAddressBook method by executing an add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
                 + DATE_DESC_AMY + TIME_DESC_AMY + DURATION_DESC_AMY + PAX_DESC_AMY
-                + TABLE_DESC_AMY + ID_DESC_AMY;
+                + TABLE_DESC_AMY;
         Reservation expectedReservation = new ReservationBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addReservation(expectedReservation);

@@ -1,11 +1,11 @@
 package seedu.address.model.reservation;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a start date in a reservation.
@@ -36,8 +36,8 @@ public class StartDate {
         return test.matches(VALIDATION_REGEX) && isValidDateRange(test);
     }
 
-    public  String formatStartDate() {
-        return this.value.replace("/","");
+    public String formatStartDate() {
+        return this.value.replace("/", "");
     }
 
     @Override
