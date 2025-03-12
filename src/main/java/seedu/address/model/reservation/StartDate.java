@@ -36,10 +36,6 @@ public class StartDate {
         return test.matches(VALIDATION_REGEX) && isValidDateRange(test);
     }
 
-    public String formatStartDate() {
-        return this.value.replace("/", "");
-    }
-
     @Override
     public String toString() {
         return value;
