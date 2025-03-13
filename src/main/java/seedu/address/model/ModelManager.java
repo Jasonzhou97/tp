@@ -129,6 +129,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void filterReservationsForToday(Predicate<Reservation> predicate) {
+        requireNonNull(predicate);
+        Predicate<Reservation> todayPredicate = ReservationsFilter.filterForToday(filteredReservations);
+        filteredReservations.setPredicate(todayPredicate);
+    }
+    @Override
+    public void filterReservationsForTomorrow(Predicate<Reservation> predicate) {
+        requireNonNull(predicate);
+        Predicate<Reservation> todayPredicate = ReservationsFilter.filterForTomorrow(filteredReservations);
+        filteredReservations.setPredicate(todayPredicate);
+    }
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
