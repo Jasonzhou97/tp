@@ -139,7 +139,15 @@ public class AddCommandTest {
         public void deleteReservation(Reservation target) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public void filterReservationsForToday(Predicate<Reservation> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
 
+        @Override
+        public void filterReservationsForTomorrow(Predicate<Reservation> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
         @Override
         public void setReservation(Reservation target, Reservation editedReservation) {
             throw new AssertionError("This method should not be called.");
