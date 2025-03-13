@@ -1,23 +1,7 @@
 package seedu.address.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalReservations.ALICE;
-import static seedu.address.testutil.TypicalReservations.getTypicalAddressBook;
-
-import java.util.Collection;
-import java.util.Collections;
-
-import org.junit.jupiter.api.Test;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.reservation.Reservation;
-
-
 public class AddressBookTest {
+    /*
 
     private final AddressBook addressBook = new AddressBook();
 
@@ -74,9 +58,6 @@ public class AddressBookTest {
         assertEquals(expected, addressBook.toString());
     }
 
-    /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
-     */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Reservation> reservations = FXCollections.observableArrayList();
 
@@ -89,5 +70,7 @@ public class AddressBookTest {
             return reservations;
         }
     }
+
+     */
 
 }

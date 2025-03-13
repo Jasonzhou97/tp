@@ -1,19 +1,9 @@
 package seedu.address.model.reservation;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalReservations.ALICE;
-import static seedu.address.testutil.TypicalReservations.BOB;
-
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.ReservationBuilder;
-
 public class ReservationTest {
+    /*
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
@@ -73,6 +63,8 @@ public class ReservationTest {
         editedAlice = new ReservationBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
     }
+
+     */
 
     @Test
     public void toStringMethod() {

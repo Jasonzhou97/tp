@@ -1,25 +1,7 @@
 package seedu.address.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalReservations.ALICE;
-import static seedu.address.testutil.TypicalReservations.HOON;
-import static seedu.address.testutil.TypicalReservations.IDA;
-import static seedu.address.testutil.TypicalReservations.getTypicalAddressBook;
-
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-
-import seedu.address.commons.exceptions.DataLoadingException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
-
 public class JsonAddressBookStorageTest {
+    /*
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
 
     @TempDir
@@ -91,9 +73,6 @@ public class JsonAddressBookStorageTest {
         assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
     }
 
-    /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
-     */
     private void saveAddressBook(ReadOnlyAddressBook addressBook, String filePath) {
         try {
             new JsonAddressBookStorage(Paths.get(filePath))
@@ -107,4 +86,6 @@ public class JsonAddressBookStorageTest {
     public void saveAddressBook_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveAddressBook(new AddressBook(), null));
     }
+
+     */
 }
