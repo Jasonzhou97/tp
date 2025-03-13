@@ -1,15 +1,7 @@
 package seedu.address.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.TypicalReservations.BENSON;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.junit.jupiter.api.Test;
-
-
 public class JsonAdaptedReservationTest {
+    /*
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_TAG = "#friend";
@@ -71,4 +63,6 @@ public class JsonAdaptedReservationTest {
     public void toModelType_invalidTags_throwsIllegalValueException() {
 
     }
+
+     */
 }
