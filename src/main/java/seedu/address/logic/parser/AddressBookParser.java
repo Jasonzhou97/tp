@@ -63,11 +63,11 @@ public class AddressBookParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
-            case ListRTCommand.COMMAND_WORD:
-                return new ListRTCommand();
+        case ListRtCommand.COMMAND_WORD:
+            return new ListRtCommand();
 
-            case ListRNCommand.COMMAND_WORD:
-                return new ListRNCommand();
+        case ListRnCommand.COMMAND_WORD:
+                return new ListRnCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
