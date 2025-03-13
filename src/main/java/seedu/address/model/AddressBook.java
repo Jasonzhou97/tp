@@ -81,7 +81,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The reservation identity of {@code editedReservation} must not be the same as another
      * existing reservation in the address book.
      */
-    public void setReservations(Reservation target, Reservation editedReservation) {
+    public void setReservation(Reservation target, Reservation editedReservation) {
         requireNonNull(editedReservation);
 
         reservations.setReservation(target, editedReservation);

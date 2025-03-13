@@ -108,7 +108,7 @@ public class ModelManager implements Model {
     public void setReservation(Reservation target, Reservation editedReservation) {
         requireAllNonNull(target, editedReservation);
 
-        addressBook.setReservations(target, editedReservation);
+        addressBook.setReservation(target, editedReservation);
     }
 
     //=========== Filtered Person List Accessors =============================================================
