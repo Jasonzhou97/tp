@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PAX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -41,16 +40,17 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_DATE, PREFIX_TIME, PREFIX_DURATION,
-                        PREFIX_PAX, PREFIX_TABLE, PREFIX_TAG, PREFIX_ID);
+                        PREFIX_PAX, PREFIX_TABLE, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_DATE, PREFIX_TIME, PREFIX_DURATION,
-                PREFIX_PAX, PREFIX_TABLE, PREFIX_ID)
+                PREFIX_PAX, PREFIX_TABLE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
+
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_DATE, PREFIX_TIME, PREFIX_DURATION,
-                PREFIX_PAX, PREFIX_TABLE, PREFIX_ID);
+                PREFIX_PAX, PREFIX_TABLE);
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
@@ -61,10 +61,12 @@ public class AddCommandParser implements Parser<AddCommand> {
         Table table = ParserUtil.parseTable(argMultimap.getValue(PREFIX_TABLE).get());
         Remark remark = new Remark("");
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Identification id = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
+        // Make use of current date ddMMyyyy and last 4 digits of phone and current reservation count
+        // to form a unique key id
+        Identification id = new Identification(date.value.replace("/", "")
+                + phone.getLastFourDigitsString());
 
         Reservation reservation = new Reservation(name, phone, date, time, duration, pax, table, remark, tagList, id);
-
         return new AddCommand(reservation);
     }
 

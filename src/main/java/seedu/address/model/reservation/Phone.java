@@ -11,8 +11,8 @@ public class Phone {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+            "Phone numbers should only contain numbers, and it should be at least 4 digits long";
+    public static final String VALIDATION_REGEX = "\\d{4,}";
     public final String value;
 
     /**
@@ -36,6 +36,10 @@ public class Phone {
     @Override
     public String toString() {
         return value;
+    }
+
+    public String getLastFourDigitsString() {
+        return this.value.substring(value.length() - 4);
     }
 
     @Override
