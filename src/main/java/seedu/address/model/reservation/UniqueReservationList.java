@@ -13,8 +13,9 @@ import seedu.address.model.reservation.exceptions.PersonNotFoundException;
 
 /**
  * A list of reservations that enforces uniqueness between its elements and does not allow nulls.
- * A reservation is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
+ * A reservation is considered unique by comparing using {@code Person#isSamePerson(Person)}.
+ * As such, adding and updating of persons uses
+ * Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
  * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
  * as to ensure that the person with exactly the same fields will be removed.
  *
@@ -51,7 +52,8 @@ public class UniqueReservationList implements Iterable<Reservation> {
     /**
      * Replaces the reservation {@code target} in the list with {@code editedReservation}.
      * {@code target} must exist in the list.
-     * The reservation identity of {@code editedReservation} must not be the same as another existing reservation in the list.
+     * The reservation identity of {@code editedReservation} must not be the same as another existing
+     * reservation in the list.
      */
     public void setReservation(Reservation target, Reservation editedReservation) {
         requireAllNonNull(target, editedReservation);
