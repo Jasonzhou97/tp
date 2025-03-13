@@ -95,7 +95,8 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         // edit person in filtered list into a duplicate in address book
-        Reservation reservationInList = model.getAddressBook().getReservationList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Reservation reservationInList = model.getAddressBook().getReservationList()
+        .get(INDEX_SECOND_PERSON.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditReservationDescriptorBuilder(reservationInList).build());
 
