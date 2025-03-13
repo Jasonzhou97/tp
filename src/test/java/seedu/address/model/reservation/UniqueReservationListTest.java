@@ -107,7 +107,8 @@ public class UniqueReservationListTest {
 
     @Test
     public void setPersons_nullUniquePersonList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueReservationList.setReservations((UniqueReservationList) null));
+        assertThrows(NullPointerException.class, () -> uniqueReservationList
+        .setReservations((UniqueReservationList) null));
     }
 
     @Test
@@ -137,7 +138,8 @@ public class UniqueReservationListTest {
     @Test
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
         List<Reservation> listWithDuplicateReservations = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniqueReservationList.setReservations(listWithDuplicateReservations));
+        assertThrows(DuplicatePersonException.class, () -> uniqueReservationList
+        .setReservations(listWithDuplicateReservations));
     }
 
     @Test
