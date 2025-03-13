@@ -1,8 +1,10 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -25,7 +27,10 @@ public class ReservationListPanel extends UiPart<Region> {
      */
     public ReservationListPanel(ObservableList<Reservation> reservationList) {
         super(FXML);
-        reservationListView.setItems(reservationList);
+        SortedList<Reservation> sortedList = new SortedList<>(reservationList);
+        //comparator to sort by time
+        sortedList.setComparator(Comparator.comparing(r -> r.getTime().value));
+        reservationListView.setItems(sortedList);
         reservationListView.setCellFactory(listView -> new ReservationListViewCell());
     }
 
