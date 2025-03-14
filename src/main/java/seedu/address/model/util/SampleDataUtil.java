@@ -52,7 +52,7 @@ public class SampleDataUtil {
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Reservation sampleReservation : getSamplePersons()) {
-            sampleAb.addPerson(sampleReservation);
+            sampleAb.addReservation(sampleReservation);
         }
         return sampleAb;
     }

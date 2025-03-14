@@ -33,7 +33,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredReservations = new FilteredList<>(this.addressBook.getPersonList());
+        filteredReservations = new FilteredList<>(this.addressBook.getReservationList());
     }
 
     public ModelManager() {
@@ -90,17 +90,17 @@ public class ModelManager implements Model {
     @Override
     public boolean hasReservation(Reservation reservation) {
         requireNonNull(reservation);
-        return addressBook.hasPerson(reservation);
+        return addressBook.hasReservation(reservation);
     }
 
     @Override
     public void deleteReservation(Reservation target) {
-        addressBook.removePerson(target);
+        addressBook.removeReservation(target);
     }
 
     @Override
     public void addReservation(Reservation reservation) {
-        addressBook.addPerson(reservation);
+        addressBook.addReservation(reservation);
         updateFilteredReservationList(PREDICATE_SHOW_ALL_RESERVATIONS);
     }
 
@@ -108,7 +108,7 @@ public class ModelManager implements Model {
     public void setReservation(Reservation target, Reservation editedReservation) {
         requireAllNonNull(target, editedReservation);
 
-        addressBook.setPerson(target, editedReservation);
+        addressBook.setReservation(target, editedReservation);
     }
 
     //=========== Filtered Person List Accessors =============================================================

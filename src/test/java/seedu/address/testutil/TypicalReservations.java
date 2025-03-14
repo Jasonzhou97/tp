@@ -58,7 +58,7 @@ public class TypicalReservations {
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
         for (Reservation reservation : getTypicalPersons()) {
-            ab.addPerson(reservation);
+            ab.addReservation(reservation);
         }
         return ab;
     }

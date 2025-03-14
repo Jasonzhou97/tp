@@ -9,9 +9,10 @@ import seedu.address.model.reservation.Reservation;
 public interface ReadOnlyAddressBook {
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the reservations list.
+     * This list will not contain any duplicate reservations.
      */
-    ObservableList<Reservation> getPersonList();
+    ObservableList<Reservation> getReservationList();
+
 
 }
