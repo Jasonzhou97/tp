@@ -145,21 +145,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String id} into an {@code Identification}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code id} is invalid.
-     */
-    public static Identification parseId(String id) throws ParseException {
-        requireNonNull(id);
-        String trimmedId = id.trim();
-        if (!Identification.isValidId(trimmedId)) {
-            throw new ParseException(Identification.MESSAGE_CONSTRAINTS);
-        }
-        return new Identification(trimmedId);
-    }
-
-    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *

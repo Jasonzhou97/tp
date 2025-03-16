@@ -88,8 +88,6 @@ public class EditCommand extends Command {
 
         Reservation reservationToEdit = lastShownList.get(index.getZeroBased());
 
-        updateReservationID(reservationToEdit);
-
         Reservation editedReservation = createEditedReservation(reservationToEdit, editReservationDescriptor);
 
         if (!reservationToEdit.isSameReservation(editedReservation) && model.hasReservation(editedReservation)) {
@@ -100,7 +98,7 @@ public class EditCommand extends Command {
         model.updateFilteredReservationList(PREDICATE_SHOW_ALL_RESERVATIONS);
         return new CommandResult(String.format(MESSAGE_EDIT_RESERVATION_SUCCESS, Messages.format(editedReservation)));
     }
-
+/*
     private void updateReservationID(Reservation reservationToEdit) {
         // Update the Reservation ID accordingly after edit
         if (editReservationDescriptor.getPhone().isPresent() && editReservationDescriptor.getDate().isPresent()) {
@@ -128,6 +126,9 @@ public class EditCommand extends Command {
         }
     }
 
+ */
+
+
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
@@ -145,7 +146,7 @@ public class EditCommand extends Command {
         Table updatedTable = editReservationDescriptor.getTable().orElse(reservationToEdit.getTable());
         Remark updatedRemark = reservationToEdit.getRemark();
         Set<Tag> updatedTags = editReservationDescriptor.getTags().orElse(reservationToEdit.getTags());
-        Identification id = editReservationDescriptor.getId().orElse(reservationToEdit.getId());
+        Identification id = new Identification(updatedDate, updatedPhone);
 
         return new Reservation(updatedName, updatedPhone, updatedDate, updatedTime, updatedDuration, updatedPax,
                 updatedTable, updatedRemark, updatedTags, id);

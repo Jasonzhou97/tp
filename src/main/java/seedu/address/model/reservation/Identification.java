@@ -3,6 +3,8 @@ package seedu.address.model.reservation;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Date;
+
 /**
  * Represents an identification number in the reservation system.
  * Ensures that the ID consists only of integers.
@@ -16,15 +18,19 @@ public class Identification {
     public final String value;
 
     /**
-     * Constructs a {@code Identification}.
+     * Constructs an {@code Identification} using a start date and phone number.
      *
-     * @param id A valid ID.
+     * @param date  A valid start date.
+     * @param phone A valid phone number.
      */
-    public Identification(String id) {
-        requireNonNull(id);
-        checkArgument(isValidId(id), MESSAGE_CONSTRAINTS);
-        value = id;
+    public Identification(StartDate date, Phone phone) {
+        requireNonNull(date);
+        requireNonNull(phone);
+        // Date and phone format have already been validated
+        value = date.toWithoutSlashString()
+                + phone.getLastFourDigitsString();
     }
+
 
     /**
      * Returns true if a given string is a valid ID.
