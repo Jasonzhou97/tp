@@ -29,7 +29,6 @@ public class ReservationBuilder {
     public static final String DEFAULT_PAX = "2";
     public static final String DEFAULT_TABLE = "A1";
     public static final String DEFAULT_REMARK = "She likes aardvarks.";
-    public static final String DEFAULT_ID = "0001";
 
     private Name name;
     private Phone phone;
@@ -55,7 +54,6 @@ public class ReservationBuilder {
         table = new Table(DEFAULT_TABLE);
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
-        id = new Identification(DEFAULT_ID);
     }
 
     /**
@@ -149,8 +147,8 @@ public class ReservationBuilder {
     /**
      * Sets the {@code Identification} of the {@code Person} that we are building.
      */
-    public ReservationBuilder withId(String id) {
-        this.id = new Identification(id);
+    public ReservationBuilder withId(StartDate date, Phone phone) {
+        this.id = new Identification(date, phone);
         return this;
     }
 
