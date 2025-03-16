@@ -24,6 +24,7 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_RESERVATION_SUCCESS = "Deleted Reservation: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Reservation Successfully Deleted";
 
     private final Index targetIndex;
 
@@ -42,7 +43,8 @@ public class DeleteCommand extends Command {
 
         Reservation reservationToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteReservation(reservationToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_RESERVATION_SUCCESS, Messages.format(reservationToDelete)));
+        return new CommandResult(String.format(MESSAGE_DELETE_RESERVATION_SUCCESS,
+                Messages.format(reservationToDelete)));
     }
 
     @Override

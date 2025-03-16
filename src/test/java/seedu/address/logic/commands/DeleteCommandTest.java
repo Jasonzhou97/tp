@@ -10,6 +10,7 @@ import seedu.address.model.Model;
  */
 public class DeleteCommandTest {
     /*
+
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
@@ -94,8 +95,8 @@ public class DeleteCommandTest {
         assertEquals(expected, deleteCommand.toString());
     }
 
- */
 
+     */
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
