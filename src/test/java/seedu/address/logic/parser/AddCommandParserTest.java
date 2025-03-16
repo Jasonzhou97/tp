@@ -57,7 +57,7 @@ public class AddCommandParserTest {
                         new Table("A10"),
                         new Remark(""),
                         new HashSet<>(),
-                        new Identification(validDate.replace("/", "") + "4567") // Expected ID: ddMMyyyy + last 4 digits
+                        new Identification(new StartDate(validDate), new Phone("91234567"))
                 )
         );
 

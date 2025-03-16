@@ -10,7 +10,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.reservation.Duration;
-import seedu.address.model.reservation.Identification;
 import seedu.address.model.reservation.Name;
 import seedu.address.model.reservation.Pax;
 import seedu.address.model.reservation.Phone;

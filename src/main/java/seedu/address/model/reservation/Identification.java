@@ -1,9 +1,6 @@
 package seedu.address.model.reservation;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
-import java.util.Date;
 
 /**
  * Represents an identification number in the reservation system.

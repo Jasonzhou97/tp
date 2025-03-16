@@ -98,7 +98,7 @@ public class EditCommand extends Command {
         model.updateFilteredReservationList(PREDICATE_SHOW_ALL_RESERVATIONS);
         return new CommandResult(String.format(MESSAGE_EDIT_RESERVATION_SUCCESS, Messages.format(editedReservation)));
     }
-/*
+    /*
     private void updateReservationID(Reservation reservationToEdit) {
         // Update the Reservation ID accordingly after edit
         if (editReservationDescriptor.getPhone().isPresent() && editReservationDescriptor.getDate().isPresent()) {
