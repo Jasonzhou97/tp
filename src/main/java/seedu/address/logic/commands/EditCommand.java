@@ -116,9 +116,10 @@ public class EditCommand extends Command {
         Remark updatedRemark = reservationToEdit.getRemark();
         Set<Tag> updatedTags = editReservationDescriptor.getTags().orElse(reservationToEdit.getTags());
         Identification id = reservationToEdit.getId();
+        Boolean isPaid = reservationToEdit.getIsPaid();
 
         return new Reservation(updatedName, updatedPhone, updatedDate, updatedTime, updatedDuration, updatedPax,
-                updatedTable, updatedRemark, updatedTags, id, false);
+                updatedTable, updatedRemark, updatedTags, id, isPaid);
     }
 
     @Override
@@ -176,6 +177,7 @@ public class EditCommand extends Command {
             setTable(toCopy.table);
             setTags(toCopy.tags);
             setId(toCopy.id);
+
         }
 
         /**

@@ -37,6 +37,7 @@
       <Label fx:id="table" styleClass="cell_small_label" text="\$table" />
       <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
       <Label fx:id="reservationId" styleClass="cell_small_label" text="\$reservationId" />
+      <Label fx:id="isPaid" styleClass="cell_small_label" text="\$isPaid" />
     </VBox>
       <rowConstraints>
          <RowConstraints />

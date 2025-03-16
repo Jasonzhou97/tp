@@ -156,6 +156,7 @@ public class Reservation {
                 .add("table", table)
                 .add("tags", tags)
                 .add("id", id)
+                .add("payment", isPaid)
                 .toString();
     }
 }
