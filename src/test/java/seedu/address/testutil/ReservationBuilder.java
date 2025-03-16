@@ -54,7 +54,6 @@ public class ReservationBuilder {
         table = new Table(DEFAULT_TABLE);
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
-        id = new Identification(date, phone);
     }
 
     /**
