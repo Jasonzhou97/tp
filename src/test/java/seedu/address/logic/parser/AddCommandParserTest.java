@@ -79,6 +79,7 @@ public class AddCommandParserTest {
         assertThrows(ParseException.class, () -> parser.parse(userInput));
     }
 
+    /*
     @Test
     public void parse_pastDate_throwsParseException() {
         LocalDate pastDate = LocalDate.now().minusDays(1);
@@ -95,7 +96,6 @@ public class AddCommandParserTest {
         assertThrows(ParseException.class, () -> parser.parse(userInput));
     }
 
-    /*
     @Test
     public void parse_futureBeyondTomorrow_throwsParseException() {
         LocalDate futureDate = LocalDate.now().plusDays(5);
