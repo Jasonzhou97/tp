@@ -33,7 +33,8 @@ public class StartDate {
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {
-        return test.matches(VALIDATION_REGEX) && isValidDateRange(test);
+        return test.matches(VALIDATION_REGEX);
+        //&& isValidDateRange(test);
     }
 
     @Override
