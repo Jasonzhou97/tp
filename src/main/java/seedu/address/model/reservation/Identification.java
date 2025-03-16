@@ -2,6 +2,11 @@ package seedu.address.model.reservation;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+
 /**
  * Represents an identification number in the reservation system.
  * Ensures that the ID consists only of integers.
@@ -45,6 +50,16 @@ public class Identification {
      */
     public static boolean isValidId(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+
+    //This method will be called by the Commands and assumes that isValidId has been used to check
+    //Validity of ID
+    public static Reservation getReservationUsingId(Identification id, Model model) throws CommandException {
+        List<Reservation> lastShownList = model.getFilteredReservationList();
+
+        return lastShownList.stream().filter(r -> r.getId().equals(id))
+                .findFirst().orElseThrow(() -> new CommandException("Input reservation id does not exist."));
     }
 
     @Override
