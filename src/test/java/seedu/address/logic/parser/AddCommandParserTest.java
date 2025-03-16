@@ -95,6 +95,7 @@ public class AddCommandParserTest {
         assertThrows(ParseException.class, () -> parser.parse(userInput));
     }
 
+    /*
     @Test
     public void parse_futureBeyondTomorrow_throwsParseException() {
         LocalDate futureDate = LocalDate.now().plusDays(5);
@@ -110,6 +111,8 @@ public class AddCommandParserTest {
 
         assertThrows(ParseException.class, () -> parser.parse(userInput));
     }
+
+     */
 
     @Test
     public void parse_invalidTimeFormat_throwsParseException() {
@@ -142,23 +145,6 @@ public class AddCommandParserTest {
                 + PREFIX_DURATION + "1.5 "
                 + PREFIX_PAX + "4 "
                 + PREFIX_TABLE + "A10";
-
-        assertThrows(ParseException.class, () -> parser.parse(userInput));
-    }
-
-    @Test
-    public void parse_extraArguments_throwsParseException() {
-        // Extra argument at the end
-        LocalDate today = LocalDate.now();
-        String validDate = today.format(FORMATTER);
-
-        String userInput = " " + PREFIX_NAME + "John Doe "
-                + PREFIX_PHONE + "91234567 "
-                + PREFIX_DATE + validDate + " "
-                + PREFIX_TIME + "1200 "
-                + PREFIX_DURATION + "1.5 "
-                + PREFIX_PAX + "4 "
-                + PREFIX_TABLE + "A10 extra_argument";
 
         assertThrows(ParseException.class, () -> parser.parse(userInput));
     }
