@@ -149,7 +149,7 @@ GastroBook data are saved in the hard disk automatically after any command that 
 
 ### Editing the data file
 
-GastroBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. 
+GastroBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -157,16 +157,17 @@ GastroBook data are saved automatically as a JSON file `[JAR file location]/data
 
 ## Command summary
 
-| Action            | Format, Examples                                                                                                                                                                                                               |
-|-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**           | `add n/NAME p/PHONE_NUMBER date/DATE time/TIME duration/DURATION pax/NUMBER_OF_PEOPLE table/TABLE_NUMBER [t/TAG]…​ <br> e.g., add n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event` |
-| **Delete**        | `delete RESERVATION_ID`<br> e.g., `delete 170320259344`                                                                                                                                                                        |
-| **Mark**          | `mark RESERVATION_ID`<br> e.g., `mark 170320259344`                                                                                                                                                                            |
-| **Unmark**        | `unmark RESERVATION_ID`<br> e.g., `unmark 170320259344`                                                                                                                                                                        |
-| **Find by name**  | `find /p NAME`<br> e.g., `find /p John Doe`                                                                                                                                                                                    |
-| **Find by time**  | `find /t TIME`<br> e.g., `find /t 1200`                                                                                                                                                                                        |
-| **List all**      | `list`                                                                                                                                                                                                                         |
-| **List today**    | `listrt`                                                                                                                                                                                                                       |
-| **List tomorrow** | `listrn`                                                                                                                                                                                                                       |
-| **Help**          | `help`                                                                                                                                                                                                                         |
-| **Exit**          | `exit`                                                                                                                                                                                                                         |
+| Action | Format, Examples |
+|--------|------------------|
+| **Add** | `add n/NAME p/PHONE_NUMBER date/DATE time/TIME duration/DURATION pax/NUMBER_OF_PEOPLE table/TABLE_NUMBER [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event` |
+| **Delete** | `delete RESERVATION_ID`<br> e.g., `delete 170320259344` |
+| **Mark** | `mark RESERVATION_ID`<br> e.g., `mark 170320259344` |
+| **Unmark** | `unmark RESERVATION_ID`<br> e.g., `unmark 170320259344` |
+| **Find by name** | `find /p NAME`<br> e.g., `find /p John Doe` |
+| **Find by time** | `find /t TIME`<br> e.g., `find /t 1200` |
+| **List all** | `list` |
+| **List today** | `listrt` |
+| **List tomorrow** | `listrn` |
+| **Help** | `help` |
+| **Exit** | `exit` |
+                                                                                                                                                                                          |
