@@ -111,7 +111,7 @@ public class EditCommand extends Command {
             String newId = newDate + newLastFourPhoneDigits;
             editReservationDescriptor.setId(new Identification(newId));
 
-        }else if (editReservationDescriptor.getPhone().isPresent()) {
+        } else if (editReservationDescriptor.getPhone().isPresent()) {
             String oldDate = reservationToEdit.getDate().toWithoutSlashString();
             String newLastFourPhoneDigits = editReservationDescriptor.getPhone()
                     .map(p -> p.getLastFourDigitsString()).orElse("");
