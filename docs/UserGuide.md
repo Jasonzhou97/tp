@@ -44,7 +44,7 @@ GastroBook is a **desktop app for managing restaurant reservations for small sca
 
 ### Viewing help : `help`
 
-Shows a help page with the command formats.
+Shows a link to guide you to a help page.
 
 ![help message](images/helpMessage.png)
 
