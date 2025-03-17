@@ -159,7 +159,7 @@ GastroBook data are saved automatically as a JSON file `[JAR file location]/data
 
 | Action | Format, Examples |
 |--------|------------------|
-| **Add** | `add n/NAME p/PHONE_NUMBER date/DATE time/TIME duration/DURATION pax/NUMBER_OF_PEOPLE table/TABLE_NUMBER [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event` |
+| **Add** | `add n/NAME p/PHONE_NUMBER date/DATE time/TIME duration/DURATION pax/NUMBER_OF_PEOPLE table/TABLE_NUMBER [t/TAG]…` <br> e.g., `add n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event` |
 | **Delete** | `delete RESERVATION_ID`<br> e.g., `delete 170320259344` |
 | **Mark** | `mark RESERVATION_ID`<br> e.g., `mark 170320259344` |
 | **Unmark** | `unmark RESERVATION_ID`<br> e.g., `unmark 170320259344` |
@@ -170,4 +170,5 @@ GastroBook data are saved automatically as a JSON file `[JAR file location]/data
 | **List tomorrow** | `listrn` |
 | **Help** | `help` |
 | **Exit** | `exit` |
-                                                                                                                                                                                          |
+
+                                                                                                                                                          |
