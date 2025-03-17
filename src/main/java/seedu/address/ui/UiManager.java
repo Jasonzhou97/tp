@@ -11,8 +11,6 @@ import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
-import seedu.address.logic.commands.ListRtCommand;
-import seedu.address.logic.commands.ListRtCommand;
 /**
  * The manager of the UI component.
  */
@@ -44,7 +42,6 @@ public class UiManager implements Ui {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
-            ListRtCommand listrt = new ListRtCommand();
             logic.execute("listrt");
 
         } catch (Throwable e) {
