@@ -170,5 +170,4 @@ GastroBook data are saved automatically as a JSON file `[JAR file location]/data
 | **List tomorrow** | `listrn` |
 | **Help** | `help` |
 | **Exit** | `exit` |
-
-                                                                                                                                                          |
+                                                                                                                                              |
