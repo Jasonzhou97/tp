@@ -45,6 +45,7 @@ public class DeleteCommand extends Command {
         model.deleteReservation(reservationToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_RESERVATION_SUCCESS,
                 Messages.format(reservationToDelete)));
+         Messages.format(reservationToDelete)));
     }
 
     @Override
