@@ -94,23 +94,10 @@ Finds reservations made by a specific person.
 Format: `find /p NAME`
 
 * The search is case-insensitive. e.g., `find /p john doe` will match `John Doe`
-* The search requires an exact match of the full name (except for case).
 
 Examples:
 * `find /p John Doe` returns all reservations made by John Doe
 * `find /p Jane Smith` returns all reservations made by Jane Smith
-
-### Finding reservations by time: `find /t`
-
-Finds reservations within a specific time slot.
-
-Format: `find /t TIME`
-
-* The time must be specified in 24-hour format (HHMM).
-* Results will show reservations at the specified time.
-
-Examples:
-* `find /t 1200` returns all reservations at 12:00 PM
 
 ### Deleting a reservation : `delete`
 
