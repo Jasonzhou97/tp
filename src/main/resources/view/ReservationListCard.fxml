@@ -29,15 +29,52 @@
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
       <FlowPane fx:id="tags" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
-      <Label fx:id="time" styleClass="cell_small_label" text="\$time" />
-      <Label fx:id="duration" styleClass="cell_small_label" text="\$duration" />
-      <Label fx:id="pax" styleClass="cell_small_label" text="\$pax" />
-      <Label fx:id="table" styleClass="cell_small_label" text="\$table" />
-      <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
-      <Label fx:id="reservationId" styleClass="cell_small_label" text="\$reservationId" />
-      <Label fx:id="isPaid" styleClass="cell_small_label" text="\$isPaid" />
+
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <Label text="Phone: " styleClass="cell_small_label" />
+        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+      </HBox>
+
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <Label text="Date: " styleClass="cell_small_label" />
+        <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
+      </HBox>
+
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <Label text="Time: " styleClass="cell_small_label" />
+        <Label fx:id="time" styleClass="cell_small_label" text="\$time" />
+      </HBox>
+
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <Label text="Duration: " styleClass="cell_small_label" />
+        <Label fx:id="duration" styleClass="cell_small_label" text="\$duration" />
+      </HBox>
+
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <Label text="Pax: " styleClass="cell_small_label" />
+        <Label fx:id="pax" styleClass="cell_small_label" text="\$pax" />
+      </HBox>
+
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <Label text="Table: " styleClass="cell_small_label" />
+        <Label fx:id="table" styleClass="cell_small_label" text="\$table" />
+      </HBox>
+
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <Label text="Remark: " styleClass="cell_small_label" />
+        <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
+      </HBox>
+
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <Label text="Reservation ID: " styleClass="cell_small_label" />
+        <Label fx:id="reservationId" styleClass="cell_small_label" text="\$reservationId" />
+      </HBox>
+
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <Label text="Payment status: " styleClass="cell_small_label" />
+        <Label fx:id="isPaid" styleClass="cell_small_label" text="\$isPaid" />
+      </HBox>
+
     </VBox>
       <rowConstraints>
          <RowConstraints />

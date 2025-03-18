@@ -1,7 +1,11 @@
 package seedu.address.model.reservation;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.List;
+
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
 
 /**
  * Represents an identification number in the reservation system.
@@ -9,28 +13,53 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Identification {
     public static final String MESSAGE_CONSTRAINTS =
-            "Identification should only contain integers";
+            "Identification should only contain integers in the form of Date of reservation "
+                    + "+ last 4 digits of the reservation phone number";
 
-    public static final String VALIDATION_REGEX = "^-?\\d+$";
+    public static final String VALIDATION_REGEX =
+            "^(?:(?:31(0[13578]|1[02]))|" // Matches 31st for months: Jan, Mar, May, Jul, Aug, Oct, Dec
+                    + "(?:30(0[13-9]|1[0-2]))|" // Matches 30th for all months except Feb (02)
+                    + "(?:29(02)(?:(?:1[6-9]|[2-9]\\d)" // Matches 29th Feb ONLY if year is a leap year
+                    + "(?:0[48]|[2468][048]|[13579][26])" // Leap year check for YYYY divisible by 4
+                    + "|(?:16|[2468][048]|[3579][26])00))|" // Extra leap year check for century years
+                    + "(?:0[1-9]|1\\d|2[0-8])" // Matches 01-28 for all valid months
+                    + "(0[1-9]|1[0-2]))" // Matches valid months 01-12
+                    + "([1-9]\\d{3})" // Matches a valid year (1000-9999)
+                    + "(\\d{4})$"; // Matches the last 4 digits (any number from 0000-9999)
+
 
     public final String value;
 
     /**
-     * Constructs a {@code Identification}.
+     * Constructs an {@code Identification} using a start date and phone number.
      *
-     * @param id A valid ID.
+     * @param date  A valid start date.
+     * @param phone A valid phone number.
      */
-    public Identification(String id) {
-        requireNonNull(id);
-        checkArgument(isValidId(id), MESSAGE_CONSTRAINTS);
-        value = id;
+    public Identification(StartDate date, Phone phone) {
+        requireNonNull(date);
+        requireNonNull(phone);
+        // Date and phone format have already been validated
+        value = date.toWithoutSlashString()
+                + phone.getLastFourDigitsString();
     }
+
 
     /**
      * Returns true if a given string is a valid ID.
      */
     public static boolean isValidId(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+
+    //This method will be called by the Commands and assumes that isValidId has been used to check
+    //Validity of ID
+    public static Reservation getReservationUsingId(Identification id, Model model) throws CommandException {
+        List<Reservation> lastShownList = model.getFilteredReservationList();
+
+        return lastShownList.stream().filter(r -> r.getId().equals(id))
+                .findFirst().orElseThrow(() -> new CommandException("Input reservation id does not exist."));
     }
 
     @Override

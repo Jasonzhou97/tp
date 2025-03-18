@@ -10,7 +10,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.reservation.Duration;
-import seedu.address.model.reservation.Identification;
 import seedu.address.model.reservation.Name;
 import seedu.address.model.reservation.Pax;
 import seedu.address.model.reservation.Phone;
@@ -142,21 +141,6 @@ public class ParserUtil {
             throw new ParseException(Table.MESSAGE_CONSTRAINTS);
         }
         return new Table(trimmedTable);
-    }
-
-    /**
-     * Parses a {@code String id} into an {@code Identification}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code id} is invalid.
-     */
-    public static Identification parseId(String id) throws ParseException {
-        requireNonNull(id);
-        String trimmedId = id.trim();
-        if (!Identification.isValidId(trimmedId)) {
-            throw new ParseException(Identification.MESSAGE_CONSTRAINTS);
-        }
-        return new Identification(trimmedId);
     }
 
     /**

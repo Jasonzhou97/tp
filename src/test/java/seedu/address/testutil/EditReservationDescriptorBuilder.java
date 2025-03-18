@@ -118,8 +118,8 @@ public class EditReservationDescriptorBuilder {
     /**
      * Sets the {@code Identification} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditReservationDescriptorBuilder withId(String id) {
-        descriptor.setId(new Identification(id));
+    public EditReservationDescriptorBuilder withId(String date, String phone) {
+        descriptor.setId(new Identification(new StartDate(date), new Phone(phone)));
         return this;
     }
 

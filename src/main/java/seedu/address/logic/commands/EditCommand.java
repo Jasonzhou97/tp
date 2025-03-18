@@ -115,7 +115,7 @@ public class EditCommand extends Command {
         Table updatedTable = editReservationDescriptor.getTable().orElse(reservationToEdit.getTable());
         Remark updatedRemark = reservationToEdit.getRemark();
         Set<Tag> updatedTags = editReservationDescriptor.getTags().orElse(reservationToEdit.getTags());
-        Identification id = reservationToEdit.getId();
+        Identification id = new Identification(updatedDate, updatedPhone);
         Boolean isPaid = reservationToEdit.getIsPaid();
 
         return new Reservation(updatedName, updatedPhone, updatedDate, updatedTime, updatedDuration, updatedPax,
@@ -177,7 +177,6 @@ public class EditCommand extends Command {
             setTable(toCopy.table);
             setTags(toCopy.tags);
             setId(toCopy.id);
-
         }
 
         /**

@@ -11,7 +11,6 @@ import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
-
 /**
  * The manager of the UI component.
  */
@@ -43,6 +42,7 @@ public class UiManager implements Ui {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
+            logic.execute("listrt");
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
