@@ -10,14 +10,14 @@ import seedu.address.commons.util.ToStringBuilder;
  * base the other component is using for its index. However, after receiving the {@code Index}, that component can
  * convert it back to an int if the index will not be passed to a different component again.
  */
-public class Index {
+public class Identification {
     private int zeroBasedIndex;
 
     /**
-     * Index can only be created by calling {@link Index#fromZeroBased(int)} or
-     * {@link Index#fromOneBased(int)}.
+     * Index can only be created by calling {@link Identification#fromZeroBased(int)} or
+     * {@link Identification#fromOneBased(int)}.
      */
-    private Index(int zeroBasedIndex) {
+    private Identification(int zeroBasedIndex) {
         if (zeroBasedIndex < 0) {
             throw new IndexOutOfBoundsException();
         }
@@ -36,15 +36,15 @@ public class Index {
     /**
      * Creates a new {@code Index} using a zero-based index.
      */
-    public static Index fromZeroBased(int zeroBasedIndex) {
-        return new Index(zeroBasedIndex);
+    public static Identification fromZeroBased(int zeroBasedIndex) {
+        return new Identification(zeroBasedIndex);
     }
 
     /**
      * Creates a new {@code Index} using a one-based index.
      */
-    public static Index fromOneBased(int oneBasedIndex) {
-        return new Index(oneBasedIndex - 1);
+    public static Identification fromOneBased(int oneBasedIndex) {
+        return new Identification(oneBasedIndex - 1);
     }
 
     @Override
@@ -54,11 +54,11 @@ public class Index {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Index)) {
+        if (!(other instanceof Identification)) {
             return false;
         }
 
-        Index otherIndex = (Index) other;
+        Identification otherIndex = (Identification) other;
         return zeroBasedIndex == otherIndex.zeroBasedIndex;
     }
 
