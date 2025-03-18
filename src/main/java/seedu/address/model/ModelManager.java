@@ -23,6 +23,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Reservation> filteredReservations;
 
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -119,6 +120,11 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Reservation> getFilteredReservationList() {
+        return filteredReservations;
+    }
+
+    public ObservableList<Reservation> getOverallReservationList() {
+        updateFilteredReservationList(PREDICATE_SHOW_ALL_RESERVATIONS);
         return filteredReservations;
     }
 
