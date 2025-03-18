@@ -57,13 +57,13 @@ public class TypicalReservations {
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
-        for (Reservation reservation : getTypicalPersons()) {
+        for (Reservation reservation : getTypicalReservations()) {
             ab.addReservation(reservation);
         }
         return ab;
     }
 
-    public static List<Reservation> getTypicalPersons() {
+    public static List<Reservation> getTypicalReservations() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

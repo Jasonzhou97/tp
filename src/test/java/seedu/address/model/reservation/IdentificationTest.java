@@ -31,7 +31,7 @@ public class IdentificationTest {
         String expectedId = validDate.replace("/", "") + phone.getLastFourDigitsString();
 
         // Execute the logic that should be tested
-        Identification id = new Identification(date.value.replace("/", "") + phone.getLastFourDigitsString());
+        Identification id = new Identification(date, phone);
 
         // Assert that the generated ID is correct
         assertNotNull(id);
