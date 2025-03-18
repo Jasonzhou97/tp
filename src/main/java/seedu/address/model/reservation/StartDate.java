@@ -36,7 +36,7 @@ public class StartDate {
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {
-        return test.matches(VALIDATION_REGEX) && isValidDateRange(test);
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class StartDate {
         return value.hashCode();
     }
 
-    private static boolean isValidDateRange(String userInputDate) {
+    public static boolean isValidDateRange(String userInputDate) {
         LocalDate date = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String dateToday = date.format(formatter);

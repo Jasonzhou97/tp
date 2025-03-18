@@ -91,7 +91,7 @@ public class ParserUtil {
     public static StartDate parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
-        if (!StartDate.isValidDate(trimmedDate)) {
+        if (!StartDate.isValidDate(trimmedDate) || !StartDate.isValidDateRange(trimmedDate)) {
             throw new ParseException(StartDate.MESSAGE_CONSTRAINTS);
         }
         return new StartDate(trimmedDate);
