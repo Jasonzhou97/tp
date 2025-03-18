@@ -18,9 +18,8 @@ public class FileUtil {
     }
 
     /**
-     * Returns true if {@code path} can be converted into a {@code Path} via {@link Paths# get(String)},
-     * otherwise returns false.
      * @param path A string representing the file path. Cannot be null.
+     * @return {@code true} if the path is valid, otherwise {@code false}.
      */
     public static boolean isValidPath(String path) {
         try {

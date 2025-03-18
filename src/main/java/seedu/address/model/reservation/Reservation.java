@@ -35,8 +35,8 @@ public class Reservation {
     /**
      * Every field must be present and not null.
      */
-    public Reservation(Name name, Phone phone, StartDate date, StartTime time,
-                       Duration duration, Pax pax, Table table, Remark remark, Set<Tag> tags, Identification id, boolean isPaid) {
+    public Reservation(Name name, Phone phone, StartDate date, StartTime time, Duration duration, Pax pax, Table table,
+                       Remark remark, Set<Tag> tags, Identification id, boolean isPaid) {
         requireAllNonNull(name, phone, date, time, duration, pax, table);
         this.name = name;
         this.phone = phone;
@@ -99,6 +99,12 @@ public class Reservation {
         return Collections.unmodifiableSet(tags);
     }
 
+    /**
+     * Marks this reservation as paid by creating a new {@code Reservation} instance
+     * with the paid status set to {@code true}.
+     *
+     * @return A new {@code Reservation} instance with the same details but marked as paid.
+     */
     public Reservation toPaid() {
         return new Reservation(this.name, this.phone, this.date, this.time,
                 this.duration, this.pax, this.table, this.remark, this.tags,

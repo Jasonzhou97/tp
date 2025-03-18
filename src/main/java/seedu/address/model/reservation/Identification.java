@@ -45,6 +45,12 @@ public class Identification {
                 + phone.getLastFourDigitsString();
     }
 
+
+    /**
+     * Constructs an {@code Identification} with the given ID string.
+     *
+     * @param id The identification string. Cannot be null.
+     */
     public Identification(String id) {
         requireNonNull(id);
         value = id;

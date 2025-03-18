@@ -68,6 +68,12 @@ public class StartDate {
         return value.hashCode();
     }
 
+    /**
+     * Validates whether the given date string corresponds to today's or tomorrow's date.
+     *
+     * @param userInputDate The date string to validate, expected in the format "dd/MM/yyyy".
+     * @return {@code true} if the date matches today's or tomorrow's date, otherwise {@code false}.
+     */
     public static boolean isValidDateRange(String userInputDate) {
         LocalDate date = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
