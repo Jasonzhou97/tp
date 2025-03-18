@@ -290,7 +290,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `***`        | Admin       | View all reservations of tomorrow           | Prepare the ingredients for tomorrow reservation in advance                   |
 | `***`        | Admin       | View all reservations for the day           | Access the daily reservation schedule for planning resources                  |
 | `***`        | Admin       | View all reservations of today only         | To be always ready and prepare to welcome incoming guest                      |
-| `***`        | Admin       | See user manual                             | To learn the new app effectively                                              |           
+| `***`        | Admin       | See user manual                             | To learn the new app effectively                                              |
 | `**`         | Admin       | Find specific reservations                  | Locate specific reservations by name or other parameters                      |
 | `**`         | Admin       | Mark arrival status for customers           | Track customer arrivals and handle no-shows                                   |
 | `**`         | Admin       | Unmark arrival status for customers         | Update arrival status when customers don't show up within the designated time |
