@@ -286,17 +286,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `***`        | Admin       | Mark a reservation as paid                  | Keep track of each reservation’s payment status                               |
 | `***`        | Admin       | Unmark a reservation as paid                | Update status if payment is deleted or an error occurred                      |
 | `***`        | Admin       | Exit the application                        | Close the app after use                                                       |
-| `***`        | Admin       | Find specific reservations                  | Locate specific reservations by name or other parameters                      |
-| `***`        | Admin       | Edit reservation details                    | Update booking details (e.g., name, timeslot) without deleting and recreating |
-| `**`         | Admin       | View all reservations for the day           | Access the daily reservation schedule for planning resources                  |
+| `***`        | Admin       | Edit reservation details                    | Update booking details (e.g., name, duration) without deleting and recreating |
+| `***`        | Admin       | View all reservations of tomorrow           | Prepare the ingredients for tomorrow reservation in advance                   |
+| `***`        | Admin       | View all reservations for the day           | Access the daily reservation schedule for planning resources                  |
+| `***`        | Admin       | View all reservations of today only         | To be always ready and prepare to welcome incoming guest                      |
+| `***`        | Admin       | See user manual                             | To learn the new app effectively                                              |           
+| `**`         | Admin       | Find specific reservations                  | Locate specific reservations by name or other parameters                      |
 | `**`         | Admin       | Mark arrival status for customers           | Track customer arrivals and handle no-shows                                   |
 | `**`         | Admin       | Unmark arrival status for customers         | Update arrival status when customers don't show up within the designated time |
 | `**`         | Admin       | Set reservation time limits                 | Automatically release tables when customers do not arrive on time             |
 | `**`         | Admin       | Add tables of various sizes                 | Accommodate different types of reservations (group bookings, etc.)            |
 | `**`         | Admin       | View/Tag reservations with special requests | Easily track special requests per reservation                                 |
 | `**`         | Admin       | Filter reservations by tags                 | View reservations with specific requests at a glance                          |
-| `**`         | Admin       | Apply discounts on bills                    | Automate pricing adjustments for discounts                                    |
-| `**`         | New admin   | View help commands                          | Get quick tips on how to use the system efficiently                           |
+| `**`         | Admin       | Apply discounts on bills                    | Automate pricing adjustments for discounts                                    | |
 | `**`         | Admin       | Clear all reservations                      | Reset the schedule for a new reservation plan                                 |
 | `**`         | Admin       | Find available slots                        | Add new reservations into free slots                                          |
 | `**`         | Admin       | Add multiple tables at once                 | Handle large group bookings more efficiently                                  |
@@ -446,6 +448,22 @@ Use case ends.
 &ensp; 1a1. System indicates that there are no reservations on given day. <br>
 &ensp; Use case resumes at step 1.
 
+### **U8: Edit specific reservations**
+
+**MSS**
+1. User queries to edit the reservation with valid ID.
+2. System displays all reservations of today and tomorrow with the edited reservation inside a reservation edited message. [Could be with active fxml element]
+Use case ends.
+
+**Extensions** <br>
+1a. Reservations to be edited queried with valid ID but not of today or tomorrow reservation. <br>
+&ensp; 1a1. System displays all reservations of today and tomorrow with a reservation not exist message. <br>
+Use case ends.
+
+1b. Reservations to be edited queried with invalid ID <br>
+&ensp; 1b1. System displays invalid command message and output proper example of edit use.  <br>
+Use case ends.
+
 *{More to be added}*
 
 ---
@@ -459,6 +477,7 @@ Use case ends.
 5. **Storage**: The system storage should be able to store and maintain at least 100 reservations with all necessary details.
 6. **Storage Access**: The system should be able to retrieve data with the given storage requirements in under 1 second.
 7. **User Access**: The system should be able to run locally with no more than 1 user with 1 database.
+8. **Phone Number**: Last 4 digits of phone number of every customer input to the system must be of unique combination.
 
 *{More to be added}*
 
@@ -474,6 +493,7 @@ Use case ends.
 * **Valid Command**: A command that the system recognizes and processes correctly.
 * **Invalid Command**: A command that is unrecognized or improperly formatted by the system.
 * **Reservation Duration**: The time for which a reservation is valid, either 1 hour or 2 hours.
+* **Valid ID**: The id for which edit, mark, unmark, delete, remark take as parameter which has a form of < [dateOfTodayOrTomorrow(ddMMyyyy)] + [UNIQUE last4DigitsOfPhoneNumber(xxxx)] >"
 
 --------------------------------------------------------------------------------------------------------------------
 
