@@ -38,7 +38,7 @@ GastroBook is a **desktop app for managing restaurant reservations for small sca
 
     * `exit` : Exits the app.
 
-    * `edit [validReservationID] n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event ` : Edit tomorrow or today reservations details.  
+    * `edit [validReservationID] n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event ` : Edit tomorrow or today reservations details.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -193,4 +193,4 @@ GastroBook data are saved automatically as a JSON file `[JAR file location]/data
 | **List tomorrow** | `listrn`                                                                                                                                                                                                                                                       |
 | **Help**          | `help`                                                                                                                                                                                                                                                         |
 | **Exit**          | `exit`                                                                                                                                                                                                                                                         |
-                                                                                                                                              |
+|

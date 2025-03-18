@@ -159,6 +159,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Reservation> getOverallReservationList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredReservationList(Predicate<Reservation> predicate) {
             throw new AssertionError("This method should not be called.");
         }

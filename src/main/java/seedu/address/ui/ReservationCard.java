@@ -74,6 +74,6 @@ public class ReservationCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         reservationId.setText(reservation.getId().value);
-        isPaid.setText(reservation.getIsPaid()? "Paid": "Not Paid");
+        isPaid.setText(reservation.getIsPaid() ? "Paid" : "Not Paid");
     }
 }

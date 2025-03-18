@@ -19,9 +19,10 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListRnCommand;
 import seedu.address.logic.commands.ListRtCommand;
-import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.MarkCommand;
+import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+
 
 /**
  * Parses user input.
