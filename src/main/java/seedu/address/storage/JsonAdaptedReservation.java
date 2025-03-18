@@ -40,6 +40,7 @@ class JsonAdaptedReservation {
     private final String remark;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String id;
+    private final boolean isPaid;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -49,7 +50,8 @@ class JsonAdaptedReservation {
                                   @JsonProperty("date") String date, @JsonProperty("time") String time,
                                   @JsonProperty("duration") String duration, @JsonProperty("pax") String pax,
                                   @JsonProperty("table") String table, @JsonProperty("remark") String remark,
-                                  @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("id") String id) {
+                                  @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("id") String id,
+                                  @JsonProperty("isPaid") Boolean isPaid) {
         this.name = name;
         this.phone = phone;
         this.date = date;
@@ -62,6 +64,7 @@ class JsonAdaptedReservation {
             this.tags.addAll(tags);
         }
         this.id = id;
+        this.isPaid = isPaid;
     }
 
     /**
@@ -80,6 +83,7 @@ class JsonAdaptedReservation {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         id = source.getId().value;
+        isPaid = source.getIsPaid();
     }
 
     /**
@@ -169,7 +173,9 @@ class JsonAdaptedReservation {
         }
         final Identification modelId = new Identification(new StartDate(date), new Phone(phone));
 
+
+
         return new Reservation(modelName, modelPhone, modelDate, modelTime, modelDuration, modelPax, modelTable,
-                modelRemark, modelTags, modelId);
+                modelRemark, modelTags, modelId, this.isPaid);
     }
 }

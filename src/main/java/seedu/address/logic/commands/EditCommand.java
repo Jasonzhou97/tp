@@ -87,7 +87,6 @@ public class EditCommand extends Command {
         }
 
         Reservation reservationToEdit = lastShownList.get(index.getZeroBased());
-
         Reservation editedReservation = createEditedReservation(reservationToEdit, editReservationDescriptor);
 
         if (!reservationToEdit.isSameReservation(editedReservation) && model.hasReservation(editedReservation)) {
@@ -117,9 +116,10 @@ public class EditCommand extends Command {
         Remark updatedRemark = reservationToEdit.getRemark();
         Set<Tag> updatedTags = editReservationDescriptor.getTags().orElse(reservationToEdit.getTags());
         Identification id = new Identification(updatedDate, updatedPhone);
+        Boolean isPaid = reservationToEdit.getIsPaid();
 
         return new Reservation(updatedName, updatedPhone, updatedDate, updatedTime, updatedDuration, updatedPax,
-                updatedTable, updatedRemark, updatedTags, id);
+                updatedTable, updatedRemark, updatedTags, id, isPaid);
     }
 
     @Override

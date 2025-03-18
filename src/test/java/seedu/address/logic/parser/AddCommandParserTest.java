@@ -57,8 +57,8 @@ public class AddCommandParserTest {
                         new Table("A10"),
                         new Remark(""),
                         new HashSet<>(),
-                        new Identification(new StartDate(validDate), new Phone("91234567"))
-                )
+                        new Identification(new StartDate(validDate), new Phone("91234567")),
+                        false)
         );
 
         AddCommand parsedCommand = parser.parse(userInput);

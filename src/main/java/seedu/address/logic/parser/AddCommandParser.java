@@ -65,7 +65,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         // to form a unique key id
         Identification id = new Identification(date, phone);
 
-        Reservation reservation = new Reservation(name, phone, date, time, duration, pax, table, remark, tagList, id);
+        Reservation reservation = new Reservation(name, phone, date, time, duration, pax, table, remark, tagList, id, false);
         return new AddCommand(reservation);
     }
 

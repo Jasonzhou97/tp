@@ -69,6 +69,12 @@
         <Label text="Reservation ID: " styleClass="cell_small_label" />
         <Label fx:id="reservationId" styleClass="cell_small_label" text="\$reservationId" />
       </HBox>
+
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <Label text="Payment status: " styleClass="cell_small_label" />
+        <Label fx:id="isPaid" styleClass="cell_small_label" text="\$isPaid" />
+      </HBox>
+
     </VBox>
       <rowConstraints>
          <RowConstraints />
