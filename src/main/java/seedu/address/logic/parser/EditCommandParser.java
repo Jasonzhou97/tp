@@ -16,10 +16,10 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditReservationDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.reservation.Identification;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -38,10 +38,10 @@ public class EditCommandParser implements Parser<EditCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_DATE, PREFIX_TIME, PREFIX_DURATION,
                         PREFIX_PAX, PREFIX_TABLE, PREFIX_TAG);
 
-        Index index;
+        Identification id;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            id = ParserUtil.parseID(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
@@ -79,7 +79,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editReservationDescriptor);
+        return new EditCommand(id, editReservationDescriptor);
     }
 
     /**
