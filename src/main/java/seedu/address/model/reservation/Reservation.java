@@ -30,7 +30,7 @@ public class Reservation {
     private final Set<Tag> tags = new HashSet<>();
     private final Identification id;
 
-    private final boolean isPaid;
+    private boolean isPaid;
 
     /**
      * Every field must be present and not null.
@@ -97,6 +97,12 @@ public class Reservation {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Reservation toPaid() {
+        return new Reservation(this.name, this.phone, this.date, this.time,
+                this.duration, this.pax, this.table, this.remark, this.tags,
+                this.id, true);
     }
 
     /**
