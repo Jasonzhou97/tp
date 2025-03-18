@@ -79,6 +79,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Reservation> getFilteredReservationList();
 
+    ObservableList<Reservation> getOverallReservationList();
+
+
     void filterReservationsForToday(Predicate<Reservation> predicate);
 
     void filterReservationsForTomorrow(Predicate<Reservation> predicate);

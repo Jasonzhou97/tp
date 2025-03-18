@@ -13,8 +13,9 @@ import seedu.address.model.Model;
  */
 public class Identification {
     public static final String MESSAGE_CONSTRAINTS =
-            "Identification should only contain integers in the form of Date of reservation "
-                    + "+ last 4 digits of the reservation phone number";
+            "Identification should only contain integers in the form of Date of reservation (ie: ddMMyyyy) "
+                    + "+ last 4 digits of the reservation phone number (ie: 1234)."
+                    + "The date should only be of today or tomorrow.";
 
     public static final String VALIDATION_REGEX =
             "^(?:(?:31(0[13578]|1[02]))|" // Matches 31st for months: Jan, Mar, May, Jul, Aug, Oct, Dec
@@ -44,6 +45,11 @@ public class Identification {
                 + phone.getLastFourDigitsString();
     }
 
+    public Identification(String id) {
+        requireNonNull(id);
+        value = id;
+    }
+
 
     /**
      * Returns true if a given string is a valid ID.
@@ -56,9 +62,9 @@ public class Identification {
     //This method will be called by the Commands and assumes that isValidId has been used to check
     //Validity of ID
     public static Reservation getReservationUsingId(Identification id, Model model) throws CommandException {
-        List<Reservation> lastShownList = model.getFilteredReservationList();
+        List<Reservation> overallList = model.getOverallReservationList();
 
-        return lastShownList.stream().filter(r -> r.getId().equals(id))
+        return overallList.stream().filter(r -> r.getId().equals(id))
                 .findFirst().orElseThrow(() -> new CommandException("Input reservation id does not exist."));
     }
 
