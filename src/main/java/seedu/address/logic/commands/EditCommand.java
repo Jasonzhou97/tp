@@ -13,12 +13,10 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RESERVATIONS;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -46,7 +44,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the reservation identified "
             + "by the index number used in the displayed reservation list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters:  ID ( [6 figures of date (ie : ddMMyyyy)) of TODAY or TOMORROW] "
+            + "+ [last 4 digits of customer phone number (ie:xxxx)])."
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_DATE + "DATE] "
@@ -62,31 +61,26 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_RESERVATION = "This reservation already exists in the address book.";
 
-    private final Index index;
+    private final Identification id;
     private final EditReservationDescriptor editReservationDescriptor;
 
     /**
-     * @param index of the person in the filtered reservation list to edit
+     * @param id                        of the reservation  in the filtered reservation list to edit
      * @param editReservationDescriptor details to edit the reservation with
      */
-    public EditCommand(Index index, EditReservationDescriptor editReservationDescriptor) {
-        requireNonNull(index);
+    public EditCommand(Identification id, EditReservationDescriptor editReservationDescriptor) {
+        requireNonNull(id);
         requireNonNull(editReservationDescriptor);
 
-        this.index = index;
+        this.id = id;
         this.editReservationDescriptor = new EditReservationDescriptor(editReservationDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Reservation> lastShownList = model.getFilteredReservationList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_RESERVATION_DISPLAYED_INDEX);
-        }
-
-        Reservation reservationToEdit = lastShownList.get(index.getZeroBased());
+        Reservation reservationToEdit = Identification.getReservationUsingId(id, model);
         Reservation editedReservation = createEditedReservation(reservationToEdit, editReservationDescriptor);
 
         if (!reservationToEdit.isSameReservation(editedReservation) && model.hasReservation(editedReservation)) {
@@ -99,8 +93,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Reservation} with the details of {@code ReservationToEdit}
+     * edited with {@code editReservationDescriptor}.
      */
     private static Reservation createEditedReservation(Reservation reservationToEdit,
                                                        EditReservationDescriptor editReservationDescriptor) {
@@ -134,21 +128,21 @@ public class EditCommand extends Command {
         }
 
         EditCommand otherEditCommand = (EditCommand) other;
-        return index.equals(otherEditCommand.index)
+        return id.equals(otherEditCommand.id)
                 && editReservationDescriptor.equals(otherEditCommand.editReservationDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("index", index)
+                .add("identification", id)
                 .add("editPersonDescriptor", editReservationDescriptor)
                 .toString();
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the reservation with. Each non-empty field value will replace the
+     * corresponding field value of the reservation.
      */
     public static class EditReservationDescriptor {
         private Name name;
