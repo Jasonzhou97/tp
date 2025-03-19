@@ -9,12 +9,12 @@ import seedu.address.model.reservation.Identification;
 import seedu.address.model.reservation.Reservation;
 
 /**
- * Unmarks a reservation as not paid based on the given identification.
+ * Unmarks a reservation as paid based on the given identification.
  */
 public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unmarks the reservation as not paid "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unmarks the reservation as paid "
             + "at the identification used in the reservation listing.\n"
             + "Parameters: ID ( [6 figures of date (ie : ddMMyyyy)) of TODAY or TOMORROW] "
             + "+ [last 4 digits of customer phone number (ie:xxxx)]).\n"
@@ -26,7 +26,7 @@ public class UnmarkCommand extends Command {
     /**
      * Constructs a {@code UnmarkCommand} with the given identification.
      *
-     * @param id The identification of the reservation to be unmarked as not paid.
+     * @param id The identification of the reservation to be unmarked as paid.
      */
     public UnmarkCommand(Identification id) {
         requireNonNull(id);
@@ -34,7 +34,7 @@ public class UnmarkCommand extends Command {
     }
 
     /**
-     * Executes the command to unmark a reservation as not paid.
+     * Executes the command to unmark a reservation as paid.
      *
      * @param model The model containing the reservation data.
      * @return A {@code CommandResult} indicating the success message.
