@@ -41,4 +41,26 @@ public class ReservationsFilter {
         Predicate<Reservation> tomorrowPredicate = reservation -> reservation.getDate().value.equals(tomorrowDate);
         return tomorrowPredicate;
     }
+
+    /**
+     * Returns a predicate that filters reservations scheduled for tomorrow or today.
+     *
+     *
+     * @return Predicate for tomorrow or today reservations
+     */
+    public static Predicate<Reservation> filterForTodayOrTomorrowPredicate() {
+        LocalDate today = LocalDate.now();
+        LocalDate tomorrow = today.plusDays(1);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String todayDate = today.format(formatter);
+        String tomorrowDate = tomorrow.format(formatter);
+
+        // Predicate to check if the reservation is either today or tomorrow
+        Predicate<Reservation> todayOrTomorrowPredicate = reservation ->
+                reservation.getDate().value.equals(todayDate) || reservation.getDate().value.equals(tomorrowDate);
+
+        return todayOrTomorrowPredicate;
+    }
+
 }
