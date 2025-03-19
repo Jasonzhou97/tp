@@ -123,6 +123,7 @@ public class ModelManager implements Model {
         return filteredReservations;
     }
 
+    @Override
     public ObservableList<Reservation> getOverallReservationList() {
         updateFilteredReservationList(PREDICATE_SHOW_ALL_RESERVATIONS);
         return filteredReservations;
@@ -143,9 +144,11 @@ public class ModelManager implements Model {
     @Override
     public void filterReservationsForTomorrow(Predicate<Reservation> predicate) {
         requireNonNull(predicate);
-        Predicate<Reservation> todayPredicate = ReservationsFilter.filterForTomorrow(filteredReservations);
-        filteredReservations.setPredicate(todayPredicate);
+        Predicate<Reservation> tomorrowPredicate = ReservationsFilter.filterForTomorrow(filteredReservations);
+        filteredReservations.setPredicate(tomorrowPredicate);
     }
+
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
