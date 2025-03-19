@@ -379,6 +379,10 @@ Use case ends.
 &ensp; 1a1. System displays an error message. <br>
 &ensp; Use case resumes at step 1. <br>
 
+1b. User types in invalid command. <br>
+&ensp; 1a1. System displays an error message. <br>
+&ensp; Use case resumes at step 1. <br>
+
 2a. The reservation has already been marked as paid. <br>
 &ensp; 2a1. System indicates that reservation has already been marked as paid. <br>
 &ensp; Use case resumes at step1.
@@ -396,6 +400,10 @@ Use case ends.
 
 **Extensions** <br>
 1a. The reservation does not exist. <br>
+&ensp; 1a1. System displays an error message. <br>
+&ensp; Use case resumes at step 1.
+
+1b .User types in invalid commands. <br>
 &ensp; 1a1. System displays an error message. <br>
 &ensp; Use case resumes at step 1.
 
