@@ -8,26 +8,25 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.reservation.Identification;
 
 /**
- * Parses input arguments and creates a new {@code MarkCommand} object.
+ * Parses input arguments and creates a new {@code UnmarkCommand} object.
  */
-public class MarkCommandParser implements Parser<MarkCommand> {
+public class UnmarkCommandParser implements Parser<UnmarkCommand> {
 
     /**
-     * Parses the given {@code String} of arguments and returns a {@code MarkCommand} object.
+     * Parses the given {@code String} of arguments and returns a {@code UnmarkCommand} object.
      *
      * @param args The user input arguments.
-     * @return A new {@code MarkCommand} instance.
+     * @return A new {@code UnmarkCommand} instance.
      * @throws ParseException If the input does not conform to the expected format.
      */
-    @Override
-    public MarkCommand parse(String args) throws ParseException {
+    public UnmarkCommand parse(String args) throws ParseException {
 
         try {
             Identification id = ParserUtil.parseID(args);
-            return new MarkCommand(id);
+            return new UnmarkCommand(id);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnmarkCommand.MESSAGE_USAGE), pe);
         }
 
     }

@@ -111,6 +111,20 @@ public class Reservation {
                 this.id, true);
     }
 
+
+    /**
+     * Unmarks this reservation as not paid by creating a new {@code Reservation} instance
+     * with the paid status set to {@code false}.
+     *
+     * @return A new {@code Reservation} instance with the same details but unmarked as not paid.
+     */
+    public Reservation toUnpaid() {
+        return new Reservation(this.name, this.phone, this.date, this.time,
+                this.duration, this.pax, this.table, this.remark, this.tags,
+                this.id, false);
+    }
+
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
