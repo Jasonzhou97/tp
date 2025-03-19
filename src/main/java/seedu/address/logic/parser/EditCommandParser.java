@@ -18,7 +18,6 @@ import java.util.Set;
 
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditReservationDescriptor;
-import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.reservation.Identification;
 import seedu.address.model.tag.Tag;
