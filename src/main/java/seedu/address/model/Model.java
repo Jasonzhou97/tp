@@ -12,7 +12,7 @@ import seedu.address.model.reservation.Reservation;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Reservation> PREDICATE_SHOW_ALL_RESERVATIONS = unused -> true;
+    Predicate<Reservation> PREDICATE_SHOW_ALL_RESERVATIONS = ReservationsFilter.filterForTodayOrTomorrowPredicate();
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -85,9 +85,12 @@ public interface Model {
     void filterReservationsForToday(Predicate<Reservation> predicate);
 
     void filterReservationsForTomorrow(Predicate<Reservation> predicate);
+
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredReservationList(Predicate<Reservation> predicate);
+
 }
