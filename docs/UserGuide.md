@@ -73,7 +73,7 @@ Examples:
 
 ### Editing a reservation: `edit`
 
-Editing a today or tomorrow reservation.
+Edits the reservation with the specified `RESERVATION_ID`.
 
 Format: `edit [RESERVATION_ID] n/[NAME] p/[PHONE_NUMBER] date/[DATE] time/[TIME] duration/[DURATION] pax/[NUMBER_OF_PEOPLE] table/[TABLE_NUMBER] t/[TAG_1] t/[TAG_2] `
 
@@ -109,23 +109,23 @@ Shows a list of all reservations for tomorrow, sorted by time.
 
 Format: `listrn`
 
-### Finding reservations by name: `find /p`
+### Finding reservations by name: `find`
 
 Finds reservations made by a specific person.
 
-Format: `find /p NAME`
+Format: `find [NAME]`
 
-* The search is case-insensitive. e.g., `find /p john doe` will match `John Doe`
+* The search is case-insensitive. e.g., `find john doe` will match `John Doe`
 
 Examples:
-* `find /p John Doe` returns all reservations made by John Doe
-* `find /p Jane Smith` returns all reservations made by Jane Smith
+* `find John Doe` returns all reservations made by John Doe
+* `find Jane Smith` returns all reservations made by Jane Smith
 
 ### Deleting a reservation : `delete`
 
 Deletes a specific reservation from GastroBook.
 
-Format: `delete RESERVATION_ID`
+Format: `delete [RESERVATION_ID]`
 
 * Deletes the reservation with the specified `RESERVATION_ID`.
 * The reservation ID is in the format: date of reservation followed by his/her phone number (e.g., 170320259344).
@@ -133,12 +133,11 @@ Format: `delete RESERVATION_ID`
 Examples:
 * `delete 170320259344` deletes the reservation with ID 170320259344.
 
-
 ### Marking a reservation as paid : `mark`
 
 Marks a specific reservation as paid.
 
-Format: `mark RESERVATION_ID`
+Format: `mark [RESERVATION_ID]`
 
 * Marks the reservation with the specified `RESERVATION_ID` as paid.
 * The reservation ID is in the format: date of reservation followed by his/her phone number (e.g., 170320259344).
@@ -150,7 +149,7 @@ Examples:
 
 Marks a specific reservation as unpaid.
 
-Format: `unmark RESERVATION_ID`
+Format: `unmark [RESERVATION_ID]`
 
 * Marks the reservation with the specified `RESERVATION_ID` as unpaid.
 * The reservation ID is in the format: date of reservation followed by his/her phone number (e.g., 170320259344).
@@ -186,8 +185,7 @@ GastroBook data are saved automatically as a JSON file `[JAR file location]/data
 | **Delete**        | `delete RESERVATION_ID`<br> e.g., `delete 170320259344`                                                                                                                                                                                                        |
 | **Mark**          | `mark RESERVATION_ID`<br> e.g., `mark 170320259344`                                                                                                                                                                                                            |
 | **Unmark**        | `unmark RESERVATION_ID`<br> e.g., `unmark 170320259344`                                                                                                                                                                                                        |
-| **Find by name**  | `find /p NAME`<br> e.g., `find /p John Doe`                                                                                                                                                                                                                    |
-| **Find by time**  | `find /t TIME`<br> e.g., `find /t 1200`                                                                                                                                                                                                                        |
+| **Find by name**  | `find NAME`<br> e.g., `find John Doe`                                                                                                                                                                                                                          | |
 | **List all**      | `list`                                                                                                                                                                                                                                                         |
 | **List today**    | `listrt`                                                                                                                                                                                                                                                       |
 | **List tomorrow** | `listrn`                                                                                                                                                                                                                                                       |
