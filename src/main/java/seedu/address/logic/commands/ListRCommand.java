@@ -1,9 +1,9 @@
 package seedu.address.logic.commands;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RESERVATIONS;
 
 import seedu.address.model.Model;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RESERVATIONS;
 
 /**
  * Lists all reservations by regulars
