@@ -109,17 +109,17 @@ Shows a list of all reservations for tomorrow, sorted by time.
 
 Format: `listrn`
 
-### Finding reservations by name: `find /p`
+### Finding reservations by name: `find`
 
 Finds reservations made by a specific person.
 
-Format: `find /p [NAME]`
+Format: `find [NAME]`
 
-* The search is case-insensitive. e.g., `find /p john doe` will match `John Doe`
+* The search is case-insensitive. e.g., `find john doe` will match `John Doe`
 
 Examples:
-* `find /p John Doe` returns all reservations made by John Doe
-* `find /p Jane Smith` returns all reservations made by Jane Smith
+* `find John Doe` returns all reservations made by John Doe
+* `find Jane Smith` returns all reservations made by Jane Smith
 
 ### Deleting a reservation : `delete`
 
@@ -185,7 +185,7 @@ GastroBook data are saved automatically as a JSON file `[JAR file location]/data
 | **Delete**        | `delete RESERVATION_ID`<br> e.g., `delete 170320259344`                                                                                                                                                                                                        |
 | **Mark**          | `mark RESERVATION_ID`<br> e.g., `mark 170320259344`                                                                                                                                                                                                            |
 | **Unmark**        | `unmark RESERVATION_ID`<br> e.g., `unmark 170320259344`                                                                                                                                                                                                        |
-| **Find by name**  | `find /p NAME`<br> e.g., `find /p John Doe`                                                                                                                                                                                                                    | |
+| **Find by name**  | `find NAME`<br> e.g., `find John Doe`                                                                                                                                                                                                                          | |
 | **List all**      | `list`                                                                                                                                                                                                                                                         |
 | **List today**    | `listrt`                                                                                                                                                                                                                                                       |
 | **List tomorrow** | `listrn`                                                                                                                                                                                                                                                       |
