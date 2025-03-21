@@ -45,7 +45,7 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed reservation list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters:  ID ( [6 figures of date (ie : ddMMyyyy)) of TODAY or TOMORROW] "
-            + "+ [last 4 digits of customer phone number (ie:xxxx)])."
+            + "+ [last 4 digits of customer phone number (ie:xxxx)])"
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_DATE + "DATE] "

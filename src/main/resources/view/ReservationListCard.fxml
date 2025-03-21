@@ -27,6 +27,9 @@
           </minWidth>
         </Label>
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+        <Label text=" | " styleClass="cell_big_label" />
+        <Label text="ID: " styleClass="cell_big_label" />
+        <Label fx:id="reservationId" styleClass="cell_big_label" text="\$reservationId" />
       </HBox>
       <FlowPane fx:id="tags" />
 
@@ -63,11 +66,6 @@
       <HBox alignment="CENTER_LEFT" spacing="5">
         <Label text="Remark: " styleClass="cell_small_label" />
         <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
-      </HBox>
-
-      <HBox alignment="CENTER_LEFT" spacing="5">
-        <Label text="Reservation ID: " styleClass="cell_small_label" />
-        <Label fx:id="reservationId" styleClass="cell_small_label" text="\$reservationId" />
       </HBox>
 
       <HBox alignment="CENTER_LEFT" spacing="5">
