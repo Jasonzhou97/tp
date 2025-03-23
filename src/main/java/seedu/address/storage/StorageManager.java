@@ -8,24 +8,29 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyPersonsList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of AddressBook and PersonsList data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
+    private PersonsListStorage personsListStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code AddressBookStorage}, {@code UserPrefsStorage}
+     * and {@code PersonsListStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
+                          PersonsListStorage personsListStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.personsListStorage = personsListStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -45,7 +50,6 @@ public class StorageManager implements Storage {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
 
-
     // ================ AddressBook methods ==============================
 
     @Override
@@ -55,7 +59,7 @@ public class StorageManager implements Storage {
 
     @Override
     public Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+        return addressBookStorage.readAddressBook();
     }
 
     @Override
@@ -75,4 +79,32 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
+    // ================ PersonsList methods ==============================
+
+    @Override
+    public Path getPersonsListFilePath() {
+        return personsListStorage.getPersonsListFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyPersonsList> readPersonsList() throws DataLoadingException {
+        return personsListStorage.readPersonsList();
+    }
+
+    @Override
+    public Optional<ReadOnlyPersonsList> readPersonsList(Path filePath) throws DataLoadingException {
+        logger.fine("Attempting to read persons list data from file: " + filePath);
+        return personsListStorage.readPersonsList(filePath);
+    }
+
+    @Override
+    public void savePersonsList(ReadOnlyPersonsList personsList) throws IOException {
+        savePersonsList(personsList, personsListStorage.getPersonsListFilePath());
+    }
+
+    @Override
+    public void savePersonsList(ReadOnlyPersonsList personsList, Path filePath) throws IOException {
+        logger.fine("Attempting to write persons list to data file: " + filePath);
+        personsListStorage.savePersonsList(personsList, filePath);
+    }
 }
