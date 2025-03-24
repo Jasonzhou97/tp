@@ -29,7 +29,8 @@ public class IdentificationTest {
         StartTime time = new StartTime(validTime);
 
         // Expected ID should be date without slashes + last 4 digits of phone
-        String expectedId = validDate.replace("/", "") + phone.getLastFourDigitsString();
+        String expectedId = validDate.replace("/", "") + phone.getLastFourDigitsString()
+                + time.value;
 
         // Execute the logic that should be tested
         Identification id = new Identification(date, phone, time);
