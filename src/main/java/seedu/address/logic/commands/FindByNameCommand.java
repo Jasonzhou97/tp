@@ -6,14 +6,15 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.reservation.NameContainsKeywordsPredicate;
+import seedu.address.model.reservation.StartDate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
-public class FindCommand extends Command {
+public class FindByNameCommand extends Command {
 
-    public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_WORD = "findn";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
@@ -22,14 +23,22 @@ public class FindCommand extends Command {
 
     private final NameContainsKeywordsPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindByNameCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredReservationList(predicate);
+
+        model.updateFilteredReservationList(reservation -> {
+            // Check name
+            boolean matchesName = predicate.test(reservation);
+
+            // Check if date is today or tomorrow
+            boolean isTodayOrTomorrow = StartDate.isValidDateRange(reservation.getDate().value);
+            return matchesName && isTodayOrTomorrow;
+        });
         return new CommandResult(
                 String.format(Messages.MESSAGE_RESERVATIONS_LISTED_OVERVIEW,
                         model.getFilteredReservationList().size()));
@@ -42,11 +51,11 @@ public class FindCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FindCommand)) {
+        if (!(other instanceof FindByNameCommand)) {
             return false;
         }
 
-        FindCommand otherFindCommand = (FindCommand) other;
+        FindByNameCommand otherFindCommand = (FindByNameCommand) other;
         return predicate.equals(otherFindCommand.predicate);
     }
 
