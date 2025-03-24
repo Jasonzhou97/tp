@@ -97,6 +97,12 @@ Shows a list of all reservations in GastroBook, sorted by date and time.
 
 Format: `list`
 
+### Listing previous reservations : `listp`
+
+Shows a list of all previous reservations, sorted by date and time.
+
+Format: `listp`
+
 ### Listing today's reservations : `listrt`
 
 Shows a list of all reservations for today, sorted by time.
@@ -185,10 +191,10 @@ GastroBook data are saved automatically as a JSON file `[JAR file location]/data
 | **Delete**        | `delete RESERVATION_ID`<br> e.g., `delete 170320259344`                                                                                                                                                                                                        |
 | **Mark**          | `mark RESERVATION_ID`<br> e.g., `mark 170320259344`                                                                                                                                                                                                            |
 | **Unmark**        | `unmark RESERVATION_ID`<br> e.g., `unmark 170320259344`                                                                                                                                                                                                        |
-| **Find by name**  | `find NAME`<br> e.g., `find John Doe`                                                                                                                                                                                                                          | |
+| **Find by name**  | `find NAME`<br> e.g., `find John Doe`                                                                                                                                                                                                                          |
 | **List all**      | `list`                                                                                                                                                                                                                                                         |
+| **List previous** | `listp`                                                                                                                                                                                                                                                        |
 | **List today**    | `listrt`                                                                                                                                                                                                                                                       |
 | **List tomorrow** | `listrn`                                                                                                                                                                                                                                                       |
 | **Help**          | `help`                                                                                                                                                                                                                                                         |
 | **Exit**          | `exit`                                                                                                                                                                                                                                                         |
-|

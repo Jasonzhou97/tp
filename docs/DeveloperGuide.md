@@ -464,7 +464,66 @@ Use case ends.
 &ensp; 1b1. System displays invalid command message and output proper example of edit use.  <br>
 Use case ends.
 
-*{More to be added}*
+### **U9: Track Customer Booking Frequency and Regular Customer Status**
+
+**MSS**
+1. Customer makes a new reservation.
+2. System records the reservation details including customer's name and phone number.
+3. System checks if the customer already exists in the PersonsList.
+4. If the customer exists, system increments their booking count.
+5. If the booking count exceeds the threshold for regular customer status, system marks the customer as a regular customer.
+6. System saves the updated customer information.
+
+Use case ends.
+
+**Extensions** <br>
+3a. The customer is new (not in the PersonsList). <br>
+&ensp; 3a1. System creates a new customer record with booking count of 1. <br>
+&ensp; 3a2. System saves the new customer record to the PersonsList. <br>
+&ensp; Use case continues at step 6.
+
+4a. The phone number in the reservation matches a different name in the system. <br>
+&ensp; 4a1. System displays a warning about the name mismatch. <br>
+&ensp; 4a2. User confirms whether this is the same customer or a different person using the same phone. <br>
+&ensp; 4a3. If confirmed as same customer, system updates the name and increments booking count. <br>
+&ensp; 4a4. If confirmed as different customer, system treats as a new customer. <br>
+&ensp; Use case continues at appropriate step based on the decision.
+
+5a. The customer has already been marked as a regular customer. <br>
+&ensp; 5a1. System maintains the regular customer status and increments the booking count. <br>
+&ensp; Use case continues at step 6.
+
+---
+
+### **U10: View Regular Customers**
+
+**MSS**
+1. User requests to see all regular customers.
+2. System retrieves all customers marked as "regular" from the PersonsList.
+3. System displays the list of regular customers with their booking counts and other relevant details.
+
+Use case ends.
+
+**Extensions** <br>
+2a. No regular customers exist in the system. <br>
+&ensp; 2a1. System indicates that there are no regular customers currently. <br>
+&ensp; Use case ends.
+
+---
+
+### **U11: List Previous Reservations**
+
+**MSS**
+1. User inputs the command to list previous reservations.
+2. System retrieves all reservations with dates before the current date.
+3. System displays the list of previous reservations sorted by date and time.
+
+Use case ends.
+
+**Extensions** <br>
+2a. No previous reservations exist in the system. <br>
+&ensp; 2a1. System indicates that there are no previous reservations. <br>
+&ensp; Use case ends.
 
 ---
 
