@@ -5,26 +5,25 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.reservation.NameContainsKeywordsPredicate;
+import seedu.address.model.reservation.PhoneContainsKeywordsPredicate;
 import seedu.address.model.reservation.StartDate;
 
 /**
- * Finds and lists all persons whose name contains any of the argument keywords.
- * Keyword matching is case-insensitive.
+ * Finds and lists all reservations whose phone numbers contain any of the argument keywords.
  */
-public class FindByNameCommand extends Command {
+public class FindByPhoneCommand extends Command {
 
-    public static final String COMMAND_WORD = "findn";
+    public static final String COMMAND_WORD = "findp";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays reservations made by them for today or "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all reservations whose phone numbers contain "
+            + "any of the specified keywords and displays reservations made by them for today or "
             + "tomorrow as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + " 98765432 1234";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final PhoneContainsKeywordsPredicate predicate;
 
-    public FindByNameCommand(NameContainsKeywordsPredicate predicate) {
+    public FindByPhoneCommand(PhoneContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -33,12 +32,12 @@ public class FindByNameCommand extends Command {
         requireNonNull(model);
 
         model.updateFilteredReservationList(reservation -> {
-            // Check name
-            boolean matchesName = predicate.test(reservation);
+            // Check phone number
+            boolean matchesPhone = predicate.test(reservation);
 
             // Check if date is today or tomorrow
             boolean isTodayOrTomorrow = StartDate.isValidDateRange(reservation.getDate().value);
-            return matchesName && isTodayOrTomorrow;
+            return matchesPhone && isTodayOrTomorrow;
         });
         return new CommandResult(
                 String.format(Messages.MESSAGE_RESERVATIONS_LISTED_OVERVIEW,
@@ -50,14 +49,11 @@ public class FindByNameCommand extends Command {
         if (other == this) {
             return true;
         }
-
-        // instanceof handles nulls
-        if (!(other instanceof FindByNameCommand)) {
+        if (!(other instanceof FindByPhoneCommand)) {
             return false;
         }
-
-        FindByNameCommand otherFindByNameCommand = (FindByNameCommand) other;
-        return predicate.equals(otherFindByNameCommand.predicate);
+        FindByPhoneCommand otherFindByPhoneCommand = (FindByPhoneCommand) other;
+        return predicate.equals(otherFindByPhoneCommand.predicate);
     }
 
     @Override
