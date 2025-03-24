@@ -11,7 +11,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Logger;
 
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.type.CollectionType;
@@ -28,11 +27,9 @@ import seedu.address.model.reservation.Phone;
 public class PersonsList {
     private static final Logger logger = LogsCenter.getLogger(PersonsList.class);
     private static final Path PERSONS_FILE_PATH = Paths.get("data", "personslist.json");
-    private static final Path REGULARS_FILE_PATH = Paths.get("data", "regulars.json");
     private static final int REGULAR_CUSTOMER_THRESHOLD = 5;
 
     private ArrayList<Person> personsList;
-    private ArrayList<Person> regularsList;
 
     /**
      * Initializes a PersonsList.
@@ -45,19 +42,18 @@ public class PersonsList {
             logger.warning("Could not create data directory: " + e.getMessage());
         }
 
-        // Initialize with empty lists first
+        // Initialize with empty list
         this.personsList = new ArrayList<>();
-        this.regularsList = new ArrayList<>();
 
-        // Load from files if they exist
-        loadListsFromFiles();
+        // Load from file if it exists
+        loadListFromFile();
     }
 
     /**
-     * Loads both lists from their respective files.
+     * Loads the persons list from file.
      * For entries with the same phone number, picks the one with the highest counter.
      */
-    private void loadListsFromFiles() {
+    private void loadListFromFile() {
         // Load persons list
         try {
             File personsFile = PERSONS_FILE_PATH.toFile();
@@ -102,51 +98,6 @@ public class PersonsList {
         } catch (IOException e) {
             logger.warning("Error loading persons list: " + e.getMessage());
         }
-
-        // Load regulars list
-        try {
-            File regularsFile = REGULARS_FILE_PATH.toFile();
-            if (regularsFile.exists() && regularsFile.length() > 0) {
-                ObjectMapper mapper = new ObjectMapper();
-                CollectionType listType = mapper.getTypeFactory()
-                        .constructCollectionType(ArrayList.class, Person.class);
-
-                ArrayList<Person> loadedRegulars = mapper.readValue(regularsFile, listType);
-                if (loadedRegulars != null) {
-                    // For each phone number, keep the entry with the highest counter
-                    java.util.Map<String, Person> phoneToPersonMap = new java.util.HashMap<>();
-
-                    for (Person p : loadedRegulars) {
-                        String phoneValue = p.getPhone().value;
-
-                        // Add if not seen before, or if this has a higher counter
-                        if (!phoneToPersonMap.containsKey(phoneValue) ||
-                                p.getCounter() > phoneToPersonMap.get(phoneValue).getCounter()) {
-                            phoneToPersonMap.put(phoneValue, p);
-                        }
-                    }
-
-                    // Convert the map values to list
-                    this.regularsList = new ArrayList<>(phoneToPersonMap.values());
-
-                    logger.info("Loaded " + regularsList.size() + " unique regulars from file, prioritizing highest counter values");
-                }
-            } else {
-                // Create empty file if it doesn't exist
-                if (!regularsFile.exists()) {
-                    regularsFile.createNewFile();
-
-                    // Initialize with empty array
-                    FileWriter writer = new FileWriter(regularsFile);
-                    writer.write("[]");
-                    writer.close();
-
-                    logger.info("Created new empty regulars file with empty array");
-                }
-            }
-        } catch (IOException e) {
-            logger.warning("Error loading regulars list: " + e.getMessage());
-        }
     }
 
     /**
@@ -178,34 +129,6 @@ public class PersonsList {
     }
 
     /**
-     * Completely saves the regulars list to file.
-     * This will overwrite the file with the current in-memory list.
-     * This should be used during application shutdown to ensure all data is properly saved.
-     */
-    public void saveRegularsToFile() {
-        try {
-            logger.info("Doing final save of regulars list with " + regularsList.size() + " entries");
-
-            // Create the file if it doesn't exist
-            File file = REGULARS_FILE_PATH.toFile();
-            if (!file.exists()) {
-                file.createNewFile();
-                logger.info("Created new regulars file for final save");
-            }
-
-            // Write the current in-memory list to file (complete overwrite)
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.enable(SerializationFeature.INDENT_OUTPUT);
-            mapper.writeValue(file, regularsList);
-
-            logger.info("Successfully performed final save of regulars list");
-        } catch (IOException e) {
-            logger.severe("Failed to perform final save of regulars list: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-    /**
      * Appends a person to the JSON file in append mode
      * This maintains the JSON array structure by appending to the end of the file.
      */
@@ -222,7 +145,7 @@ public class PersonsList {
                 newList.add(person);
 
                 mapper.writeValue(file, newList);
-                logger.info("Created new persons file with first entry oop");
+                logger.info("Created new persons file with first entry");
                 return;
             }
 
@@ -271,7 +194,6 @@ public class PersonsList {
         }
     }
 
-
     /**
      * Returns true if a person with the same phone number exists in the list.
      */
@@ -289,15 +211,21 @@ public class PersonsList {
     }
 
     /**
-     * Returns true if a person is a regular customer (exists in regulars list).
+     * Returns true if a person is a regular customer (has isRegular set to true).
      */
     public boolean isRegularCustomer(Person person) {
         if (person == null) {
             throw new NullPointerException();
         }
 
-        for (Person p : regularsList) {
-            if (p.getPhone().equals(person.getPhone())) {
+        // First check if this exact person is marked as regular
+        if (person.isRegular()) {
+            return true;
+        }
+
+        // Otherwise, check if a person with this phone exists in our list and is marked as regular
+        for (Person p : personsList) {
+            if (p.getPhone().equals(person.getPhone()) && p.isRegular()) {
                 return true;
             }
         }
@@ -356,22 +284,9 @@ public class PersonsList {
                 existingPersons.add(person);
                 logger.info("Appending new person to file: " + person.getName().fullName);
             } else {
-                // For existing persons, update their entry
-                boolean found = false;
-                for (int i = 0; i < existingPersons.size(); i++) {
-                    if (existingPersons.get(i).getPhone().equals(person.getPhone())) {
-                        existingPersons.set(i, person);
-                        found = true;
-                        logger.info("Updated existing person in file: " + person.getName().fullName);
-                        break;
-                    }
-                }
-
-                // If not found (shouldn't happen), append anyway
-                if (!found) {
-                    existingPersons.add(person);
-                    logger.info("Person not found in file, appending: " + person.getName().fullName);
-                }
+                // update their entry by adding a new entry for existing person
+                existingPersons.add(person);
+                logger.info("Added updated person to file: " + person.getName().fullName);
             }
 
             // Write back the updated list
@@ -380,78 +295,6 @@ public class PersonsList {
 
         } catch (IOException e) {
             logger.severe("Failed to update or append person to file: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Updates an existing regular in the file or appends a new one if they don't exist.
-     * This modifies the file in place for existing regulars rather than appending duplicates.
-     */
-    private void updateOrAppendRegularToFile(Person regular, boolean isNew) {
-        try {
-            // First check if file is empty or not properly initialized
-            File file = REGULARS_FILE_PATH.toFile();
-            if (!file.exists() || file.length() == 0) {
-                // Create new file with an array containing just this regular
-                ObjectMapper mapper = new ObjectMapper();
-                mapper.enable(SerializationFeature.INDENT_OUTPUT);
-
-                ArrayList<Person> newList = new ArrayList<>();
-                newList.add(regular);
-
-                mapper.writeValue(file, newList);
-                logger.info("Created new regulars file with first entry");
-                return;
-            }
-
-            // Read the existing data
-            ObjectMapper mapper = new ObjectMapper();
-            CollectionType listType = mapper.getTypeFactory()
-                    .constructCollectionType(ArrayList.class, Person.class);
-
-            ArrayList<Person> existingRegulars;
-            try {
-                existingRegulars = mapper.readValue(file, listType);
-            } catch (Exception e) {
-                // If file is corrupted, reset it
-                logger.warning("Could not parse regulars file, resetting: " + e.getMessage());
-                ArrayList<Person> newList = new ArrayList<>();
-                newList.add(regular);
-                mapper.enable(SerializationFeature.INDENT_OUTPUT);
-                mapper.writeValue(file, newList);
-                return;
-            }
-
-            if (isNew) {
-                // For new regulars, just append
-                existingRegulars.add(regular);
-                logger.info("Appending new regular to file: " + regular.getName().fullName);
-            } else {
-                // For existing regulars, update their entry
-                boolean found = false;
-                for (int i = 0; i < existingRegulars.size(); i++) {
-                    if (existingRegulars.get(i).getPhone().equals(regular.getPhone())) {
-                        existingRegulars.set(i, regular);
-                        found = true;
-                        logger.info("Updated existing regular in file: " + regular.getName().fullName);
-                        break;
-                    }
-                }
-
-                // If not found append anyway
-                if (!found) {
-                    existingRegulars.add(regular);
-                    logger.info("Regular not found in file, appending: " + regular.getName().fullName);
-                }
-            }
-
-            // Write back the updated list
-            mapper.enable(SerializationFeature.INDENT_OUTPUT);
-            mapper.writeValue(file, existingRegulars);
-
-        } catch (IOException e) {
-            logger.severe("Failed to update or append regular to file: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -477,7 +320,6 @@ public class PersonsList {
         if (existingPerson != null) {
             // Update existing person
             int newCount = existingPerson.getCounter() + 1;
-            boolean wasRegular = existingPerson.isRegular();
             boolean isNowRegular = newCount >= REGULAR_CUSTOMER_THRESHOLD;
 
             // Create updated person
@@ -491,34 +333,8 @@ public class PersonsList {
             // Update existing entry in file (not append)
             updateOrAppendPersonToFile(updatedPerson, false);
 
-            logger.info("Updated existing person, new count: " + newCount);
-
-            // Handle regular status
-            if (isNowRegular) {
-                if (!wasRegular) {
-                    // New regular customer
-                    regularsList.add(updatedPerson);
-                    updateOrAppendRegularToFile(updatedPerson, true); // New regular, so append
-                    logger.info("Customer reached regular status with " + newCount + " bookings");
-                } else {
-                    // Already a regular, update their entry
-                    boolean foundRegular = false;
-                    for (int i = 0; i < regularsList.size(); i++) {
-                        if (regularsList.get(i).getPhone().equals(phone)) {
-                            regularsList.set(i, updatedPerson);
-                            updateOrAppendRegularToFile(updatedPerson, false); // Update existing
-                            foundRegular = true;
-                            break;
-                        }
-                    }
-
-                    if (!foundRegular) {
-                        // Should be in regulars list but isn't
-                        regularsList.add(updatedPerson);
-                        updateOrAppendRegularToFile(updatedPerson, true); // Append as new
-                    }
-                }
-            }
+            logger.info("Updated existing person, new count: " + newCount +
+                    ", regular status: " + (isNowRegular ? "Yes" : "No"));
 
             return updatedPerson;
         } else {
@@ -533,22 +349,19 @@ public class PersonsList {
             // Append to file (this is a new person)
             updateOrAppendPersonToFile(newPerson, true);
 
-            logger.info("Added new person with booking count 1");
+            logger.info("Added new person with first booking");
 
             return newPerson;
         }
     }
+
     /**
-     * Removes a person from both lists and requires full rewrite.
-     * This operation can't be done with append-only.
+     * Removes a person from the list.
      */
     public void removePerson(Person key) {
-        // Note: This operation can't use append mode, it requires a complete rewrite
+        boolean removed = personsList.remove(key);
 
-        // Remove from persons list
-        boolean removedFromPersons = personsList.remove(key);
-
-        if (removedFromPersons) {
+        if (removed) {
             // Rewrite persons file
             try {
                 ObjectMapper mapper = new ObjectMapper();
@@ -559,33 +372,7 @@ public class PersonsList {
                 logger.severe("Failed to rewrite persons file after removal: " + e.getMessage());
             }
         }
-
-        // Remove from regulars list if present
-        boolean removedFromRegulars = false;
-        for (int i = 0; i < regularsList.size(); i++) {
-            if (regularsList.get(i).getPhone().equals(key.getPhone())) {
-                regularsList.remove(i);
-                removedFromRegulars = true;
-
-                // Rewrite regulars file
-                try {
-                    ObjectMapper mapper = new ObjectMapper();
-                    mapper.enable(SerializationFeature.INDENT_OUTPUT);
-                    mapper.writeValue(REGULARS_FILE_PATH.toFile(), regularsList);
-                    logger.info("Removed regular and rewrote regulars file: " + key.getName().fullName);
-                } catch (IOException e) {
-                    logger.severe("Failed to rewrite regulars file after removal: " + e.getMessage());
-                }
-
-                break;
-            }
-        }
-
-        logger.info("Removal results - from persons: " + removedFromPersons +
-                ", from regulars: " + removedFromRegulars);
     }
-
-
 
     /**
      * Returns a copy of the persons list.
@@ -595,10 +382,16 @@ public class PersonsList {
     }
 
     /**
-     * Returns a copy of the regulars list.
+     * Returns a list of all regular customers (persons with isRegular set to true).
      */
     public ArrayList<Person> getRegularCustomers() {
-        return new ArrayList<>(regularsList);
+        ArrayList<Person> regulars = new ArrayList<>();
+        for (Person person : personsList) {
+            if (person.isRegular()) {
+                regulars.add(person);
+            }
+        }
+        return regulars;
     }
 
     @Override
@@ -612,12 +405,17 @@ public class PersonsList {
         }
 
         PersonsList otherPersonsList = (PersonsList) other;
-        return personsList.equals(otherPersonsList.personsList) &&
-                regularsList.equals(otherPersonsList.regularsList);
+        return personsList.equals(otherPersonsList.personsList);
     }
 
     @Override
     public String toString() {
-        return personsList.size() + " persons, " + regularsList.size() + " regulars";
+        int regularCount = 0;
+        for (Person p : personsList) {
+            if (p.isRegular()) {
+                regularCount++;
+            }
+        }
+        return personsList.size() + " persons, " + regularCount + " regulars";
     }
 }
