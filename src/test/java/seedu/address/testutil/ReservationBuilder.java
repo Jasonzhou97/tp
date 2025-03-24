@@ -147,8 +147,8 @@ public class ReservationBuilder {
     /**
      * Sets the {@code Identification} of the {@code Person} that we are building.
      */
-    public ReservationBuilder withId(StartDate date, Phone phone) {
-        this.id = new Identification(date, phone);
+    public ReservationBuilder withId(StartDate date, Phone phone, StartTime time) {
+        this.id = new Identification(date, phone, time);
         return this;
     }
 
