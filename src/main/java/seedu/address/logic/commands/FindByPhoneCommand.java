@@ -9,17 +9,17 @@ import seedu.address.model.reservation.PhoneContainsKeywordsPredicate;
 import seedu.address.model.reservation.StartDate;
 
 /**
- * Finds and lists all reservations whose phone numbers contain any of the argument keywords.
+ * Finds and lists all reservations whose phone numbers match any of the argument keywords.
  */
 public class FindByPhoneCommand extends Command {
 
     public static final String COMMAND_WORD = "findp";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all reservations whose phone numbers contain "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all reservations whose phone numbers match "
             + "any of the specified keywords and displays reservations made by them for today or "
             + "tomorrow as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " 98765432 1234";
+            + "Example: " + COMMAND_WORD + " 98765432 81234567";
 
     private final PhoneContainsKeywordsPredicate predicate;
 
