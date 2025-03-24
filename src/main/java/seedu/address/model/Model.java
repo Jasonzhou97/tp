@@ -16,7 +16,7 @@ import seedu.address.model.reservation.Reservation;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Reservation> PREDICATE_SHOW_ALL_RESERVATIONS = unused -> true;
+    Predicate<Reservation> PREDICATE_SHOW_ALL_RESERVATIONS = ReservationsFilter.filterForTodayOrTomorrowPredicate();
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
