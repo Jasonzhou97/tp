@@ -2,11 +2,14 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.PersonsList;
+import seedu.address.model.reservation.Person;
 import seedu.address.model.reservation.Reservation;
 
 
@@ -75,5 +78,36 @@ public class ReservationCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         reservationId.setText(reservation.getId().value);
         isPaid.setText(reservation.getIsPaid() ? "Paid" : "Not Paid");
+        updateCardStyle();
+    }
+
+    /**
+     * Updates the background color of the reservation card based on payment status.
+     */
+    private void updateCardStyle() {
+        Platform.runLater(() -> {
+            System.out.println("Updating card style...");
+            cardPane.getStyleClass().removeAll("normal", "regular");
+
+            Person p = PersonsList.getPerson(reservation.getPhone());
+
+            if (p == null) {
+                System.out.println("❌ Person not found for phone: " + reservation.getPhone());
+                return;
+            }
+
+            System.out.println("✅ Applying style for: " + p.getName());
+            if (p.isRegular()) {
+                cardPane.getStyleClass().add("regular");
+            } else {
+                cardPane.getStyleClass().add("normal");
+            }
+
+            // 🔹 Force UI to refresh the node immediately
+            cardPane.applyCss();
+            cardPane.layout();
+            cardPane.setVisible(false);
+            cardPane.setVisible(true);
+        });
     }
 }

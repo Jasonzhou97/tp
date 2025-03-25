@@ -26,9 +26,9 @@ import seedu.address.model.reservation.Phone;
 public class PersonsList {
     private static final Logger logger = LogsCenter.getLogger(PersonsList.class);
     private static final Path PERSONS_FILE_PATH = Paths.get("data", "personslist.json");
-    private static final int REGULAR_CUSTOMER_THRESHOLD = 5;
+    private static final int REGULAR_CUSTOMER_THRESHOLD = 3;
 
-    private ArrayList<Person> personsList;
+    private static ArrayList<Person> personsList;
 
     /**
      * Initializes a PersonsList.
@@ -138,6 +138,22 @@ public class PersonsList {
             }
         }
         return false;
+    }
+
+    /**
+     * Returns a person with the given phone number.
+     */
+    public static Person getPerson(Phone phone) {
+        if (phone == null) {
+            throw new NullPointerException();
+        }
+
+        for (Person p : personsList) {
+            if (p.getPhone().value.equals(phone.value)) {
+                return p;
+            }
+        }
+        return null;
     }
 
 
