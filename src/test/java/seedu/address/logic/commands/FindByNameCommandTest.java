@@ -8,7 +8,7 @@ import seedu.address.model.reservation.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 
-public class FindCommandTest {
+public class FindByNameCommandTest {
     /*
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());

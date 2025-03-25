@@ -112,7 +112,7 @@ Format: `listrn`
 
 ### Finding reservations by name: `findn`
 
-Finds reservations made by a specific person by name.
+Finds reservations by name.
 
 Format: `findn [NAME]`
 
@@ -122,6 +122,18 @@ Examples:
 * `findn John` returns all reservations made by John.
 * `findn Jane` returns all reservations made by Jane.
 * `findn John Jane` returns all reservations made by John or Jane.
+
+### Finding reservations by phone number: `findp`
+
+Finds reservations by phone number.
+
+Format: `findp [PHONE_NUMBER]`
+
+* Partial phone numbers will not be accepted. e.g., `9123` will not match `91234567`
+
+Examples:
+* `findp 98765432` returns all reservations made by the person with phone number 98765432.
+* `findp 91234567 98765432` returns all reservations made by the people with phone numbers 91234567 and 98765432.
 
 ### Deleting a reservation : `delete`
 
@@ -180,17 +192,18 @@ GastroBook data are saved automatically as a JSON file `[JAR file location]/data
 
 ## Command summary
 
-| Action            | Format, Examples                                                                                                                                                                                                                                                   |
-|-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**           | `add n/NAME p/PHONE_NUMBER date/DATE time/TIME duration/DURATION pax/NUMBER_OF_PEOPLE table/TABLE_NUMBER [t/TAG]…` <br> e.g., `add n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event`                                    |
-| **Edit**          | `edit RESERVATION_ID n/NAME p/PHONE_NUMBER date/DATE time/TIME duration/DURATION pax/NUMBER_OF_PEOPLE table/TABLE_NUMBER [t/TAG]...` <br> e.g.,`edit 1803202512341200 n/John Doe p/98761234 date/18/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event` |
-| **Delete**        | `delete RESERVATION_ID`<br> e.g., `delete 1703202593441200`                                                                                                                                                                                                        |
-| **Mark**          | `mark RESERVATION_ID`<br> e.g., `mark 1703202593441200`                                                                                                                                                                                                            |
-| **Unmark**        | `unmark RESERVATION_ID`<br> e.g., `unmark 1703202593441200`                                                                                                                                                                                                        |
-| **Find by name**  | `findn NAME`<br> e.g., `findn John Doe`                                                                                                                                                                                                                            | |
-| **List all**      | `list`                                                                                                                                                                                                                                                             |
-| **List today**    | `listrt`                                                                                                                                                                                                                                                           |
-| **List tomorrow** | `listrn`                                                                                                                                                                                                                                                           |
-| **Help**          | `help`                                                                                                                                                                                                                                                             |
-| **Exit**          | `exit`                                                                                                                                                                                                                                                             |
+| Action                   | Format, Examples                                                                                                                                                                                                                                                   |
+|--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                  | `add n/NAME p/PHONE_NUMBER date/DATE time/TIME duration/DURATION pax/NUMBER_OF_PEOPLE table/TABLE_NUMBER [t/TAG]…` <br> e.g., `add n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event`                                    |
+| **Edit**                 | `edit RESERVATION_ID n/NAME p/PHONE_NUMBER date/DATE time/TIME duration/DURATION pax/NUMBER_OF_PEOPLE table/TABLE_NUMBER [t/TAG]...` <br> e.g.,`edit 1803202512341200 n/John Doe p/98761234 date/18/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event` |
+| **Delete**               | `delete RESERVATION_ID`<br> e.g., `delete 1703202593441200`                                                                                                                                                                                                        |
+| **Mark**                 | `mark RESERVATION_ID`<br> e.g., `mark 1703202593441200`                                                                                                                                                                                                            |
+| **Unmark**               | `unmark RESERVATION_ID`<br> e.g., `unmark 1703202593441200`                                                                                                                                                                                                        |
+| **Find by name**         | `findn NAME`<br> e.g., `findn John Doe`                                                                                                                                                                                                                            | |
+| **Find by phone number** | `findp PHONE_NUMBER`<br> e.g., `findp 91234567`                                                                                                                                                                                                                    |
+| **List all**             | `list`                                                                                                                                                                                                                                                             |
+| **List today**           | `listrt`                                                                                                                                                                                                                                                           |
+| **List tomorrow**        | `listrn`                                                                                                                                                                                                                                                           |
+| **Help**                 | `help`                                                                                                                                                                                                                                                             |
+| **Exit**                 | `exit`                                                                                                                                                                                                                                                             |
 |
