@@ -5,7 +5,9 @@ public class Person {
     private Name name;
     private boolean isRegular = false;
     private int counter = 0;
-
+    public Person() {
+        // Required for Jackson deserialization
+    }
     public Person(Name name, Phone phone) {
         this.phone = phone;
         this.name = name;

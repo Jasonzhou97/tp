@@ -7,10 +7,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.logging.Logger;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.type.CollectionType;
@@ -49,147 +48,78 @@ public class PersonsList {
         loadListFromFile();
     }
 
-    /**
-     * Loads the persons list from file.
-     * For entries with the same phone number, picks the one with the highest counter.
-     */
-    private void loadListFromFile() {
-        // Load persons list
-        try {
-            File personsFile = PERSONS_FILE_PATH.toFile();
-            if (personsFile.exists() && personsFile.length() > 0) {
-                ObjectMapper mapper = new ObjectMapper();
-                CollectionType listType = mapper.getTypeFactory()
-                        .constructCollectionType(ArrayList.class, Person.class);
-
-                ArrayList<Person> loadedPersons = mapper.readValue(personsFile, listType);
-                if (loadedPersons != null) {
-                    // For each phone number, keep the entry with the highest counter
-                    java.util.Map<String, Person> phoneToPersonMap = new java.util.HashMap<>();
-
-                    for (Person p : loadedPersons) {
-                        String phoneValue = p.getPhone().value;
-
-                        // Add if not seen before, or if this has a higher counter
-                        if (!phoneToPersonMap.containsKey(phoneValue) ||
-                                p.getCounter() > phoneToPersonMap.get(phoneValue).getCounter()) {
-                            phoneToPersonMap.put(phoneValue, p);
-                        }
-                    }
-
-                    // Convert the map values to our list
-                    this.personsList = new ArrayList<>(phoneToPersonMap.values());
-
-                    logger.info("Loaded " + personsList.size() + " unique persons from file, prioritizing highest counter values");
-                }
-            } else {
-                // Create empty file if it doesn't exist
-                if (!personsFile.exists()) {
-                    personsFile.createNewFile();
-
-                    // Initialize with empty array
-                    FileWriter writer = new FileWriter(personsFile);
-                    writer.write("[]");
-                    writer.close();
-
-                    logger.info("Created new empty persons file with empty array");
-                }
-            }
-        } catch (IOException e) {
-            logger.warning("Error loading persons list: " + e.getMessage());
-        }
-    }
 
     /**
-     * Completely saves the persons list to file.
-     * This will overwrite the file with the current in-memory list.
-     * This should be used during application shutdown to ensure all data is properly saved.
+     * Updates a person in the file if they exist, otherwise adds them.
+     * This method preserves ALL existing entries in the file.
      */
-    public void savePersonsToFile() {
+    private void updatePhoneInFileAndKeepOthers(Person person) {
         try {
-            logger.info("Doing final save of persons list with " + personsList.size() + " entries");
-
-            // Create the file if it doesn't exist
-            File file = PERSONS_FILE_PATH.toFile();
-            if (!file.exists()) {
-                file.createNewFile();
-                logger.info("Created new persons file for final save");
-            }
-
-            // Write the current in-memory list to file (complete overwrite)
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.enable(SerializationFeature.INDENT_OUTPUT);
-            mapper.writeValue(file, personsList);
-
-            logger.info("Successfully performed final save of persons list");
-        } catch (IOException e) {
-            logger.severe("Failed to perform final save of persons list: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Appends a person to the JSON file in append mode
-     * This maintains the JSON array structure by appending to the end of the file.
-     */
-    private void appendPersonToFile(Person person) {
-        try {
-            // First check if file is empty or not properly initialized
+            // First check if file exists and has content
             File file = PERSONS_FILE_PATH.toFile();
             if (!file.exists() || file.length() == 0) {
-                // Create new file with an array containing just this person
-                ObjectMapper mapper = new ObjectMapper();
-                mapper.enable(SerializationFeature.INDENT_OUTPUT);
-
+                // Create new file with just this person
                 ArrayList<Person> newList = new ArrayList<>();
                 newList.add(person);
 
-                mapper.writeValue(file, newList);
-                logger.info("Created new persons file with first entry");
-                return;
-            }
-
-            // Read the file content
-            String content = new String(Files.readAllBytes(PERSONS_FILE_PATH));
-
-            // If the file doesn't contain a valid JSON array, reset it
-            if (!content.trim().startsWith("[") || !content.trim().endsWith("]")) {
-                // Create new file with an array containing just this person
                 ObjectMapper mapper = new ObjectMapper();
                 mapper.enable(SerializationFeature.INDENT_OUTPUT);
-
-                ArrayList<Person> newList = new ArrayList<>();
-                newList.add(person);
-
                 mapper.writeValue(file, newList);
-                logger.info("Reset invalid persons file with new entry");
+
+                logger.info("Created new file with first person: " + person.getName().fullName);
                 return;
             }
 
-            // Convert person to JSON
+            // Read the existing file content
             ObjectMapper mapper = new ObjectMapper();
-            String personJson = mapper.writeValueAsString(person);
+            CollectionType listType = mapper.getTypeFactory()
+                    .constructCollectionType(ArrayList.class, Person.class);
 
-            // Format for appending
-            StringBuilder newContent = new StringBuilder(content);
-
-            // Remove the closing bracket
-            newContent.deleteCharAt(newContent.length() - 1);
-
-            // If there are existing items, add a comma
-            if (newContent.toString().trim().length() > 1) {
-                newContent.append(",\n");
+            ArrayList<Person> filePersons;
+            try {
+                filePersons = mapper.readValue(file, listType);
+            } catch (Exception e) {
+                logger.warning("Could not parse file, resetting: " + e.getMessage());
+                ArrayList<Person> newList = new ArrayList<>();
+                newList.add(person);
+                mapper.enable(SerializationFeature.INDENT_OUTPUT);
+                mapper.writeValue(file, newList);
+                return;
             }
 
-            // Add the new person JSON and close the array
-            newContent.append(personJson).append("]");
+            // Check what kind of operation this is
+            boolean isUpdateForExisting = false;
+            String targetPhone = person.getPhone().value;
 
-            // Write back to file
-            Files.write(PERSONS_FILE_PATH, newContent.toString().getBytes());
+            // Check if this phone number exists in the file already
+            for (Person p : filePersons) {
+                if (p.getPhone().value.equals(targetPhone)) {
+                    isUpdateForExisting = true;
+                    break;
+                }
+            }
 
-            logger.info("Appended person to file: " + person.getName().fullName);
+            // make a copy of the existing list
+            ArrayList<Person> updatedList = new ArrayList<>(filePersons);
+
+            if (isUpdateForExisting) {
+                // For existing phone numbers, add the updated entry
+                updatedList.add(person);
+                logger.info("Added updated entry for existing person: " + person.getName().fullName);
+            } else {
+                // For new phone numbers, add to the list
+                updatedList.add(person);
+                logger.info("Added new person to file: " + person.getName().fullName);
+            }
+
+            // Write the updated list
+            mapper.enable(SerializationFeature.INDENT_OUTPUT);
+            mapper.writeValue(file, updatedList);
+
+            logger.info("File now contains " + updatedList.size() + " entries (previous: " + filePersons.size() + ")");
+
         } catch (IOException e) {
-            logger.severe("Failed to append person to file: " + e.getMessage());
+            logger.severe("Failed to update file: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -203,101 +133,23 @@ public class PersonsList {
         }
 
         for (Person p : personsList) {
-            if (p.getPhone().equals(person.getPhone())) {
+            if (p.getPhone().value.equals(person.getPhone().value)) {
                 return true;
             }
         }
         return false;
     }
 
-    /**
-     * Returns true if a person is a regular customer (has isRegular set to true).
-     */
-    public boolean isRegularCustomer(Person person) {
-        if (person == null) {
-            throw new NullPointerException();
-        }
-
-        // First check if this exact person is marked as regular
-        if (person.isRegular()) {
-            return true;
-        }
-
-        // Otherwise, check if a person with this phone exists in our list and is marked as regular
-        for (Person p : personsList) {
-            if (p.getPhone().equals(person.getPhone()) && p.isRegular()) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     /**
-     * Adds a person to the persons list and appends to file.
+     * Adds a person to the persons list and to the file.
      */
     public void addPerson(Person p) {
         personsList.add(p);
-        appendPersonToFile(p);
+        updatePhoneInFileAndKeepOthers(p);
+        logger.info("Added person: " + p.getName().fullName);
     }
 
-    /**
-     * Updates an existing person in the file or appends a new one if they don't exist.
-     * This modifies the file in place for existing persons rather than appending duplicates.
-     */
-    private void updateOrAppendPersonToFile(Person person, boolean isNew) {
-        try {
-            // First check if file is empty or not properly initialized
-            File file = PERSONS_FILE_PATH.toFile();
-            if (!file.exists() || file.length() == 0) {
-                // Create new file with an array containing just this person
-                ObjectMapper mapper = new ObjectMapper();
-                mapper.enable(SerializationFeature.INDENT_OUTPUT);
-
-                ArrayList<Person> newList = new ArrayList<>();
-                newList.add(person);
-
-                mapper.writeValue(file, newList);
-                logger.info("Created new persons file with first entry");
-                return;
-            }
-
-            // Read the existing data
-            ObjectMapper mapper = new ObjectMapper();
-            CollectionType listType = mapper.getTypeFactory()
-                    .constructCollectionType(ArrayList.class, Person.class);
-
-            ArrayList<Person> existingPersons;
-            try {
-                existingPersons = mapper.readValue(file, listType);
-            } catch (Exception e) {
-                // If file is corrupted, reset it
-                logger.warning("Could not parse persons file, resetting: " + e.getMessage());
-                ArrayList<Person> newList = new ArrayList<>();
-                newList.add(person);
-                mapper.enable(SerializationFeature.INDENT_OUTPUT);
-                mapper.writeValue(file, newList);
-                return;
-            }
-
-            if (isNew) {
-                // For new persons, just append
-                existingPersons.add(person);
-                logger.info("Appending new person to file: " + person.getName().fullName);
-            } else {
-                // update their entry by adding a new entry for existing person
-                existingPersons.add(person);
-                logger.info("Added updated person to file: " + person.getName().fullName);
-            }
-
-            // Write back the updated list
-            mapper.enable(SerializationFeature.INDENT_OUTPUT);
-            mapper.writeValue(file, existingPersons);
-
-        } catch (IOException e) {
-            logger.severe("Failed to update or append person to file: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
 
     /**
      * Records a booking for a person, updating their counter and regular status if needed.
@@ -310,50 +162,146 @@ public class PersonsList {
         int existingIndex = -1;
 
         for (int i = 0; i < personsList.size(); i++) {
-            if (personsList.get(i).getPhone().equals(phone)) {
+            if (personsList.get(i).getPhone().value.equals(phone.value)) {
                 existingPerson = personsList.get(i);
                 existingIndex = i;
+                logger.info("Found existing person with phone " + phone.value +
+                        ", current counter: " + existingPerson.getCounter());
                 break;
             }
         }
+
+        Person resultPerson;
 
         if (existingPerson != null) {
             // Update existing person
             int newCount = existingPerson.getCounter() + 1;
             boolean isNowRegular = newCount >= REGULAR_CUSTOMER_THRESHOLD;
 
+            logger.info("Incrementing counter from " + existingPerson.getCounter() + " to " + newCount);
+
             // Create updated person
-            Person updatedPerson = new Person(name, phone);
-            updatedPerson.setCounter(newCount);
-            updatedPerson.setIsRegular(isNowRegular);
+            resultPerson = new Person(name, phone);
+            resultPerson.setCounter(newCount);
+            resultPerson.setIsRegular(isNowRegular);
 
-            // Replace in list
-            personsList.set(existingIndex, updatedPerson);
-
-            // Update existing entry in file (not append)
-            updateOrAppendPersonToFile(updatedPerson, false);
-
-            logger.info("Updated existing person, new count: " + newCount +
-                    ", regular status: " + (isNowRegular ? "Yes" : "No"));
-
-            return updatedPerson;
+            // Replace in memory list
+            personsList.set(existingIndex, resultPerson);
         } else {
             // Create new person
-            Person newPerson = new Person(name, phone);
-            newPerson.setCounter(1);
-            newPerson.setIsRegular(false);
+            resultPerson = new Person(name, phone);
+            resultPerson.setCounter(1);
+            resultPerson.setIsRegular(false);
 
-            // Add to memory
-            personsList.add(newPerson);
+            logger.info("Creating new person with phone " + phone.value);
 
-            // Append to file (this is a new person)
-            updateOrAppendPersonToFile(newPerson, true);
+            // Add to memory list
+            personsList.add(resultPerson);
+        }
 
-            logger.info("Added new person with first booking");
+        // save the entire list to file after updating memory
+        savePersonsToFile();
 
-            return newPerson;
+        return resultPerson;
+    }
+    public void savePersonsToFile() {
+        try {
+            logger.info("Saving persons list with " + personsList.size() + " entries");
+
+            // Create parent directories if they don't exist
+            Files.createDirectories(PERSONS_FILE_PATH.getParent());
+
+            // Create the file if it doesn't exist
+            File file = PERSONS_FILE_PATH.toFile();
+            if (!file.exists()) {
+                file.createNewFile();
+                logger.info("Created new persons file");
+            }
+
+            // Write the current in-memory list to file
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.enable(SerializationFeature.INDENT_OUTPUT);
+            mapper.writeValue(file, personsList);
+
+            logger.info("Successfully saved persons list to file");
+        } catch (IOException e) {
+            logger.severe("Failed to save persons list: " + e.getMessage());
+            e.printStackTrace();
         }
     }
+
+
+
+    /**
+     * Loads the persons list from file.
+     * For entries with the same phone number, picks the one with the highest counter.
+     */
+    private void loadListFromFile() {
+        try {
+            File personsFile = PERSONS_FILE_PATH.toFile();
+            if (personsFile.exists() && personsFile.length() > 0) {
+                ObjectMapper mapper = new ObjectMapper();
+                mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+                CollectionType listType = mapper.getTypeFactory()
+                        .constructCollectionType(ArrayList.class, Person.class);
+
+                ArrayList<Person> loadedPersons = mapper.readValue(personsFile, listType);
+                if (loadedPersons != null) {
+                    // for debug
+                    logger.info("Read " + loadedPersons.size() + " total entries from file");
+                    for (Person p : loadedPersons) {
+                        logger.info("  Entry: " + p.getName().fullName +
+                                ", phone: " + p.getPhone().value +
+                                ", counter: " + p.getCounter());
+                    }
+
+                    // For each phone number, keep the entry with the highest counter
+                    java.util.Map<String, Person> phoneToPersonMap = new java.util.HashMap<>();
+
+                    for (Person p : loadedPersons) {
+                        String phoneValue = p.getPhone().value;
+
+                        if (!phoneToPersonMap.containsKey(phoneValue) ||
+                                p.getCounter() > phoneToPersonMap.get(phoneValue).getCounter()) {
+                            phoneToPersonMap.put(phoneValue, p);
+                        }
+                    }
+
+                    // Convert the map values to list
+                    this.personsList = new ArrayList<>(phoneToPersonMap.values());
+
+                    logger.info("Loaded " + personsList.size() + " unique persons from file, prioritizing highest counter values");
+                    for (Person p : personsList) {
+                        logger.info("  Loaded: " + p.getName().fullName +
+                                ", phone: " + p.getPhone().value +
+                                ", counter: " + p.getCounter());
+                    }
+                }
+            } else {
+                // Create empty file if it doesn't exist
+                if (!personsFile.exists()) {
+                    Files.createDirectories(personsFile.getParentFile().toPath());
+                    personsFile.createNewFile();
+
+                    // Initialize with empty array
+                    FileWriter writer = new FileWriter(personsFile);
+                    writer.write("[]");
+                    writer.close();
+
+                    logger.info("Created new empty persons file with empty array");
+                }
+
+                this.personsList = new ArrayList<>();
+            }
+        } catch (IOException e) {
+            logger.warning("Error loading persons list: " + e.getMessage());
+            e.printStackTrace();
+            this.personsList = new ArrayList<>();
+        }
+    }
+
+
+
 
     /**
      * Removes a person from the list.
@@ -362,15 +310,9 @@ public class PersonsList {
         boolean removed = personsList.remove(key);
 
         if (removed) {
-            // Rewrite persons file
-            try {
-                ObjectMapper mapper = new ObjectMapper();
-                mapper.enable(SerializationFeature.INDENT_OUTPUT);
-                mapper.writeValue(PERSONS_FILE_PATH.toFile(), personsList);
-                logger.info("Removed person and rewrote persons file: " + key.getName().fullName);
-            } catch (IOException e) {
-                logger.severe("Failed to rewrite persons file after removal: " + e.getMessage());
-            }
+            // Save updated list to file
+            savePersonsToFile();
+            logger.info("Removed person: " + key.getName().fullName);
         }
     }
 
