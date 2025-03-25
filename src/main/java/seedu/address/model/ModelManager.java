@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +12,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.reservation.Name;
+import seedu.address.model.reservation.Person;
+import seedu.address.model.reservation.Phone;
 import seedu.address.model.reservation.Reservation;
 
 /**
@@ -20,25 +24,36 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final PersonsList personsList;
     private final UserPrefs userPrefs;
     private final FilteredList<Reservation> filteredReservations;
 
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given addressBook, personsList and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyAddressBook addressBook, PersonsList personsList, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(addressBook, personsList, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook +", persons list: "
+                + personsList
+                + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.personsList = personsList;
         this.userPrefs = new UserPrefs(userPrefs);
         filteredReservations = new FilteredList<>(this.addressBook.getReservationList());
     }
 
+    /**
+     * Initializes a ModelManager with the given addressBook and userPrefs, and an empty personsList.
+     */
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+        this(addressBook, new PersonsList(), userPrefs);
+    }
+
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new PersonsList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -76,6 +91,33 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
+    //=========== PersonsList ================================================================================
+
+    @Override
+    public boolean hasPerson(Person person) {
+        requireNonNull(person);
+        return personsList.hasPerson(person);
+    }
+
+    @Override
+    public void addPerson(Person person) {
+        personsList.addPerson(person);
+    }
+
+    @Override
+    public Person recordBooking(Name name, Phone phone) {
+        return personsList.recordBooking(name, phone);
+    }
+
+    @Override
+    public ArrayList<Person> getRegularCustomers() {
+        return personsList.getRegularCustomers();
+    }
+
+    public PersonsList getPersonsList() {
+        return this.personsList;
+    }
+
     //=========== AddressBook ================================================================================
 
     @Override
@@ -102,6 +144,12 @@ public class ModelManager implements Model {
     @Override
     public void addReservation(Reservation reservation) {
         addressBook.addReservation(reservation);
+
+        // Update customer booking history when adding a reservation
+        Name customerName = reservation.getName();
+        Phone customerPhone = reservation.getPhone();
+        recordBooking(customerName, customerPhone);
+
         updateFilteredReservationList(PREDICATE_SHOW_ALL_RESERVATIONS);
     }
 
@@ -112,10 +160,10 @@ public class ModelManager implements Model {
         addressBook.setReservation(target, editedReservation);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Reservation List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Reservation} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
@@ -141,6 +189,7 @@ public class ModelManager implements Model {
         Predicate<Reservation> todayPredicate = ReservationsFilter.filterForToday(filteredReservations);
         filteredReservations.setPredicate(todayPredicate);
     }
+
     @Override
     public void filterReservationsForTomorrow(Predicate<Reservation> predicate) {
         requireNonNull(predicate);
@@ -162,8 +211,8 @@ public class ModelManager implements Model {
 
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
+                && personsList.equals(otherModelManager.personsList) // Added personsList comparison
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredReservations.equals(otherModelManager.filteredReservations);
     }
-
 }
