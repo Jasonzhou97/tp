@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.util.Comparator;
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
@@ -32,6 +33,15 @@ public class ReservationListPanel extends UiPart<Region> {
         sortedList.setComparator(Comparator.comparing(r -> r.getTime().value));
         reservationListView.setItems(sortedList);
         reservationListView.setCellFactory(listView -> new ReservationListViewCell());
+
+        // Add listener to detect changes to the reservation list and refresh the UI
+        reservationList.addListener(new ListChangeListener<Reservation>() {
+            @Override
+            public void onChanged(Change<? extends Reservation> change) {
+                // Call refreshListView when there are changes in the list
+                refreshListView();
+            }
+        });
     }
 
     /**
@@ -49,6 +59,10 @@ public class ReservationListPanel extends UiPart<Region> {
                 setGraphic(new ReservationCard(reservation, getIndex() + 1).getRoot());
             }
         }
+    }
+
+    private void refreshListView() {
+        reservationListView.refresh();
     }
 
 }
