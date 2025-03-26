@@ -2,7 +2,6 @@ package seedu.address.model;
 
 import java.util.ArrayList;
 
-import seedu.address.model.reservation.Name;
 import seedu.address.model.reservation.Person;
 import seedu.address.model.reservation.Phone;
 import seedu.address.model.reservation.Reservation;
