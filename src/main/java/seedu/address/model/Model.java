@@ -68,7 +68,12 @@ public interface Model {
      * The reservation must exist in the address book.
      */
     void deleteReservation(Reservation target);
-
+    /**
+     * Updates person details in PersonsList when a reservation is edited.
+     * @param oldReservation the reservation before editing
+     * @param newReservation the reservation after editing
+     */
+    void updatePersonsListAfterEdit(Reservation oldReservation, Reservation newReservation);
     /**
      * Adds the given reservation.
      * {@code reservation} must not already exist in the address book.
