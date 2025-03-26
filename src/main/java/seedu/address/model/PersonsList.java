@@ -15,8 +15,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.type.CollectionType;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.reservation.Person;
 import seedu.address.model.reservation.Name;
+import seedu.address.model.reservation.Person;
 import seedu.address.model.reservation.Phone;
 
 /**
@@ -24,11 +24,10 @@ import seedu.address.model.reservation.Phone;
  * Tracks booking frequency and regular customer status.
  */
 public class PersonsList {
+    public static final int REGULAR_CUSTOMER_THRESHOLD = 3;
     private static final Logger logger = LogsCenter.getLogger(PersonsList.class);
     private static final Path PERSONS_FILE_PATH = Paths.get("data", "personslist.json");
-    private static final int REGULAR_CUSTOMER_THRESHOLD = 5;
-
-    private ArrayList<Person> personsList;
+    private static ArrayList<Person> personsList;
 
     /**
      * Initializes a PersonsList.
@@ -140,6 +139,22 @@ public class PersonsList {
         return false;
     }
 
+    /**
+     * Returns a person with the given phone number.
+     */
+    public static Person getPerson(Phone phone) {
+        if (phone == null) {
+            throw new NullPointerException();
+        }
+
+        for (Person p : personsList) {
+            if (p.getPhone().value.equals(phone.value)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
 
     /**
      * Adds a person to the persons list and to the file.
@@ -165,8 +180,8 @@ public class PersonsList {
             if (personsList.get(i).getPhone().value.equals(phone.value)) {
                 existingPerson = personsList.get(i);
                 existingIndex = i;
-                logger.info("Found existing person with phone " + phone.value +
-                        ", current counter: " + existingPerson.getCounter());
+                logger.info("Found existing person with phone " + phone.value
+                        + ", current counter: " + existingPerson.getCounter());
                 break;
             }
         }
@@ -204,6 +219,10 @@ public class PersonsList {
 
         return resultPerson;
     }
+
+    /**
+     * Saves the current persons list to file.
+     */
     public void savePersonsToFile() {
         try {
             logger.info("Saving persons list with " + personsList.size() + " entries");
@@ -250,9 +269,9 @@ public class PersonsList {
                     // for debug
                     logger.info("Read " + loadedPersons.size() + " total entries from file");
                     for (Person p : loadedPersons) {
-                        logger.info("  Entry: " + p.getName().fullName +
-                                ", phone: " + p.getPhone().value +
-                                ", counter: " + p.getCounter());
+                        logger.info("  Entry: " + p.getName().fullName
+                                + ", phone: " + p.getPhone().value
+                                + ", counter: " + p.getCounter());
                     }
 
                     // For each phone number, keep the entry with the highest counter
@@ -261,8 +280,8 @@ public class PersonsList {
                     for (Person p : loadedPersons) {
                         String phoneValue = p.getPhone().value;
 
-                        if (!phoneToPersonMap.containsKey(phoneValue) ||
-                                p.getCounter() > phoneToPersonMap.get(phoneValue).getCounter()) {
+                        if (!phoneToPersonMap.containsKey(phoneValue)
+                                || p.getCounter() > phoneToPersonMap.get(phoneValue).getCounter()) {
                             phoneToPersonMap.put(phoneValue, p);
                         }
                     }
@@ -270,11 +289,12 @@ public class PersonsList {
                     // Convert the map values to list
                     this.personsList = new ArrayList<>(phoneToPersonMap.values());
 
-                    logger.info("Loaded " + personsList.size() + " unique persons from file, prioritizing highest counter values");
+                    logger.info("Loaded " + personsList.size()
+                            + " unique persons from file, prioritizing highest counter values");
                     for (Person p : personsList) {
-                        logger.info("  Loaded: " + p.getName().fullName +
-                                ", phone: " + p.getPhone().value +
-                                ", counter: " + p.getCounter());
+                        logger.info("  Loaded: " + p.getName().fullName
+                                + ", phone: " + p.getPhone().value
+                                + ", counter: " + p.getCounter());
                     }
                 }
             } else {
@@ -299,9 +319,6 @@ public class PersonsList {
             this.personsList = new ArrayList<>();
         }
     }
-
-
-
 
     /**
      * Removes a person from the list.

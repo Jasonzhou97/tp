@@ -36,7 +36,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyAddressBook addressBook, PersonsList personsList, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, personsList, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook +", persons list: "
+        logger.fine("Initializing with address book: " + addressBook + ", persons list: "
                 + personsList
                 + " and user prefs " + userPrefs);
 
@@ -149,7 +149,7 @@ public class ModelManager implements Model {
      * @param newReservation the reservation after editing
      */
     @Override
-    public void updatePersonsListAfterEdit(Reservation oldReservation, Reservation newReservation){
+    public void updatePersonsListAfterEdit(Reservation oldReservation, Reservation newReservation) {
         personsListManager.updatePersonsListAfterEdit(oldReservation, newReservation);
     }
 
