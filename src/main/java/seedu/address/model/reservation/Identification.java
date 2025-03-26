@@ -26,7 +26,8 @@ public class Identification {
                     + "(?:0[1-9]|1\\d|2[0-8])" // Matches 01-28 for all valid months
                     + "(0[1-9]|1[0-2]))" // Matches valid months 01-12
                     + "([1-9]\\d{3})" // Matches a valid year (1000-9999)
-                    + "(\\d{4})$"; // Matches the last 4 digits (any number from 0000-9999)
+                    + "(\\d{4})" // Matches the last 4 digits (any number from 0000-9999)
+                    + "(?:[01]\\d|2[0-3])[0-5]\\d$"; //last 4 digit in HHMM format
 
 
     public final String value;
@@ -37,12 +38,14 @@ public class Identification {
      * @param date  A valid start date.
      * @param phone A valid phone number.
      */
-    public Identification(StartDate date, Phone phone) {
+    public Identification(StartDate date, Phone phone, StartTime time) {
         requireNonNull(date);
         requireNonNull(phone);
+        requireNonNull(time);
         // Date and phone format have already been validated
         value = date.toWithoutSlashString()
-                + phone.getLastFourDigitsString();
+                + phone.getLastFourDigitsString()
+                + time.value;
     }
 
 

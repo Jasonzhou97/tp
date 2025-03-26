@@ -18,7 +18,7 @@ public class Name {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String fullName;
+    public String fullName;
 
     /**
      * Constructs a {@code Name}.
@@ -30,7 +30,8 @@ public class Name {
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name;
     }
-
+    public Name() {
+    }
     /**
      * Returns true if a given string is a valid name.
      */
