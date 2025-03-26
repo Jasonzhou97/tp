@@ -25,6 +25,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final PersonsList personsList;
+    private final PersonsListManager personsListManager;
     private final UserPrefs userPrefs;
     private final FilteredList<Reservation> filteredReservations;
 
@@ -41,6 +42,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.personsList = personsList;
+        this.personsListManager = new PersonsListManager(personsList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredReservations = new FilteredList<>(this.addressBook.getReservationList());
     }
@@ -139,6 +141,16 @@ public class ModelManager implements Model {
     @Override
     public void deleteReservation(Reservation target) {
         addressBook.removeReservation(target);
+    }
+
+    /**
+     * Updates person details in PersonsList when a reservation is edited.
+     * @param oldReservation the reservation before editing
+     * @param newReservation the reservation after editing
+     */
+    @Override
+    public void updatePersonsListAfterEdit(Reservation oldReservation, Reservation newReservation){
+        personsListManager.updatePersonsListAfterEdit(oldReservation, newReservation);
     }
 
     @Override

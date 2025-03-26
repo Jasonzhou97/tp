@@ -89,6 +89,9 @@ public class EditCommand extends Command {
         }
 
         model.setReservation(reservationToEdit, editedReservation);
+        //Reload persons list after editing to update details
+        model.updatePersonsListAfterEdit(reservationToEdit,editedReservation);
+
         model.updateFilteredReservationList(PREDICATE_SHOW_ALL_RESERVATIONS);
         return new CommandResult(String.format(MESSAGE_EDIT_RESERVATION_SUCCESS, Messages.format(editedReservation)));
     }
