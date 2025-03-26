@@ -1,11 +1,10 @@
 package seedu.address.model;
 
-import seedu.address.model.reservation.Name;
+import java.util.ArrayList;
+
 import seedu.address.model.reservation.Person;
 import seedu.address.model.reservation.Phone;
 import seedu.address.model.reservation.Reservation;
-
-import java.util.ArrayList;
 
 /**
  * Manages operations related to PersonsList that involve coordination with Reservations.
@@ -41,7 +40,7 @@ public class PersonsListManager {
                 Person oldPerson = null;
 
                 for (Person person : currentPersons) {
-                //match by phone number
+                    //match by phone number
                     if (person.getPhone().value.equals(oldPhone.value)) {
                         oldPerson = person;
                         break;

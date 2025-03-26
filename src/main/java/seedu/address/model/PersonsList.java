@@ -24,10 +24,9 @@ import seedu.address.model.reservation.Phone;
  * Tracks booking frequency and regular customer status.
  */
 public class PersonsList {
+    public static final int REGULAR_CUSTOMER_THRESHOLD = 3;
     private static final Logger logger = LogsCenter.getLogger(PersonsList.class);
     private static final Path PERSONS_FILE_PATH = Paths.get("data", "personslist.json");
-    public static final int REGULAR_CUSTOMER_THRESHOLD = 3;
-
     private static ArrayList<Person> personsList;
 
     /**
