@@ -1,10 +1,10 @@
 package seedu.address.model.reservation;
 
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a start time in a reservation.
@@ -38,8 +38,8 @@ public class StartTime {
      * Returns this StartTime's value (in "HHmm" format) as a LocalTime object.
      */
     public LocalTime toLocalTime() {
-        DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HHmm");
-        return LocalTime.parse(value, TIME_FORMATTER);
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm");
+        return LocalTime.parse(value, timeFormatter);
     }
 
     @Override

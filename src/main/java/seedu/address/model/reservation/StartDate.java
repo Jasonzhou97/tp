@@ -43,8 +43,8 @@ public class StartDate {
      * Returns this StartDate's value (in "dd/MM/yyyy" format) as a LocalDate object.
      */
     public LocalDate toLocalDate() {
-        DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return LocalDate.parse(value, DATE_FORMATTER);
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return LocalDate.parse(value, dateFormatter);
     }
 
     @Override

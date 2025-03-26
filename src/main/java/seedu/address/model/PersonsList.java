@@ -15,8 +15,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.type.CollectionType;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.reservation.Person;
 import seedu.address.model.reservation.Name;
+import seedu.address.model.reservation.Person;
 import seedu.address.model.reservation.Phone;
 
 /**
@@ -165,8 +165,8 @@ public class PersonsList {
             if (personsList.get(i).getPhone().value.equals(phone.value)) {
                 existingPerson = personsList.get(i);
                 existingIndex = i;
-                logger.info("Found existing person with phone " + phone.value +
-                        ", current counter: " + existingPerson.getCounter());
+                logger.info("Found existing person with phone " + phone.value
+                        + ", current counter: " + existingPerson.getCounter());
                 break;
             }
         }
@@ -204,6 +204,10 @@ public class PersonsList {
 
         return resultPerson;
     }
+
+    /**
+     * Saves the persons list to file.
+     */
     public void savePersonsToFile() {
         try {
             logger.info("Saving persons list with " + personsList.size() + " entries");
@@ -250,9 +254,9 @@ public class PersonsList {
                     // for debug
                     logger.info("Read " + loadedPersons.size() + " total entries from file");
                     for (Person p : loadedPersons) {
-                        logger.info("  Entry: " + p.getName().fullName +
-                                ", phone: " + p.getPhone().value +
-                                ", counter: " + p.getCounter());
+                        logger.info("  Entry: " + p.getName().fullName
+                                + ", phone: " + p.getPhone().value
+                                + ", counter: " + p.getCounter());
                     }
 
                     // For each phone number, keep the entry with the highest counter
@@ -261,8 +265,8 @@ public class PersonsList {
                     for (Person p : loadedPersons) {
                         String phoneValue = p.getPhone().value;
 
-                        if (!phoneToPersonMap.containsKey(phoneValue) ||
-                                p.getCounter() > phoneToPersonMap.get(phoneValue).getCounter()) {
+                        if (!phoneToPersonMap.containsKey(phoneValue)
+                                || p.getCounter() > phoneToPersonMap.get(phoneValue).getCounter()) {
                             phoneToPersonMap.put(phoneValue, p);
                         }
                     }
@@ -270,11 +274,12 @@ public class PersonsList {
                     // Convert the map values to list
                     this.personsList = new ArrayList<>(phoneToPersonMap.values());
 
-                    logger.info("Loaded " + personsList.size() + " unique persons from file, prioritizing highest counter values");
+                    logger.info("Loaded " + personsList.size() + " unique persons from file, prioritizing "
+                            + "highest counter values");
                     for (Person p : personsList) {
-                        logger.info("  Loaded: " + p.getName().fullName +
-                                ", phone: " + p.getPhone().value +
-                                ", counter: " + p.getCounter());
+                        logger.info("  Loaded: " + p.getName().fullName
+                                + ", phone: " + p.getPhone().value
+                                + ", counter: " + p.getCounter());
                     }
                 }
             } else {
@@ -299,9 +304,6 @@ public class PersonsList {
             this.personsList = new ArrayList<>();
         }
     }
-
-
-
 
     /**
      * Removes a person from the list.
