@@ -236,7 +236,7 @@ public class PersonsList {
      * Loads the persons list from file.
      * For entries with the same phone number, picks the one with the highest counter.
      */
-    private void loadListFromFile() {
+    void loadListFromFile() {
         try {
             File personsFile = PERSONS_FILE_PATH.toFile();
             if (personsFile.exists() && personsFile.length() > 0) {
