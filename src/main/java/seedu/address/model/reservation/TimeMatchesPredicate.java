@@ -20,7 +20,7 @@ public class TimeMatchesPredicate implements Predicate<Reservation> {
     @Override
     public boolean test(Reservation reservation) {
         LocalTime startTime = reservation.getTime().toLocalTime();
-        int durationMinutes = reservation.getDuration().toMinutes(); 
+        int durationMinutes = reservation.getDuration().toMinutes();
         LocalTime endTime = startTime.plusMinutes(durationMinutes);
 
         // The reservation is ongoing at searchTime if startTime <= searchTime < endTime.
