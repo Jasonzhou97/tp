@@ -1,5 +1,8 @@
 package seedu.address.model.reservation;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -11,7 +14,6 @@ public class StartTime {
     public static final String MESSAGE_CONSTRAINTS =
             "Time should be in the form of HHMM.";
     public static final String VALIDATION_REGEX = "^(?:[01]\\d|2[0-3])[0-5]\\d$";
-
     public final String value;
 
     /**
@@ -30,6 +32,14 @@ public class StartTime {
      */
     public static boolean isValidTime(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns this StartTime's value (in "HHmm" format) as a LocalTime object.
+     */
+    public LocalTime toLocalTime() {
+        DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HHmm");
+        return LocalTime.parse(value, TIME_FORMATTER);
     }
 
     @Override

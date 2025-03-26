@@ -19,15 +19,11 @@ public class TimeMatchesPredicate implements Predicate<Reservation> {
 
     @Override
     public boolean test(Reservation reservation) {
-        // Assuming your Reservation class has:
-        // - getStartTime() that returns a StartTime, and then a toLocalTime() method.
-        // - getDuration() that returns a Duration object with a toMinutes() method.
         LocalTime startTime = reservation.getTime().toLocalTime();
         int durationMinutes = reservation.getDuration().toMinutes(); 
         LocalTime endTime = startTime.plusMinutes(durationMinutes);
 
-        // The reservation is ongoing at searchTime if:
-        // startTime <= searchTime < endTime.
+        // The reservation is ongoing at searchTime if startTime <= searchTime < endTime.
         return !startTime.isAfter(searchTime) && searchTime.isBefore(endTime);
     }
 
@@ -45,8 +41,6 @@ public class TimeMatchesPredicate implements Predicate<Reservation> {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
-                .add("searchTime", searchTime)
-                .toString();
+        return new ToStringBuilder(this).add("searchTime", searchTime).toString();
     }
 }
