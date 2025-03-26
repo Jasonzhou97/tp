@@ -97,7 +97,8 @@ public class ReservationCard extends UiPart<Region> {
             }
 
             System.out.println("✅ Applying style for: " + p.getName());
-            if (p.isRegular()) {
+
+            if (p.isRegularAmountHitted()) {
                 cardPane.getStyleClass().add("regular");
             } else {
                 cardPane.getStyleClass().add("normal");

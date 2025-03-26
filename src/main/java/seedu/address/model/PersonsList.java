@@ -26,7 +26,7 @@ import seedu.address.model.reservation.Phone;
 public class PersonsList {
     private static final Logger logger = LogsCenter.getLogger(PersonsList.class);
     private static final Path PERSONS_FILE_PATH = Paths.get("data", "personslist.json");
-    private static final int REGULAR_CUSTOMER_THRESHOLD = 3;
+    public static final int REGULAR_CUSTOMER_THRESHOLD = 3;
 
     private static ArrayList<Person> personsList;
 
