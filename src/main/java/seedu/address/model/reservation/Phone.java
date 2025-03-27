@@ -28,12 +28,12 @@ public class Phone {
     }
 
     /**
-     * Empty default constructor
+     * Construct a default Phone for UI booting up.
      */
     public Phone() {
-        // Initialize with a default value or empty string
         value = "";
     }
+  
     /**
      * Returns true if a given string is a valid phone number.
      */
