@@ -42,11 +42,7 @@ public class FindByNameCommand extends Command {
         });
         return new CommandResult(
                 String.format(Messages.MESSAGE_RESERVATIONS_LISTED_OVERVIEW,
-<<<<<<< HEAD:src/main/java/seedu/address/logic/commands/FindCommand.java
-                model.getFilteredReservationList().size()));
-=======
                         model.getFilteredReservationList().size()));
->>>>>>> origin/master:src/main/java/seedu/address/logic/commands/FindByNameCommand.java
     }
 
     @Override

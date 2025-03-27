@@ -137,7 +137,10 @@ public class ModelManager implements Model {
         requireNonNull(reservation);
         return addressBook.hasReservation(reservation);
     }
-
+    @Override
+    public void updatePersonsListAfterDelete(Reservation deletedReservation) {
+        personsListManager.updatePersonsListAfterDelete(deletedReservation);
+    }
     @Override
     public void deleteReservation(Reservation target) {
         addressBook.removeReservation(target);
@@ -218,10 +221,10 @@ public class ModelManager implements Model {
     }
     @Override
     public void filterPreviousReservations(Predicate<Reservation> predicate) {
-
         Predicate<Reservation> previousPredicate = ReservationsFilter.filterForPrevious();
         filteredReservations.setPredicate(previousPredicate);
     }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
