@@ -26,7 +26,10 @@ public class Phone {
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         value = phone;
     }
-
+    public Phone() {
+        // Initialize with a default value or empty string
+        value = "";
+    }
     /**
      * Returns true if a given string is a valid phone number.
      */
