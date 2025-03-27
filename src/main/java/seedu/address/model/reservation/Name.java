@@ -32,6 +32,13 @@ public class Name {
     }
 
     /**
+     * Construct a default fullName for UI booting up.
+     */
+    public Name() {
+        fullName = "";
+    }
+
+    /**
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidName(String test) {
