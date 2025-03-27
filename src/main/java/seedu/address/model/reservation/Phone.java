@@ -28,6 +28,13 @@ public class Phone {
     }
 
     /**
+     * Empty default constructor
+     */
+    public Phone() {
+        // Initialize with a default value or empty string
+        value = "";
+    }
+    /**
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {

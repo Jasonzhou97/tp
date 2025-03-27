@@ -34,7 +34,7 @@ public class ReservationUtil {
      */
     public static String getReservationDetails(Reservation reservation) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + reservation.getName().fullName + " ");
+        sb.append(PREFIX_NAME + reservation.getName().getFullName() + " ");
         sb.append(PREFIX_PHONE + reservation.getPhone().value + " ");
         sb.append(PREFIX_DATE + reservation.getDate().value + " ");
         sb.append(PREFIX_TIME + reservation.getTime().value + " ");
@@ -53,7 +53,7 @@ public class ReservationUtil {
      */
     public static String getEditReservationDescriptorDetails(EditCommand.EditReservationDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
+        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.getFullName()).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getDate().ifPresent(date -> sb.append(PREFIX_DATE).append(date.value).append(" "));
         descriptor.getTime().ifPresent(time -> sb.append(PREFIX_TIME).append(time.value).append(" "));
