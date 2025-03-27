@@ -52,10 +52,4 @@ public class MarkCommandTest {
         assertCommandFailure(markCommand, model, expectedMessage);
     }
 
-
-
-
-
-
-
 }

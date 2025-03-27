@@ -249,8 +249,6 @@ public class PersonsList {
         }
     }
 
-
-
     /**
      * Loads the persons list from file.
      * For entries with the same phone number, picks the one with the highest counter.

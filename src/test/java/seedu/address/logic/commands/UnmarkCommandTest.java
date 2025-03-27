@@ -16,7 +16,6 @@ import seedu.address.model.reservation.Reservation;
 import seedu.address.model.reservation.StartTime;
 import seedu.address.testutil.ReservationBuilder;
 
-
 public class UnmarkCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     @Test
