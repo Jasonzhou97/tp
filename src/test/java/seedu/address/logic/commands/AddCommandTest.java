@@ -20,6 +20,7 @@ import seedu.address.model.reservation.Person;
 import seedu.address.model.reservation.Phone;
 import seedu.address.model.reservation.Reservation;
 
+
 public class AddCommandTest {
 
     /*
@@ -99,6 +100,7 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+
         @Override
         public GuiSettings getGuiSettings() {
             throw new AssertionError("This method should not be called.");
@@ -160,29 +162,10 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            return false;
-        }
-
-        @Override
-        public void addPerson(Person person) {
-
-        }
-
-        @Override
-        public Person recordBooking(Name name, Phone phone) {
-            return null;
-        }
-
-        @Override
         public ArrayList<Person> getRegularCustomers() {
             return null;
         }
 
-        @Override
-        public PersonsList getPersonsList() {
-            return null;
-        }
 
         @Override
         public void setReservation(Reservation target, Reservation editedReservation) {
@@ -200,7 +183,27 @@ public class AddCommandTest {
         }
 
         @Override
+        public PersonsList getPersonsList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredReservationList(Predicate<Reservation> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Person recordBooking(Name name, Phone phone) {
             throw new AssertionError("This method should not be called.");
         }
     }

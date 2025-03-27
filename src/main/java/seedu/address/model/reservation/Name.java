@@ -18,7 +18,7 @@ public class Name {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String fullName;
+    private String fullName;
 
     /**
      * Constructs a {@code Name}.
@@ -29,6 +29,8 @@ public class Name {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name;
+    }
+    public Name() {
     }
 
     /**
@@ -45,6 +47,9 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public String getFullName() {
+        return this.fullName;
+    }
 
     @Override
     public String toString() {
