@@ -200,7 +200,7 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
         @Override
-        public void filterPreviousReservations(Predicate<Reservation> predicate){
+        public void filterPreviousReservations(Predicate<Reservation> predicate) {
             throw new AssertionError("This method should not be called.");
         }
         @Override
