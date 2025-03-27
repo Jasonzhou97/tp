@@ -10,9 +10,6 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-
-import java.nio.file.Path;
 
 import seedu.address.model.reservation.Name;
 import seedu.address.model.reservation.Person;
