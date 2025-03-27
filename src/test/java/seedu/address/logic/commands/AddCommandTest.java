@@ -192,7 +192,7 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
         @Override
-        public void updatePersonsListAfterDelete(Reservation deletedReservation){
+        public void updatePersonsListAfterDelete(Reservation deletedReservation) {
             throw new AssertionError("This method should not be called.");
         };
         @Override
