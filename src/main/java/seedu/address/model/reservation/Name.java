@@ -30,12 +30,9 @@ public class Name {
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name;
     }
-
-    public String getFullName() {
-        return this.fullName;
-    }
     public Name() {
     }
+
     /**
      * Returns true if a given string is a valid name.
      */

@@ -1,5 +1,11 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_BOB;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,17 +26,24 @@ import seedu.address.model.util.SampleDataUtil;
  * A utility class to help with building Person objects.
  */
 public class ReservationBuilder {
-
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_DATE = "01/01/2025";
+    public static final String DEFAULT_DATE = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     public static final String DEFAULT_TIME = "1800";
     public static final String DEFAULT_DURATION = "2";
     public static final String DEFAULT_PAX = "2";
     public static final String DEFAULT_TABLE = "A1";
     public static final String DEFAULT_REMARK = "She likes aardvarks.";
-
     public static final boolean DEFAULT_ISPAID = false;
+
+    // Auto Assigned ID after reservation is built, do not change this
+    public static final Identification ID_AMY = new Identification(new StartDate(DEFAULT_DATE),
+            new Phone(DEFAULT_PHONE), new StartTime(DEFAULT_TIME));
+
+    public static final Identification ID_BOB = new Identification(new StartDate(VALID_DATE_BOB),
+            new Phone(VALID_PHONE_BOB), new StartTime(VALID_TIME_BOB));
+
+
     private Name name;
     private Phone phone;
     private StartDate date;
@@ -47,9 +60,12 @@ public class ReservationBuilder {
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
-    public ReservationBuilder(Name name, Phone phone, StartDate date, StartTime time, Duration duration, Pax pax, Table table, Remark remark, HashSet<Tag> tags) {
+
+    public ReservationBuilder(Name name, Phone phone, StartDate date,
+                              StartTime time, Duration duration, Pax pax,
+                              Table table, Remark remark, HashSet<Tag> tags) {
         this.name = name;
-        this.phone =phone;
+        this.phone = phone;
         this.date = date;
         this.time = time;
         this.duration = duration;
@@ -77,6 +93,7 @@ public class ReservationBuilder {
         id = reservationToCopy.getId();
         isPaid = reservationToCopy.getIsPaid();
     }
+
 
     /**
      * Sets the {@code Name} of the {@code Person} that we are building.
@@ -158,13 +175,33 @@ public class ReservationBuilder {
         return this;
     }
 
+    /**
+     * Sets the payment status of the reservation.
+     *
+     * @param isPaid {@code true} if the reservation is paid, {@code false} otherwise.
+     * @return The current instance of {@code ReservationBuilder} for method chaining.
+     */
     public ReservationBuilder withPaymentStatus(Boolean isPaid) {
         this.isPaid = isPaid;
         return this;
     }
 
+    /**
+     * @return a sample reservation
+     */
     public Reservation build() {
         return new Reservation(name, phone, date, time, duration, pax, table, remark, tags, id, isPaid);
+
     }
+
+    //    Has specify this to be ID_AMY as the test samples has been
+    //    reduced to just AMY AND BOB for simplicity and easy testing
+    //    public Reservation build1() {
+    //        return new Reservation(name, phone, date, time, duration, pax, table, remark, tags, ID_AMY, false);
+    //    }
+    //
+    //    public Reservation build2() {
+    //        return new Reservation(name, phone, date, time, duration, pax, table, remark, tags, ID_BOB, false);
+    //    }
 
 }
