@@ -50,4 +50,12 @@ public class UnmarkCommand extends Command {
         return new CommandResult(String.format(MESSAGE_UNMARK_RESERVATION_SUCCESS,
                 Messages.format(reservationToUnmark)));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof UnmarkCommand)) {
+            return false;
+        }
+        return this.id.equals(((UnmarkCommand) other).id);
+    }
 }
