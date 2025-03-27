@@ -30,8 +30,6 @@ public class Name {
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name;
     }
-    public Name() {
-    }
 
     /**
      * Construct a default fullName for UI booting up.
