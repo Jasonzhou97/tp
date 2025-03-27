@@ -52,8 +52,8 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public boolean equals(Object other){
-        if (! (other instanceof MarkCommand)) {
+    public boolean equals(Object other) {
+        if (!(other instanceof MarkCommand)) {
             return false;
         }
         // of type MarkCommand:
