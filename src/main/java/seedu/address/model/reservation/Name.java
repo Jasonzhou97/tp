@@ -40,6 +40,9 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public String getFullName() {
+        return this.fullName;
+    }
 
     @Override
     public String toString() {
