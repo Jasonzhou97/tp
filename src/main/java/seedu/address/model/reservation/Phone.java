@@ -26,6 +26,10 @@ public class Phone {
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         value = phone;
     }
+
+    /**
+     * Empty default constructor
+     */
     public Phone() {
         // Initialize with a default value or empty string
         value = "";
