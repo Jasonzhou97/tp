@@ -13,10 +13,13 @@ import seedu.address.model.reservation.StartDate;
 import seedu.address.model.reservation.StartTime;
 
 public class MarkCommandParserTest {
+
+    //partition: invalid id form, valid id form
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE);
+
     private MarkCommandParser parser = new MarkCommandParser();
-    //partition: invalid id form, valid id form
+
     @Test
     public void parser_validId_returnMarkCommand() {
         Identification id = new Identification(new StartDate("01/01/2025"),
