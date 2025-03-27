@@ -60,9 +60,11 @@ public class ReservationBuilder {
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
-    public ReservationBuilder(Name name, Phone phone, StartDate date, StartTime time, Duration duration, Pax pax, Table table, Remark remark, HashSet<Tag> tags) {
+    public ReservationBuilder(Name name, Phone phone, StartDate date,
+                              StartTime time, Duration duration, Pax pax,
+                              Table table, Remark remark, HashSet<Tag> tags) {
         this.name = name;
-        this.phone =phone;
+        this.phone = phone;
         this.date = date;
         this.time = time;
         this.duration = duration;
@@ -172,24 +174,33 @@ public class ReservationBuilder {
         return this;
     }
 
+    /**
+     * Sets the payment status.
+     *
+     * @param isPaid
+     * @return
+     */
     public ReservationBuilder withPaymentStatus(Boolean isPaid) {
         this.isPaid = isPaid;
         return this;
     }
 
+    /**
+     * @return a sample reservation
+     */
     public Reservation build() {
         return new Reservation(name, phone, date, time, duration, pax, table, remark, tags, id, isPaid);
 
     }
 
-    // Has specify this to be ID_AMY as the test samples has been
-    // reduced to just AMY AND BOB for simplicity and easy testing
-    public Reservation build1() {
-        return new Reservation(name, phone, date, time, duration, pax, table, remark, tags, ID_AMY, false);
-    }
-
-    public Reservation build2() {
-        return new Reservation(name, phone, date, time, duration, pax, table, remark, tags, ID_BOB, false);
-    }
+    //    Has specify this to be ID_AMY as the test samples has been
+    //    reduced to just AMY AND BOB for simplicity and easy testing
+    //    public Reservation build1() {
+    //        return new Reservation(name, phone, date, time, duration, pax, table, remark, tags, ID_AMY, false);
+    //    }
+    //
+    //    public Reservation build2() {
+    //        return new Reservation(name, phone, date, time, duration, pax, table, remark, tags, ID_BOB, false);
+    //    }
 
 }

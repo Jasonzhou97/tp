@@ -1,13 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_BOB;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -16,13 +8,22 @@ import java.util.HashSet;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
-import seedu.address.model.reservation.*;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.reservation.Duration;
+import seedu.address.model.reservation.Name;
+import seedu.address.model.reservation.Pax;
+import seedu.address.model.reservation.Phone;
+import seedu.address.model.reservation.Remark;
+import seedu.address.model.reservation.Reservation;
+import seedu.address.model.reservation.StartDate;
+import seedu.address.model.reservation.StartTime;
+import seedu.address.model.reservation.Table;
+
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
 public class TypicalReservations {
+    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
     private static LocalDate today = LocalDate.now();
     private static LocalDate tomorrow = today.plusDays(1);
 
@@ -55,9 +56,11 @@ public class TypicalReservations {
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     // TODO work on the ReservationBuilder() constructor
-    //    public static final Reservation AMY = new ReservationBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
+    //    public static final Reservation AMY = new ReservationBuilder()
+    //    .withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
     //            .withTags(VALID_TAG_FRIEND).build1();
-    //    public static final Reservation BOB = new ReservationBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+    //    public static final Reservation BOB = new ReservationBuilder()
+    //    .withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
     //            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withTime(VALID_TIME_BOB)
     //            .build2();
 
@@ -65,39 +68,38 @@ public class TypicalReservations {
     private static String todayDate = today.format(formatter);
     private static String tomorrowDate = tomorrow.format(formatter);
 
-    public static final Reservation ALICE = new ReservationBuilder(new Name("Alice Pauline")
-            ,new Phone("94351253"),new StartDate(todayDate),new StartTime("1800"), new Duration("2"),new Pax("2"),
-            new Table("A1"),new Remark("She likes aardvarks."),new HashSet<>()).build();
-    public static final Reservation BENSON= new ReservationBuilder(new Name("Benson Meier")
-            ,new Phone("93321423"),new StartDate(todayDate),new StartTime("1400"), new Duration("3"),new Pax("2"),
-            new Table("A2"),new Remark("He can't take beer!"),new HashSet<>()).build();
+
+    public static final Reservation ALICE = new ReservationBuilder(new Name("Alice Pauline"),
+            new Phone("94351253"), new StartDate(todayDate), new StartTime("1800"), new Duration("2"), new Pax("2"),
+            new Table("A1"), new Remark("She likes aardvarks."), new HashSet<>()).build();
+    public static final Reservation BENSON = new ReservationBuilder(new Name("Benson Meier"),
+            new Phone("93321423"), new StartDate(todayDate), new StartTime("1400"), new Duration("3"), new Pax("2"),
+            new Table("A2"), new Remark("He can't take beer!"), new HashSet<>()).build();
 
     //the payment status of this reservation is set to true.
-    public static final Reservation CARL = new ReservationBuilder(new Name("Carl Kurz")
-            ,new Phone("95352563"),new StartDate(tomorrowDate),new StartTime("1200"), new Duration("3"),new Pax("3"),
-            new Table("A2"),new Remark("She can't take beer!"),new HashSet<>()).withPaymentStatus(true).build();
+    public static final Reservation CARL = new ReservationBuilder(new Name("Carl Kurz"),
+            new Phone("95352563"), new StartDate(tomorrowDate), new StartTime("1200"), new Duration("3"), new Pax("3"),
+            new Table("A2"), new Remark("She can't take beer!"), new HashSet<>()).withPaymentStatus(true).build();
 
-    public static final Reservation DANIEL = new ReservationBuilder(new Name("Daniel Meier")
-            ,new Phone("87652533"),new StartDate(todayDate),new StartTime("1200"), new Duration("1"),new Pax("3"),
-            new Table("A2"),new Remark("She can't take beer!"),new HashSet<>()).build();
+    public static final Reservation DANIEL = new ReservationBuilder(new Name("Daniel Meier"),
+            new Phone("87652533"), new StartDate(todayDate), new StartTime("1200"), new Duration("1"), new Pax("3"),
+            new Table("A2"), new Remark("She can't take beer!"), new HashSet<>()).build();
 
-    public static final Reservation ELLE = new ReservationBuilder(new Name("Elle Meyer")
-            ,new Phone("9482224"),new StartDate(tomorrowDate),new StartTime("1200"), new Duration("1"),new Pax("3"),
-            new Table("A2"),new Remark("She can't take beer!"),new HashSet<>()).build();
+    public static final Reservation ELLE = new ReservationBuilder(new Name("Elle Meyer"),
+            new Phone("9482224"), new StartDate(tomorrowDate), new StartTime("1200"), new Duration("1"), new Pax("3"),
+            new Table("A2"), new Remark("She can't take beer!"), new HashSet<>()).build();
 
-    public static final Reservation FIONA = new ReservationBuilder(new Name("Fiona Kunz")
-            ,new Phone("9482427"),new StartDate(todayDate),new StartTime("1200"), new Duration("1"),new Pax("3"),
-            new Table("A2"),new Remark("She can't take beer!"),new HashSet<>()).build();
+    public static final Reservation FIONA = new ReservationBuilder(new Name("Fiona Kunz"),
+            new Phone("9482427"), new StartDate(todayDate), new StartTime("1200"), new Duration("1"), new Pax("3"),
+            new Table("A2"), new Remark("She can't take beer!"), new HashSet<>()).build();
 
-    public static final Reservation GEORGE = new ReservationBuilder(new Name("George Best")
-            ,new Phone("9482442"),new StartDate(tomorrowDate),new StartTime("1200"), new Duration("1"),new Pax("3"),
-            new Table("A2"),new Remark("She can't take beer!"),new HashSet<>()).build();
+    public static final Reservation GEORGE = new ReservationBuilder(new Name("George Best"),
+            new Phone("9482442"), new StartDate(tomorrowDate), new StartTime("1200"), new Duration("1"), new Pax("3"),
+            new Table("A2"), new Remark("She can't take beer!"), new HashSet<>()).build();
 
-    public static final Reservation HOON= new ReservationBuilder(new Name("Hoon Meier")
-            ,new Phone("8482424"),new StartDate(tomorrowDate),new StartTime("1200"), new Duration("1"),new Pax("3"),
-            new Table("A2"),new Remark("She can't take beer!"),new HashSet<>()).build();
-
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
+    public static final Reservation HOON = new ReservationBuilder(new Name("Hoon Meier"), new Phone("8482424"),
+            new StartDate(tomorrowDate), new StartTime("1200"), new Duration("1"), new Pax("3"),
+            new Table("A2"), new Remark("She can't take beer!"), new HashSet<>()).build();
 
     private TypicalReservations() {} // prevents instantiation
 
