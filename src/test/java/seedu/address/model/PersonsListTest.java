@@ -20,9 +20,6 @@ import seedu.address.model.reservation.Phone;
 
 public class PersonsListTest {
 
-    @TempDir
-    public Path testFolder;
-
     private PersonsList personsList;
 
     @BeforeEach
