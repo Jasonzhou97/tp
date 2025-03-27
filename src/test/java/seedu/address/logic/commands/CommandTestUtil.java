@@ -23,6 +23,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.reservation.Identification;
 import seedu.address.model.reservation.NameContainsKeywordsPredicate;
 import seedu.address.model.reservation.Reservation;
 import seedu.address.testutil.EditReservationDescriptorBuilder;
@@ -52,8 +53,12 @@ public class CommandTestUtil {
     public static final String VALID_REMARK_BOB = "Favourite pastime: Eating";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_ID_AMY = "0103202511111800";
-    public static final String VALID_ID_BOB = "0203202522222000";
+    public static final String VALID_ID_AMY = VALID_DATE_AMY.replace("/","")
+            + VALID_PHONE_AMY.substring(VALID_PHONE_AMY.length() - 4)
+            + VALID_TIME_AMY;
+    public static final String VALID_ID_BOB = VALID_DATE_BOB.replace("/","")
+            + VALID_PHONE_BOB.substring(VALID_PHONE_BOB.length() - 4)
+            + VALID_TIME_BOB;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
