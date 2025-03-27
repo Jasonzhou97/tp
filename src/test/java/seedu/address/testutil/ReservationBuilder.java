@@ -28,7 +28,7 @@ import seedu.address.model.util.SampleDataUtil;
 public class ReservationBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_DATE =  LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    public static final String DEFAULT_DATE = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     public static final String DEFAULT_TIME = "1800";
     public static final String DEFAULT_DURATION = "2";
     public static final String DEFAULT_PAX = "2";
@@ -36,10 +36,10 @@ public class ReservationBuilder {
     public static final String DEFAULT_REMARK = "She likes aardvarks.";
 
     // Auto Assigned ID after reservation is built, do not change this
-    public static final Identification ID_AMY =  new Identification(new StartDate(DEFAULT_DATE),
+    public static final Identification ID_AMY = new Identification(new StartDate(DEFAULT_DATE),
             new Phone(DEFAULT_PHONE), new StartTime(DEFAULT_TIME));
 
-    public static final Identification ID_BOB =  new Identification(new StartDate(VALID_DATE_BOB),
+    public static final Identification ID_BOB = new Identification(new StartDate(VALID_DATE_BOB),
             new Phone(VALID_PHONE_BOB), new StartTime(VALID_TIME_BOB));
     private Name name;
     private Phone phone;
@@ -163,7 +163,8 @@ public class ReservationBuilder {
         return this;
     }
 
-    // Has specify this to be ID_AMY as the test samples has been reduced to just AMY AND BOB for simplicity and easy testing
+    // Has specify this to be ID_AMY as the test samples has been
+    // reduced to just AMY AND BOB for simplicity and easy testing
     public Reservation build1() {
         return new Reservation(name, phone, date, time, duration, pax, table, remark, tags, ID_AMY, false);
     }

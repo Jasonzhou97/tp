@@ -101,9 +101,12 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "2603202523451200" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "2603202523451200" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "2603202523451200" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "2603202523451200" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY,
+                Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "2603202523451200" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND,
+                Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "2603202523451200" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND,
+                Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "2603202523451200" + INVALID_NAME_DESC + VALID_PHONE_AMY,
@@ -111,7 +114,7 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_AllFieldsSpecified_success() {
+    public void parse_allFieldsSpecified_success() {
         String userInput = VALID_ID_BOB + NAME_DESC_AMY + PHONE_DESC_BOB + TAG_DESC_HUSBAND
                 + DATE_DESC_BOB + PAX_DESC_BOB + TAG_DESC_FRIEND + DURATION_DESC_BOB
                 + TABLE_DESC_BOB + TIME_DESC_AMY;
@@ -220,7 +223,7 @@ public class EditCommandParserTest {
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_DATE, PREFIX_TIME));
 
         // multiple invalid values
-        userInput = strID+ INVALID_PHONE_DESC + INVALID_TIME_DESC + INVALID_PAX_DESC
+        userInput = strID + INVALID_PHONE_DESC + INVALID_TIME_DESC + INVALID_PAX_DESC
                 + INVALID_PHONE_DESC + INVALID_TIME_DESC + INVALID_PAX_DESC;
 
         assertParseFailure(parser, userInput,
