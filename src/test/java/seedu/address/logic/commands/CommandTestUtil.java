@@ -13,6 +13,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -34,8 +36,10 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
-    public static final String VALID_DATE_AMY = "01/03/2025";
-    public static final String VALID_DATE_BOB = "02/03/2025";
+    public static final String VALID_DATE_AMY = LocalDate.now().plusDays(1)
+            .format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    public static final String VALID_DATE_BOB = LocalDate.now().format(DateTimeFormatter
+            .ofPattern("dd/MM/yyyy"));;
     public static final String VALID_TIME_AMY = "1800";
     public static final String VALID_TIME_BOB = "2000";
     public static final String VALID_DURATION_AMY = "2";
@@ -48,8 +52,12 @@ public class CommandTestUtil {
     public static final String VALID_REMARK_BOB = "Favourite pastime: Eating";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_ID_AMY = "0001";
-    public static final String VALID_ID_BOB = "0010";
+    public static final String VALID_ID_AMY = VALID_DATE_AMY.replace("/", "")
+            + VALID_PHONE_AMY.substring(VALID_PHONE_AMY.length() - 4)
+            + VALID_TIME_AMY;
+    public static final String VALID_ID_BOB = VALID_DATE_BOB.replace("/", "")
+            + VALID_PHONE_BOB.substring(VALID_PHONE_BOB.length() - 4)
+            + VALID_TIME_BOB;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -74,6 +82,9 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_PAX_DESC = " " + PREFIX_PAX + "s"; // 's' not allowed in pax
+    public static final String INVALID_TIME_DESC = " " + PREFIX_TIME
+            + "2500"; // 'invalid 24 hr format' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -142,7 +153,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredReservationList().size());
 
         Reservation reservation = model.getFilteredReservationList().get(targetIndex.getZeroBased());
-        final String[] splitName = reservation.getName().fullName.split("\\s+");
+        final String[] splitName = reservation.getName().getFullName().split("\\s+");
         model.updateFilteredReservationList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredReservationList().size());

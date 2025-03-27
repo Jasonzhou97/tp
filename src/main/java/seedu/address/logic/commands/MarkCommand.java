@@ -50,4 +50,14 @@ public class MarkCommand extends Command {
         return new CommandResult(String.format(MESSAGE_MARK_RESERVATION_SUCCESS,
                 Messages.format(reservationToMark)));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof MarkCommand)) {
+            return false;
+        }
+        // of type MarkCommand:
+        //Mark command are equal as long as their id are equal
+        return this.id.equals(((MarkCommand) other).id);
+    }
 }

@@ -18,7 +18,7 @@ public class Name {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public String fullName;
+    private String fullName;
 
     /**
      * Constructs a {@code Name}.
@@ -30,8 +30,14 @@ public class Name {
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name;
     }
+
+    /**
+     * Construct a default fullName for UI booting up.
+     */
     public Name() {
+        fullName = "";
     }
+
     /**
      * Returns true if a given string is a valid name.
      */
@@ -39,6 +45,9 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public String getFullName() {
+        return this.fullName;
+    }
 
     @Override
     public String toString() {

@@ -39,6 +39,14 @@ public class StartDate {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns this StartDate's value (in "dd/MM/yyyy" format) as a LocalDate object.
+     */
+    public LocalDate toLocalDate() {
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return LocalDate.parse(value, dateFormatter);
+    }
+
     @Override
     public String toString() {
         return value;
