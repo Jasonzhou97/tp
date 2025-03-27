@@ -38,9 +38,10 @@ public class TypicalReservations {
             ,new Phone("93321423"),new StartDate(todayDate),new StartTime("1400"), new Duration("3"),new Pax("2"),
             new Table("A2"),new Remark("He can't take beer!"),new HashSet<>()).build();
 
+    //the payment status of this reservation is set to true.
     public static final Reservation CARL = new ReservationBuilder(new Name("Carl Kurz")
             ,new Phone("95352563"),new StartDate(tomorrowDate),new StartTime("1200"), new Duration("3"),new Pax("3"),
-            new Table("A2"),new Remark("She can't take beer!"),new HashSet<>()).build();
+            new Table("A2"),new Remark("She can't take beer!"),new HashSet<>()).withPaymentStatus(true).build();
 
     public static final Reservation DANIEL = new ReservationBuilder(new Name("Daniel Meier")
             ,new Phone("87652533"),new StartDate(todayDate),new StartTime("1200"), new Duration("1"),new Pax("3"),
