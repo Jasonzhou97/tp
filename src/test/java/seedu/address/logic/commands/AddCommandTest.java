@@ -10,7 +10,11 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.*;
+import seedu.address.model.AddressBook;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.PersonsList;
 import seedu.address.model.reservation.Name;
 import seedu.address.model.reservation.Person;
 import seedu.address.model.reservation.Phone;
