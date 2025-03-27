@@ -24,11 +24,10 @@ import seedu.address.model.reservation.Phone;
  * Tracks booking frequency and regular customer status.
  */
 public class PersonsList {
+    public static final int REGULAR_CUSTOMER_THRESHOLD = 3;
     private static final Logger logger = LogsCenter.getLogger(PersonsList.class);
     private static final Path PERSONS_FILE_PATH = Paths.get("data", "personslist.json");
-    private static final int REGULAR_CUSTOMER_THRESHOLD = 5;
-
-    private ArrayList<Person> personsList;
+    private static ArrayList<Person> personsList;
 
     /**
      * Initializes a PersonsList.
@@ -138,6 +137,22 @@ public class PersonsList {
             }
         }
         return false;
+    }
+
+    /**
+     * Returns a person with the given phone number.
+     */
+    public static Person getPerson(Phone phone) {
+        if (phone == null) {
+            throw new NullPointerException();
+        }
+
+        for (Person p : personsList) {
+            if (p.getPhone().value.equals(phone.value)) {
+                return p;
+            }
+        }
+        return null;
     }
 
 
@@ -276,6 +291,7 @@ public class PersonsList {
 
                     logger.info("Loaded " + personsList.size() + " unique persons from file, prioritizing "
                             + "highest counter values");
+                  
                     for (Person p : personsList) {
                         logger.info("  Loaded: " + p.getName().fullName
                                 + ", phone: " + p.getPhone().value
