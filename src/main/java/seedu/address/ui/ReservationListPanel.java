@@ -65,4 +65,5 @@ public class ReservationListPanel extends UiPart<Region> {
     private void refreshListView() {
         reservationListView.refresh();
     }
+
 }
