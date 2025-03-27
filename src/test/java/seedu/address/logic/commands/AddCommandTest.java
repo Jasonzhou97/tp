@@ -148,7 +148,7 @@ public class AddCommandTest {
 
         @Override
         public void updatePersonsListAfterEdit(Reservation oldReservation, Reservation newReservation) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -173,6 +173,10 @@ public class AddCommandTest {
         }
 
         @Override
+        public void filterReservationsByRegular(Predicate<Reservation> res) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public ObservableList<Reservation> getFilteredReservationList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -183,6 +187,10 @@ public class AddCommandTest {
         }
 
         @Override
+        public void updatePersonsListAfterDelete(Reservation r) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public PersonsList getPersonsList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -191,7 +199,10 @@ public class AddCommandTest {
         public void updateFilteredReservationList(Predicate<Reservation> predicate) {
             throw new AssertionError("This method should not be called.");
         }
-
+        @Override
+        public void filterPreviousReservations(Predicate<Reservation> predicate){
+            throw new AssertionError("This method should not be called.");
+        }
         @Override
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
