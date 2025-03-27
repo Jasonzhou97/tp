@@ -291,7 +291,6 @@ public class PersonsList {
 
                     logger.info("Loaded " + personsList.size() + " unique persons from file, prioritizing "
                             + "highest counter values");
-                  
                     for (Person p : personsList) {
                         logger.info("  Loaded: " + p.getName().fullName
                                 + ", phone: " + p.getPhone().value
