@@ -16,8 +16,9 @@ public class MarkCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks the reservation as paid "
             + "at the identification used in the reservation listing.\n"
-            + "Parameters: ID ( [6 figures of date (ie : ddMMyyyy)) of TODAY or TOMORROW] "
-            + "+ [last 4 digits of customer phone number (ie:xxxx)]).\n"
+            + "Parameters:  ID ( [6 figures of date (ie : ddMMyyyy)) of TODAY or TOMORROW] "
+            + "+ [last 4 digits of customer phone number (ie:xxxx)]"
+            + "+ [time of reservation in HHMM format])"
             + "Example: " + COMMAND_WORD + " 180320251234 ";
 
     public static final String MESSAGE_MARK_RESERVATION_SUCCESS = "Successfully marks the reservation";
@@ -48,5 +49,15 @@ public class MarkCommand extends Command {
         model.setReservation(reservationToMark, markedReservation);
         return new CommandResult(String.format(MESSAGE_MARK_RESERVATION_SUCCESS,
                 Messages.format(reservationToMark)));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof MarkCommand)) {
+            return false;
+        }
+        // of type MarkCommand:
+        //Mark command are equal as long as their id are equal
+        return this.id.equals(((MarkCommand) other).id);
     }
 }

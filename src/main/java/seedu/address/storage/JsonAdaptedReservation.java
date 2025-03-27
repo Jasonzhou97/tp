@@ -71,7 +71,7 @@ class JsonAdaptedReservation {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedReservation(Reservation source) {
-        name = source.getName().fullName;
+        name = source.getName().getFullName();
         phone = source.getPhone().value;
         date = source.getDate().value;
         time = source.getTime().value;
@@ -171,7 +171,7 @@ class JsonAdaptedReservation {
         if (!Identification.isValidId(id)) {
             throw new IllegalValueException(Identification.MESSAGE_CONSTRAINTS);
         }
-        final Identification modelId = new Identification(new StartDate(date), new Phone(phone));
+        final Identification modelId = new Identification(new StartDate(date), new Phone(phone), new StartTime(time));
 
 
 

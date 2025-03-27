@@ -18,6 +18,7 @@ import seedu.address.logic.LogicManager;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.PersonsList;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
@@ -58,9 +59,10 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
+        PersonsList personsList = new PersonsList();
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
-        model = initModelManager(storage, userPrefs);
+        model = initModelManager(storage, personsList, userPrefs);
 
         logic = new LogicManager(model, storage);
 
@@ -72,7 +74,7 @@ public class MainApp extends Application {
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+    private Model initModelManager(Storage storage, PersonsList personsList, ReadOnlyUserPrefs userPrefs) {
         logger.info("Using data file : " + storage.getAddressBookFilePath());
 
         Optional<ReadOnlyAddressBook> addressBookOptional;
@@ -90,9 +92,9 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
-    }
 
+        return new ModelManager(initialData, personsList, userPrefs);
+    }
     private void initLogging(Config config) {
         LogsCenter.init(config);
     }
@@ -179,8 +181,17 @@ public class MainApp extends Application {
         logger.info("============================ [ Stopping AddressBook ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
+
+            // Don't do any file operations on the PersonsList files
+            // The data is already appended to the files during normal operation
+
+            logger.info("Application stopping - all data is already saved through append operations");
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
+        } catch (Exception e) {
+            logger.severe("Error during application shutdown: " + e.getMessage());
+            e.printStackTrace();
         }
     }
+
 }

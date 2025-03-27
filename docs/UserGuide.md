@@ -73,11 +73,11 @@ Examples:
 
 ### Editing a reservation: `edit`
 
-Editing a today or tomorrow reservation.
+Edits the reservation with the specified `RESERVATION_ID`.
 
 Format: `edit [RESERVATION_ID] n/[NAME] p/[PHONE_NUMBER] date/[DATE] time/[TIME] duration/[DURATION] pax/[NUMBER_OF_PEOPLE] table/[TABLE_NUMBER] t/[TAG_1] t/[TAG_2] `
 
-* RESERVATION_ID: Identifier combining today's or tomorrow's date (DDMMYYYY) with the unique last 4 digits of the customer's phone number (e.g., 180320251234 for a booking on March 18, 2025, with phone ending in 1234).
+* RESERVATION_ID: Identifier combining today's or tomorrow's date (DDMMYYYY) with the unique last 4 digits of the customer's phone number and time of reservation in HHMM format (e.g., 1803202512341200 for a booking on March 18, 2025 at 1200, with phone ending in 1234).
 * NAME: Name of the person making the reservation (string)
 * PHONE_NUMBER: Contact number of the person making the reservation
 * DATE: Date of reservation in DD/MM/YYYY format (e.g., 01/03/2025 for March 1, 2025)
@@ -86,6 +86,7 @@ Format: `edit [RESERVATION_ID] n/[NAME] p/[PHONE_NUMBER] date/[DATE] time/[TIME]
 * NUMBER_OF_PEOPLE: Number of people for the reservation (integer)
 * TABLE_NUMBER: Assigned table number/code for the reservation
 * TAG: tags to categorize the reservation (e.g., regular, event, birthday)
+* REMARK: Additional information that is tied to the reservation
 
 
 Examples:
@@ -109,55 +110,83 @@ Shows a list of all reservations for tomorrow, sorted by time.
 
 Format: `listrn`
 
-### Finding reservations by name: `find /p`
+### Finding reservations by name: `findn`
 
-Finds reservations made by a specific person.
+Finds reservations by the specified name(s).
 
-Format: `find /p NAME`
+Format: `findn [NAME]`
 
-* The search is case-insensitive. e.g., `find /p john doe` will match `John Doe`
+* The search is case-insensitive. e.g., `findn john doe` will match `John Doe`
+* Only reservations scheduled for today or tomorrow are considered.
 
 Examples:
-* `find /p John Doe` returns all reservations made by John Doe
-* `find /p Jane Smith` returns all reservations made by Jane Smith
+* `findn John` returns all reservations made by John.
+* `findn Jane` returns all reservations made by Jane.
+* `findn John Jane` returns all reservations made by John or Jane.
+
+### Finding reservations by phone number: `findp`
+
+Finds reservations by the specified phone number(s).
+
+Format: `findp [PHONE_NUMBER]`
+
+* Partial phone numbers will not be accepted. e.g., `9123` will not match `91234567`
+
+Examples:
+* `findp 98765432` returns all reservations made by the person with phone number 98765432.
+* `findp 91234567 98765432` returns all reservations made by the people with phone numbers 91234567 and 98765432.
+* Only reservations scheduled for today or tomorrow are considered.
+
+### Finding reservations by time: `findt`
+
+Finds reservations that are ongoing at the specified time.
+
+Format: `findt [TIME]`
+
+* TIME: Time of reservation in 24-hour HHMM format (e.g., 1800 for 6:00 PM).
+* Only reservations scheduled for today are considered.
+* A reservation is deemed ongoing if its start time is at or before the specified time and its end time (computed as start time plus duration) is after the specified time.
+* Reservations that end exactly at the specified time are not included.
+
+Examples:
+* `findt 1400` returns all reservations scheduled for today ongoing at 2:00 PM (e.g., a reservation from 1:00 PM to 3:00 PM or 2:00 PM to 4:00 PM), but excludes reservations that end at 2:00 PM (e.g., a reservation from 1:00 PM to 2:00 PM).
 
 ### Deleting a reservation : `delete`
 
 Deletes a specific reservation from GastroBook.
 
-Format: `delete RESERVATION_ID`
+Format: `delete [RESERVATION_ID]`
 
 * Deletes the reservation with the specified `RESERVATION_ID`.
-* The reservation ID is in the format: date of reservation followed by his/her phone number (e.g., 170320259344).
+* The reservation ID is in the format: date of reservation followed by his/her phone number and the time of reservation (e.g., 1703202593441200).
 
 Examples:
-* `delete 170320259344` deletes the reservation with ID 170320259344.
-
+* `delete 1703202593441200` deletes the reservation with ID 1703202593441200.
 
 ### Marking a reservation as paid : `mark`
 
 Marks a specific reservation as paid.
 
-Format: `mark RESERVATION_ID`
+Format: `mark [RESERVATION_ID]`
 
 * Marks the reservation with the specified `RESERVATION_ID` as paid.
-* The reservation ID is in the format: date of reservation followed by his/her phone number (e.g., 170320259344).
+* The reservation ID is in the format: date of reservation followed by his/her phone number and the time of reservation (e.g., 1703202593441200).
 
 Examples:
-* `mark 170320259344` marks the reservation with ID 170320259344 as paid.
+* `mark 1703202593441200` marks the reservation with ID 1703202593441200 as paid.
 
 ### Unmarking a reservation as paid : `unmark`
 
 Marks a specific reservation as unpaid.
 
-Format: `unmark RESERVATION_ID`
+Format: `unmark [RESERVATION_ID]`
 
 * Marks the reservation with the specified `RESERVATION_ID` as unpaid.
-* The reservation ID is in the format: date of reservation followed by his/her phone number (e.g., 170320259344).
+* The reservation ID is in the format: date of reservation followed by his/her phone number and the time of reservation (e.g., 1703202593441200).
 
 
 Examples:
-* `unmark 170320259344` marks the reservation with ID 170320259344 as unpaid.
+* `unmark 1703202593441200` marks the reservation with ID 1703202593441200 as unpaid.
 
 ### Exiting the program : `exit`
 
@@ -179,18 +208,19 @@ GastroBook data are saved automatically as a JSON file `[JAR file location]/data
 
 ## Command summary
 
-| Action            | Format, Examples                                                                                                                                                                                                                                               |
-|-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**           | `add n/NAME p/PHONE_NUMBER date/DATE time/TIME duration/DURATION pax/NUMBER_OF_PEOPLE table/TABLE_NUMBER [t/TAG]…` <br> e.g., `add n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event`                                |
-| **Edit**          | `edit RESERVATION_ID n/NAME p/PHONE_NUMBER date/DATE time/TIME duration/DURATION pax/NUMBER_OF_PEOPLE table/TABLE_NUMBER [t/TAG]...` <br> e.g.,`edit 180320251234 n/John Doe p/98761234 date/18/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event` |
-| **Delete**        | `delete RESERVATION_ID`<br> e.g., `delete 170320259344`                                                                                                                                                                                                        |
-| **Mark**          | `mark RESERVATION_ID`<br> e.g., `mark 170320259344`                                                                                                                                                                                                            |
-| **Unmark**        | `unmark RESERVATION_ID`<br> e.g., `unmark 170320259344`                                                                                                                                                                                                        |
-| **Find by name**  | `find /p NAME`<br> e.g., `find /p John Doe`                                                                                                                                                                                                                    |
-| **Find by time**  | `find /t TIME`<br> e.g., `find /t 1200`                                                                                                                                                                                                                        |
-| **List all**      | `list`                                                                                                                                                                                                                                                         |
-| **List today**    | `listrt`                                                                                                                                                                                                                                                       |
-| **List tomorrow** | `listrn`                                                                                                                                                                                                                                                       |
-| **Help**          | `help`                                                                                                                                                                                                                                                         |
-| **Exit**          | `exit`                                                                                                                                                                                                                                                         |
+| Action                   | Format, Examples                                                                                                                                                                                                                                                   |
+|--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                  | `add n/NAME p/PHONE_NUMBER date/DATE time/TIME duration/DURATION pax/NUMBER_OF_PEOPLE table/TABLE_NUMBER [t/TAG]…` <br> e.g., `add n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event`                                    |
+| **Edit**                 | `edit RESERVATION_ID n/NAME p/PHONE_NUMBER date/DATE time/TIME duration/DURATION pax/NUMBER_OF_PEOPLE table/TABLE_NUMBER [t/TAG]...` <br> e.g.,`edit 1803202512341200 n/John Doe p/98761234 date/18/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event` |
+| **Delete**               | `delete RESERVATION_ID`<br> e.g., `delete 1703202593441200`                                                                                                                                                                                                        |
+| **Mark**                 | `mark RESERVATION_ID`<br> e.g., `mark 1703202593441200`                                                                                                                                                                                                            |
+| **Unmark**               | `unmark RESERVATION_ID`<br> e.g., `unmark 1703202593441200`                                                                                                                                                                                                        |
+| **Find by name**         | `findn NAME`<br> e.g., `findn John Doe`                                                                                                                                                                                                                            | |
+| **Find by phone number** | `findp PHONE_NUMBER`<br> e.g., `findp 91234567`                                                                                                                                                                                                                    |
+| **Find by time**         | `findt TIME`<br> e.g., `findt 1400`                                                                                                                                                                                                                                |
+| **List all**             | `list`                                                                                                                                                                                                                                                             |
+| **List today**           | `listrt`                                                                                                                                                                                                                                                           |
+| **List tomorrow**        | `listrn`                                                                                                                                                                                                                                                           |
+| **Help**                 | `help`                                                                                                                                                                                                                                                             |
+| **Exit**                 | `exit`                                                                                                                                                                                                                                                             |
 |

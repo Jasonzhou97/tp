@@ -32,6 +32,8 @@ import seedu.address.model.tag.Tag;
  */
 public class AddCommandParser implements Parser<AddCommand> {
 
+
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -64,7 +66,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         // Make use of current date ddMMyyyy and last 4 digits of phone and current reservation count
         // to form a unique key id
-        Identification id = new Identification(date, phone);
+        Identification id = new Identification(date, phone, time);
 
         Reservation reservation = new Reservation(name, phone, date, time, duration, pax,
                 table, remark, tagList, id, false);

@@ -16,8 +16,9 @@ public class UnmarkCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unmarks the reservation as paid "
             + "at the identification used in the reservation listing.\n"
-            + "Parameters: ID ( [6 figures of date (ie : ddMMyyyy)) of TODAY or TOMORROW] "
-            + "+ [last 4 digits of customer phone number (ie:xxxx)]).\n"
+            + "Parameters:  ID ( [6 figures of date (ie : ddMMyyyy)) of TODAY or TOMORROW] "
+            + "+ [last 4 digits of customer phone number (ie:xxxx)]"
+            + "+ [time of reservation in HHMM format])"
             + "Example: " + COMMAND_WORD + " 180320251234 ";
 
     public static final String MESSAGE_UNMARK_RESERVATION_SUCCESS = "Successfully unmarks the reservation";
@@ -48,5 +49,13 @@ public class UnmarkCommand extends Command {
         model.setReservation(reservationToUnmark, unmarkedReservation);
         return new CommandResult(String.format(MESSAGE_UNMARK_RESERVATION_SUCCESS,
                 Messages.format(reservationToUnmark)));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof UnmarkCommand)) {
+            return false;
+        }
+        return this.id.equals(((UnmarkCommand) other).id);
     }
 }
