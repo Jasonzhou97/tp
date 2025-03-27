@@ -377,4 +377,8 @@ public class PersonsList {
         }
         return personsList.size() + " persons, " + regularCount + " regulars";
     }
+
+    public int getRegularCustomerThreshold() {
+        return this.REGULAR_CUSTOMER_THRESHOLD;
+    }
 }

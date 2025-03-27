@@ -137,7 +137,10 @@ public class ModelManager implements Model {
         requireNonNull(reservation);
         return addressBook.hasReservation(reservation);
     }
-
+    @Override
+    public void updatePersonsListAfterDelete(Reservation deletedReservation) {
+        personsListManager.updatePersonsListAfterDelete(deletedReservation);
+    }
     @Override
     public void deleteReservation(Reservation target) {
         addressBook.removeReservation(target);
