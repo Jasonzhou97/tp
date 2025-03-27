@@ -13,7 +13,7 @@ public class Phone {
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 4 digits long";
     public static final String VALIDATION_REGEX = "\\d{4,}";
-    public String value;
+    public final String value;
 
     /**
      * Constructs a {@code Phone}.
@@ -25,9 +25,7 @@ public class Phone {
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         value = phone;
     }
-    public Phone() {
-        // Required for Jackson deserialization
-    }
+
     /**
      * Returns true if a given string is a valid phone number.
      */

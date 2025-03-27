@@ -1,8 +1,13 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.MarkCommand.MESSAGE_MARK_RESERVATION_SUCCESS;
+import static seedu.address.testutil.TypicalReservations.getTypicalAddressBook;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -10,13 +15,7 @@ import seedu.address.model.reservation.Identification;
 import seedu.address.model.reservation.Reservation;
 import seedu.address.model.reservation.StartTime;
 import seedu.address.testutil.ReservationBuilder;
-import seedu.address.logic.commands.CommandTestUtil;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.MarkCommand.MESSAGE_MARK_RESERVATION_SUCCESS;
-import static seedu.address.model.reservation.Identification.getReservationUsingId;
-import static seedu.address.testutil.TypicalReservations.getTypicalAddressBook;
 
 public class MarkCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -24,7 +23,7 @@ public class MarkCommandTest {
     //partition: id that exist and id that does not exist
 
     @Test
-    public void execute_validCommandAndId_success(){
+    public void execute_validCommandAndId_success() {
         Reservation reservationToMark = model.getFilteredReservationList().get(0);
         Identification id = new Identification(reservationToMark.getDate(), reservationToMark.getPhone(),
                 reservationToMark.getTime());
@@ -42,7 +41,7 @@ public class MarkCommandTest {
     }
 
     @Test
-    public void execute_validCommandAndNotExistId_fail(){
+    public void execute_validCommandAndNotExistId_fail() {
         Reservation reservationToMark = model.getFilteredReservationList().get(0);
         Identification id = new Identification(reservationToMark.getDate(), reservationToMark.getPhone(),
                 new StartTime("2359"));
@@ -53,11 +52,5 @@ public class MarkCommandTest {
 
         assertCommandFailure(markCommand, model, expectedMessage);
     }
-
-
-
-
-
-
 
 }
