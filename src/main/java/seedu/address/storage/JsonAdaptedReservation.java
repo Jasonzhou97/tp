@@ -71,7 +71,7 @@ class JsonAdaptedReservation {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedReservation(Reservation source) {
-        name = source.getName().toString();
+        name = source.getName().fullName;
         phone = source.getPhone().value;
         date = source.getDate().value;
         time = source.getTime().value;

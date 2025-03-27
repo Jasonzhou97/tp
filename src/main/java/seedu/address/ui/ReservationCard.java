@@ -65,7 +65,7 @@ public class ReservationCard extends UiPart<Region> {
         super(FXML);
         this.reservation = reservation;
         id.setText(displayedIndex + ". ");
-        name.setText(reservation.getName().toString());
+        name.setText(reservation.getName().fullName);
         phone.setText(reservation.getPhone().value);
         date.setText(reservation.getDate().value);
         time.setText(reservation.getTime().value);

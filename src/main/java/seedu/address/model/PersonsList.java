@@ -65,7 +65,7 @@ public class PersonsList {
                 mapper.enable(SerializationFeature.INDENT_OUTPUT);
                 mapper.writeValue(file, newList);
 
-                logger.info("Created new file with first person: " + person.getName().toString());
+                logger.info("Created new file with first person: " + person.getName().fullName);
                 return;
             }
 
@@ -104,11 +104,11 @@ public class PersonsList {
             if (isUpdateForExisting) {
                 // For existing phone numbers, add the updated entry
                 updatedList.add(person);
-                logger.info("Added updated entry for existing person: " + person.getName().toString());
+                logger.info("Added updated entry for existing person: " + person.getName().fullName);
             } else {
                 // For new phone numbers, add to the list
                 updatedList.add(person);
-                logger.info("Added new person to file: " + person.getName().toString());
+                logger.info("Added new person to file: " + person.getName().fullName);
             }
 
             // Write the updated list
@@ -162,7 +162,7 @@ public class PersonsList {
     public void addPerson(Person p) {
         personsList.add(p);
         updatePhoneInFileAndKeepOthers(p);
-        logger.info("Added person: " + p.getName().toString());
+        logger.info("Added person: " + p.getName().fullName);
     }
 
 
@@ -170,7 +170,7 @@ public class PersonsList {
      * Records a booking for a person, updating their counter and regular status if needed.
      */
     public Person recordBooking(Name name, Phone phone) {
-        logger.info("Recording booking for " + name.toString() + " with phone " + phone.value);
+        logger.info("Recording booking for " + name.fullName + " with phone " + phone.value);
 
         // Check if person already exists
         Person existingPerson = null;
@@ -267,7 +267,7 @@ public class PersonsList {
                     // for debug
                     logger.info("Read " + loadedPersons.size() + " total entries from file");
                     for (Person p : loadedPersons) {
-                        logger.info("  Entry: " + p.getName().toString()
+                        logger.info("  Entry: " + p.getName().fullName
                                 + ", phone: " + p.getPhone().value
                                 + ", counter: " + p.getCounter());
                     }
@@ -290,7 +290,7 @@ public class PersonsList {
                     logger.info("Loaded " + personsList.size() + " unique persons from file, prioritizing "
                             + "highest counter values");
                     for (Person p : personsList) {
-                        logger.info("  Loaded: " + p.getName().toString()
+                        logger.info("  Loaded: " + p.getName().fullName
                                 + ", phone: " + p.getPhone().value
                                 + ", counter: " + p.getCounter());
                     }
@@ -327,7 +327,7 @@ public class PersonsList {
         if (removed) {
             // Save updated list to file
             savePersonsToFile();
-            logger.info("Removed person: " + key.getName().toString());
+            logger.info("Removed person: " + key.getName().fullName);
         }
     }
 
