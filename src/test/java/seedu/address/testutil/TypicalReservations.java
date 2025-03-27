@@ -18,7 +18,15 @@ import java.util.HashSet;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
-import seedu.address.model.reservation.*;
+import seedu.address.model.reservation.Duration;
+import seedu.address.model.reservation.Name;
+import seedu.address.model.reservation.Pax;
+import seedu.address.model.reservation.Phone;
+import seedu.address.model.reservation.Remark;
+import seedu.address.model.reservation.Reservation;
+import seedu.address.model.reservation.StartDate;
+import seedu.address.model.reservation.StartTime;
+import seedu.address.model.reservation.Table;
 
 
 /**
@@ -35,7 +43,7 @@ public class TypicalReservations {
     public static final Reservation ALICE = new ReservationBuilder(new Name("Alice Pauline"), new Phone("94351253"),
             new StartDate(todayDate), new StartTime("1800"), new Duration("2"), new Pax("2"),
             new Table("A1"), new Remark("She likes aardvarks."), new HashSet<>()).build();
-    public static final Reservation BENSON= new ReservationBuilder(new Name("Benson Meier"), new Phone("93321423"),
+    public static final Reservation BENSON = new ReservationBuilder(new Name("Benson Meier"), new Phone("93321423"),
             new StartDate(todayDate), new StartTime("1400"), new Duration("3"), new Pax("2"),
             new Table("A2"), new Remark("He can't take beer!"), new HashSet<>()).build();
 
@@ -100,7 +108,7 @@ public class TypicalReservations {
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
     */
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
+    // public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalReservations() {} // prevents instantiation
 

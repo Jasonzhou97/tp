@@ -47,9 +47,10 @@ public class ReservationBuilder {
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
-    public ReservationBuilder(Name name, Phone phone, StartDate date, StartTime time, Duration duration, Pax pax, Table table, Remark remark, HashSet<Tag> tags) {
+    public ReservationBuilder(Name name, Phone phone, StartDate date, StartTime time, Duration duration, Pax pax,
+                              Table table, Remark remark, HashSet<Tag> tags) {
         this.name = name;
-        this.phone =phone;
+        this.phone = phone;
         this.date = date;
         this.time = time;
         this.duration = duration;
@@ -158,6 +159,12 @@ public class ReservationBuilder {
         return this;
     }
 
+    /**
+     * Sets the payment status of the reservation.
+     *
+     * @param isPaid {@code true} if the reservation is paid, {@code false} otherwise.
+     * @return The current instance of {@code ReservationBuilder} for method chaining.
+     */
     public ReservationBuilder withPaymentStatus(Boolean isPaid) {
         this.isPaid = isPaid;
         return this;
