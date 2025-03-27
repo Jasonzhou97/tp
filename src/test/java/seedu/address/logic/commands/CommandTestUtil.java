@@ -142,7 +142,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredReservationList().size());
 
         Reservation reservation = model.getFilteredReservationList().get(targetIndex.getZeroBased());
-        final String[] splitName = reservation.getName().fullName.split("\\s+");
+        final String[] splitName = reservation.getName().getFullName().split("\\s+");
         model.updateFilteredReservationList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredReservationList().size());
