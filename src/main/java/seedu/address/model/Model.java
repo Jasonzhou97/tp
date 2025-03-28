@@ -89,6 +89,11 @@ public interface Model {
     void setReservation(Reservation target, Reservation editedReservation);
 
     /**
+     * Updates person details in PersonsList when a reservation is deleted.
+     * @param deletedReservation the reservation that was deleted
+     */
+    void updatePersonsListAfterDelete(Reservation deletedReservation);
+    /**
      * Returns an unmodifiable view of the filtered reservation list
      */
     ObservableList<Reservation> getFilteredReservationList();
