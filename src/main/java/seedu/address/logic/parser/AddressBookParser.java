@@ -14,13 +14,16 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindByNameCommand;
+import seedu.address.logic.commands.FindByPhoneCommand;
+import seedu.address.logic.commands.FindByTimeCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListRnCommand;
 import seedu.address.logic.commands.ListRtCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.RemarkCommand;
+import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 
@@ -70,11 +73,20 @@ public class AddressBookParser {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+        case FindByNameCommand.COMMAND_WORD:
+            return new FindByNameCommandParser().parse(arguments);
+
+        case FindByPhoneCommand.COMMAND_WORD:
+            return new FindByPhoneCommandParser().parse(arguments);
+
+        case FindByTimeCommand.COMMAND_WORD:
+            return new FindByTimeCommandParser().parse(arguments);
 
         case MarkCommand.COMMAND_WORD:
             return new MarkCommandParser().parse(arguments);
+
+        case UnmarkCommand.COMMAND_WORD:
+            return new UnmarkCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

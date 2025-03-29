@@ -14,11 +14,12 @@ import java.util.Objects;
 public class StartDate {
     public static final String MESSAGE_CONSTRAINTS =
             "Date should only be today or tomorrow in the form of DD/MM/YYYY, with leading zeros for single digits.";
-    public static final String VALIDATION_REGEX = "^(?:(?:31/(?:0[13578]|1[02]))|" //Months with 31st
-            + "(?:30/(?:0[13-9]|1[0-2]))|"//30th valid in all but Feb
-            //Leap year
-            + "(?:29/02/(?:(?:1[6-9]|[2-9]\\d)(?:0[48]|[2468][048]|[13579][26])|(?:16|[2468][048]|[3579][26])00))|"
-            + "(?:0[1-9]|1\\d|2[0-8])/(?:0[1-9]|1[0-2]))/[1-9]\\d{3}$"; //all other days are valid
+    public static final String VALIDATION_REGEX = "^(?:(?:31/(?:0[13578]|1[02]))|"
+                    + "(?:(?:29|30)/(?:0[13-9]|1[0-2]))|"
+                    + "(?:29/02/(?:(?:(?:1[6-9]|[2-9]\\d)"
+                    + "(?:0[48]|[2468][048]|[13579][26]))"
+                    + "|(?:(?:16|[2468][048]|[3579][26])00)))|"
+                    + "(?:0[1-9]|1\\d|2[0-8])/(?:0[1-9]|1[0-2]))/(?:1\\d{3}|[2-9]\\d{3})$";
     public final String value;
 
     /**
@@ -37,6 +38,14 @@ public class StartDate {
      */
     public static boolean isValidDate(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns this StartDate's value (in "dd/MM/yyyy" format) as a LocalDate object.
+     */
+    public LocalDate toLocalDate() {
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return LocalDate.parse(value, dateFormatter);
     }
 
     @Override
