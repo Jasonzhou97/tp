@@ -37,6 +37,8 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         Reservation reservationToDelete = Identification.getReservationUsingId(id, model);
         model.deleteReservation(reservationToDelete);
+        //delete/decrement in persons list
+        model.updatePersonsListAfterDelete(reservationToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_RESERVATION_SUCCESS,
                 Messages.format(reservationToDelete)));
     }
