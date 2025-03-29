@@ -456,6 +456,7 @@ Use case ends.
 &ensp; 1a1. System indicates that there are no reservations on given day. <br>
 &ensp; Use case resumes at step 1.
 
+---
 ### **U8: Edit specific reservations**
 
 **MSS**
@@ -475,7 +476,27 @@ Use case ends.
 *{More to be added}*
 
 ---
+### **U9: Find a reservation by phone**
 
+**MSS**
+1. User finds the reservation by phone.
+2. System displays all reservations that are made under the queried phone number.
+   <The following steps can be included as a seperate use case that can be used for other find functions>
+3. User selects relevant reservation.
+4. System displays all relevant information on the reservation.
+
+Use case ends.
+
+**Extensions** <br>
+1a. The user enters invalid command format. <br>
+&ensp; 1a1. System displays an error message. <br>
+&ensp; Use case resumes at step 1.
+
+1b. The user enters an invalid phone number.<br>
+&ensp; 3a1. System displays an error message. <br>
+&ensp; Use case resumes at step 1.
+
+---
 ### Non-Functional Requirements
 
 1. **Platform Compatibility**: The application must run on any mainstream OS (Windows, Linux, macOS) with Java 17 or above.
