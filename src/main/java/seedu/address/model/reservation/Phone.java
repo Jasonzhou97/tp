@@ -32,6 +32,13 @@ public class Phone {
     }
 
     /**
+     * Construct a default Phone for UI booting up.
+     */
+    public Phone() {
+        value = "";
+    }
+
+    /**
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
