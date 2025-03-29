@@ -109,6 +109,8 @@ public interface Model {
      */
     void updateFilteredReservationList(Predicate<Reservation> predicate);
 
+    void filterReservationsByRegular(Predicate<Reservation> predicate);
+    void filterPreviousReservations(Predicate<Reservation> predicate);
     /**
      * Filters reservations for today.
      */
