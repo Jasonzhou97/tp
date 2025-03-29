@@ -27,10 +27,6 @@ public class Phone {
         value = phone;
     }
 
-    public Phone() {
-        value = "";
-    }
-
     /**
      * Construct a default Phone for UI booting up.
      */

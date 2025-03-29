@@ -31,9 +31,6 @@ public class Name {
         fullName = name;
     }
 
-    public Name() {
-        fullName = "";
-    }
 
     /**
      * Construct a default fullName for UI booting up.
