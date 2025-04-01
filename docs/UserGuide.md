@@ -5,7 +5,7 @@ title: User Guide
 
 # GastroBook User Guide
 
-GastroBook is a **desktop app for managing restaurant reservations for small scale resturants who are only taking reservations for current day and next day, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
+GastroBook is a **desktop app for managing restaurant reservations for small scale restaurants who are only taking reservations for current day and next day, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 * Table of Contents
   {:toc}
@@ -23,7 +23,7 @@ GastroBook is a **desktop app for managing restaurant reservations for small sca
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar gastrobook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample reservation data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/Ui1.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -32,13 +32,13 @@ GastroBook is a **desktop app for managing restaurant reservations for small sca
 
     * `add n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event ` : Adds a reservation for `John Doe` to GastroBook.
 
-    * `delete 170320259344` : Deletes the reservation with ID 170320259344.
+    * `delete [validReservationID (ie: 1703202593441230)]` : Deletes the reservation with ID 1703202593441230.
 
     * `listrt` : Lists all reservations for today.
 
     * `exit` : Exits the app.
 
-    * `edit [validReservationID] n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event ` : Edit tomorrow or today reservations details.
+    * `edit [validReservationID (ie: 1703202593441230)] n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event ` : Edit tomorrow or today reservations details.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -49,7 +49,7 @@ GastroBook is a **desktop app for managing restaurant reservations for small sca
 
 Shows a link to guide you to a help page.
 
-![help message](images/helpMessage.png)
+![help message](images/helpMessage1.png)
 
 Format: `help`
 
@@ -90,7 +90,7 @@ Format: `edit [RESERVATION_ID] n/[NAME] p/[PHONE_NUMBER] date/[DATE] time/[TIME]
 
 
 Examples:
-* `edit 180320251234 n/John Doe p/98761234 date/18/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event`
+* `edit 1803202512341230 n/John Doe p/98761234 date/18/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event`
 
 ### Listing all reservations : `list`
 
@@ -214,7 +214,7 @@ GastroBook data are saved in the hard disk automatically after any command that 
 
 ### Editing the data file
 
-GastroBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`.
+GastroBook data are saved automatically as a JSON file `[JAR file location]/data/gastrobook.json`.
 
 
 --------------------------------------------------------------------------------------------------------------------
