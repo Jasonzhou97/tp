@@ -497,6 +497,24 @@ Use case ends.
 &ensp; Use case resumes at step 1.
 
 ---
+### **U10: Remark a reservation**
+
+**MSS**
+1. User queries to remark the reservation with valid ID.
+2. System updates or adds the remark to the reservation.
+
+Use case ends.
+
+**Extensions** <br>
+1a. Reservations to be remarked queried with ID that does not exist. <br>
+&ensp; 1a1. System displays an error message.  <br>
+&ensp; Use case resumes at step 1.
+
+1b. Reservation to be remarked queried with invalid ID. <br>
+&ensp; 1b1. System displays an error message and output correct use of remark command.  <br>
+&ensp; Use case resumes at step 1.
+
+---
 ### Non-Functional Requirements
 
 1. **Platform Compatibility**: The application must run on any mainstream OS (Windows, Linux, macOS) with Java 17 or above.
