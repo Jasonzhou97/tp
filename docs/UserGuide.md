@@ -188,6 +188,19 @@ Format: `unmark [RESERVATION_ID]`
 Examples:
 * `unmark 1703202593441200` marks the reservation with ID 1703202593441200 as unpaid.
 
+### remark : `remark`
+
+Marks a specific reservation as unpaid.
+
+Format: `unmark [RESERVATION_ID]`
+
+* Marks the reservation with the specified `RESERVATION_ID` as unpaid.
+* The reservation ID is in the format: date of reservation followed by his/her phone number and the time of reservation (e.g., 1703202593441200).
+
+
+Examples:
+* `unmark 1703202593441200` marks the reservation with ID 1703202593441200 as unpaid.
+
 ### Exiting the program : `exit`
 
 Exits the program.
