@@ -465,7 +465,7 @@ Use case ends.
 
 **MSS**
 1. User queries to edit the reservation with valid ID.
-2. System displays all reservations of today and tomorrow with the edited reservation inside a reservation edited message. [Could be with active fxml element]
+2. System displays all reservations of today and tomorrow with the edited reservation inside a reservation edited message. [Could be with active fxml element] <br>
 Use case ends.
 
 **Extensions** <br>
@@ -500,8 +500,12 @@ Use case ends.
 &ensp; 3a1. System displays an error message. <br>
 &ensp; Use case resumes at step 1.
 
+2a. The user enters a phone number that does not exist <br>
+&ensp; 2a1. System displays invalid phone number input message. <br>
+&ensp; Use case resumes at step 1.
+
 ---
-### **U10: Remark a reservation**
+### **U10: Add remark to a reservation**
 
 **MSS**
 1. User queries to remark the reservation with valid ID.
@@ -529,6 +533,11 @@ Use case ends.
 6. **Storage Access**: The system should be able to retrieve data with the given storage requirements in under 1 second.
 7. **User Access**: The system should be able to run locally with no more than 1 user with 1 database.
 8. **Phone Number**: Last 4 digits of phone number of every customer input to the system must be of unique combination.
+9. **Duplicate Reservations**: Duplicate reservations are not allowed to be added into the database. Reservations are considered to be duplicates only if: <br>
+   &ensp; - The last 4 digit of the phone numbers of both reservations are the same <br>
+   &ensp; - The booking date of both reservations are the same <br>
+   &ensp; - The booking time of both reservations are the same <br>
+   &ensp;The above situation is unlikely to happen(<0.001%).
 
 *{More to be added}*
 
