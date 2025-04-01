@@ -154,14 +154,9 @@ public class Reservation {
         }
 
         Reservation otherReservation = (Reservation) other;
-        return name.toLowerCase().equals(otherReservation.name.toLowerCase())
-                && phone.equals(otherReservation.phone)
+        return phone.getLastFourDigitsString().equals(otherReservation.phone.getLastFourDigitsString())
                 && date.equals(otherReservation.date)
-                && time.equals(otherReservation.time)
-                && duration.equals(otherReservation.duration)
-                && pax.equals(otherReservation.pax)
-                && table.equals(otherReservation.table)
-                && tags.equals(otherReservation.tags);
+                && time.equals(otherReservation.time);
     }
 
     @Override
