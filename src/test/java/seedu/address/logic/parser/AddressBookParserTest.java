@@ -5,7 +5,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -17,11 +16,7 @@ import seedu.address.logic.commands.ListRtCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class AddressBookParserTest {
-
     private final AddressBookParser parser = new AddressBookParser();
-
-    // Define a constant for testing
-    private static final Index INDEX_ONE = Index.fromOneBased(1);
 
 
     @Test
