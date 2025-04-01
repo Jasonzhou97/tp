@@ -12,6 +12,7 @@ import seedu.address.model.reservation.Identification;
 import seedu.address.model.reservation.Name;
 import seedu.address.model.reservation.Pax;
 import seedu.address.model.reservation.Phone;
+import seedu.address.model.reservation.Remark;
 import seedu.address.model.reservation.StartDate;
 import seedu.address.model.reservation.StartTime;
 import seedu.address.model.reservation.Table;
@@ -155,6 +156,17 @@ public class ParserUtil {
             throw new ParseException(Table.MESSAGE_CONSTRAINTS);
         }
         return new Table(trimmedTable);
+    }
+
+    /**
+     * Parses a {@code String Remark} into an {@code Remark}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Remark parseRemark(String remark) {
+        requireNonNull(remark);
+        String trimmedRemark = remark.trim();
+        //No invalid remark
+        return new Remark(trimmedRemark);
     }
 
     /**
