@@ -465,20 +465,21 @@ Use case ends.
 
 **MSS**
 1. User queries to edit the reservation with valid ID.
-2. System displays all reservations of today and tomorrow with the edited reservation inside a reservation edited message. [Could be with active fxml element] <br>
+2. If found, system updates the reservation based on the type of edit: <br>
+   &ensp;a. Both name and number are edited → PersonListManager updates details in place. <br>
+   &ensp;b. Only name is edited → PersonListManager updates name in place. <br>
+   &ensp;c. Only number is edited → PersonListManager decrements the counter of the original person and creates a new person &ensp;&ensp; with the updated number. <br>
+System displays all reservations for today and tomorrow with a "Reservation Edited" message.
+
 Use case ends.
 
-**Extensions** <br>
-1a. Reservations to be edited queried with valid ID but not of today or tomorrow reservation. <br>
-&ensp; 1a1. System displays all reservations of today and tomorrow with a reservation not exist message. <br>
-Use case ends.
-
-1b. Reservations to be edited queried with invalid ID <br>
-&ensp; 1b1. System displays invalid command message and output proper example of edit use.  <br>
-Use case ends.
-
-*{More to be added}*
-
+Extensions <br>
+1a. Reservation exists but is not for today or tomorrow. <br>
+  1a1. System displays all reservations for today and tomorrow with a "Reservation Not Found for Today or Tomorrow" message. <br>
+  1a2. Use case ends.
+1b. Reservation ID is invalid. <br>
+  1b1. System displays an "Invalid Command" message and provides an example of correct edit usage. <br>
+  1b2. Use case ends.
 ---
 ### **U9: Find a reservation by phone**
 
@@ -523,6 +524,45 @@ Use case ends.
 &ensp; Use case resumes at step 1.
 
 ---
+### **U9: Find a reservation by phone**
+
+**MSS**
+1. User finds the reservation by phone.
+2. System displays all reservations that are made under the queried phone number.
+   <The following steps can be included as a seperate use case that can be used for other find functions>
+3. User selects relevant reservation.
+4. System displays all relevant information on the reservation.
+
+Use case ends.
+
+**Extensions** <br>
+1a. The user enters invalid command format. <br>
+&ensp; 1a1. System displays an error message. <br>
+&ensp; Use case resumes at step 1.
+
+1b. The user enters an invalid phone number.<br>
+&ensp; 3a1. System displays an error message. <br>
+&ensp; Use case resumes at step 1.
+
+---
+### **U10: Remark a reservation**
+
+**MSS**
+1. User queries to remark the reservation with valid ID.
+2. System updates or adds the remark to the reservation.
+
+Use case ends.
+
+**Extensions** <br>
+1a. Reservations to be remarked queried with ID that does not exist. <br>
+&ensp; 1a1. System displays an error message.  <br>
+&ensp; Use case resumes at step 1.
+
+1b. Reservation to be remarked queried with invalid ID. <br>
+&ensp; 1b1. System displays an error message and output correct use of remark command.  <br>
+&ensp; Use case resumes at step 1.
+
+
 ### Non-Functional Requirements
 
 1. **Platform Compatibility**: The application must run on any mainstream OS (Windows, Linux, macOS) with Java 17 or above.
