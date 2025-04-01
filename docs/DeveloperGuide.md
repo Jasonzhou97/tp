@@ -325,7 +325,7 @@ unless specified otherwise
 ### **U1: Add a reservation**
 
 **MSS** (Main Success Scenario)
-1. User inputs reservation details (name, table number, timeslot, special requests).
+1. User inputs reservation details (name, phone, date, time, duration, number of people, table number, special requests).
 2. System confirms if the reservation slot is available.
 3. User is prompted to confirm the reservation.
 4. System adds the reservation to the schedule.
@@ -333,6 +333,10 @@ unless specified otherwise
 Use case ends.
 
 **Extensions** <br>
+1a. User input invalid parameters <br>
+&ensp; 1a1. System indicates input parameters are invalid. <br>
+&ensp; Use case resumes at step 1.
+
 2a. The provided timeslot is not available. <br>
 &ensp; 2a1. System indicates that the provided timeslot is not available. <br>
 &ensp; 2a2. System shows available slots. <br>
