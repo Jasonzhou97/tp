@@ -78,6 +78,37 @@ public class ReservationBuilder {
     }
 
     /**
+     * Creates a {@code ReservationBuilder} with default values.
+     * <p>
+     * The default values are:
+     * <ul>
+     *     <li>Name: "Amy Bee"</li>
+     *     <li>Phone: "85355255"</li>
+     *     <li>Date: today (formatted as dd/MM/yyyy)</li>
+     *     <li>Time: "1800"</li>
+     *     <li>Duration: "2" (hours)</li>
+     *     <li>Pax: "2"</li>
+     *     <li>Table: "A1"</li>
+     *     <li>Remark: "She likes aardvarks."</li>
+     *     <li>Tags: none</li>
+     *     <li>Payment status: unpaid</li>
+     * </ul>
+     */
+    public ReservationBuilder() {
+        this.name = new Name(DEFAULT_NAME);
+        this.phone = new Phone(DEFAULT_PHONE);
+        this.date = new StartDate(DEFAULT_DATE);
+        this.time = new StartTime(DEFAULT_TIME);
+        this.duration = new Duration(DEFAULT_DURATION);
+        this.pax = new Pax(DEFAULT_PAX);
+        this.table = new Table(DEFAULT_TABLE);
+        this.remark = new Remark(DEFAULT_REMARK);
+        this.tags = new HashSet<>();
+        this.id = new Identification(this.date, this.phone, this.time);
+        this.isPaid = DEFAULT_ISPAID;
+    }
+
+    /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public ReservationBuilder(Reservation reservationToCopy) {
