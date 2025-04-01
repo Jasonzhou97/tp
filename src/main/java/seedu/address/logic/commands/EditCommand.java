@@ -35,7 +35,7 @@ import seedu.address.model.reservation.Table;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing reservation in the gastro book.
  */
 public class EditCommand extends Command {
 
@@ -55,8 +55,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PAX + "PAX] "
             + "[" + PREFIX_TABLE + "TABLE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 ";
+            + "Example: " + COMMAND_WORD + "0101202545671230"
+            + PREFIX_PHONE + "12345678";
 
     public static final String MESSAGE_EDIT_RESERVATION_SUCCESS = "Edited reservation: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -156,7 +156,10 @@ public class EditCommand extends Command {
         private Duration duration;
         private Pax pax;
         private Table table;
+        private Remark remark;
         private Set<Tag> tags;
+
+        private boolean isPaid;
         private Identification id;
 
         public EditReservationDescriptor() {}
@@ -173,8 +176,11 @@ public class EditCommand extends Command {
             setDuration(toCopy.duration);
             setPax(toCopy.pax);
             setTable(toCopy.table);
+            setRemark(toCopy.remark);
             setTags(toCopy.tags);
+            setIsPaid(toCopy.isPaid);
             setId(toCopy.id);
+
         }
 
         /**
@@ -240,6 +246,18 @@ public class EditCommand extends Command {
             return Optional.ofNullable(table);
         }
 
+        public void setRemark(Remark remark) {
+            this.remark = remark;
+        }
+
+        public Optional<Remark> getRemark() {
+            return Optional.ofNullable(remark);
+        }
+
+        public void setIsPaid(boolean isPaid) {
+            this.isPaid = isPaid;
+        }
+
         public void setId(Identification id) {
             this.id = id;
         }
@@ -284,7 +302,9 @@ public class EditCommand extends Command {
                     && Objects.equals(duration, otherEditReservationDescriptor.duration)
                     && Objects.equals(pax, otherEditReservationDescriptor.pax)
                     && Objects.equals(table, otherEditReservationDescriptor.table)
-                    && Objects.equals(tags, otherEditReservationDescriptor.tags);
+                    && Objects.equals(tags, otherEditReservationDescriptor.tags)
+                    && Objects.equals(remark, otherEditReservationDescriptor.remark)
+                    && Objects.equals(isPaid, otherEditReservationDescriptor.isPaid);
         }
 
         @Override
@@ -298,6 +318,8 @@ public class EditCommand extends Command {
                     .add("pax", pax)
                     .add("table", table)
                     .add("tags", tags)
+                    .add("remark", remark)
+                    .add("payment", isPaid)
                     .add("id", id)
                     .toString();
         }
