@@ -29,7 +29,6 @@ public class Reservation {
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
     private final Identification id;
-
     private boolean isPaid;
 
     /**
@@ -154,14 +153,17 @@ public class Reservation {
         }
 
         Reservation otherReservation = (Reservation) other;
+        // Name case insensitive equality
         return name.toLowerCase().equals(otherReservation.name.toLowerCase())
                 && phone.equals(otherReservation.phone)
                 && date.equals(otherReservation.date)
                 && time.equals(otherReservation.time)
                 && duration.equals(otherReservation.duration)
+                && remark.equals(otherReservation.remark)
                 && pax.equals(otherReservation.pax)
                 && table.equals(otherReservation.table)
-                && tags.equals(otherReservation.tags);
+                && tags.equals(otherReservation.tags)
+                && isPaid == otherReservation.isPaid;
     }
 
     @Override
@@ -181,8 +183,9 @@ public class Reservation {
                 .add("pax", pax)
                 .add("table", table)
                 .add("tags", tags)
-                .add("id", id)
+                .add("remark", remark)
                 .add("payment", isPaid)
+                .add("id", id)
                 .toString();
     }
 }
