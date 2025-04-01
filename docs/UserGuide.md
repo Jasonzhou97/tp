@@ -43,6 +43,7 @@ GastroBook is a **desktop app for managing restaurant reservations for small sca
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## Features
 
 ### Viewing help : `help`
 
@@ -86,7 +87,6 @@ Format: `edit [RESERVATION_ID] n/[NAME] p/[PHONE_NUMBER] date/[DATE] time/[TIME]
 * NUMBER_OF_PEOPLE: Number of people for the reservation (integer)
 * TABLE_NUMBER: Assigned table number/code for the reservation
 * TAG: tags to categorize the reservation (e.g., regular, event, birthday)
-* REMARK: Additional information that is tied to the reservation
 
 
 Examples:
@@ -188,6 +188,20 @@ Format: `unmark [RESERVATION_ID]`
 Examples:
 * `unmark 1703202593441200` marks the reservation with ID 1703202593441200 as unpaid.
 
+### Remarking a reservation : `remark`
+
+Adds or updates the remark for the reservation identified by the specified `RESERVATION_ID`.
+
+Format: `remark [RESERVATION_ID] r/[REMARK]`
+
+* RESERVATION_ID: Identifier combining today's or tomorrow's date (DDMMYYYY) with the unique last 4 digits of the customer's phone number and time of reservation in HHMM format (e.g., 1803202512341200 for a booking on March 18, 2025 at 1200, with phone ending in 1234).
+* REMARK: A note or comment associated with the reservation.
+* Any previous remark will be overwritten with the new one.
+
+
+Examples:
+* `remark 1703202593441200 r/he like cheese!`.
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -213,14 +227,15 @@ GastroBook data are saved automatically as a JSON file `[JAR file location]/data
 | **Add**                  | `add n/NAME p/PHONE_NUMBER date/DATE time/TIME duration/DURATION pax/NUMBER_OF_PEOPLE table/TABLE_NUMBER [t/TAG]…` <br> e.g., `add n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event`                                    |
 | **Edit**                 | `edit RESERVATION_ID n/NAME p/PHONE_NUMBER date/DATE time/TIME duration/DURATION pax/NUMBER_OF_PEOPLE table/TABLE_NUMBER [t/TAG]...` <br> e.g.,`edit 1803202512341200 n/John Doe p/98761234 date/18/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event` |
 | **Delete**               | `delete RESERVATION_ID`<br> e.g., `delete 1703202593441200`                                                                                                                                                                                                        |
-| **Mark**                 | `mark RESERVATION_ID`<br> e.g., `mark 1703202593441200`                                                                                                                                                                                                            |
+| **Mark**                 | `mark RESERVATION_ID`<br> e.g., `mark 1703202593441200`                                                                                                                                                                                                            ||                          |                                                                                                                                                                                                                                                                    |
 | **Unmark**               | `unmark RESERVATION_ID`<br> e.g., `unmark 1703202593441200`                                                                                                                                                                                                        |
-| **Find by name**         | `findn NAME`<br> e.g., `findn John Doe`                                                                                                                                                                                                                            | |
+| **Remark**               | `remark RESERVATION_ID r/REMARK`<br> e.g., `remark 0104202512341700 r/he like cheese!`                                                                                                                                                                             |
+| **Find by name**         | `findn NAME`<br> e.g., `findn John Doe`                                                                                                                                                                                                                            |
 | **Find by phone number** | `findp PHONE_NUMBER`<br> e.g., `findp 91234567`                                                                                                                                                                                                                    |
 | **Find by time**         | `findt TIME`<br> e.g., `findt 1400`                                                                                                                                                                                                                                |
 | **List all**             | `list`                                                                                                                                                                                                                                                             |
 | **List today**           | `listrt`                                                                                                                                                                                                                                                           |
 | **List tomorrow**        | `listrn`                                                                                                                                                                                                                                                           |
-| **Help**                 | `help`                                                                                                                                                                                                                                                             |
+| **Help**                 | `help`                                                                                                                                                                                                                                                             ||                          |                                                                                                                                                                                                                                                                    |
 | **Exit**                 | `exit`                                                                                                                                                                                                                                                             |
 |
