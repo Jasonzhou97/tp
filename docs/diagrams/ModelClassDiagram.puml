@@ -11,18 +11,9 @@ Class "<<interface>>\nModel" as Model
 Class GastroBook
 Class ModelManager
 Class UserPrefs
-
+Class PersonsList
+Class PersonsListManager
 Class UniqueReservationList
-Class Reservation
-Class StartDate
-Class StartTime
-Class Pax
-Class Identification
-Class Name
-Class Phone
-Class Tag
-Class Duration
-Class Table
 
 Class I #FFFFFF
 }
@@ -38,26 +29,20 @@ Model .left.> ReadOnlyGastroBook
 ModelManager -left-> "1" GastroBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
-
+ModelManager --> "1"PersonsListManager
+ModelManager --> "1"PersonsList
+PersonsListManager -left->PersonsList
 'change AddressBook to GastroBook
 GastroBook *--> "1" UniqueReservationList
-UniqueReservationList --> "~* all" Reservation
-Reservation --> Name
-Reservation --> Phone
-Reservation --> StartDate
-Reservation --> StartTime
-Reservation --> Duration
-Reservation --> Table
-Reservation --> Pax
-Reservation *--> Identification
-Reservation --> "*" Tag
 
-Reservation -[hidden]up--> I
+
 UniqueReservationList -[hidden]right-> I
 
-Name -[hidden]right-> Phone
+
+'Name -[hidden]right-> Phone
 'Phone -[hidden]right-> Address'
 'Address -[hidden]right-> Email
 
-ModelManager --> "~* filtered" Reservation
+
+
 @enduml
