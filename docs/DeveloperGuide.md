@@ -458,7 +458,25 @@ Use case ends.
 
 ---
 ### **U8: Edit specific reservations**
->>>>>>> 8d99b43c (Update DeveloperGuide)
+Actors: User, System
+
+Main Success Scenario (MSS):
+1. User initiates an edit request with a valid reservation ID.
+2. System verifies that the reservation exists for today or tomorrow.
+    - If found, system updates the reservation based on the type of edit:
+      a. Both name and number are edited → PersonListManager updates details in place.
+      b. Only name is edited → PersonListManager updates name in place.
+      c. Only number is edited → PersonListManager decrements the counter of the original person and creates a new person with the updated number.
+3. System displays all reservations for today and tomorrow with a "Reservation Edited" message.
+4. Use case ends.
+
+Extensions:
+1a. Reservation exists but is not for today or tomorrow.
+1a1. System displays all reservations for today and tomorrow with a "Reservation Not Found for Today or Tomorrow" message.
+1a2. Use case ends.
+
+=======
+Use Case: U8 - Edit Specific Reservations
 
 Actors: User, System
 
@@ -477,6 +495,7 @@ Extensions:
 1a1. System displays all reservations for today and tomorrow with a "Reservation Not Found for Today or Tomorrow" message.
 1a2. Use case ends.
 
+>>>>>>> b24e996d (Update conflict)
 1b. Reservation ID is invalid.
 1b1. System displays an "Invalid Command" message and provides an example of correct edit usage.
 1b2. Use case ends.
