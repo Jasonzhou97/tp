@@ -17,7 +17,7 @@ import seedu.address.model.reservation.Reservation;
  * An Immutable AddressBook that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+class JsonSerializableGastroBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
@@ -27,7 +27,7 @@ class JsonSerializableAddressBook {
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedReservation> persons) {
+    public JsonSerializableGastroBook(@JsonProperty("persons") List<JsonAdaptedReservation> persons) {
         this.persons.addAll(persons);
     }
 
@@ -36,7 +36,7 @@ class JsonSerializableAddressBook {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyGastroBook source) {
+    public JsonSerializableGastroBook(ReadOnlyGastroBook source) {
         persons.addAll(source.getReservationList()
                 .stream().map(JsonAdaptedReservation::new).collect(Collectors.toList()));
     }

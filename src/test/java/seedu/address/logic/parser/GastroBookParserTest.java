@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import org.junit.jupiter.api.Test;
 
-public class AddressBookParserTest {
+public class GastroBookParserTest {
     /*
 
     private final AddressBookParser parser = new AddressBookParser();

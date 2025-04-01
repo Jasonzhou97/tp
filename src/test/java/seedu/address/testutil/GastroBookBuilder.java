@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.GastroBook;
 import seedu.address.model.reservation.Reservation;
 
 /**
@@ -8,27 +8,27 @@ import seedu.address.model.reservation.Reservation;
  * Example usage: <br>
  *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
  */
-public class AddressBookBuilder {
+public class GastroBookBuilder {
 
-    private AddressBook addressBook;
+    private GastroBook gastroBook;
 
-    public AddressBookBuilder() {
-        addressBook = new AddressBook();
+    public GastroBookBuilder() {
+        gastroBook = new GastroBook();
     }
 
-    public AddressBookBuilder(AddressBook addressBook) {
-        this.addressBook = addressBook;
+    public GastroBookBuilder(GastroBook gastroBook) {
+        this.gastroBook = gastroBook;
     }
 
     /**
      * Adds a new {@code Person} to the {@code AddressBook} that we are building.
      */
-    public AddressBookBuilder withPerson(Reservation reservation) {
-        addressBook.addReservation(reservation);
+    public GastroBookBuilder withPerson(Reservation reservation) {
+        gastroBook.addReservation(reservation);
         return this;
     }
 
-    public AddressBook build() {
-        return addressBook;
+    public GastroBook build() {
+        return gastroBook;
     }
 }
