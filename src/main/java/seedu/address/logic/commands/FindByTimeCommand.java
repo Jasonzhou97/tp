@@ -46,7 +46,7 @@ public class FindByTimeCommand extends Command {
         int count = model.getFilteredReservationList().size();
         String resultMessage;
         if (count == 0) {
-            resultMessage = "No matching reservations found.";
+            resultMessage = Messages.MESSAGE_NO_RESERVATIONS_LISTED;;
         } else {
             resultMessage = String.format(Messages.MESSAGE_RESERVATIONS_LISTED_OVERVIEW, count);
         }
