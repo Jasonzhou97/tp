@@ -216,7 +216,7 @@ public class ModelManager implements Model {
     @Override
     public void filterReservationsByRegular(Predicate<Reservation> predicate) {
         requireNonNull(predicate);
-        Predicate<Reservation> regularPredicate = ReservationsFilter.filterByRegular(filteredReservations, personsList);
+        Predicate<Reservation> regularPredicate = ReservationsFilter.filterByRegular(personsList);
         filteredReservations.setPredicate(regularPredicate);
     }
     @Override

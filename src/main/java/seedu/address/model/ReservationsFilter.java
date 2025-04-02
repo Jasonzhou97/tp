@@ -2,17 +2,13 @@ package seedu.address.model;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import javafx.collections.transformation.FilteredList;
-import seedu.address.model.reservation.Person;
-import seedu.address.model.reservation.Phone;
 import seedu.address.model.reservation.Reservation;
-import seedu.address.model.tag.Tag;
+
 /**
  * Provides utility methods for filtering reservations by date.
  */
@@ -93,11 +89,9 @@ public class ReservationsFilter {
     }
     /**
      * Returns a predicate that filters reservations made by regulars.
-     *
-     * @param reservationsList The list of reservations to filter
      * @return Predicate for regulars' reservation
      */
-    public static Predicate<Reservation> filterByRegular(FilteredList<Reservation> reservationsList, PersonsList personsList) {
+    public static Predicate<Reservation> filterByRegular(PersonsList personsList) {
         //made changes here
         // Load the current persons list
         personsList.loadListFromFile();
