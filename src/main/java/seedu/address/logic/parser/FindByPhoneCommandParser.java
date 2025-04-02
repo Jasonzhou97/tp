@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.FindByPhoneCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.reservation.Phone;
 import seedu.address.model.reservation.PhoneContainsKeywordsPredicate;
 
 /**
@@ -27,6 +28,13 @@ public class FindByPhoneCommandParser implements Parser<FindByPhoneCommand> {
         }
 
         String[] phoneKeywords = trimmedArgs.split("\\s+");
+
+        // check if phone number is valid
+        for (String keyword : phoneKeywords) {
+            if (!Phone.isValidPhone(keyword)) {
+                throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+            }
+        }
 
         return new FindByPhoneCommand(new PhoneContainsKeywordsPredicate(Arrays.asList(phoneKeywords)));
     }
