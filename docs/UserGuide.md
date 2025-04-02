@@ -30,7 +30,7 @@ GastroBook is a **desktop app for managing restaurant reservations for small sca
 
     * `list` : Lists all reservations.
 
-    * `add n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event ` : Adds a reservation for `John Doe` to GastroBook.
+    * `add n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/birthday ` : Adds a reservation for `John Doe` to GastroBook.
 
     * `delete [validReservationID (ie: 1703202593441230)]` : Deletes the reservation with ID 1703202593441230.
 
@@ -38,12 +38,31 @@ GastroBook is a **desktop app for managing restaurant reservations for small sca
 
     * `exit` : Exits the app.
 
-    * `edit [validReservationID (ie: 1703202593441230)] n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event ` : Edit tomorrow or today reservations details.
+    * `edit [validReservationID (ie: 1703202593441230)] n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/birthday ` : Edit tomorrow or today reservations details.
 
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Features
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the command format:**<br>
+
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John`.
+
+* Items in square brackets are optional.<br>
+
+* Items with `…`​ after them can be used multiple times including zero times.<br>
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/birthday`, `t/birthday t/vegeterian` etc.
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+
+* Extraneous parameters for commands `help`, `exit` and `clear` will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+</div>
 
 ### Viewing help : `help`
 
@@ -57,26 +76,34 @@ Format: `help`
 
 Adds a reservation to GastroBook.
 
-Format: `add n/[NAME] p/[PHONE_NUMBER] date/[DATE] time/[TIME] duration/[DURATION] pax/[NUMBER_OF_PEOPLE] table/[TABLE_NUMBER] t/[TAG_1] t/[TAG_2] `
+Format: `add n/NAME p/PHONE_NUMBER date/DATE time/TIME duration/DURATION pax/NUMBER_OF_PEOPLE table/TABLE_NUMBER [t/TAG_1] [t/TAG_2] [r/REMARK]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A reservation can have any number of tags (including 0)
+</div>
 
 * NAME: Name of the person making the reservation (string)
 * PHONE_NUMBER: Contact number of the person making the reservation
-* DATE: Date of reservation in DD/MM/YYYY format (e.g., 01/03/2025 for March 1, 2025)
+* DATE: Date of reservation (limited to today or tomorrow) in DD/MM/YYYY format (e.g., 01/03/2025 for March 1, 2025)
 * TIME: Time of reservation in 24-hour HHMM format (e.g., 1800 for 6:00 PM)
-* DURATION: Duration of reservation in hours (maximum 2 hours)
+* DURATION: Duration of reservation in hours
 * NUMBER_OF_PEOPLE: Number of people for the reservation (integer)
-* TABLE_NUMBER: Assigned table number/code for the reservation
-* TAG: tags to categorize the reservation (e.g., regular, event, birthday)
+* TABLE_NUMBER: Assigned table number/code for the reservation (should start with a capital letter, followed by 1-3 numbers)
+* TAG (optional): Tags to categorize and label the reservation (e.g., birthday, vegeterian)
+* REMARK (optional): Additional remarks to take note of for the reservation (e.g., allergic to peanuts)
 
 
 Examples:
-* `add n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event`
+* `add n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/anniversary r/likes cheese`
 
 ### Editing a reservation: `edit`
 
-Edits the reservation with the specified `RESERVATION_ID`.
+Edits details of the reservation with the specified `RESERVATION_ID`.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 
-Format: `edit [RESERVATION_ID] n/[NAME] p/[PHONE_NUMBER] date/[DATE] time/[TIME] duration/[DURATION] pax/[NUMBER_OF_PEOPLE] table/[TABLE_NUMBER] t/[TAG_1] t/[TAG_2] `
+Format: `edit RESERVATION_ID n/NAME p/PHONE_NUMBER date/DATE time/TIME duration/DURATION pax/NUMBER_OF_PEOPLE table/TABLE_NUMBER t/TAG_1 t/TAG_2`
 
 * RESERVATION_ID: Identifier combining today's or tomorrow's date (DDMMYYYY) with the unique last 4 digits of the customer's phone number and time of reservation in HHMM format (e.g., 1803202512341200 for a booking on March 18, 2025 at 1200, with phone ending in 1234).
 * NAME: Name of the person making the reservation (string)
@@ -87,14 +114,70 @@ Format: `edit [RESERVATION_ID] n/[NAME] p/[PHONE_NUMBER] date/[DATE] time/[TIME]
 * NUMBER_OF_PEOPLE: Number of people for the reservation (integer)
 * TABLE_NUMBER: Assigned table number/code for the reservation
 * TAG: tags to categorize the reservation (e.g., regular, event, birthday)
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can remove all the person’s tags by typing t/ without specifying any tags after it.
+</div>
 
 
 Examples:
-* `edit 1803202512341230 n/John Doe p/98761234 date/18/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event`
+* `edit 1803202512341230 duration/1 pax/3`
+
+### Deleting a reservation : `delete`
+
+Deletes a specific reservation from GastroBook.
+
+Format: `delete RESERVATION_ID`
+
+* Deletes the reservation with the specified `RESERVATION_ID`.
+* The reservation ID is in the format: date of reservation followed by his/her phone number and the time of reservation (e.g., 1703202593441200).
+
+
+Examples:
+* `delete 1703202593441200` deletes the reservation with ID 1703202593441200.
+
+### Marking a reservation as paid : `mark`
+
+Marks a specific reservation as paid.
+
+Format: `mark RESERVATION_ID`
+
+* Marks the reservation with the specified `RESERVATION_ID` as paid.
+* The reservation ID is in the format: date of reservation followed by his/her phone number and the time of reservation (e.g., 1703202593441200).
+
+
+Examples:
+* `mark 1703202593441200` marks the reservation with ID 1703202593441200 as paid.
+
+### Unmarking a reservation as paid : `unmark`
+
+Marks a specific reservation as unpaid.
+
+Format: `unmark RESERVATION_ID`
+
+* Marks the reservation with the specified `RESERVATION_ID` as unpaid.
+* The reservation ID is in the format: date of reservation followed by his/her phone number and the time of reservation (e.g., 1703202593441200).
+
+
+Examples:
+* `unmark 1703202593441200` marks the reservation with ID 1703202593441200 as unpaid.
+
+### Remarking a reservation : `remark`
+
+Adds or updates the remark for the reservation identified by the specified `RESERVATION_ID`.
+
+Format: `remark RESERVATION_ID r/REMARK`
+
+* RESERVATION_ID: Identifier combining today's or tomorrow's date (DDMMYYYY) with the unique last 4 digits of the customer's phone number and time of reservation in HHMM format (e.g., 1803202512341200 for a booking on March 18, 2025 at 1200, with phone ending in 1234).
+* REMARK: A note or comment associated with the reservation.
+* Any previous remark will be overwritten with the new one.
+
+
+Examples:
+* `remark 1703202593441200 r/he like cheese!`.
 
 ### Listing all reservations : `list`
 
-Shows a list of all reservations in GastroBook, sorted by date and time.
+Shows a list of all reservations for today and tomorrow in GastroBook, sorted by date and time.
 
 Format: `list`
 
@@ -110,11 +193,23 @@ Shows a list of all reservations for tomorrow, sorted by time.
 
 Format: `listrn`
 
+### Listing all previous reservations : `listp`
+
+Shows a list of all previous reservations, sorted by time.
+
+Format: `listp`
+
+### Listing all reservations by regulars : `listr`
+
+Shows a list of all reservations for today and tomorrow made by regulars.
+
+Format: `listr`
+
 ### Finding reservations by name: `findn`
 
 Finds reservations by the specified name(s).
 
-Format: `findn [NAME]`
+Format: `findn NAME`
 
 * The search is case-insensitive. e.g., `findn john doe` will match `John Doe`
 * Only reservations scheduled for today or tomorrow are considered.
@@ -128,7 +223,7 @@ Examples:
 
 Finds reservations by the specified phone number(s).
 
-Format: `findp [PHONE_NUMBER]`
+Format: `findp PHONE_NUMBER`
 
 * Partial phone numbers will not be accepted. e.g., `9123` will not match `91234567`
 
@@ -141,7 +236,7 @@ Examples:
 
 Finds reservations that are ongoing at the specified time.
 
-Format: `findt [TIME]`
+Format: `findt TIME`
 
 * TIME: Time of reservation in 24-hour HHMM format (e.g., 1800 for 6:00 PM).
 * Only reservations scheduled for today are considered.
@@ -150,57 +245,6 @@ Format: `findt [TIME]`
 
 Examples:
 * `findt 1400` returns all reservations scheduled for today ongoing at 2:00 PM (e.g., a reservation from 1:00 PM to 3:00 PM or 2:00 PM to 4:00 PM), but excludes reservations that end at 2:00 PM (e.g., a reservation from 1:00 PM to 2:00 PM).
-
-### Deleting a reservation : `delete`
-
-Deletes a specific reservation from GastroBook.
-
-Format: `delete [RESERVATION_ID]`
-
-* Deletes the reservation with the specified `RESERVATION_ID`.
-* The reservation ID is in the format: date of reservation followed by his/her phone number and the time of reservation (e.g., 1703202593441200).
-
-Examples:
-* `delete 1703202593441200` deletes the reservation with ID 1703202593441200.
-
-### Marking a reservation as paid : `mark`
-
-Marks a specific reservation as paid.
-
-Format: `mark [RESERVATION_ID]`
-
-* Marks the reservation with the specified `RESERVATION_ID` as paid.
-* The reservation ID is in the format: date of reservation followed by his/her phone number and the time of reservation (e.g., 1703202593441200).
-
-Examples:
-* `mark 1703202593441200` marks the reservation with ID 1703202593441200 as paid.
-
-### Unmarking a reservation as paid : `unmark`
-
-Marks a specific reservation as unpaid.
-
-Format: `unmark [RESERVATION_ID]`
-
-* Marks the reservation with the specified `RESERVATION_ID` as unpaid.
-* The reservation ID is in the format: date of reservation followed by his/her phone number and the time of reservation (e.g., 1703202593441200).
-
-
-Examples:
-* `unmark 1703202593441200` marks the reservation with ID 1703202593441200 as unpaid.
-
-### Remarking a reservation : `remark`
-
-Adds or updates the remark for the reservation identified by the specified `RESERVATION_ID`.
-
-Format: `remark [RESERVATION_ID] r/[REMARK]`
-
-* RESERVATION_ID: Identifier combining today's or tomorrow's date (DDMMYYYY) with the unique last 4 digits of the customer's phone number and time of reservation in HHMM format (e.g., 1803202512341200 for a booking on March 18, 2025 at 1200, with phone ending in 1234).
-* REMARK: A note or comment associated with the reservation.
-* Any previous remark will be overwritten with the new one.
-
-
-Examples:
-* `remark 1703202593441200 r/he like cheese!`.
 
 ### Exiting the program : `exit`
 
@@ -236,6 +280,7 @@ GastroBook data are saved automatically as a JSON file `[JAR file location]/data
 | **List all**             | `list`                                                                                                                                                                                                                                                             |
 | **List today**           | `listrt`                                                                                                                                                                                                                                                           |
 | **List tomorrow**        | `listrn`                                                                                                                                                                                                                                                           |
+| **List previous**        | `listp`                                                                                                                                                                                                                                                            |
+| **List regulars**        | `listr`                                                                                                                                                                                                                                                            |
 | **Help**                 | `help`                                                                                                                                                                                                                                                             ||                          |                                                                                                                                                                                                                                                                    |
 | **Exit**                 | `exit`                                                                                                                                                                                                                                                             |
-|
