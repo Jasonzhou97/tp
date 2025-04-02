@@ -55,8 +55,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PAX + "PAX] "
             + "[" + PREFIX_TABLE + "TABLE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + "0101202545671230"
-            + PREFIX_PHONE + "12345678";
+            + "Example: " + COMMAND_WORD + " 0402202598761700 "
+            + PREFIX_PHONE + "91234567 ";
 
     public static final String MESSAGE_EDIT_RESERVATION_SUCCESS = "Edited reservation: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
