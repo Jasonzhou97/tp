@@ -58,6 +58,10 @@ public class AddCommandParser implements Parser<AddCommand> {
                 PREFIX_PAX, PREFIX_TABLE, PREFIX_REMARK);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        //check if phone number is 8 digits
+        if (argMultimap.getValue(PREFIX_PHONE).get().length() != 8) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Phone number should be 8 digits!"));
+        }
         StartDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         StartTime time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
         Duration duration = ParserUtil.parseDuration(argMultimap.getValue(PREFIX_DURATION).get());
@@ -65,8 +69,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         Table table = ParserUtil.parseTable(argMultimap.getValue(PREFIX_TABLE).get());
         Remark remark = ParserUtil.parseRemark(getValueOrEmpty(argMultimap, PREFIX_REMARK));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+
+
         // Make use of current date ddMMyyyy and last 4 digits of phone and current reservation count
         // to form a unique key id
+
         Identification id = new Identification(date, phone, time);
 
         Reservation reservation = new Reservation(name, phone, date, time, duration, pax,
