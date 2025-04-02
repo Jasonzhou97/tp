@@ -23,7 +23,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building {@code Reservation} objects.
  */
 public class ReservationBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
@@ -36,13 +36,12 @@ public class ReservationBuilder {
     public static final String DEFAULT_REMARK = "She likes aardvarks.";
     public static final boolean DEFAULT_ISPAID = false;
 
-    // Auto Assigned ID after reservation is built, do not change this
+    // Auto-assigned ID after reservation is built
     public static final Identification ID_AMY = new Identification(new StartDate(DEFAULT_DATE),
             new Phone(DEFAULT_PHONE), new StartTime(DEFAULT_TIME));
 
     public static final Identification ID_BOB = new Identification(new StartDate(VALID_DATE_BOB),
             new Phone(VALID_PHONE_BOB), new StartTime(VALID_TIME_BOB));
-
 
     private Name name;
     private Phone phone;
@@ -54,13 +53,11 @@ public class ReservationBuilder {
     private Remark remark;
     private Set<Tag> tags;
     private Identification id;
-
     private boolean isPaid;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code ReservationBuilder} with the specified details.
      */
-
     public ReservationBuilder(Name name, Phone phone, StartDate date,
                               StartTime time, Duration duration, Pax pax,
                               Table table, Remark remark, HashSet<Tag> tags) {
@@ -78,7 +75,40 @@ public class ReservationBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Creates a {@code ReservationBuilder} with default values.
+     * <p>
+     * The default values are:
+     * <ul>
+     *     <li>Name: "Amy Bee"</li>
+     *     <li>Phone: "85355255"</li>
+     *     <li>Date: today (formatted as dd/MM/yyyy)</li>
+     *     <li>Time: "1800"</li>
+     *     <li>Duration: "2" (hours)</li>
+     *     <li>Pax: "2"</li>
+     *     <li>Table: "A1"</li>
+     *     <li>Remark: "She likes aardvarks."</li>
+     *     <li>Tags: none</li>
+     *     <li>Payment status: unpaid</li>
+     * </ul>
+     */
+    public ReservationBuilder() {
+        this.name = new Name(DEFAULT_NAME);
+        this.phone = new Phone(DEFAULT_PHONE);
+        this.date = new StartDate(DEFAULT_DATE);
+        this.time = new StartTime(DEFAULT_TIME);
+        this.duration = new Duration(DEFAULT_DURATION);
+        this.pax = new Pax(DEFAULT_PAX);
+        this.table = new Table(DEFAULT_TABLE);
+        this.remark = new Remark(DEFAULT_REMARK);
+        this.tags = new HashSet<>();
+        this.id = new Identification(this.date, this.phone, this.time);
+        this.isPaid = DEFAULT_ISPAID;
+    }
+
+    /**
+     * Initializes the {@code ReservationBuilder} with the data of {@code reservationToCopy}.
+     *
+     * @param reservationToCopy The reservation to copy.
      */
     public ReservationBuilder(Reservation reservationToCopy) {
         name = reservationToCopy.getName();
@@ -94,9 +124,8 @@ public class ReservationBuilder {
         isPaid = reservationToCopy.getIsPaid();
     }
 
-
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Reservation} being built.
      */
     public ReservationBuilder withName(String name) {
         this.name = new Name(name);
@@ -104,15 +133,7 @@ public class ReservationBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
-     */
-    public ReservationBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Phone} of the {@code Reservation} being built.
      */
     public ReservationBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
@@ -120,7 +141,7 @@ public class ReservationBuilder {
     }
 
     /**
-     * Sets the {@code StartDate} of the {@code Person} that we are building.
+     * Sets the {@code StartDate} of the {@code Reservation} being built.
      */
     public ReservationBuilder withDate(String date) {
         this.date = new StartDate(date);
@@ -128,7 +149,7 @@ public class ReservationBuilder {
     }
 
     /**
-     * Sets the {@code StartTime} of the {@code Person} that we are building.
+     * Sets the {@code StartTime} of the {@code Reservation} being built.
      */
     public ReservationBuilder withTime(String time) {
         this.time = new StartTime(time);
@@ -136,7 +157,7 @@ public class ReservationBuilder {
     }
 
     /**
-     * Sets the {@code Duration} of the {@code Person} that we are building.
+     * Sets the {@code Duration} of the {@code Reservation} being built.
      */
     public ReservationBuilder withDuration(String duration) {
         this.duration = new Duration(duration);
@@ -144,7 +165,7 @@ public class ReservationBuilder {
     }
 
     /**
-     * Sets the {@code Pax} of the {@code Person} that we are building.
+     * Sets the {@code Pax} of the {@code Reservation} being built.
      */
     public ReservationBuilder withPax(String pax) {
         this.pax = new Pax(pax);
@@ -152,7 +173,7 @@ public class ReservationBuilder {
     }
 
     /**
-     * Sets the {@code Table} of the {@code Person} that we are building.
+     * Sets the {@code Table} of the {@code Reservation} being built.
      */
     public ReservationBuilder withTable(String table) {
         this.table = new Table(table);
@@ -160,7 +181,7 @@ public class ReservationBuilder {
     }
 
     /**
-     * Sets the {@code Remark} of the {@code Person} that we are building.
+     * Sets the {@code Remark} of the {@code Reservation} being built.
      */
     public ReservationBuilder withRemark(String remark) {
         this.remark = new Remark(remark);
@@ -168,7 +189,15 @@ public class ReservationBuilder {
     }
 
     /**
-     * Sets the {@code Identification} of the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and sets them for the {@code Reservation} being built.
+     */
+    public ReservationBuilder withTags(String... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Identification} of the {@code Reservation} being built.
      */
     public ReservationBuilder withId(StartDate date, Phone phone, StartTime time) {
         this.id = new Identification(date, phone, time);
@@ -176,10 +205,10 @@ public class ReservationBuilder {
     }
 
     /**
-     * Sets the payment status of the reservation.
+     * Sets the payment status of the {@code Reservation} being built.
      *
      * @param isPaid {@code true} if the reservation is paid, {@code false} otherwise.
-     * @return The current instance of {@code ReservationBuilder} for method chaining.
+     * @return This {@code ReservationBuilder} for method chaining.
      */
     public ReservationBuilder withPaymentStatus(Boolean isPaid) {
         this.isPaid = isPaid;
@@ -187,21 +216,11 @@ public class ReservationBuilder {
     }
 
     /**
-     * @return a sample reservation
+     * Builds and returns the {@code Reservation} with the current builder settings.
+     *
+     * @return A new {@code Reservation} instance.
      */
     public Reservation build() {
         return new Reservation(name, phone, date, time, duration, pax, table, remark, tags, id, isPaid);
-
     }
-
-    //    Has specify this to be ID_AMY as the test samples has been
-    //    reduced to just AMY AND BOB for simplicity and easy testing
-    //    public Reservation build1() {
-    //        return new Reservation(name, phone, date, time, duration, pax, table, remark, tags, ID_AMY, false);
-    //    }
-    //
-    //    public Reservation build2() {
-    //        return new Reservation(name, phone, date, time, duration, pax, table, remark, tags, ID_BOB, false);
-    //    }
-
 }
