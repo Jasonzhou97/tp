@@ -563,7 +563,6 @@ Use case ends.
 * **Max Reservation Hour**: The maximum duration for a reservation, typically set to 2 hours.
 * **Valid Command**: A command that the system recognizes and processes correctly.
 * **Invalid Command**: A command that is unrecognized or improperly formatted by the system.
-* **Reservation Duration**: The time for which a reservation is valid, either 1 hour or 2 hours.
 * **Valid ID**: The id for which edit, mark, unmark, delete, remark take as parameter which has a form of "[dateOfTodayOrTomorrow(ddMMyyyy)] + [UNIQUE last4DigitsOfPhoneNumber(xxxx)] + [time(HHMM)]".
 * **Valid Phone Number**: A phone number that has at least 4 digits.
 
