@@ -122,8 +122,8 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Reservation` objects (which are contained in a `UniqueReservationList` object).
+* stores the currently 'selected' `Reservation` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Reservation>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -325,7 +325,7 @@ unless specified otherwise
 ### **U1: Add a reservation**
 
 **MSS** (Main Success Scenario)
-1. User inputs reservation details (name, table number, timeslot, special requests).
+1. User inputs reservation details (name, phone, date, time, duration, number of people, table number, special requests).
 2. System confirms if the reservation slot is available.
 3. User is prompted to confirm the reservation.
 4. System adds the reservation to the schedule.
@@ -333,6 +333,10 @@ unless specified otherwise
 Use case ends.
 
 **Extensions** <br>
+1a. User input invalid parameters <br>
+&ensp; 1a1. System indicates input parameters are invalid. <br>
+&ensp; Use case resumes at step 1.
+
 2a. The provided timeslot is not available. <br>
 &ensp; 2a1. System indicates that the provided timeslot is not available. <br>
 &ensp; 2a2. System shows available slots. <br>
@@ -457,19 +461,16 @@ Use case ends.
 &ensp; Use case resumes at step 1.
 
 ---
-U8: Edit specific reservations
-MSS
+### **U8: Edit specific reservations**
 
-User initiates an edit request with a valid reservation ID.
-System verifies that the reservation exists for today or tomorrow.
-
-If found, system updates the reservation based on the type of edit:
-a. Both name and number are edited → PersonListManager updates details in place.
-b. Only name is edited → PersonListManager updates name in place.
-c. Only number is edited → PersonListManager decrements the counter of the original person and creates a new person with the updated number.
-
-
+**MSS**
+1. User queries to edit the reservation with valid ID.
+2. If found, system updates the reservation based on the type of edit: <br>
+   &ensp;a. Both name and number are edited → PersonListManager updates details in place. <br>
+   &ensp;b. Only name is edited → PersonListManager updates name in place. <br>
+   &ensp;c. Only number is edited → PersonListManager decrements the counter of the original person and creates a new person &ensp;&ensp; with the updated number. <br>
 System displays all reservations for today and tomorrow with a "Reservation Edited" message.
+
 Use case ends.
 
 Extensions <br>
@@ -500,8 +501,12 @@ Use case ends.
 &ensp; 3a1. System displays an error message. <br>
 &ensp; Use case resumes at step 1.
 
+2a. The user enters a phone number that does not exist <br>
+&ensp; 2a1. System displays invalid phone number input message. <br>
+&ensp; Use case resumes at step 1.
+
 ---
-### **U10: Remark a reservation**
+### **U10: Add remark to a reservation**
 
 **MSS**
 1. User queries to remark the reservation with valid ID.
@@ -568,6 +573,11 @@ Use case ends.
 6. **Storage Access**: The system should be able to retrieve data with the given storage requirements in under 1 second.
 7. **User Access**: The system should be able to run locally with no more than 1 user with 1 database.
 8. **Phone Number**: Last 4 digits of phone number of every customer input to the system must be of unique combination.
+9. **Duplicate Reservations**: Duplicate reservations are not allowed to be added into the database. Reservations are considered to be duplicates only if: <br>
+   &ensp; - The last 4 digit of the phone numbers of both reservations are the same <br>
+   &ensp; - The booking date of both reservations are the same <br>
+   &ensp; - The booking time of both reservations are the same <br>
+   &ensp;The above situation is unlikely to happen(<0.001%).
 
 *{More to be added}*
 
