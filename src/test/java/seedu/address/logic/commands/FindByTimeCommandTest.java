@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.Messages.MESSAGE_NO_RESERVATIONS_LISTED;
+import static seedu.address.logic.Messages.MESSAGE_RESERVATIONS_LISTED_OVERVIEW;
 import static seedu.address.testutil.TypicalReservations.getTypicalAddressBook;
 
 import java.time.LocalDate;
@@ -33,7 +34,7 @@ public class FindByTimeCommandTest {
 
         assertEquals(expectedModel.getFilteredReservationList(), model.getFilteredReservationList());
         assertEquals(
-                String.format(seedu.address.logic.Messages.MESSAGE_RESERVATIONS_LISTED_OVERVIEW,
+                String.format(MESSAGE_RESERVATIONS_LISTED_OVERVIEW,
                         model.getFilteredReservationList().size()),
                 result.getFeedbackToUser());
     }
@@ -70,7 +71,7 @@ public class FindByTimeCommandTest {
 
         assertEquals(2, model.getFilteredReservationList().size());
         assertEquals(
-                String.format(seedu.address.logic.Messages.MESSAGE_RESERVATIONS_LISTED_OVERVIEW, 2),
+                String.format(MESSAGE_RESERVATIONS_LISTED_OVERVIEW, 2),
                 result.getFeedbackToUser());
     }
 

@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.logic.Messages.MESSAGE_RESERVATIONS_LISTED_OVERVIEW;
 import static seedu.address.logic.Messages.MESSAGE_NO_RESERVATIONS_LISTED;
+import static seedu.address.logic.Messages.MESSAGE_RESERVATIONS_LISTED_OVERVIEW;
 import static seedu.address.testutil.TypicalReservations.getTypicalAddressBook;
 
 import java.util.Arrays;
