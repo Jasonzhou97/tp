@@ -42,9 +42,15 @@ public class FindByTimeCommand extends Command {
             boolean isToday = reservation.getDate().toLocalDate().equals(LocalDate.now());
             return matchesTime && isToday;
         });
-        return new CommandResult(
-                String.format(Messages.MESSAGE_RESERVATIONS_LISTED_OVERVIEW,
-                        model.getFilteredReservationList().size()));
+
+        int count = model.getFilteredReservationList().size();
+        String resultMessage;
+        if (count == 0) {
+            resultMessage = "No matching reservations found.";
+        } else {
+            resultMessage = String.format(Messages.MESSAGE_RESERVATIONS_LISTED_OVERVIEW, count);
+        }
+        return new CommandResult(resultMessage);
     }
 
     @Override
