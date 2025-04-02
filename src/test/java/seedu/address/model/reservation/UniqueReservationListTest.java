@@ -33,7 +33,7 @@ public class UniqueReservationListTest {
     @Test
     public void add_duplicatePerson_throwsDuplicatePersonException() {
         uniqueReservationList.add(ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniqueReservationList.add(ALICE));
+        assertThrows(DuplicateReservationException.class, () -> uniqueReservationList.add(ALICE));
     }
 
     @Test
@@ -48,7 +48,7 @@ public class UniqueReservationListTest {
 
     @Test
     public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniqueReservationList.setReservation(ALICE, ALICE));
+        assertThrows(ReservationNotFoundException.class, () -> uniqueReservationList.setReservation(ALICE, ALICE));
     }
 
     @Test
@@ -84,7 +84,7 @@ public class UniqueReservationListTest {
     public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
         uniqueReservationList.add(ALICE);
         uniqueReservationList.add(BOB);
-        assertThrows(DuplicatePersonException.class, () -> uniqueReservationList.setReservation(ALICE, BOB));
+        assertThrows(DuplicateReservationException.class, () -> uniqueReservationList.setReservation(ALICE, BOB));
     }
 
     @Test
@@ -94,7 +94,7 @@ public class UniqueReservationListTest {
 
     @Test
     public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniqueReservationList.remove(ALICE));
+        assertThrows(ReservationNotFoundException.class, () -> uniqueReservationList.remove(ALICE));
     }
 
     @Test
@@ -138,7 +138,7 @@ public class UniqueReservationListTest {
     @Test
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
         List<Reservation> listWithDuplicateReservations = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniqueReservationList
+        assertThrows(DuplicateReservationException.class, () -> uniqueReservationList
         .setReservations(listWithDuplicateReservations));
     }
 

@@ -17,14 +17,14 @@ public class SampleDataUtil {
 
     public static final Remark EMPTY_REMARK = new Remark("");
 
-    public static Reservation[] getSamplePersons() {
+    public static Reservation[] getSampleReservations() {
         return new Reservation[] {
         };
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Reservation sampleReservation : getSamplePersons()) {
+        for (Reservation sampleReservation : getSampleReservations()) {
             sampleAb.addReservation(sampleReservation);
         }
         return sampleAb;
