@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PAX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TABLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
@@ -32,7 +33,8 @@ public class AddCommand extends Command {
             + PREFIX_DURATION + "DURATION "
             + PREFIX_PAX + "PAX "
             + PREFIX_TABLE + "TABLE "
-            + "[" + PREFIX_TAG + "TAG]..."
+            + "[" + PREFIX_TAG + "TAG]... "
+            + "[" + PREFIX_REMARK + "REMARK]. "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "

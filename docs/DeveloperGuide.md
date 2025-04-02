@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classes [`Main`](https://github.com/AY2425S2-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2425S2-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/address/MainApp.java) is in charge of the app launch and shut down.
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
@@ -53,7 +53,7 @@ The bulk of the app's work is done by the following four components:
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/ArchitectureSequenceDiagram1.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
@@ -68,13 +68,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2425S2-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/UiClassDiagram1.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ReservationListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2425S2-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2425S2-CS2103T-T09-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -85,22 +85,22 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2425S2-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 0101202512341800")` API call as an example.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete 0101202512341800` Command](images/DeleteSequenceDiagram1.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </div>
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
+1. When `Logic` is called upon to execute a command, it is passed to an `GastroBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
@@ -111,7 +111,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `GastroBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -122,8 +122,8 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Reservation` objects (which are contained in a `UniqueReservationList` object).
+* stores the currently 'selected' `Reservation` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Reservation>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -325,7 +325,7 @@ unless specified otherwise
 ### **U1: Add a reservation**
 
 **MSS** (Main Success Scenario)
-1. User inputs reservation details (name, table number, timeslot, special requests).
+1. User inputs reservation details (name, phone, date, time, duration, number of people, table number, special requests).
 2. System confirms if the reservation slot is available.
 3. User is prompted to confirm the reservation.
 4. System adds the reservation to the schedule.
@@ -333,6 +333,10 @@ unless specified otherwise
 Use case ends.
 
 **Extensions** <br>
+1a. User input invalid parameters <br>
+&ensp; 1a1. System indicates input parameters are invalid. <br>
+&ensp; Use case resumes at step 1.
+
 2a. The provided timeslot is not available. <br>
 &ensp; 2a1. System indicates that the provided timeslot is not available. <br>
 &ensp; 2a2. System shows available slots. <br>
@@ -379,6 +383,10 @@ Use case ends.
 &ensp; 1a1. System displays an error message. <br>
 &ensp; Use case resumes at step 1. <br>
 
+1b. User types in invalid command. <br>
+&ensp; 1a1. System displays an error message. <br>
+&ensp; Use case resumes at step 1. <br>
+
 2a. The reservation has already been marked as paid. <br>
 &ensp; 2a1. System indicates that reservation has already been marked as paid. <br>
 &ensp; Use case resumes at step1.
@@ -396,6 +404,10 @@ Use case ends.
 
 **Extensions** <br>
 1a. The reservation does not exist. <br>
+&ensp; 1a1. System displays an error message. <br>
+&ensp; Use case resumes at step 1.
+
+1b .User types in invalid commands. <br>
 &ensp; 1a1. System displays an error message. <br>
 &ensp; Use case resumes at step 1.
 
@@ -448,25 +460,108 @@ Use case ends.
 &ensp; 1a1. System indicates that there are no reservations on given day. <br>
 &ensp; Use case resumes at step 1.
 
+---
 ### **U8: Edit specific reservations**
 
 **MSS**
 1. User queries to edit the reservation with valid ID.
-2. System displays all reservations of today and tomorrow with the edited reservation inside a reservation edited message. [Could be with active fxml element]
+2. If found, system updates the reservation based on the type of edit: <br>
+   &ensp;a. Both name and number are edited → PersonListManager updates details in place. <br>
+   &ensp;b. Only name is edited → PersonListManager updates name in place. <br>
+   &ensp;c. Only number is edited → PersonListManager decrements the counter of the original person and creates a new person &ensp;&ensp; with the updated number. <br>
+System displays all reservations for today and tomorrow with a "Reservation Edited" message.
+
+Use case ends.
+
+Extensions <br>
+1a. Reservation exists but is not for today or tomorrow. <br>
+  1a1. System displays all reservations for today and tomorrow with a "Reservation Not Found for Today or Tomorrow" message. <br>
+  1a2. Use case ends.
+1b. Reservation ID is invalid. <br>
+  1b1. System displays an "Invalid Command" message and provides an example of correct edit usage. <br>
+  1b2. Use case ends.
+---
+### **U9: Find a reservation by phone**
+
+**MSS**
+1. User finds the reservation by phone.
+2. System displays all reservations that are made under the queried phone number.
+   <The following steps can be included as a seperate use case that can be used for other find functions>
+3. User selects relevant reservation.
+4. System displays all relevant information on the reservation.
+
 Use case ends.
 
 **Extensions** <br>
-1a. Reservations to be edited queried with valid ID but not of today or tomorrow reservation. <br>
-&ensp; 1a1. System displays all reservations of today and tomorrow with a reservation not exist message. <br>
-Use case ends.
+1a. The user enters invalid command format. <br>
+&ensp; 1a1. System displays an error message. <br>
+&ensp; Use case resumes at step 1.
 
-1b. Reservations to be edited queried with invalid ID <br>
-&ensp; 1b1. System displays invalid command message and output proper example of edit use.  <br>
-Use case ends.
+1b. The user enters an invalid phone number.<br>
+&ensp; 3a1. System displays an error message. <br>
+&ensp; Use case resumes at step 1.
 
-*{More to be added}*
+2a. The user enters a phone number that does not exist <br>
+&ensp; 2a1. System displays invalid phone number input message. <br>
+&ensp; Use case resumes at step 1.
 
 ---
+### **U10: Add remark to a reservation**
+
+**MSS**
+1. User queries to remark the reservation with valid ID.
+2. System updates or adds the remark to the reservation.
+
+Use case ends.
+
+**Extensions** <br>
+1a. Reservations to be remarked queried with ID that does not exist. <br>
+&ensp; 1a1. System displays an error message.  <br>
+&ensp; Use case resumes at step 1.
+
+1b. Reservation to be remarked queried with invalid ID. <br>
+&ensp; 1b1. System displays an error message and output correct use of remark command.  <br>
+&ensp; Use case resumes at step 1.
+
+---
+### **U9: Find a reservation by phone**
+
+**MSS**
+1. User finds the reservation by phone.
+2. System displays all reservations that are made under the queried phone number.
+   <The following steps can be included as a seperate use case that can be used for other find functions>
+3. User selects relevant reservation.
+4. System displays all relevant information on the reservation.
+
+Use case ends.
+
+**Extensions** <br>
+1a. The user enters invalid command format. <br>
+&ensp; 1a1. System displays an error message. <br>
+&ensp; Use case resumes at step 1.
+
+1b. The user enters an invalid phone number.<br>
+&ensp; 3a1. System displays an error message. <br>
+&ensp; Use case resumes at step 1.
+
+---
+### **U10: Remark a reservation**
+
+**MSS**
+1. User queries to remark the reservation with valid ID.
+2. System updates or adds the remark to the reservation.
+
+Use case ends.
+
+**Extensions** <br>
+1a. Reservations to be remarked queried with ID that does not exist. <br>
+&ensp; 1a1. System displays an error message.  <br>
+&ensp; Use case resumes at step 1.
+
+1b. Reservation to be remarked queried with invalid ID. <br>
+&ensp; 1b1. System displays an error message and output correct use of remark command.  <br>
+&ensp; Use case resumes at step 1.
+
 
 ### Non-Functional Requirements
 
@@ -478,6 +573,11 @@ Use case ends.
 6. **Storage Access**: The system should be able to retrieve data with the given storage requirements in under 1 second.
 7. **User Access**: The system should be able to run locally with no more than 1 user with 1 database.
 8. **Phone Number**: Last 4 digits of phone number of every customer input to the system must be of unique combination.
+9. **Duplicate Reservations**: Duplicate reservations are not allowed to be added into the database. Reservations are considered to be duplicates only if: <br>
+   &ensp; - The last 4 digit of the phone numbers of both reservations are the same <br>
+   &ensp; - The booking date of both reservations are the same <br>
+   &ensp; - The booking time of both reservations are the same <br>
+   &ensp;The above situation is unlikely to happen(<0.001%).
 
 *{More to be added}*
 

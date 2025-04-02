@@ -153,17 +153,9 @@ public class Reservation {
         }
 
         Reservation otherReservation = (Reservation) other;
-        // Name case insensitive equality
-        return name.toLowerCase().equals(otherReservation.name.toLowerCase())
-                && phone.equals(otherReservation.phone)
+        return phone.getLastFourDigitsString().equals(otherReservation.phone.getLastFourDigitsString())
                 && date.equals(otherReservation.date)
-                && time.equals(otherReservation.time)
-                && duration.equals(otherReservation.duration)
-                && remark.equals(otherReservation.remark)
-                && pax.equals(otherReservation.pax)
-                && table.equals(otherReservation.table)
-                && tags.equals(otherReservation.tags)
-                && isPaid == otherReservation.isPaid;
+                && time.equals(otherReservation.time);
     }
 
     @Override

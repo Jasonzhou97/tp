@@ -91,18 +91,19 @@ public class AddressBookParser {
             return new UnmarkCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            return new ListCommandParser().parseForList(arguments);
 
         case ListRCommand.COMMAND_WORD:
-            return new ListRCommand();
+            return new ListCommandParser().parseForListR(arguments);
 
         case ListPCommand.COMMAND_WORD:
-            return new ListPCommand();
+            return new ListCommandParser().parseForListP(arguments);
+
         case ListRtCommand.COMMAND_WORD:
-            return new ListRtCommand();
+            return new ListCommandParser().parseForListRT(arguments);
 
         case ListRnCommand.COMMAND_WORD:
-            return new ListRnCommand();
+            return new ListCommandParser().parseForListRN(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

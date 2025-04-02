@@ -6,10 +6,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PAX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TABLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -43,7 +45,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_DATE, PREFIX_TIME, PREFIX_DURATION,
-                        PREFIX_PAX, PREFIX_TABLE, PREFIX_TAG);
+                        PREFIX_PAX, PREFIX_TABLE, PREFIX_TAG, PREFIX_REMARK);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_DATE, PREFIX_TIME, PREFIX_DURATION,
                 PREFIX_PAX, PREFIX_TABLE)
@@ -53,8 +55,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_DATE, PREFIX_TIME, PREFIX_DURATION,
-                PREFIX_PAX, PREFIX_TABLE);
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE);
+                PREFIX_PAX, PREFIX_TABLE, PREFIX_REMARK);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         StartDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
@@ -62,7 +63,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Duration duration = ParserUtil.parseDuration(argMultimap.getValue(PREFIX_DURATION).get());
         Pax pax = ParserUtil.parsePax(argMultimap.getValue(PREFIX_PAX).get());
         Table table = ParserUtil.parseTable(argMultimap.getValue(PREFIX_TABLE).get());
-        Remark remark = new Remark("");
+        Remark remark = ParserUtil.parseRemark(getValueOrEmpty(argMultimap, PREFIX_REMARK));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         // Make use of current date ddMMyyyy and last 4 digits of phone and current reservation count
         // to form a unique key id
@@ -81,4 +82,16 @@ public class AddCommandParser implements Parser<AddCommand> {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
+    /**
+     * Returns the value associated with the specified {@code prefix} in the given {@code argumentMultimap},
+     * or an empty string if no value is present.
+     *
+     * @param argumentMultimap The map containing prefix-value mappings.
+     * @param prefix The prefix whose associated value is to be returned.
+     * @return The last value associated with the prefix, or an empty string if not present.
+     */
+    private String getValueOrEmpty(ArgumentMultimap argumentMultimap, Prefix prefix) {
+        Optional<String> optionalValue = argumentMultimap.getValue(prefix);
+        return optionalValue.orElse("");
+    }
 }
