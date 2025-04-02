@@ -111,7 +111,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `GastroBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `GastroBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `GastroBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -127,7 +127,8 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `GastroBook`, which `Person` references. This allows `GastroBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -141,8 +142,8 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both gastrobook data and user preference data in JSON format, and read them back into corresponding objects.
+* inherits from both `GastroBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -288,29 +289,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `***`        | Admin       | Exit the application                        | Close the app after use                                                       |
 | `***`        | Admin       | Edit reservation details                    | Update booking details (e.g., name, duration) without deleting and recreating |
 | `***`        | Admin       | View all reservations of tomorrow           | Prepare the ingredients for tomorrow reservation in advance                   |
-| `***`        | Admin       | View all reservations for the day           | Access the daily reservation schedule for planning resources                  |
-| `***`        | Admin       | View all reservations of today only         | To be always ready and prepare to welcome incoming guest                      |
-| `***`        | Admin       | See user manual                             | To learn the new app effectively                                              |
-| `**`         | Admin       | Find specific reservations                  | Locate specific reservations by name or other parameters                      |
-| `**`         | Admin       | Mark arrival status for customers           | Track customer arrivals and handle no-shows                                   |
-| `**`         | Admin       | Unmark arrival status for customers         | Update arrival status when customers don't show up within the designated time |
-| `**`         | Admin       | Set reservation time limits                 | Automatically release tables when customers do not arrive on time             |
-| `**`         | Admin       | Add tables of various sizes                 | Accommodate different types of reservations (group bookings, etc.)            |
-| `**`         | Admin       | View/Tag reservations with special requests | Easily track special requests per reservation                                 |
-| `**`         | Admin       | Filter reservations by tags                 | View reservations with specific requests at a glance                          |
-| `**`         | Admin       | Apply discounts on bills                    | Automate pricing adjustments for discounts                                    | |
+| `***`        | Admin       | View all reservations of today              | Access the daily reservation schedule for planning resources                  |
+| `***`        | Admin       | View all reservations of today and tomorrow | Be always ready and prepare to welcome incoming guest                         |
+| `**`         | Admin       | View all past reservations                  | Track reservations for business insights                                      |
+| `**`         | Admin       | View reservations by regulars               | Better prepare for reservations made by regulars                              |
+| `***`        | Admin       | See user manual                             | Learn the new app effectively                                                 |
+| `**`         | Admin       | Find specific reservations                  | Locate specific reservations by name, phone number or time                    |
+| `**`         | Admin       | Tag reservations with special requests      | Easily track special requests per reservation                                 |
+| `**          | Admin       | Remark reservations                         | Customise and tailor each reservation to customer needs                       |
 | `**`         | Admin       | Clear all reservations                      | Reset the schedule for a new reservation plan                                 |
-| `**`         | Admin       | Find available slots                        | Add new reservations into free slots                                          |
-| `**`         | Admin       | Add multiple tables at once                 | Handle large group bookings more efficiently                                  |
 | `**`         | Admin       | View customer details                       | Know their booking time, allocated table, dishes ordered, spending, etc.      |
-| `**`         | Admin       | Set reservation parameters                  | Ensure reservations fit within the table/group limitations                    |
-| `*`          | Admin       | Edit menu                                   | Modify the restaurant menu to accommodate customer requests and dietary needs |
-| `*`          | Admin       | Find duplicate reservations                 | Remove unnecessary or repeated reservations                                   |
-| `*`          | New admin   | View history of past payments               | Keep track of payment history for better management                           |
-| `*`          | Admin       | Tag reservations for special requests       | Track and manage special requests efficiently                                 |
-| `*`          | Admin       | View menu offered by restaurant             | Help customers with menu questions and options                                |
-| `*`          | Admin       | Set parameters for reservations             | Ensure proper handling based on table/group size and special requests         |
-| `*`          | Admin       | View reservation count by time              | Track reservations over different time periods for business insights          |
 
 
 *{More to be added}*
@@ -568,6 +556,7 @@ Use case ends.
 * **Invalid Command**: A command that is unrecognized or improperly formatted by the system.
 * **Valid ID**: The id for which edit, mark, unmark, delete, remark take as parameter which has a form of "[dateOfTodayOrTomorrow(ddMMyyyy)] + [UNIQUE last4DigitsOfPhoneNumber(xxxx)] + [time(HHMM)]".
 * **Valid Phone Number**: A phone number that has at least 4 digits.
+* **Valid Table NUmber**: A table number that starts with a capital letter, followed by 1-3 numbers.
 
 --------------------------------------------------------------------------------------------------------------------
 

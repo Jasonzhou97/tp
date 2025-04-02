@@ -7,7 +7,7 @@ skinparam classBackgroundColor MODEL_COLOR
 GastroBook *-d-> "1" UniqueReservationList
 
 
-'AddressBook *-right-> "1" UniqueTagList
+'GastroBook *-right-> "1" UniqueTagList
 'UniqueTagList -[hidden]down- UniqueReservationList
 'UniqueTagList -[hidden]down- UniqueReservationList
 
