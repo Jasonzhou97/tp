@@ -25,6 +25,7 @@ public class TimeMatchesPredicate implements Predicate<Reservation> {
 
         // The reservation is ongoing at searchTime if startTime <= searchTime < endTime.
         return !startTime.isAfter(searchTime) && searchTime.isBefore(endTime);
+
     }
 
     @Override
