@@ -17,7 +17,8 @@ public class RemarkCommand extends Command {
 
     public static final String COMMAND_WORD = "remark";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the person identified "
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the input reservation "
             + "by the reservation ID. "
             + "Existing remark will be overwritten by the input.\n"
             + "Parameters:  ID ( [6 figures of date (ie : ddMMyyyy)) of TODAY or TOMORROW] "
