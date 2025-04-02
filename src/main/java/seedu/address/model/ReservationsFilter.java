@@ -98,6 +98,7 @@ public class ReservationsFilter {
      * @return Predicate for regulars' reservation
      */
     public static Predicate<Reservation> filterByRegular(FilteredList<Reservation> reservationsList, PersonsList personsList) {
+        //made changes here
         // Load the current persons list
         personsList.loadListFromFile();
 
