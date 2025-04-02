@@ -37,7 +37,7 @@ public class Duration {
      * Returns this Duration's value (in hours) as minutes.
      */
     public int toMinutes() {
-        return Integer.parseInt(value) * 60;
+        return (int) (Double.parseDouble(value) * 60);
     }
 
     @Override
