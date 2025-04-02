@@ -7,5 +7,5 @@
       "y" : 0
     }
   },
-  "addressBookFilePath" : "data/gastrobook.json"
+  "addressBookFilePath" : "data\\gastrobook.json"
 }
