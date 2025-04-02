@@ -1,35 +1,56 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindByNameCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.reservation.NameContainsKeywordsPredicate;
 
 public class FindByNameCommandParserTest {
 
-    private FindByNameCommandParser parser = new FindByNameCommandParser();
+    private final FindByNameCommandParser parser = new FindByNameCommandParser();
 
     @Test
-    public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                FindByNameCommand.MESSAGE_USAGE));
+    public void parse_singleKeyword_success() throws Exception {
+        String input = "Alice";
+        NameContainsKeywordsPredicate expectedPredicate =
+                new NameContainsKeywordsPredicate(Arrays.asList("Alice"));
+        FindByNameCommand expectedCommand = new FindByNameCommand(expectedPredicate);
+
+        assertEquals(expectedCommand, parser.parse(input));
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
-        // no leading and trailing whitespaces
-        FindByNameCommand expectedFindByNameCommand =
-                new FindByNameCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindByNameCommand);
+    public void parse_multipleKeywords_success() throws Exception {
+        String input = "Alice Bob Charlie";
+        NameContainsKeywordsPredicate expectedPredicate =
+                new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob", "Charlie"));
+        FindByNameCommand expectedCommand = new FindByNameCommand(expectedPredicate);
 
-        // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindByNameCommand);
+        assertEquals(expectedCommand, parser.parse(input));
     }
 
+    @Test
+    public void parse_inputWithExtraSpaces_success() throws Exception {
+        String input = "  Alice   Bob   ";
+        NameContainsKeywordsPredicate expectedPredicate =
+                new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
+        FindByNameCommand expectedCommand = new FindByNameCommand(expectedPredicate);
+
+        assertEquals(expectedCommand, parser.parse(input));
+    }
+
+    @Test
+    public void parse_emptyInput_throwsParseException() {
+        String input = "   ";
+        ParseException thrown = assertThrows(ParseException.class, () -> parser.parse(input));
+        assertEquals(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindByNameCommand.MESSAGE_USAGE),
+                thrown.getMessage());
+    }
 }

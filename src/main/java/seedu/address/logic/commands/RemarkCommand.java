@@ -17,14 +17,15 @@ public class RemarkCommand extends Command {
 
     public static final String COMMAND_WORD = "remark";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the person identified "
-            + "by the index number used in the last person listing. "
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the input reservation "
+            + "by the reservation ID. "
             + "Existing remark will be overwritten by the input.\n"
             + "Parameters:  ID ( [6 figures of date (ie : ddMMyyyy)) of TODAY or TOMORROW] "
             + "+ [last 4 digits of customer phone number (ie:xxxx)]"
             + "+ [time of reservation in HHMM format])"
             + PREFIX_REMARK + "[REMARK]\n"
-            + "Example: " + COMMAND_WORD + " 01012025 "
+            + "Example: " + COMMAND_WORD + " 0101202512341230 "
             + PREFIX_REMARK + "Likes to swim.";
 
     public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";

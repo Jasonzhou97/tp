@@ -12,6 +12,7 @@ import seedu.address.model.reservation.Identification;
 import seedu.address.model.reservation.Name;
 import seedu.address.model.reservation.Pax;
 import seedu.address.model.reservation.Phone;
+import seedu.address.model.reservation.Remark;
 import seedu.address.model.reservation.StartDate;
 import seedu.address.model.reservation.StartTime;
 import seedu.address.model.reservation.Table;
@@ -21,21 +22,6 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
-
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-
-    //    /**
-    //     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-    //     * trimmed.
-    //     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
-    //     */
-    //    public static Index parseIndex(String oneBasedIndex) throws ParseException {
-    //        String trimmedIndex = oneBasedIndex.trim();
-    //        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-    //            throw new ParseException(MESSAGE_INVALID_INDEX);
-    //        }
-    //        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
-    //    }
 
 
     /**
@@ -158,6 +144,17 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String Remark} into an {@code Remark}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Remark parseRemark(String remark) {
+        requireNonNull(remark);
+        String trimmedRemark = remark.trim();
+        //No invalid remark
+        return new Remark(trimmedRemark);
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -183,4 +180,5 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
 }
