@@ -1,10 +1,10 @@
 {
   "guiSettings" : {
-    "windowWidth" : 778.4000244140625,
-    "windowHeight" : 965.2000122070312,
+    "windowWidth" : 779.0,
+    "windowHeight" : 896.0,
     "windowCoordinates" : {
-      "x" : 762,
-      "y" : 0
+      "x" : 733,
+      "y" : 38
     }
   },
   "addressBookFilePath" : "data/gastrobook.json"
