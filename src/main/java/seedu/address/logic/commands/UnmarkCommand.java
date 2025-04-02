@@ -23,7 +23,7 @@ public class UnmarkCommand extends Command {
 
     public static final String MESSAGE_UNMARK_RESERVATION_SUCCESS = "Successfully unmarks the reservation";
     public final Identification id;
-
+    public static final String MESSAGE_DUPLICATE_UNMARK = "The reservation has already been mark as unpaid";
     /**
      * Constructs a {@code UnmarkCommand} with the given identification.
      *
@@ -45,6 +45,9 @@ public class UnmarkCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Reservation reservationToUnmark = Identification.getReservationUsingId(id, model);
+        if(!reservationToUnmark.getIsPaid()){
+            throw new CommandException(MESSAGE_DUPLICATE_UNMARK);
+        }
         Reservation unmarkedReservation = reservationToUnmark.toUnpaid();
         model.setReservation(reservationToUnmark, unmarkedReservation);
         return new CommandResult(String.format(MESSAGE_UNMARK_RESERVATION_SUCCESS,

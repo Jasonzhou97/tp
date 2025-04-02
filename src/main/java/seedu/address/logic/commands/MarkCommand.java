@@ -22,6 +22,7 @@ public class MarkCommand extends Command {
             + "Example: " + COMMAND_WORD + " 180320251234 ";
 
     public static final String MESSAGE_MARK_RESERVATION_SUCCESS = "Successfully marks the reservation";
+    public static final String MESSAGE_DUPLICATE_MARK = "The reservation has been marked";
     public final Identification id;
 
     /**
@@ -45,6 +46,9 @@ public class MarkCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Reservation reservationToMark = Identification.getReservationUsingId(id, model);
+        if(reservationToMark.getIsPaid()) {
+            throw new CommandException(MESSAGE_DUPLICATE_MARK);
+        }
         Reservation markedReservation = reservationToMark.toPaid();
         model.setReservation(reservationToMark, markedReservation);
         return new CommandResult(String.format(MESSAGE_MARK_RESERVATION_SUCCESS,
