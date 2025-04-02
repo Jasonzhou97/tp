@@ -546,9 +546,12 @@ Use case ends.
    &ensp; - The booking date of both reservations are the same <br>
    &ensp; - The booking time of both reservations are the same <br>
    &ensp;The above situation is unlikely to happen(<0.001%).
-10. **Duration**: The duration of reservations must be <12h and are in intervals of 30 minutes or 1 hour.
-11. **Pax**: Number of people per reservation is not limited and is subjected to user discretion.
-12. **Table Number**: Table number assigned to each reservation is subjected to user discretion.
+10. **Time**: The time of reservations is not limited and is subjected to user discretion.
+    &ensp; - No earliest or latest time limit placed (e.g. 0000 is also allowed)
+    &ensp; - Reservations before current time are allowed (e.g. reservation at 1400 today can be made even if current time is 1600)
+11. **Duration**: The duration of reservations must be <12h and are in intervals of 30 minutes or 1 hour.
+12. **Pax**: Number of people per reservation is not limited and is subjected to user discretion.
+13. **Table Number**: Table number assigned to each reservation is subjected to user discretion.
 
 *{More to be added}*
 
