@@ -2,15 +2,23 @@ package seedu.address.model;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import javafx.collections.transformation.FilteredList;
+import seedu.address.model.reservation.Person;
+import seedu.address.model.reservation.Phone;
 import seedu.address.model.reservation.Reservation;
 import seedu.address.model.tag.Tag;
 /**
  * Provides utility methods for filtering reservations by date.
  */
 public class ReservationsFilter {
+
+    private static PersonsList personsList = new PersonsList();
 
     /**
      * Returns a predicate that filters reservations scheduled for today.
@@ -89,9 +97,22 @@ public class ReservationsFilter {
      * @param reservationsList The list of reservations to filter
      * @return Predicate for regulars' reservation
      */
-    public static Predicate<Reservation> filterByRegular(FilteredList<Reservation> reservationsList) {
-        //filter by regulars
-        Predicate<Reservation> regularPredicate = reservation -> reservation.getTags().contains(new Tag("regular"));
+    public static Predicate<Reservation> filterByRegular(FilteredList<Reservation> reservationsList, PersonsList personsList) {
+        // Load the current persons list
+        personsList.loadListFromFile();
+
+        // get a list of regular numbers
+        Set<String> regularNumbers = personsList.getRegularCustomers()
+                .stream()
+                .map(person -> person.getPhone().value)
+                .collect(Collectors.toSet());
+
+        // check if any reservations match these regular customers
+        Predicate<Reservation> regularPredicate = reservation -> {
+            String reservationPhone = reservation.getPhone().value;
+            return regularNumbers.contains(reservationPhone);
+        };
+
         return regularPredicate;
     }
 

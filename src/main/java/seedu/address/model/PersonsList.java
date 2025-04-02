@@ -331,6 +331,14 @@ public class PersonsList {
         }
     }
 
+    public boolean containsNumber(Phone phone) {
+        for (Person p: personsList) {
+            if (p.getPhoneNumber().equals(phone.value)) {
+                return true;
+            }
+        }
+        return false;
+    }
     /**
      * Returns a copy of the persons list.
      */
@@ -344,7 +352,7 @@ public class PersonsList {
     public ArrayList<Person> getRegularCustomers() {
         ArrayList<Person> regulars = new ArrayList<>();
         for (Person person : personsList) {
-            if (person.isRegular()) {
+            if (person.getCounter() >= getRegularCustomerThreshold()) {
                 regulars.add(person);
             }
         }
