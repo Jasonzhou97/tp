@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PAX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TABLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
@@ -48,7 +47,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_NAME, PREFIX_PHONE, PREFIX_DATE,
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_DATE,
                 PREFIX_TIME, PREFIX_DURATION, PREFIX_PAX, PREFIX_TABLE);
 
         EditReservationDescriptor editReservationDescriptor = new EditReservationDescriptor();
@@ -73,9 +72,6 @@ public class EditCommandParser implements Parser<EditCommand> {
             editReservationDescriptor.setPax(ParserUtil.parsePax(argMultimap.getValue(PREFIX_PAX).get()));
         }
         if (argMultimap.getValue(PREFIX_TABLE).isPresent()) {
-            editReservationDescriptor.setTable(ParserUtil.parseTable(argMultimap.getValue(PREFIX_TABLE).get()));
-        }
-        if (argMultimap.getValue(PREFIX_REMARK).isPresent()) {
             editReservationDescriptor.setTable(ParserUtil.parseTable(argMultimap.getValue(PREFIX_TABLE).get()));
         }
 

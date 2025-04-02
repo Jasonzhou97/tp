@@ -29,7 +29,6 @@ public class Reservation {
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
     private final Identification id;
-
     private boolean isPaid;
 
     /**
@@ -176,8 +175,9 @@ public class Reservation {
                 .add("pax", pax)
                 .add("table", table)
                 .add("tags", tags)
-                .add("id", id)
+                .add("remark", remark)
                 .add("payment", isPaid)
+                .add("id", id)
                 .toString();
     }
 }
