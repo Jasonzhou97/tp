@@ -431,7 +431,6 @@ Use case ends.
 **MSS**
 1. User finds the reservation by name.
 2. System displays all reservations that are made under the queried name.
-<The following steps can be included as a seperate use case that can be used for other find functions>
 3. User selects relevant reservation.
 4. System displays all relevant information on the reservation.
 
@@ -464,22 +463,19 @@ Use case ends.
 ### **U8: Edit specific reservations**
 
 **MSS**
-1. User queries to edit the reservation with valid ID.
-2. If found, system updates the reservation based on the type of edit: <br>
-   &ensp;a. Both name and number are edited → PersonListManager updates details in place. <br>
-   &ensp;b. Only name is edited → PersonListManager updates name in place. <br>
-   &ensp;c. Only number is edited → PersonListManager decrements the counter of the original person and creates a new person &ensp;&ensp; with the updated number. <br>
-System displays all reservations for today and tomorrow with a "Reservation Edited" message.
+1. User queries to edit the reservation with ID.
+2. System displays all reservations for today and tomorrow with a reservation edited message.
 
 Use case ends.
 
-Extensions <br>
-1a. Reservation exists but is not for today or tomorrow. <br>
-  1a1. System displays all reservations for today and tomorrow with a "Reservation Not Found for Today or Tomorrow" message. <br>
-  1a2. Use case ends.
+**Extensions** <br>
+1a. Reservation is not for today or tomorrow. <br>
+&ensp; 1a1. System displays reservation not found message. <br>
+&ensp; Use case ends.<br>
+
 1b. Reservation ID is invalid. <br>
-  1b1. System displays an "Invalid Command" message and provides an example of correct edit usage. <br>
-  1b2. Use case ends.
+&ensp; 1b1. System displays an invalid command message and provides an example of correct edit usage. <br>
+&ensp; Use case ends. <br>
 ---
 ### **U9: Find a reservation by phone**
 
