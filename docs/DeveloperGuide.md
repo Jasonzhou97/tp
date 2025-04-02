@@ -117,6 +117,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2425S2-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
+Below is the diagram that shows the high level design of `Model` component.
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
@@ -129,6 +130,13 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
+Below is a diagram that shows the detail of `GastroBook` class.
+
+<img src="images/BetterModelClassDiagram.png" width="900" />
+
+Below is a diagram that shows the detail of `PersonList` class.
+
+<img src="images/PersonListClassDiagram.png" width="150" />
 
 
 
