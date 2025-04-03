@@ -132,8 +132,6 @@ The `Model` component,
 * stores a PersonsList file that contains the data of all individuals who have made reservations before, and whether they are regulars.
 * stores a PersonsList manager file that manipulates data inside persons list.
 
-
-
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `GastroBook`, which `Person` references. This allows `GastroBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 Below is a diagram that shows the detail of `GastroBook` class.
@@ -178,7 +176,7 @@ This sequence diagram illustrates three key operations:
 
 The `Storage` component,
 * can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `GastroBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `GatroBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 * storage of personlist files and data are implemented under Model
 
