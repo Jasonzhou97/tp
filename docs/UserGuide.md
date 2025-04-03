@@ -3,14 +3,16 @@ layout: page
 title: GastroBook User Guide
 ---
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## Introduction
 
 GastroBook is a **desktop app for managing restaurant reservations for small scale restaurants who are only taking reservations for current day and next day, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## **Quick start**
 
 1. Ensure you have Java `17` or above installed in your Computer.<br>
@@ -42,6 +44,7 @@ GastroBook is a **desktop app for managing restaurant reservations for small sca
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## Parameter Table
 
 | **Field**          | **Example**           | **Description**                                                           |
@@ -58,6 +61,7 @@ GastroBook is a **desktop app for managing restaurant reservations for small sca
 
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## Features
 
 ### Viewing help : `help`
