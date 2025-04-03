@@ -1,6 +1,6 @@
 package seedu.address.model;
 
-public class AddressBookTest {
+public class GastroBookTest {
     /*
 
     private final AddressBook addressBook = new AddressBook();

@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RESERVATIONS;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.reservation.Identification;
@@ -17,7 +18,7 @@ public class RemarkCommand extends Command {
 
     public static final String COMMAND_WORD = "remark";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the person identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the input reservation "
             + "by the reservation ID. "
             + "Existing remark will be overwritten by the input.\n"
             + "Parameters:  ID ( [6 figures of date (ie : ddMMyyyy)) of TODAY or TOMORROW] "
@@ -27,8 +28,8 @@ public class RemarkCommand extends Command {
             + "Example: " + COMMAND_WORD + " 0101202512341230 "
             + PREFIX_REMARK + "Likes to swim.";
 
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
-    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Person: %1$s";
+    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to reservation: %1$s";
+    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from reservation: %1$s";
 
     private final Identification id;
     private final Remark remark;
@@ -64,7 +65,7 @@ public class RemarkCommand extends Command {
      */
     private String generateSuccessMessage(Reservation reservationToEdit) {
         String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
-        return String.format(message, reservationToEdit);
+        return String.format(message, Messages.format(reservationToEdit));
     }
 
     @Override

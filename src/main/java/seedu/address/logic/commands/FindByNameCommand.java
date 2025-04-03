@@ -40,9 +40,15 @@ public class FindByNameCommand extends Command {
             boolean isTodayOrTomorrow = StartDate.isValidDateRange(reservation.getDate().value);
             return matchesName && isTodayOrTomorrow;
         });
-        return new CommandResult(
-                String.format(Messages.MESSAGE_RESERVATIONS_LISTED_OVERVIEW,
-                        model.getFilteredReservationList().size()));
+
+        int count = model.getFilteredReservationList().size();
+        String resultMessage;
+        if (count == 0) {
+            resultMessage = Messages.MESSAGE_NO_RESERVATIONS_LISTED;
+        } else {
+            resultMessage = String.format(Messages.MESSAGE_RESERVATIONS_LISTED_OVERVIEW, count);
+        }
+        return new CommandResult(resultMessage);
     }
 
     @Override

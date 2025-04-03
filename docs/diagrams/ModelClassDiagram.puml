@@ -14,6 +14,8 @@ Class UserPrefs
 Class PersonsList
 Class PersonsListManager
 Class UniqueReservationList
+Class Reservation
+Class Person
 
 Class I #FFFFFF
 }
@@ -34,7 +36,8 @@ ModelManager --> "1"PersonsList
 PersonsListManager -left->PersonsList
 'change AddressBook to GastroBook
 GastroBook *--> "1" UniqueReservationList
-
+UniqueReservationList -->"//*// filtered"Reservation
+PersonsList -->"*"Person
 
 UniqueReservationList -[hidden]right-> I
 
