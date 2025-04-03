@@ -133,6 +133,7 @@ The `Model` component,
 * stores a PersonsList manager file that manipulates data inside persons list.
 
 
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `GastroBook`, which `Person` references. This allows `GastroBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 Below is a diagram that shows the detail of `GastroBook` class.
@@ -151,6 +152,7 @@ The `PersonsList` class and related components manage customers who have made re
 **Class Diagram:**
 
 ![PersonsList Class Diagram](images/PersonsListDiagram.png)
+
 
 This diagram shows the structure of the `PersonsList` and `PersonsListManager` classes and their relationships with other classes in the system. The `PersonsList` contains multiple `Person` objects, each with a `Name` and `Phone`. The `PersonsListManager` coordinates between reservations and the `PersonsList`.
 
