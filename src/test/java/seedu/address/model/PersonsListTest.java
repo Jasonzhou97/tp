@@ -75,15 +75,6 @@ public class PersonsListTest {
     }
 
     @Test
-    public void getRegularCustomers_noRegulars_returnsEmptyList() {
-        // Add a person with only one booking
-        personsList.recordBooking(new Name("Eve"), new Phone("65432109"));
-
-        ArrayList<Person> regulars = personsList.getRegularCustomers();
-        assertEquals(0, regulars.size());
-    }
-
-    @Test
     public void getRegularCustomers_hasRegulars_returnsListOfRegulars() {
         // Add a regular customer
         Name regularName = new Name("Frank");

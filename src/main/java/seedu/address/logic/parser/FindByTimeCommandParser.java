@@ -28,7 +28,13 @@ public class FindByTimeCommandParser implements Parser<FindByTimeCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindByTimeCommand.MESSAGE_USAGE));
         }
 
-        LocalTime searchTime = LocalTime.parse(trimmedArgs, TIME_FORMATTER);
+        String[] timeKeyword = trimmedArgs.split("\\s+");
+        if (timeKeyword.length != 1) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindByTimeCommand.MESSAGE_USAGE));
+        }
+
+        LocalTime searchTime = LocalTime.parse(timeKeyword[0], TIME_FORMATTER);
         return new FindByTimeCommand(new TimeMatchesPredicate(searchTime));
     }
 }

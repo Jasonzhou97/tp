@@ -1,0 +1,17 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+
+
+
+PersonsList -d-> "*"Person
+
+
+Person --> "1" Name
+Person --> "1" Phone
+
+
+@enduml

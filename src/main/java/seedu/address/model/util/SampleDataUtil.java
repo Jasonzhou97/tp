@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.GastroBook;
+import seedu.address.model.ReadOnlyGastroBook;
 import seedu.address.model.reservation.Remark;
 import seedu.address.model.reservation.Reservation;
 import seedu.address.model.tag.Tag;
@@ -22,9 +22,9 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
-        for (Reservation sampleReservation : getSampleReservations()) {
+    public static ReadOnlyGastroBook getSampleAddressBook() {
+        GastroBook sampleAb = new GastroBook();
+        for (Reservation sampleReservation : getSamplePersons()) {
             sampleAb.addReservation(sampleReservation);
         }
         return sampleAb;

@@ -1,0 +1,59 @@
+@startuml
+skinparam sequenceArrowThickness 2
+skinparam roundcorner 15
+skinparam sequenceParticipant bold
+skinparam sequenceLifeLineBorderColor #2E8BC0
+skinparam sequenceLifeLineBackgroundColor #F0F8FF
+
+actor User
+participant "UI/Logic Layer" as UI
+participant "PersonsListManager" as PLM
+participant "PersonsList" as PL
+participant "Person" as P
+database "personslist.json" as File
+
+== Recording a New Booking ==
+
+User -> UI: Make reservation
+UI -> PLM: updatePersonsListAfterEdit(oldReservation, newReservation)
+PLM -> PL: loadListFromFile()
+PL -> File: Read data
+File --> PL: Return data
+PLM -> PL: getPersonsList()
+PL --> PLM: List of Persons
+PLM -> PL: removePerson(oldPerson)
+PL -> File: Update file
+PLM -> P: Create new Person
+P --> PLM: Person object
+PLM -> PL: addPerson(updatedPerson)
+PL -> File: Update file
+PL -> PL: savePersonsToFile()
+PL -> File: Write updated list
+UI --> User: Confirmation
+
+== Checking Regular Status ==
+
+User -> UI: View regular customers
+UI -> PL: getRegularCustomers()
+PL -> PL: Filter persons where isRegular=true
+PL --> UI: List of regular customers
+UI --> User: Display regular customers
+
+== Deleting a Reservation ==
+
+User -> UI: Delete reservation
+UI -> PLM: updatePersonsListAfterDelete(reservation)
+PLM -> PL: loadListFromFile()
+PL -> File: Read data
+File --> PL: Return data
+PLM -> PL: removePerson(person)
+PL -> File: Update file
+PLM -> P: Create updated Person with decremented counter
+P --> PLM: Person object
+PLM -> PL: addPerson(updatedPerson)
+PL -> File: Update file
+PL -> PL: savePersonsToFile()
+PL -> File: Write updated list
+UI --> User: Confirmation
+
+@enduml

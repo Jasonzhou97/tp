@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.MarkCommand.MESSAGE_DUPLICATE_MARK;
 import static seedu.address.logic.commands.MarkCommand.MESSAGE_MARK_RESERVATION_SUCCESS;
 import static seedu.address.testutil.TypicalReservations.getTypicalAddressBook;
 
@@ -23,7 +24,7 @@ public class MarkCommandTest {
 
     @Test
     public void execute_validCommandAndId_success() {
-        Reservation reservationToMark = model.getFilteredReservationList().get(0);
+        Reservation reservationToMark = model.getFilteredReservationList().get(1);
         Identification id = new Identification(reservationToMark.getDate(), reservationToMark.getPhone(),
                 reservationToMark.getTime());
 
@@ -37,6 +38,21 @@ public class MarkCommandTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setReservation(reservationToMark, reservationMarked);
         assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_markPaidReservation_fail() {
+        //the reservation at index 5 is paid at the start
+        Reservation reservationTomark = model.getFilteredReservationList().get(5);
+        Identification id = new Identification(reservationTomark.getDate(), reservationTomark.getPhone(),
+                reservationTomark.getTime());
+
+        MarkCommand markCommand = new MarkCommand(id);
+
+        String expectedMessage = String.format(MESSAGE_DUPLICATE_MARK,
+                Messages.format(reservationTomark));
+        assertCommandFailure(markCommand, model, expectedMessage);
+
     }
 
     @Test

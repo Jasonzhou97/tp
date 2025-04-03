@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.UnmarkCommand.MESSAGE_DUPLICATE_UNMARK;
 import static seedu.address.logic.commands.UnmarkCommand.MESSAGE_UNMARK_RESERVATION_SUCCESS;
 import static seedu.address.testutil.TypicalReservations.getTypicalAddressBook;
 
@@ -39,7 +40,7 @@ public class UnmarkCommandTest {
     }
 
     @Test
-    public void execute_unmarkUnpaidReservation_success() {
+    public void execute_unmarkUnpaidReservation_fail() {
         //the reservation at index 3 is unpaid at the start
         Reservation reservationToUnmark = model.getFilteredReservationList().get(3);
         Identification id = new Identification(reservationToUnmark.getDate(), reservationToUnmark.getPhone(),
@@ -47,15 +48,10 @@ public class UnmarkCommandTest {
 
         UnmarkCommand unmarkCommand = new UnmarkCommand(id);
 
-        String expectedMessage = String.format(MESSAGE_UNMARK_RESERVATION_SUCCESS,
+        String expectedMessage = String.format(MESSAGE_DUPLICATE_UNMARK,
                 Messages.format(reservationToUnmark));
-        Reservation reservationUnmarked = new ReservationBuilder(reservationToUnmark).withPaymentStatus(false)
-                .build();
+        assertCommandFailure(unmarkCommand, model, expectedMessage);
 
-
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.setReservation(reservationToUnmark, reservationUnmarked);
-        assertCommandSuccess(unmarkCommand, model, expectedMessage, expectedModel);
     }
 
     @Test

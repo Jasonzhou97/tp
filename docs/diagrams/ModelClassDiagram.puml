@@ -14,6 +14,8 @@ Class UserPrefs
 Class PersonsList
 Class PersonsListManager
 Class UniqueReservationList
+Class Reservation
+Class Person
 
 Class I #FFFFFF
 }
@@ -31,10 +33,12 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 ModelManager --> "1"PersonsListManager
 ModelManager --> "1"PersonsList
-PersonsListManager -left->PersonsList
+PersonsListManager -left->PersonsList -left -> personslist.json
+PersonsListManager -right-> personslist.json
 'change AddressBook to GastroBook
 GastroBook *--> "1" UniqueReservationList
-
+UniqueReservationList -->"//*// filtered"Reservation
+PersonsList -->"*"Person
 
 UniqueReservationList -[hidden]right-> I
 

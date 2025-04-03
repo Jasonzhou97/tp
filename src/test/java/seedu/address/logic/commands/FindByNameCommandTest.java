@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.Messages.MESSAGE_NO_RESERVATIONS_LISTED;
 import static seedu.address.logic.Messages.MESSAGE_RESERVATIONS_LISTED_OVERVIEW;
 import static seedu.address.testutil.TypicalReservations.getTypicalAddressBook;
 
@@ -73,7 +74,7 @@ public class FindByNameCommandTest {
         CommandResult result = command.execute(model);
 
         assertEquals(0, model.getFilteredReservationList().size());
-        assertEquals(String.format(MESSAGE_RESERVATIONS_LISTED_OVERVIEW, 0), result.getFeedbackToUser());
+        assertEquals(MESSAGE_NO_RESERVATIONS_LISTED, result.getFeedbackToUser());
     }
 
     @Test
@@ -89,7 +90,7 @@ public class FindByNameCommandTest {
         CommandResult result = command.execute(model);
 
         assertEquals(0, model.getFilteredReservationList().size());
-        assertEquals(String.format(MESSAGE_RESERVATIONS_LISTED_OVERVIEW, 0), result.getFeedbackToUser());
+        assertEquals(MESSAGE_NO_RESERVATIONS_LISTED, result.getFeedbackToUser());
     }
 
 

@@ -23,7 +23,7 @@ import seedu.address.model.reservation.Reservation;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final GastroBook gastroBook;
     private final PersonsList personsList;
     private final PersonsListManager personsListManager;
     private final UserPrefs userPrefs;
@@ -33,29 +33,29 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook, personsList and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, PersonsList personsList, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyGastroBook addressBook, PersonsList personsList, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, personsList, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + ", persons list: "
                 + personsList
                 + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.gastroBook = new GastroBook(addressBook);
         this.personsList = personsList;
         this.personsListManager = new PersonsListManager(personsList);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredReservations = new FilteredList<>(this.addressBook.getReservationList());
+        filteredReservations = new FilteredList<>(this.gastroBook.getReservationList());
     }
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs, and an empty personsList.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyGastroBook addressBook, ReadOnlyUserPrefs userPrefs) {
         this(addressBook, new PersonsList(), userPrefs);
     }
 
     public ModelManager() {
-        this(new AddressBook(), new PersonsList(), new UserPrefs());
+        this(new GastroBook(), new PersonsList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -87,7 +87,6 @@ public class ModelManager implements Model {
         return userPrefs.getAddressBookFilePath();
     }
 
-    @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
@@ -123,19 +122,19 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setAddressBook(ReadOnlyGastroBook addressBook) {
+        this.gastroBook.resetData(addressBook);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyGastroBook getAddressBook() {
+        return gastroBook;
     }
 
     @Override
     public boolean hasReservation(Reservation reservation) {
         requireNonNull(reservation);
-        return addressBook.hasReservation(reservation);
+        return gastroBook.hasReservation(reservation);
     }
     @Override
     public void updatePersonsListAfterDelete(Reservation deletedReservation) {
@@ -143,7 +142,7 @@ public class ModelManager implements Model {
     }
     @Override
     public void deleteReservation(Reservation target) {
-        addressBook.removeReservation(target);
+        gastroBook.removeReservation(target);
     }
 
     /**
@@ -159,7 +158,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addReservation(Reservation reservation) {
-        addressBook.addReservation(reservation);
+        gastroBook.addReservation(reservation);
 
         // Update customer booking history when adding a reservation
         Name customerName = reservation.getName();
@@ -173,7 +172,7 @@ public class ModelManager implements Model {
     public void setReservation(Reservation target, Reservation editedReservation) {
         requireAllNonNull(target, editedReservation);
 
-        addressBook.setReservation(target, editedReservation);
+        gastroBook.setReservation(target, editedReservation);
     }
 
     //=========== Filtered Reservation List Accessors =============================================================
@@ -216,7 +215,7 @@ public class ModelManager implements Model {
     @Override
     public void filterReservationsByRegular(Predicate<Reservation> predicate) {
         requireNonNull(predicate);
-        Predicate<Reservation> regularPredicate = ReservationsFilter.filterByRegular(filteredReservations);
+        Predicate<Reservation> regularPredicate = ReservationsFilter.filterByRegular(personsList);
         filteredReservations.setPredicate(regularPredicate);
     }
     @Override
@@ -237,7 +236,7 @@ public class ModelManager implements Model {
         }
 
         ModelManager otherModelManager = (ModelManager) other;
-        return addressBook.equals(otherModelManager.addressBook)
+        return gastroBook.equals(otherModelManager.gastroBook)
                 && personsList.equals(otherModelManager.personsList) // Added personsList comparison
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredReservations.equals(otherModelManager.filteredReservations);
