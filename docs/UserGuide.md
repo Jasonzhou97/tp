@@ -62,6 +62,8 @@ GastroBook is a **desktop app for managing restaurant reservations for small sca
 
 * Extraneous parameters for commands `help`, `exit` and `clear` will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+* All commands are case-sensitive and need to be in lowercase.
 </div>
 
 ### Viewing help : `help`
@@ -78,19 +80,26 @@ Adds a reservation to GastroBook.
 
 Format: `add n/NAME p/PHONE_NUMBER date/DATE time/TIME duration/DURATION pax/NUMBER_OF_PEOPLE table/TABLE_NUMBER [t/TAG_1] [t/TAG_2] [r/REMARK]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:**
 A reservation can have any number of tags (including 0)
 </div>
 
 * NAME: Name of the person making the reservation (string)
-* PHONE_NUMBER: Contact number of the person making the reservation
+* PHONE_NUMBER: Contact number of the person making the reservation (at least 4 digits)
 * DATE: Date of reservation (limited to today or tomorrow) in DD/MM/YYYY format (e.g., 01/03/2025 for March 1, 2025)
 * TIME: Time of reservation in 24-hour HHMM format (e.g., 1800 for 6:00 PM)
-* DURATION: Duration of reservation in hours
+* DURATION: Duration of reservation in hours (maximum input is 12 hours)
 * NUMBER_OF_PEOPLE: Number of people for the reservation (integer)
 * TABLE_NUMBER: Assigned table number/code for the reservation (should start with a capital letter, followed by 1-3 numbers)
 * TAG (optional): Tags to categorize and label the reservation (e.g., birthday, vegeterian)
 * REMARK (optional): Additional remarks to take note of for the reservation (e.g., allergic to peanuts)
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+A reservation made at the same time, date and last 4 digits. Thus, avoid using this combination while editing or adding reservation
+</div>
 
 
 Examples:
@@ -107,10 +116,10 @@ Format: `edit RESERVATION_ID n/NAME p/PHONE_NUMBER date/DATE time/TIME duration/
 
 * RESERVATION_ID: Identifier combining today's or tomorrow's date (DDMMYYYY) with the unique last 4 digits of the customer's phone number and time of reservation in HHMM format (e.g., 1803202512341200 for a booking on March 18, 2025 at 1200, with phone ending in 1234).
 * NAME: Name of the person making the reservation (string)
-* PHONE_NUMBER: Contact number of the person making the reservation
+* PHONE_NUMBER: Contact number of the person making the reservation (at least 4 digits)
 * DATE: Date of reservation in DD/MM/YYYY format (e.g., 01/03/2025 for March 1, 2025)
 * TIME: Time of reservation in 24-hour HHMM format (e.g., 1800 for 6:00 PM)
-* DURATION: Duration of reservation in hours (maximum 2 hours)
+* DURATION: Duration of reservation in hours (maximum input is 12 hours)
 * NUMBER_OF_PEOPLE: Number of people for the reservation (integer)
 * TABLE_NUMBER: Assigned table number/code for the reservation
 * TAG: tags to categorize the reservation (e.g., regular, event, birthday)
@@ -209,8 +218,9 @@ Format: `listr`
 
 Finds reservations by the specified name(s).
 
-Format: `findn NAME`
+Format: `findn NAME [NAME...]`
 
+* More than one name parameter is allowed.
 * The search is case-insensitive. e.g., `findn john doe` will match `John Doe`
 * Only reservations scheduled for today or tomorrow are considered.
 
@@ -223,14 +233,15 @@ Examples:
 
 Finds reservations by the specified phone number(s).
 
-Format: `findp PHONE_NUMBER`
+Format: `findp PHONE_NUMBER [PHONE_NUMBER...]`
 
+* More than one phone number parameter is allowed.
 * Partial phone numbers will not be accepted. e.g., `9123` will not match `91234567`
+* Only reservations scheduled for today or tomorrow are considered.
 
 Examples:
 * `findp 98765432` returns all reservations made by the person with phone number 98765432.
 * `findp 91234567 98765432` returns all reservations made by the people with phone numbers 91234567 and 98765432.
-* Only reservations scheduled for today or tomorrow are considered.
 
 ### Finding reservations by time: `findt`
 
