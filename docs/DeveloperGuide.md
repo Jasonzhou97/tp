@@ -51,7 +51,7 @@ The bulk of the app's work is done by the following four components:
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 0101202512341800`.
 
 <img src="images/ArchitectureSequenceDiagram1.png" width="574" />
 
@@ -108,7 +108,7 @@ How the `Logic` component works:
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<img src="images/ParserClasses1.png" width="600"/>
 
 How the parsing works:
 * When called upon to parse a user command, the `GastroBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `GastroBookParser` returns back as a `Command` object.
@@ -118,47 +118,36 @@ How the parsing works:
 **API** : [`Model.java`](https://github.com/AY2425S2-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 Below is the diagram that shows the high level design of `Model` component.
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram1.png" width="450" />
 
 
 The `Model` component,
 
-* stores the gastrobook data i.e., all `Reservation` objects (which are contained in a `UniqueReservationList` object).
-* stores the customer data. i.e., all `Person` objects (which are contained in a `PersonList` object).
-* stores a `PersonListManager` object. It manages operations related to PersonsList that involve coordination with Reservations.
+* stores the GastroBook data i.e., all `Reservation` objects (which are contained in a `UniqueReservationList` object).
+* stores the customer data. i.e., all `Person` objects (which are contained in a `PersonsList` object).
+* stores a `PersonsListManager` object. It manages operations related to `PersonsList` object that involve coordination with `Reservation` objects.
 * stores the currently 'selected' `Reservation` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Reservation>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.(not shown in the diagram as it is lower level details)
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-* stores a PersonsList file that contains the data of all individuals who have made reservations before, and whether they are regulars.
-* stores a PersonsList manager file that manipulates data inside persons list.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** A more detailed extension for `GastroBook` and `PersonList` in `Model` component is given below.<br>
 
+Below is a diagram that shows the detail of `GastroBook` class and its associated classes.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `GastroBook`, which `Person` references. This allows `GastroBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<img src="images/BetterModelClassDiagram1.png" width="900" />
 
-Below is a diagram that shows the detail of `GastroBook` class.
+Below is a diagram that shows the detail of `PersonsList` class and its associated classes.
 
-<img src="images/BetterModelClassDiagram.png" width="900" />
+<img src="images/PersonListClassDiagram1.png" width="200" />
 
-Below is a diagram that shows the detail of `PersonList` class.
-
-<img src="images/PersonListClassDiagram.png" width="150" />
-
+The `PersonsList` class and related components manage customers who have made reservations, tracking their booking frequency and regular customer status.<br>
 </div>
-#### PersonsList and PersonsListManager Implementation
 
-The `PersonsList` class and related components manage customers who have made reservations, tracking their booking frequency and regular customer status.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An interaction between `PersonsList` and `PersonsListManager`in `Model` component is given as sequence diagram below.<br>
 
-**Class Diagram:**
+The sequence diagram below illustrates the interactions between `PersonsList` and `PersonsListManager` when a reservation is made.
 
-![PersonsList Class Diagram](images/PersonsListDiagram.png)
-
-
-This diagram shows the structure of the `PersonsList` and `PersonsListManager` classes and their relationships with other classes in the system. The `PersonsList` contains multiple `Person` objects, each with a `Name` and `Phone`. The `PersonsListManager` coordinates between reservations and the `PersonsList`.
-
-**Sequence Diagram:**
-
-![PersonsList Sequence Diagram](images/PersonsListSeqDiagram.png)
+![PersonsList Sequence Diagram](images/addsomthing)
 
 This sequence diagram illustrates three key operations:
 1. Recording a new booking - handling reservation edits and updating person records
@@ -170,17 +159,19 @@ This sequence diagram illustrates three key operations:
 - Persistence through JSON file storage
 - Coordination with the reservation system for consistent data
 
+</div>
+
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2425S2-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram1.png" width="550" />
 
 The `Storage` component,
 * can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
 * inherits from both `GastroBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
-* storage of personlist files and data are implemented under Model
+* storage of `PersonsList` files and data are implemented under `Model`.
 
 ### Common classes
 
@@ -188,97 +179,147 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+[//]: # ()
+[//]: # (## **Implementation**)
 
-This section describes some noteworthy details on how certain features are implemented.
+[//]: # ()
+[//]: # (This section describes some noteworthy details on how certain features are implemented.)
 
-### \[Proposed\] Undo/redo feature
+[//]: # ()
+[//]: # (### \[Proposed\] Undo/redo feature)
 
-#### Proposed Implementation
+[//]: # ()
+[//]: # (#### Proposed Implementation)
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+[//]: # ()
+[//]: # (The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:)
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+[//]: # ()
+[//]: # (* `VersionedAddressBook#commit&#40;&#41;` — Saves the current address book state in its history.)
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+[//]: # (* `VersionedAddressBook#undo&#40;&#41;` — Restores the previous address book state from its history.)
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+[//]: # (* `VersionedAddressBook#redo&#40;&#41;` — Restores a previously undone address book state from its history.)
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+[//]: # ()
+[//]: # (These operations are exposed in the `Model` interface as `Model#commitAddressBook&#40;&#41;`, `Model#undoAddressBook&#40;&#41;` and `Model#redoAddressBook&#40;&#41;` respectively.)
 
-![UndoRedoState0](images/UndoRedoState0.png)
+[//]: # ()
+[//]: # (Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+[//]: # ()
+[//]: # (Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.)
 
-![UndoRedoState1](images/UndoRedoState1.png)
+[//]: # ()
+[//]: # (![UndoRedoState0]&#40;images/UndoRedoState0.png&#41;)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+[//]: # ()
+[//]: # (Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook&#40;&#41;`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.)
 
-![UndoRedoState2](images/UndoRedoState2.png)
+[//]: # ()
+[//]: # (![UndoRedoState1]&#40;images/UndoRedoState1.png&#41;)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+[//]: # ()
+[//]: # (Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook&#40;&#41;`, causing another modified address book state to be saved into the `addressBookStateList`.)
 
-</div>
+[//]: # ()
+[//]: # (![UndoRedoState2]&#40;images/UndoRedoState2.png&#41;)
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+[//]: # ()
+[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook&#40;&#41;`, so the address book state will not be saved into the `addressBookStateList`.)
 
-![UndoRedoState3](images/UndoRedoState3.png)
+[//]: # ()
+[//]: # (</div>)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+[//]: # ()
+[//]: # (Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook&#40;&#41;`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.)
 
-</div>
+[//]: # ()
+[//]: # (![UndoRedoState3]&#40;images/UndoRedoState3.png&#41;)
 
-The following sequence diagram shows how an undo operation goes through the `Logic` component:
+[//]: # ()
+[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather)
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Logic.png)
+[//]: # (than attempting to perform the undo.)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+[//]: # ()
+[//]: # (</div>)
 
-</div>
+[//]: # ()
+[//]: # (The following sequence diagram shows how an undo operation goes through the `Logic` component:)
 
-Similarly, how an undo operation goes through the `Model` component is shown below:
+[//]: # ()
+[//]: # (![UndoSequenceDiagram]&#40;images/UndoSequenceDiagram-Logic.png&#41;)
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Model.png)
+[//]: # ()
+[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker &#40;X&#41; but due to a limitation of PlantUML, the lifeline reaches the end of diagram.)
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+[//]: # ()
+[//]: # (</div>)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+[//]: # ()
+[//]: # (Similarly, how an undo operation goes through the `Model` component is shown below:)
 
-</div>
+[//]: # ()
+[//]: # (![UndoSequenceDiagram]&#40;images/UndoSequenceDiagram-Model.png&#41;)
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+[//]: # ()
+[//]: # (The `redo` command does the opposite — it calls `Model#redoAddressBook&#40;&#41;`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.)
 
-![UndoRedoState4](images/UndoRedoState4.png)
+[//]: # ()
+[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size&#40;&#41; - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+[//]: # ()
+[//]: # (</div>)
 
-![UndoRedoState5](images/UndoRedoState5.png)
+[//]: # ()
+[//]: # (Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook&#40;&#41;`, `Model#undoAddressBook&#40;&#41;` or `Model#redoAddressBook&#40;&#41;`. Thus, the `addressBookStateList` remains unchanged.)
 
-The following activity diagram summarizes what happens when a user executes a new command:
+[//]: # ()
+[//]: # (![UndoRedoState4]&#40;images/UndoRedoState4.png&#41;)
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+[//]: # ()
+[//]: # (Step 6. The user executes `clear`, which calls `Model#commitAddressBook&#40;&#41;`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.)
 
-#### Design considerations:
+[//]: # ()
+[//]: # (![UndoRedoState5]&#40;images/UndoRedoState5.png&#41;)
 
-**Aspect: How undo & redo executes:**
+[//]: # ()
+[//]: # (The following activity diagram summarizes what happens when a user executes a new command:)
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+[//]: # ()
+[//]: # (<img src="images/CommitActivityDiagram.png" width="250" />)
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+[//]: # ()
+[//]: # (#### Design considerations:)
 
-_{more aspects and alternatives to be added}_
+[//]: # ()
+[//]: # (**Aspect: How undo & redo executes:**)
 
-### \[Proposed\] Data archiving
+[//]: # ()
+[//]: # (* **Alternative 1 &#40;current choice&#41;:** Saves the entire address book.)
 
-_{Explain here how the data archiving feature will be implemented}_
+[//]: # (  * Pros: Easy to implement.)
+
+[//]: # (  * Cons: May have performance issues in terms of memory usage.)
+
+[//]: # ()
+[//]: # (* **Alternative 2:** Individual command knows how to undo/redo by)
+
+[//]: # (  itself.)
+
+[//]: # (  * Pros: Will use less memory &#40;e.g. for `delete`, just save the person being deleted&#41;.)
+
+[//]: # (  * Cons: We must ensure that the implementation of each individual command are correct.)
+
+[//]: # ()
+[//]: # (_{more aspects and alternatives to be added}_)
+
+[//]: # ()
+[//]: # (### \[Proposed\] Data archiving)
+
+[//]: # ()
+[//]: # (_{Explain here how the data archiving feature will be implemented}_)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -586,9 +627,6 @@ Use case ends.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Reservation ID**: A unique identifier (e.g., 0204202598761300) assigned to each reservation.
 * **CLI (Command-Line Interface)**: A text-based interface that allows users to interact with the system using typed commands.
-* **Timeslot**: The reserved period for a customer's table reservation, usually in 1-hour or 2-hour increments.
-* **Special Request**: Specific requirements or preferences made by the customer for their reservation (e.g., dietary needs, specific table preferences).
-* **Max Reservation Hour**: The maximum duration for a reservation, typically set to 2 hours.
 * **Valid Command**: A command that the system recognizes and processes correctly.
 * **Invalid Command**: A command that is unrecognized or improperly formatted by the system.
 * **Valid ID**: The id for which edit, mark, unmark, delete, remark take as parameter which has a form of "[dateOfTodayOrTomorrow(ddMMyyyy)] + [UNIQUE last4DigitsOfPhoneNumber(xxxx)] + [time(HHMM)]".

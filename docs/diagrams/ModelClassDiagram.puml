@@ -36,8 +36,8 @@ ModelManager --> "1"PersonsList
 PersonsListManager -left->PersonsList
 'change AddressBook to GastroBook
 GastroBook *--> "1" UniqueReservationList
-UniqueReservationList --> Reservation
-PersonsList --> Person
+UniqueReservationList -->"//*// filtered"Reservation
+PersonsList -->"*"Person
 
 UniqueReservationList -[hidden]right-> I
 
