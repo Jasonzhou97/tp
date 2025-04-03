@@ -45,6 +45,7 @@ GastroBook is a **desktop app for managing restaurant reservations for small sca
 
 --------------------------------------------------------------------------------------------------------------------
 
+
 ## Input Field Table
 
 | **Field**          | **Example**           | **Description**                                                                      |
@@ -59,8 +60,13 @@ GastroBook is a **desktop app for managing restaurant reservations for small sca
 | `REMARK`           | r/Allergic to Peanuts | Any additional remarks about the reservation                                         |
 | `TAG`              | t/event               | Tags to categorize the reservation (e.g., `regular`, `birthday`, `event`)            |
 
-
---------------------------------------------------------------------------------------------------------------------
+## Constraints 
+1. Threshold for a customer becoming a regular customer is hardcoded (3)
+2. All fields are fixed
+3. Identification of customers is unique (Depending on phone number)
+4. Last 4 digits of phone should be unique
+5. Guest records will still be present in persons list for history purposes even after clearing
+6. Add and Edit function are not able to modify if a reservation is paid or unpaid.
 
 ## Features
 :bulb: **Note:** Parameters with brackets (`[]`) are optional and need not be included if not needed.
@@ -247,4 +253,3 @@ GastroBook data are saved automatically as a JSON file `[JAR file location]/data
 | **List all previous**             | `listp`                                                                                                                                                                                                                                                            |
 | **Help**                          | `help`                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                |
 | **Exit**                          | `exit`                                                                                                                                                                                                                                                             |
-
