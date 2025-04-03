@@ -18,6 +18,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_RESERVATION_DISPLAYED_INDEX =
             "The Reservation index provided is invalid";
     public static final String MESSAGE_RESERVATIONS_LISTED_OVERVIEW = "%1$d reservations listed!";
+    public static final String MESSAGE_NO_RESERVATIONS_LISTED = "No matching reservations found!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
             "Multiple values specified for the following single-valued field(s): ";
 

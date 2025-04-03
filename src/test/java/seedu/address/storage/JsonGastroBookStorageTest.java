@@ -1,6 +1,6 @@
 package seedu.address.storage;
 
-public class JsonAddressBookStorageTest {
+public class JsonGastroBookStorageTest {
     /*
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
 
