@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.GastroBook;
 import seedu.address.model.reservation.Duration;
 import seedu.address.model.reservation.Name;
 import seedu.address.model.reservation.Pax;
@@ -100,7 +100,8 @@ public class TypicalReservations {
 
     public static final Reservation FIONA = new ReservationBuilder(new Name("Fiona Kunz"), new Phone("9482427"),
             new StartDate(todayDate), new StartTime("1200"), new Duration("1"), new Pax("3"),
-            new Table("A2"), new Remark("She can't take beer!"), new HashSet<>()).build();
+            new Table("A2"), new Remark("She can't take beer!"), new HashSet<>())
+            .withPaymentStatus(true).build();
 
     public static final Reservation GEORGE = new ReservationBuilder(new Name("George Best"), new Phone("9482442"),
             new StartDate(tomorrowDate), new StartTime("1200"), new Duration("1"), new Pax("3"),
@@ -153,8 +154,8 @@ public class TypicalReservations {
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static GastroBook getTypicalAddressBook() {
+        GastroBook ab = new GastroBook();
         for (Reservation reservation : getTypicalReservations()) {
             ab.addReservation(reservation);
         }

@@ -7,7 +7,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.GastroBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.PersonsList;
@@ -64,8 +64,8 @@ public class ListRnCommandTest {
     @Test
     public void execute_emptyAddressBook_showsEmptyList() {
         // Create models with empty address book
-        model = new ModelManager(new AddressBook(), new PersonsList(), new UserPrefs());
-        expectedModel = new ModelManager(new AddressBook(), new PersonsList(), new UserPrefs());
+        model = new ModelManager(new GastroBook(), new PersonsList(), new UserPrefs());
+        expectedModel = new ModelManager(new GastroBook(), new PersonsList(), new UserPrefs());
 
         // Execute ListRn command
         CommandResult result = new ListRnCommand().execute(model);
