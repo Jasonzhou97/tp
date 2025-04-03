@@ -152,8 +152,7 @@ The sequence diagram below illustrates the interactions between `PersonsList` an
 
 **Sequence Diagram:**
 
-![PersonsList Sequence Diagram](images/PersonListSequenceDiagram.png)
-
+<img src="images/PersonListSequenceDiagram.png" width="600" alt="PersonsList Sequence Diagram" />
 
 This sequence diagram illustrates three key operations:
 1. Recording a new booking - handling reservation edits and updating person records
