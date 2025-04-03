@@ -498,8 +498,16 @@ Use case ends.
 Use case ends.
 
 **Extensions** <br>
-1a. The name does not exist. <br>
+1a. The user enters invalid command format. <br>
 &ensp; 1a1. System displays an error message. <br>
+&ensp; Use case resumes at step 1.
+
+1b. The user enters an invalid phone number.<br>
+&ensp; 1a1. System displays an error message. <br>
+&ensp; Use case resumes at step 1.
+
+2a. The name does not exist. <br>
+&ensp; 2a1. System displays an error message. <br>
 &ensp; Use case resumes at step 1.
 
 ---
@@ -517,7 +525,7 @@ Use case ends.
 &ensp; Use case resumes at step 1.
 
 1b. The user enters an invalid phone number.<br>
-&ensp; 3a1. System displays an error message. <br>
+&ensp; 1a1. System displays an error message. <br>
 &ensp; Use case resumes at step 1.
 
 2a. The user enters a phone number that does not exist. <br>
@@ -552,8 +560,12 @@ Use case ends.
 Use case ends.
 
 **Extensions** <br>
-1a. No reservations exist on the day queried. <br>
-&ensp; 1a1. System indicates that there are no reservations on given day. <br>
+1a. The user enters invalid command format. <br>
+&ensp; 1a1. System displays an error message. <br>
+&ensp; Use case resumes at step 1.
+
+1b. No reservations exist on the day queried. <br>
+&ensp; 1b1. System indicates that there are no reservations on given day. <br>
 &ensp; Use case resumes at step 1.
 
 ---
@@ -568,11 +580,11 @@ Use case ends.
 **Extensions** <br>
 1a. Reservation is not for today or tomorrow. <br>
 &ensp; 1a1. System displays reservation not found message. <br>
-&ensp; Use case ends.<br>
+&ensp; Use case resumes at step 1.
 
 1b. Reservation ID is invalid. <br>
 &ensp; 1b1. System displays an invalid command message and provides an example of correct edit usage. <br>
-&ensp; Use case ends. <br>
+&ensp; Use case resumes at step 1.
 
 ---
 ### **U11: Add remark to a reservation**

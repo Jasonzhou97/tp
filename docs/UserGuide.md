@@ -47,17 +47,17 @@ GastroBook is a **desktop app for managing restaurant reservations for small sca
 
 ## Input Field Table
 
-| **Field**          | **Example**           | **Description**                                                           |
-|--------------------|-----------------------|---------------------------------------------------------------------------|
-| `NAME`             | n/John                | Name of the person making the reservation                                 |
-| `PHONE_NUMBER`     | p/98765432            | Contact number of the person                                              |
-| `DATE`             | date/01/04/2025       | Date of reservation (e.g., `01/03/2025`)                                  |
-| `TIME`             | time/1200             | Time of reservation in 24-hour format (e.g., `1800` for 6:00 PM)          |
-| `DURATION`         | duration/2            | Duration in hours (maximum 2.0 hours)                                     |
-| `NUMBER_OF_PEOPLE` | pax/2                 | Number of people included in the reservation                              |
-| `TABLE_NUMBER`     | table/A1              | Assigned table number or code                                             |
-| `REMARK`           | r/Allergic to Peanuts | Any additional remarks about the reservation                              |
-| `TAG`              | t/event               | Tags to categorize the reservation (e.g., `regular`, `birthday`, `event`) |
+| **Field**          | **Example**           | **Description**                                                                      |
+|--------------------|-----------------------|--------------------------------------------------------------------------------------|
+| `NAME`             | n/John                | Name of the person making the reservation                                            |
+| `PHONE_NUMBER`     | p/98765432            | Contact number of the person                                                         |
+| `DATE`             | date/01/04/2025       | Date of reservation (e.g., `01/03/2025`)                                             |
+| `TIME`             | time/1200             | Time of reservation in 24-hour format (e.g., `1800` for 6:00 PM)                     |
+| `DURATION`         | duration/2            | Duration in hours (maximum 12.0 hours)                                               |
+| `NUMBER_OF_PEOPLE` | pax/2                 | Number of people included in the reservation                                         |
+| `TABLE_NUMBER`     | table/A1              | Assigned table number or code in the form of 1 capital letter followed by 1-3 digits |
+| `REMARK`           | r/Allergic to Peanuts | Any additional remarks about the reservation                                         |
+| `TAG`              | t/event               | Tags to categorize the reservation (e.g., `regular`, `birthday`, `event`)            |
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -79,6 +79,8 @@ Adds a reservation to GastroBook.
 
 Format: `add n/NAME p/PHONE_NUMBER date/DATE time/TIME duration/DURATION pax/NUMBER_OF_PEOPLE table/[TABLE_NUMBER] r/[REMARK] t/[TAG_1] t/[TAG_2]... `
 
+* Date given must be either today or tomorrow
+
 Example:
 * `add n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event`
 
@@ -87,6 +89,8 @@ Example:
 Edits the reservation with the specified `RESERVATION_ID`.
 
 Format: `edit [RESERVATION_ID] n/[NAME] p/[PHONE_NUMBER] date/[DATE] time/[TIME] duration/[DURATION] pax/[NUMBER_OF_PEOPLE] table/[TABLE_NUMBER] t/[TAG_1] t/[TAG_2] `
+
+* Date given must be either today or tomorrow
 
 Examples:
 * `edit 1803202512341230 n/John Doe p/98761234 date/18/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event`
