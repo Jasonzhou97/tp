@@ -331,14 +331,6 @@ public class PersonsList {
         }
     }
 
-    public boolean containsNumber(Phone phone) {
-        for (Person p: personsList) {
-            if (p.getPhoneNumber().equals(phone.value)) {
-                return true;
-            }
-        }
-        return false;
-    }
     /**
      * Returns a copy of the persons list.
      */
