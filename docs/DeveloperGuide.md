@@ -130,17 +130,16 @@ The `Model` component,
 * stores a `UserPref` object that represents the user's preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** A more detailed extension for `GastroBook` and `PersonList` in `Model` component is given below.
 
 ### GastroBook Class Diagram
-<img src="images/BetterModelClassDiagram1.png" width="700" />
 
-<br>
+<img src="images/BetterModelClassDiagram1.png" width="600" />
 
 ### PersonsList Class Diagram
-<img src="images/PersonListClassDiagram1.png" width="200" />
+
+<img src="images/PersonListClassDiagram1.png" width="400" />
 
 The `PersonsList` class and related components manage customers who have made reservations, tracking their booking frequency and regular customer status.
 </div>
@@ -150,7 +149,7 @@ The `PersonsList` class and related components manage customers who have made re
 
 ### PersonsList Interaction Sequence Diagram
 
-<img src="images/PersonListSequenceDiagram.png" width="600" height="950" alt="PersonsList Sequence Diagram" />
+<img src="images/PersonListSequenceDiagram.png" width="900" />
 
 This sequence diagram illustrates three key operations:
 1. **Recording a new booking** - handling reservation edits and updating person records
