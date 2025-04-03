@@ -2,8 +2,33 @@
 layout: page
 title: GastroBook User Guide
 ---
-* Table of Contents
-  {:toc}
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Quick start](#quick-start)
+- [Input Field Table](#input-field-table)
+- [Constraints](#constraints)
+- [Features](#features)
+    - [Viewing help : `help`](#viewing-help--help)
+    - [Adding a reservation: `add`](#adding-a-reservation-add)
+    - [Editing a reservation: `edit`](#editing-a-reservation-edit)
+    - [Deleting a reservation : `delete`](#deleting-a-reservation--delete)
+    - [Marking a reservation as paid : `mark`](#marking-a-reservation-as-paid--mark)
+    - [Unmarking a reservation as paid : `unmark`](#unmarking-a-reservation-as-paid--unmark)
+    - [Remarking a reservation : `remark`](#remarking-a-reservation--remark)
+    - [Listing all reservations : `list`](#listing-all-reservations--list)
+    - [Listing today's reservations : `listrt`](#listing-todays-reservations--listrt)
+    - [Listing tomorrow's reservations : `listrn`](#listing-tomorrows-reservations--listrn)
+    - [Listing all previous reservations : `listp`](#listing-all-previous-reservations--listp)
+    - [Listing all reservations by regulars : `listr`](#listing-all-reservations-by-regulars--listr)
+    - [Finding reservations by name: `findn`](#finding-reservations-by-name-findn)
+    - [Finding reservations by phone number: `findp`](#finding-reservations-by-phone-number-findp)
+    - [Finding reservations by time: `findt`](#finding-reservations-by-time-findt)
+    - [Exiting the program : `exit`](#exiting-the-program--exit)
+- [Saving the data](#saving-the-data)
+- [Editing the data file](#editing-the-data-file)
+- [Command summary](#command-summary)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
