@@ -13,7 +13,7 @@ import seedu.address.model.reservation.UniqueReservationList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class GastroBook implements ReadOnlyGastroBook {
 
     private final UniqueReservationList reservations;
 
@@ -28,12 +28,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         reservations = new UniqueReservationList();
     }
 
-    public AddressBook() {}
+    public GastroBook() {}
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public GastroBook(ReadOnlyGastroBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -51,7 +51,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyGastroBook newData) {
         requireNonNull(newData);
 
         setReservations(newData.getReservationList());
@@ -116,12 +116,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddressBook)) {
+        if (!(other instanceof GastroBook)) {
             return false;
         }
 
-        AddressBook otherAddressBook = (AddressBook) other;
-        return reservations.equals(otherAddressBook.reservations);
+        GastroBook otherGastroBook = (GastroBook) other;
+        return reservations.equals(otherGastroBook.reservations);
     }
 
     @Override
