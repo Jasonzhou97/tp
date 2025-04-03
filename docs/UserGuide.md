@@ -98,7 +98,8 @@ A reservation can have any number of tags (including 0)
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:**<br>
-A reservation made at the same time, date and last 4 digits. Thus, avoid using this combination while editing or adding reservation
+A reservation made at the same date, time and with the same last 4 digits of phone number will be considered as a duplicate reservation and will not be allowed. 
+Thus, avoid using this combination while adding or editing reservation.
 </div>
 
 
