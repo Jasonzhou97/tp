@@ -3,7 +3,7 @@ layout: page
 title: GastroBook User Guide
 ---
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -29,7 +29,7 @@ GastroBook is a **desktop app for managing restaurant reservations for small sca
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all reservations.
+   * `list` : Lists all reservations for today and tomorrow.
 
    * `add n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event ` : Adds a reservation for `John Doe` to GastroBook.
 
@@ -39,13 +39,13 @@ GastroBook is a **desktop app for managing restaurant reservations for small sca
 
    * `exit` : Exits the app.
 
-   * `edit [validReservationID (ie: 1703202593441230)] n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event ` : Edit tomorrow or today reservations details.
+   * `edit [validReservationID (ie: 1703202593441230)] n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event ` : Edit corresponding reservation with the new details.
 
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Parameter Table
+## Input Field Table
 
 | **Field**          | **Example**           | **Description**                                                           |
 |--------------------|-----------------------|---------------------------------------------------------------------------|
@@ -63,6 +63,7 @@ GastroBook is a **desktop app for managing restaurant reservations for small sca
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+:bulb: **Note:** Parameters with brackets (`[]`) are optional and need not be included if not needed.
 
 ### Viewing help : `help`
 
@@ -92,7 +93,7 @@ Examples:
 
 ### Listing all reservations : `list`
 
-Shows a list of all reservations in GastroBook, sorted by date and time.
+Shows a list of all reservations in GastroBook for today and tomorrow, sorted by date and time.
 
 Format: `list`
 
@@ -198,9 +199,8 @@ Adds or updates the remark for the reservation identified by the specified `RESE
 
 Format: `remark [RESERVATION_ID] r/[REMARK]`
 
-* RESERVATION_ID: Identifier combining today's or tomorrow's date (DDMMYYYY) with the unique last 4 digits of the customer's phone number and time of reservation in HHMM format (e.g., 1803202512341200 for a booking on March 18, 2025 at 1200, with phone ending in 1234).
-* REMARK: A note or comment associated with the reservation.
 * Any previous remark will be overwritten with the new one.
+* To remove a remark, you may use the command `r/` with no remark.
 
 
 Examples:
