@@ -90,10 +90,10 @@ public class ReservationsFilter {
     /**
      * Returns a predicate that filters reservations made by regulars.
      *
-     * @param reservationsList The list of reservations to filter
+     * @param personsList The list of reservations to filter
      * @return Predicate for regulars' reservation
      */
-    public static Predicate<Reservation> filterByRegular(FilteredList<Reservation> reservationsList, PersonsList personsList) {
+    public static Predicate<Reservation> filterByRegular(PersonsList personsList) {
         // Load the current persons list
         personsList.loadListFromFile();
 
