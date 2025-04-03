@@ -108,7 +108,7 @@ public class ReservationsFilter {
             return regularNumbers.contains(reservationPhone);
         };
 
-        return regularPredicate;
+        return regularPredicate.and(filterForTodayOrTomorrowPredicate());
     }
 
 }
