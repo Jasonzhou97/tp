@@ -147,16 +147,12 @@ The `PersonsList` class and related components manage customers who have made re
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An interaction between `PersonsList` and `PersonsListManager`in `Model` component is given as sequence diagram below.<br>
 
+
 The sequence diagram below illustrates the interactions between `PersonsList` and `PersonsListManager` when a reservation is made.
-
-![PersonsList Class Diagram](images/PersonListClassDiagram.png)
-
-This diagram shows the structure of the `PersonsList` and `PersonsListManager` classes and their relationships with other classes in the system. The `PersonsList` contains multiple `Person` objects, each with a `Name` and `Phone`. The `PersonsListManager` coordinates between reservations and the `PersonsList`.
 
 **Sequence Diagram:**
 
-![PersonsList Sequence Diagram](images/PersonListSequenceDiagram.png)
-
+<img src="images/PersonListSequenceDiagram.png" width="600" alt="PersonsList Sequence Diagram" />
 
 This sequence diagram illustrates three key operations:
 1. Recording a new booking - handling reservation edits and updating person records
