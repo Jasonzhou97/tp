@@ -37,8 +37,8 @@ PersonsListManager -left->PersonsList -left -> personslist.json
 PersonsListManager -right-> personslist.json
 'change AddressBook to GastroBook
 GastroBook *--> "1" UniqueReservationList
-UniqueReservationList --> Reservation
-PersonsList --> Person
+UniqueReservationList -->"//*// filtered"Reservation
+PersonsList -->"*"Person
 
 UniqueReservationList -[hidden]right-> I
 
