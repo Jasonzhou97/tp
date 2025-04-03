@@ -118,6 +118,7 @@ How the parsing works:
 **API** : [`Model.java`](https://github.com/AY2425S2-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 Below is the diagram that shows the high level design of `Model` component.
+
 <img src="images/ModelClassDiagram1.png" width="450" />
 
 
