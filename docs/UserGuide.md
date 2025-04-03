@@ -1,18 +1,17 @@
 ---
 layout: page
-title: User Guide
+title: GastroBook User Guide
 ---
-
-# GastroBook User Guide
-
-GastroBook is a **desktop app for managing restaurant reservations for small scale restaurants who are only taking reservations for current day and next day, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
-
 * Table of Contents
   {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## Introduction
 
-## Quick start
+GastroBook is a **desktop app for managing restaurant reservations for small scale restaurants who are only taking reservations for current day and next day, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
+
+--------------------------------------------------------------------------------------------------------------------
+## **Quick start**
 
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
