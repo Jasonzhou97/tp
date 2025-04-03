@@ -17,15 +17,15 @@ GastroBook is a **desktop app for managing restaurant reservations for small sca
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from our website.
+2. Download the latest `.jar` file from our website.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your GastroBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your GastroBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar gastrobook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar gastrobook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample reservation data.<br>
    ![Ui](images/Ui1.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     * `list` : Lists all reservations.
@@ -40,7 +40,7 @@ GastroBook is a **desktop app for managing restaurant reservations for small sca
 
     * `edit [validReservationID (ie: 1703202593441230)] n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event ` : Edit tomorrow or today reservations details.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Features
@@ -227,7 +227,7 @@ GastroBook data are saved automatically as a JSON file `[JAR file location]/data
 | **Add**                  | `add n/NAME p/PHONE_NUMBER date/DATE time/TIME duration/DURATION pax/NUMBER_OF_PEOPLE table/TABLE_NUMBER [t/TAG]…` <br> e.g., `add n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event`                                    |
 | **Edit**                 | `edit RESERVATION_ID n/NAME p/PHONE_NUMBER date/DATE time/TIME duration/DURATION pax/NUMBER_OF_PEOPLE table/TABLE_NUMBER [t/TAG]...` <br> e.g.,`edit 1803202512341200 n/John Doe p/98761234 date/18/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event` |
 | **Delete**               | `delete RESERVATION_ID`<br> e.g., `delete 1703202593441200`                                                                                                                                                                                                        |
-| **Mark**                 | `mark RESERVATION_ID`<br> e.g., `mark 1703202593441200`                                                                                                                                                                                                            ||                          |                                                                                                                                                                                                                                                                    |
+| **Mark**                 | `mark RESERVATION_ID`<br> e.g., `mark 1703202593441200`                                                                                                                                                                                                            |                                                                                                                                                                                                                                                                |
 | **Unmark**               | `unmark RESERVATION_ID`<br> e.g., `unmark 1703202593441200`                                                                                                                                                                                                        |
 | **Remark**               | `remark RESERVATION_ID r/REMARK`<br> e.g., `remark 0104202512341700 r/he like cheese!`                                                                                                                                                                             |
 | **Find by name**         | `findn NAME`<br> e.g., `findn John Doe`                                                                                                                                                                                                                            |
@@ -236,6 +236,5 @@ GastroBook data are saved automatically as a JSON file `[JAR file location]/data
 | **List all**             | `list`                                                                                                                                                                                                                                                             |
 | **List today**           | `listrt`                                                                                                                                                                                                                                                           |
 | **List tomorrow**        | `listrn`                                                                                                                                                                                                                                                           |
-| **Help**                 | `help`                                                                                                                                                                                                                                                             ||                          |                                                                                                                                                                                                                                                                    |
+| **Help**                 | `help`                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                |
 | **Exit**                 | `exit`                                                                                                                                                                                                                                                             |
-|
