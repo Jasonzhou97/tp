@@ -13,7 +13,7 @@ GastroBook *-d-> "1" UniqueReservationList
 
 'UniqueTagList -right-> "*" Tag
 
-UniqueReservationList -d-> "*"Reservation
+UniqueReservationList -d-> "//*// filtered"Reservation
 
 Reservation --> "*" Tag
 
@@ -24,6 +24,6 @@ Reservation --> "1" Identification
 Reservation --> "1" Pax
 Reservation --> "1" StartDate
 Reservation --> "1" StartTime
-Reservation -->  remark
+Reservation --> "1" Remark
 
 @enduml

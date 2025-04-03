@@ -16,7 +16,7 @@ import seedu.address.logic.commands.ListRtCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class GastroBookParserTest {
-    private final AddressBookParser parser = new AddressBookParser();
+    private final GastroBookParser parser = new GastroBookParser();
 
 
     @Test
