@@ -87,7 +87,6 @@ public class ModelManager implements Model {
         return userPrefs.getAddressBookFilePath();
     }
 
-    @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
@@ -216,7 +215,7 @@ public class ModelManager implements Model {
     @Override
     public void filterReservationsByRegular(Predicate<Reservation> predicate) {
         requireNonNull(predicate);
-        Predicate<Reservation> regularPredicate = ReservationsFilter.filterByRegular(filteredReservations);
+        Predicate<Reservation> regularPredicate = ReservationsFilter.filterByRegular(personsList);
         filteredReservations.setPredicate(regularPredicate);
     }
     @Override
