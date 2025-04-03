@@ -101,10 +101,10 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it is passed to an `GastroBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -115,25 +115,58 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2425S2-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
+Below is the diagram that shows the high level design of `Model` component.
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Reservation` objects (which are contained in a `UniqueReservationList` object).
-* stores the currently 'selected' `Reservation` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Reservation>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the gastrobook data i.e., all `Reservation` objects (which are contained in a `UniqueReservationList` object).
+* stores the customer data. i.e., all `Person` objects (which are contained in a `PersonList` object).
+* stores a `PersonListManager` object. It manages operations related to PersonsList that involve coordination with Reservations.
+* stores the currently 'selected' `Reservation` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Reservation>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.(not shown in the diagram as it is lower level details)
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* stores a PersonsList file that contains the data of all individuals who have made reservations before, and whether they are regulars.
+* stores a PersonsList manager file that manipulates data inside persons list.
 
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `GastroBook`, which `Person` references. This allows `GastroBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `GastroBook`, which `Person` references. This allows `GastroBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+
+Below is a diagram that shows the detail of `GastroBook` class.
+
+<img src="images/BetterModelClassDiagram.png" width="900" />
+
+Below is a diagram that shows the detail of `PersonList` class.
+
+<img src="images/PersonListClassDiagram.png" width="150" />
 
 </div>
+#### PersonsList and PersonsListManager Implementation
 
+The `PersonsList` class and related components manage customers who have made reservations, tracking their booking frequency and regular customer status.
+
+**Class Diagram:**
+
+![PersonsList Class Diagram](images/PersonsListDiagram.png)
+
+This diagram shows the structure of the `PersonsList` and `PersonsListManager` classes and their relationships with other classes in the system. The `PersonsList` contains multiple `Person` objects, each with a `Name` and `Phone`. The `PersonsListManager` coordinates between reservations and the `PersonsList`.
+
+**Sequence Diagram:**
+
+![PersonsList Sequence Diagram](images/PersonsListSeqDiagram.png)
+
+This sequence diagram illustrates three key operations:
+1. Recording a new booking - handling reservation edits and updating person records
+2. Checking regular status - identifying customers who have reached regular status
+3. Deleting a reservation - updating customer records when a reservation is canceled
+
+**Key Features:**
+- Regular customer tracking based on booking frequency
+- Persistence through JSON file storage
+- Coordination with the reservation system for consistent data
 
 ### Storage component
 
@@ -142,9 +175,10 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both gastrobook data and user preference data in JSON format, and read them back into corresponding objects.
+* can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
 * inherits from both `GastroBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* storage of personlist files and data are implemented under Model
 
 ### Common classes
 
@@ -244,7 +278,6 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -296,9 +329,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `***`        | Admin       | See user manual                             | Learn the new app effectively                                                 |
 | `**`         | Admin       | Find specific reservations                  | Locate specific reservations by name, phone number or time                    |
 | `**`         | Admin       | Tag reservations with special requests      | Easily track special requests per reservation                                 |
-| `**          | Admin       | Remark reservations                         | Customise and tailor each reservation to customer needs                       |
+| `**`         | Admin       | Remark reservations                         | Further customise and tailor each reservation to customer needs               |
 | `**`         | Admin       | Clear all reservations                      | Reset the schedule for a new reservation plan                                 |
-| `**`         | Admin       | View customer details                       | Know their booking time, allocated table, dishes ordered, spending, etc.      |
 
 
 *{More to be added}*
@@ -529,17 +561,20 @@ Use case ends.
 6. **Storage Access**: The system should be able to retrieve data with the given storage requirements in under 1 second.
 7. **User Access**: The system should be able to run locally with no more than 1 user with 1 database.
 8. **Phone Number**: Last 4 digits of phone number of every customer input to the system must be of unique combination.
-9. **Duplicate Reservations**: Duplicate reservations are not allowed to be added into the database. Reservations are considered to be duplicates only if: <br>
-   &ensp; - The last 4 digit of the phone numbers of both reservations are the same <br>
-   &ensp; - The booking date of both reservations are the same <br>
-   &ensp; - The booking time of both reservations are the same <br>
-   &ensp;The above situation is unlikely to happen(<0.001%).
-10. **Time**: The time of reservations is not limited and is subjected to user discretion.
+9. **Customisation**: Threshold for a customer becoming a regular customer is hardcoded. (3 currently)
+     9.1 **All fields are fixed**
+10. **Clearing**: All customer details in persons list will preserve even after clear function.
+11. **Duplicate Reservations**: Duplicate reservations are not allowed to be added into the database. Reservations are considered to be duplicates only if: <br>
+    &ensp; - The last 4 digit of the phone numbers of both reservations are the same <br>
+    &ensp; - The booking date of both reservations are the same <br>
+    &ensp; - The booking time of both reservations are the same <br>
+    &ensp;The above situation is unlikely to happen(<0.001%).
+12. **Time**: The time of reservations is not limited and is subjected to user discretion.
     &ensp; - No earliest or latest time limit placed (e.g. 0000 is also allowed)
     &ensp; - Reservations before current time are allowed (e.g. reservation at 1400 today can be made even if current time is 1600)
-11. **Duration**: The duration of reservations must be <12h and are in intervals of 30 minutes or 1 hour.
-12. **Pax**: Number of people per reservation is not limited and is subjected to user discretion.
-13. **Table Number**: Table number assigned to each reservation is subjected to user discretion.
+13. **Duration**: The duration of reservations must be <12h and are in intervals of 30 minutes or 1 hour.
+14. **Pax**: Number of people per reservation is not limited and is subjected to user discretion.
+15. **Table Number**: Table number assigned to each reservation is subjected to user discretion.
 
 *{More to be added}*
 
@@ -556,7 +591,7 @@ Use case ends.
 * **Invalid Command**: A command that is unrecognized or improperly formatted by the system.
 * **Valid ID**: The id for which edit, mark, unmark, delete, remark take as parameter which has a form of "[dateOfTodayOrTomorrow(ddMMyyyy)] + [UNIQUE last4DigitsOfPhoneNumber(xxxx)] + [time(HHMM)]".
 * **Valid Phone Number**: A phone number that has at least 4 digits.
-* **Valid Table NUmber**: A table number that starts with a capital letter, followed by 1-3 numbers.
+* **Valid Table Number**: A table number that starts with a capital letter, followed by 1-3 numbers.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -575,16 +610,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
 
 ### Deleting a person
 
