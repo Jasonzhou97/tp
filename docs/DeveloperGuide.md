@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -127,43 +127,40 @@ The `Model` component,
 * stores the customer data. i.e., all `Person` objects (which are contained in a `PersonsList` object).
 * stores a `PersonsListManager` object. It manages operations related to `PersonsList` object that involve coordination with `Reservation` objects.
 * stores the currently 'selected' `Reservation` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Reservation>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.(not shown in the diagram as it is lower level details)
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* stores a `UserPref` object that represents the user's preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** A more detailed extension for `GastroBook` and `PersonList` in `Model` component is given below.<br>
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** A more detailed extension for `GastroBook` and `PersonList` in `Model` component is given below.
 
-Below is a diagram that shows the detail of `GastroBook` class and its associated classes.
+### GastroBook Class Diagram
+<img src="images/BetterModelClassDiagram1.png" width="700" />
 
-<img src="images/BetterModelClassDiagram1.png" width="900" />
+<br>
 
-
-Below is a diagram that shows the detail of `PersonsList` class and its associated classes.
-
+### PersonsList Class Diagram
 <img src="images/PersonListClassDiagram1.png" width="200" />
 
-The `PersonsList` class and related components manage customers who have made reservations, tracking their booking frequency and regular customer status.<br>
+The `PersonsList` class and related components manage customers who have made reservations, tracking their booking frequency and regular customer status.
 </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An interaction between `PersonsList` and `PersonsListManager`in `Model` component is given as sequence diagram below.<br>
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** An interaction between `PersonsList` and `PersonsListManager` in `Model` component is given as sequence diagram below.
 
+### PersonsList Interaction Sequence Diagram
 
-The sequence diagram below illustrates the interactions between `PersonsList` and `PersonsListManager` when a reservation is made.
-
-**Sequence Diagram:**
-
-<img src="images/PersonListSequenceDiagram.png" width="600" alt="PersonsList Sequence Diagram" />
+<img src="images/PersonListSequenceDiagram.png" width="600" height="950" alt="PersonsList Sequence Diagram" />
 
 This sequence diagram illustrates three key operations:
-1. Recording a new booking - handling reservation edits and updating person records
-2. Checking regular status - identifying customers who have reached regular status
-3. Deleting a reservation - updating customer records when a reservation is canceled
+1. **Recording a new booking** - handling reservation edits and updating person records
+2. **Checking regular status** - identifying customers who have reached regular status
+3. **Deleting a reservation** - updating customer records when a reservation is canceled
 
 **Key Features:**
 - Regular customer tracking based on booking frequency
 - Persistence through JSON file storage
 - Coordination with the reservation system for consistent data
-
 </div>
 
 ### Storage component
@@ -181,7 +178,6 @@ The `Storage` component,
 ### Common classes
 
 Classes used by multiple components are in the `seedu.address.commons` package.
-
 --------------------------------------------------------------------------------------------------------------------
 
 [//]: # ()
