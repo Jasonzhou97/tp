@@ -130,11 +130,13 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** A more detailed extension for `GastroBook` and `PersonList` in `Model` component is given below.<br>
 
 Below is a diagram that shows the detail of `GastroBook` class and its associated classes.
 
 <img src="images/BetterModelClassDiagram1.png" width="900" />
+
 
 Below is a diagram that shows the detail of `PersonsList` class and its associated classes.
 
@@ -145,9 +147,12 @@ The `PersonsList` class and related components manage customers who have made re
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An interaction between `PersonsList` and `PersonsListManager`in `Model` component is given as sequence diagram below.<br>
 
+
 The sequence diagram below illustrates the interactions between `PersonsList` and `PersonsListManager` when a reservation is made.
 
-![PersonsList Sequence Diagram](images/addsomthing)
+**Sequence Diagram:**
+
+<img src="images/PersonListSequenceDiagram.png" width="600" alt="PersonsList Sequence Diagram" />
 
 This sequence diagram illustrates three key operations:
 1. Recording a new booking - handling reservation edits and updating person records
@@ -169,7 +174,7 @@ This sequence diagram illustrates three key operations:
 
 The `Storage` component,
 * can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `GastroBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `GatroBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 * storage of `PersonsList` files and data are implemented under `Model`.
 

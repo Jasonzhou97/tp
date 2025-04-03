@@ -344,7 +344,7 @@ public class PersonsList {
     public ArrayList<Person> getRegularCustomers() {
         ArrayList<Person> regulars = new ArrayList<>();
         for (Person person : personsList) {
-            if (person.isRegular()) {
+            if (person.getCounter() >= getRegularCustomerThreshold()) {
                 regulars.add(person);
             }
         }
