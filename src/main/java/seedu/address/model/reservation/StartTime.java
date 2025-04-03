@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class StartTime {
     public static final String MESSAGE_CONSTRAINTS =
-            "Time should be in the form of HHMM.";
+            "Time should be in the form of HHMM of 24 hr format.";
     public static final String VALIDATION_REGEX = "^(?:[01]\\d|2[0-3])[0-5]\\d$";
     public final String value;
 
