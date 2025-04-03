@@ -16,15 +16,15 @@ GastroBook is a **desktop app for managing restaurant reservations for small sca
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from our website.
+2. Download the latest `.jar` file from our website.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your GastroBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your GastroBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar gastrobook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar gastrobook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample reservation data.<br>
    ![Ui](images/Ui1.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     * `list` : Lists all reservations.
@@ -39,7 +39,21 @@ GastroBook is a **desktop app for managing restaurant reservations for small sca
 
     * `edit [validReservationID (ie: 1703202593441230)] n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event ` : Edit tomorrow or today reservations details.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+## Parameter Table
+| **Field**          | **Example**           | **Description**                                                           |
+|--------------------|-----------------------|---------------------------------------------------------------------------|
+| `NAME`             | n/John                | Name of the person making the reservation                                 |
+| `PHONE_NUMBER`     | p/98765432            | Contact number of the person                                              |
+| `DATE`             | date/01/04/2025       | Date of reservation (e.g., `01/03/2025`)                                  |
+| `TIME`             | time/1200             | Time of reservation in 24-hour format (e.g., `1800` for 6:00 PM)          |
+| `DURATION`         | duration/2            | Duration in hours (maximum 2.0 hours)                                     |
+| `NUMBER_OF_PEOPLE` | pax/2                 | Number of people included in the reservation                              |
+| `TABLE_NUMBER`     | table/A1              | Assigned table number or code                                             |
+| `REMARK`           | r/Allergic to Peanuts | Any additional remarks about the reservation                              |
+| `TAG`              | t/event               | Tags to categorize the reservation (e.g., `regular`, `birthday`, `event`) |
 
 --------------------------------------------------------------------------------------------------------------------
 ## Features
@@ -56,19 +70,9 @@ Format: `help`
 
 Adds a reservation to GastroBook.
 
-Format: `add n/[NAME] p/[PHONE_NUMBER] date/[DATE] time/[TIME] duration/[DURATION] pax/[NUMBER_OF_PEOPLE] table/[TABLE_NUMBER] t/[TAG_1] t/[TAG_2] `
+Format: `add n/NAME p/PHONE_NUMBER date/DATE time/TIME duration/DURATION pax/NUMBER_OF_PEOPLE table/[TABLE_NUMBER] r/[REMARK] t/[TAG_1] t/[TAG_2]... `
 
-* NAME: Name of the person making the reservation (string)
-* PHONE_NUMBER: Contact number of the person making the reservation
-* DATE: Date of reservation in DD/MM/YYYY format (e.g., 01/03/2025 for March 1, 2025)
-* TIME: Time of reservation in 24-hour HHMM format (e.g., 1800 for 6:00 PM)
-* DURATION: Duration of reservation in hours (maximum 2 hours)
-* NUMBER_OF_PEOPLE: Number of people for the reservation (integer)
-* TABLE_NUMBER: Assigned table number/code for the reservation
-* TAG: tags to categorize the reservation (e.g., regular, event, birthday)
-
-
-Examples:
+Example:
 * `add n/John Doe p/98765432 date/01/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event`
 
 ### Editing a reservation: `edit`
@@ -76,17 +80,6 @@ Examples:
 Edits the reservation with the specified `RESERVATION_ID`.
 
 Format: `edit [RESERVATION_ID] n/[NAME] p/[PHONE_NUMBER] date/[DATE] time/[TIME] duration/[DURATION] pax/[NUMBER_OF_PEOPLE] table/[TABLE_NUMBER] t/[TAG_1] t/[TAG_2] `
-
-* RESERVATION_ID: Identifier combining today's or tomorrow's date (DDMMYYYY) with the unique last 4 digits of the customer's phone number and time of reservation in HHMM format (e.g., 1803202512341200 for a booking on March 18, 2025 at 1200, with phone ending in 1234).
-* NAME: Name of the person making the reservation (string)
-* PHONE_NUMBER: Contact number of the person making the reservation
-* DATE: Date of reservation in DD/MM/YYYY format (e.g., 01/03/2025 for March 1, 2025)
-* TIME: Time of reservation in 24-hour HHMM format (e.g., 1800 for 6:00 PM)
-* DURATION: Duration of reservation in hours (maximum 2 hours)
-* NUMBER_OF_PEOPLE: Number of people for the reservation (integer)
-* TABLE_NUMBER: Assigned table number/code for the reservation
-* TAG: tags to categorize the reservation (e.g., regular, event, birthday)
-
 
 Examples:
 * `edit 1803202512341230 n/John Doe p/98761234 date/18/03/2025 time/1800 duration/2 pax/2 table/A1 t/regular t/event`
@@ -238,3 +231,4 @@ GastroBook data are saved automatically as a JSON file `[JAR file location]/data
 | **Help**                 | `help`                                                                                                                                                                                                                                                             ||                          |                                                                                                                                                                                                                                                                    |
 | **Exit**                 | `exit`                                                                                                                                                                                                                                                             |
 |
+
