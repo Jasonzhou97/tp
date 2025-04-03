@@ -100,7 +100,8 @@ public class TypicalReservations {
 
     public static final Reservation FIONA = new ReservationBuilder(new Name("Fiona Kunz"), new Phone("9482427"),
             new StartDate(todayDate), new StartTime("1200"), new Duration("1"), new Pax("3"),
-            new Table("A2"), new Remark("She can't take beer!"), new HashSet<>()).build();
+            new Table("A2"), new Remark("She can't take beer!"), new HashSet<>())
+            .withPaymentStatus(true).build();
 
     public static final Reservation GEORGE = new ReservationBuilder(new Name("George Best"), new Phone("9482442"),
             new StartDate(tomorrowDate), new StartTime("1200"), new Duration("1"), new Pax("3"),
