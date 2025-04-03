@@ -24,7 +24,7 @@ public class SampleDataUtil {
 
     public static ReadOnlyGastroBook getSampleAddressBook() {
         GastroBook sampleAb = new GastroBook();
-        for (Reservation sampleReservation : getSamplePersons()) {
+        for (Reservation sampleReservation : getSampleReservations()) {
             sampleAb.addReservation(sampleReservation);
         }
         return sampleAb;
