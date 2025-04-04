@@ -147,11 +147,9 @@ The `Model` component,
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** A more detailed extension for `GastroBook` and `PersonList` in `Model` component is given below.
 
-### GastroBook Class Diagram
 
 <img src="images/BetterModelClassDiagram1.png" width="600" /> <br>
 
-### PersonsList Class Diagram
 
 <img src="images/PersonListClassDiagram1.png" width="200" /> <br>
 
@@ -161,14 +159,14 @@ The `PersonsList` class and related components manage customers who have made re
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** An interaction between `PersonsList` and `PersonsListManager` in `Model` component is given as sequence diagram below.
 
-### PersonsList Interaction Sequence Diagram
 
 <img src="images/PersonListSequenceDiagram.png" width="900" /> <br>
 
 This sequence diagram illustrates three key operations: <br>
 1. **Recording a new booking** - handling reservation edits and updating person records <br>
 2. **Checking regular status** - identifying customers who have reached regular status <br>
-3. **Deleting a reservation** - updating customer records when a reservation is canceled <br>
+3. **Deleting a reservation** - updating customer records when a reservation is canceled <br><br>
+
 
 **Key Features:** <br>
 - Regular customer tracking based on booking frequency <br>
