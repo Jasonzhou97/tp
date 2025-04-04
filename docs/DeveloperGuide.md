@@ -145,8 +145,7 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** A more detailed extension for `GastroBook` and `PersonList` in `Model` component is given below.
-
+:information_source: **Note:** A more detailed extension for `GastroBook` and `PersonList` UML diagram in `Model` component is given below. <br><br>
 
 <img src="images/BetterModelClassDiagram1.png" width="600" /> <br>
 
