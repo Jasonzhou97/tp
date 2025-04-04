@@ -130,6 +130,8 @@ How the parsing works:
 **API** : [`Model.java`](https://github.com/AY2425S2-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 Below is the diagram that shows the high level design of `Model` component.
+
+
 <img src="images/ModelClassDiagram1.png" width="450" />
 
 
@@ -147,11 +149,11 @@ The `Model` component,
 
 ### GastroBook Class Diagram
 
-<img src="images/BetterModelClassDiagram1.png" width="600" />
+<img src="images/BetterModelClassDiagram1.png" width="600" /> <br>
 
 ### PersonsList Class Diagram
 
-<img src="images/PersonListClassDiagram1.png" width="400" />
+<img src="images/PersonListClassDiagram1.png" width="200" /> <br>
 
 The `PersonsList` class and related components manage customers who have made reservations, tracking their booking frequency and regular customer status.
 </div>
@@ -161,17 +163,17 @@ The `PersonsList` class and related components manage customers who have made re
 
 ### PersonsList Interaction Sequence Diagram
 
-<img src="images/PersonListSequenceDiagram.png" width="900" />
+<img src="images/PersonListSequenceDiagram.png" width="900" /> <br>
 
-This sequence diagram illustrates three key operations:
-1. **Recording a new booking** - handling reservation edits and updating person records
-2. **Checking regular status** - identifying customers who have reached regular status
-3. **Deleting a reservation** - updating customer records when a reservation is canceled
+This sequence diagram illustrates three key operations: <br>
+1. **Recording a new booking** - handling reservation edits and updating person records <br>
+2. **Checking regular status** - identifying customers who have reached regular status <br>
+3. **Deleting a reservation** - updating customer records when a reservation is canceled <br>
 
-**Key Features:**
-- Regular customer tracking based on booking frequency
-- Persistence through JSON file storage
-- Coordination with the reservation system for consistent data
+**Key Features:** <br>
+- Regular customer tracking based on booking frequency <br>
+- Persistence through JSON file storage <br>
+- Coordination with the reservation system for consistent data <br>
 </div>
 
 ### Storage component
