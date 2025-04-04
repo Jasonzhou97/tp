@@ -149,6 +149,8 @@ The `Model` component,
 
 <img src="images/BetterModelClassDiagram1.png" width="600" /> <br>
 
+<br>
+<br>
 
 <img src="images/PersonListClassDiagram1.png" width="200" /> <br>
 
@@ -159,7 +161,7 @@ The `PersonsList` class and related components manage customers who have made re
 :information_source: **Note:** An interaction between `PersonsList` and `PersonsListManager` in `Model` component is given as sequence diagram below.
 
 
-<img src="images/PersonListSequenceDiagram.png" width="900" /> <br>
+<img src="images/PersonListSequenceDiagram.png" width="900" /> <br><br>
 
 This sequence diagram illustrates three key operations: <br>
 1. **Recording a new booking** - handling reservation edits and updating person records <br>
