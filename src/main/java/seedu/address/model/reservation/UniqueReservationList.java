@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.reservation.exceptions.DuplicatePersonException;
-import seedu.address.model.reservation.exceptions.PersonNotFoundException;
+import seedu.address.model.reservation.exceptions.DuplicateReservationException;
+import seedu.address.model.reservation.exceptions.ReservationNotFoundException;
 
 /**
  * A list of reservations that enforces uniqueness between its elements and does not allow nulls.
@@ -44,7 +44,7 @@ public class UniqueReservationList implements Iterable<Reservation> {
     public void add(Reservation toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateReservationException();
         }
         internalList.add(toAdd);
     }
@@ -60,11 +60,11 @@ public class UniqueReservationList implements Iterable<Reservation> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new ReservationNotFoundException();
         }
 
         if (!target.isSameReservation(editedReservation) && contains(editedReservation)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateReservationException();
         }
 
         internalList.set(index, editedReservation);
@@ -77,7 +77,7 @@ public class UniqueReservationList implements Iterable<Reservation> {
     public void remove(Reservation toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new ReservationNotFoundException();
         }
     }
 
@@ -93,7 +93,7 @@ public class UniqueReservationList implements Iterable<Reservation> {
     public void setReservations(List<Reservation> reservations) {
         requireAllNonNull(reservations);
         if (!reservationsAreUnique(reservations)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateReservationException();
         }
 
         internalList.setAll(reservations);

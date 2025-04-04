@@ -2,8 +2,20 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+## Table of Contents
+
+- [Acknowledgements](#acknowledgements)
+- [Setting up, getting started](#setting-up-getting-started)
+- [Design](#design)
+    - [Architecture](#architecture)
+    - [UI component](#ui-component)
+    - [Logic component](#logic-component)
+    - [Model component](#model-component)
+    - [Storage component](#storage-component)
+    - [Common classes](#common-classes)
+- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+- [Appendix: Requirements](#appendix-requirements)
+- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -127,47 +139,39 @@ The `Model` component,
 * stores the customer data. i.e., all `Person` objects (which are contained in a `PersonsList` object).
 * stores a `PersonsListManager` object. It manages operations related to `PersonsList` object that involve coordination with `Reservation` objects.
 * stores the currently 'selected' `Reservation` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Reservation>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.(not shown in the diagram as it is lower level details)
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* stores a `UserPref` object that represents the user's preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** A more detailed extension for `GastroBook` and `PersonList` in `Model` component is given below.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** A more detailed extension for `GastroBook` and `PersonList` in `Model` component is given below.<br>
+### GastroBook Class Diagram
 
-Below is a diagram that shows the detail of `GastroBook` class and its associated classes.
+<img src="images/BetterModelClassDiagram1.png" width="600" />
 
-<img src="images/BetterModelClassDiagram1.png" width="900" />
+### PersonsList Class Diagram
 
+<img src="images/PersonListClassDiagram1.png" width="400" />
 
-Below is a diagram that shows the detail of `PersonsList` class and its associated classes.
-
-<img src="images/PersonListClassDiagram1.png" width="200" />
-
-The `PersonsList` class and related components manage customers who have made reservations, tracking their booking frequency and regular customer status.<br>
+The `PersonsList` class and related components manage customers who have made reservations, tracking their booking frequency and regular customer status.
 </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An interaction between `PersonsList` and `PersonsListManager`in `Model` component is given as sequence diagram below.<br>
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** An interaction between `PersonsList` and `PersonsListManager` in `Model` component is given as sequence diagram below.
 
-The sequence diagram below illustrates the interactions between `PersonsList` and `PersonsListManager` when a reservation is made.
+### PersonsList Interaction Sequence Diagram
 
-![PersonsList Class Diagram](images/PersonListClassDiagram.png)
-
-This diagram shows the structure of the `PersonsList` and `PersonsListManager` classes and their relationships with other classes in the system. The `PersonsList` contains multiple `Person` objects, each with a `Name` and `Phone`. The `PersonsListManager` coordinates between reservations and the `PersonsList`.
-
-**Sequence Diagram:**
-
-![PersonsList Sequence Diagram](images/PersonListSequenceDiagram.png)
-
+<img src="images/PersonListSequenceDiagram.png" width="900" />
 
 This sequence diagram illustrates three key operations:
-1. Recording a new booking - handling reservation edits and updating person records
-2. Checking regular status - identifying customers who have reached regular status
-3. Deleting a reservation - updating customer records when a reservation is canceled
+1. **Recording a new booking** - handling reservation edits and updating person records
+2. **Checking regular status** - identifying customers who have reached regular status
+3. **Deleting a reservation** - updating customer records when a reservation is canceled
 
 **Key Features:**
 - Regular customer tracking based on booking frequency
 - Persistence through JSON file storage
 - Coordination with the reservation system for consistent data
-
 </div>
 
 ### Storage component
@@ -185,7 +189,6 @@ The `Storage` component,
 ### Common classes
 
 Classes used by multiple components are in the `seedu.address.commons` package.
-
 --------------------------------------------------------------------------------------------------------------------
 
 [//]: # ()

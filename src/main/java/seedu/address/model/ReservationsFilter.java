@@ -89,8 +89,6 @@ public class ReservationsFilter {
     }
     /**
      * Returns a predicate that filters reservations made by regulars.
-     *
-     * @param personsList The list of reservations to filter
      * @return Predicate for regulars' reservation
      */
     public static Predicate<Reservation> filterByRegular(PersonsList personsList) {
@@ -109,7 +107,7 @@ public class ReservationsFilter {
             return regularNumbers.contains(reservationPhone);
         };
 
-        return regularPredicate;
+        return regularPredicate.and(filterForTodayOrTomorrowPredicate());
     }
 
 }
