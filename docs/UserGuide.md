@@ -49,7 +49,7 @@ GastroBook is a **desktop application designed for small to medium scale restaur
 3. Copy the file to the folder you want to use as the _home folder_ for your GastroBook.
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar gastrobook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds.<br>
+   A GUI similar to the below should appear in a few seconds.<br><br>
    ![Ui](images/Ui1.png) 
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -95,7 +95,7 @@ GastroBook is a **desktop application designed for small to medium scale restaur
 * `RESERVATION_ID` is made up of date of reservation + last 4 digits of phone number + time of reservation.
 
 
-* The `RESERVATION_ID` is displayed in a reservation card and begins after the key `ID: `.
+* The `RESERVATION_ID` is displayed in a reservation card and begins after the key `ID: ` <br><br>
   ![ReservationCard](images/reservationCard.png)
 
 
@@ -105,7 +105,7 @@ GastroBook is a **desktop application designed for small to medium scale restaur
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Justification: Usage of `RESERVATION_ID`:**<br>
+**:information_source: Justification: Usage of `RESERVATION_ID`**<br>
 
 * After considering call-in reservations, using a `RESERVATION_ID` of unique combinations allows admin to easily retrieve reservation details by simply asking the customer for the date of reservation, the last 4 digits of their phone number, and the time of reservation. This avoids the need for admin to go through a long list or index of reservations, especially during peak hours. It streamlines the search process, minimizes wait time, and reduces potential human errors. Additionally, a well-structured and unique `RESERVATION_ID` can enhance the system's efficiency and make future referencing or modifications much more convenient.
 
@@ -162,7 +162,7 @@ Notes:
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Justification: Reliable Uniqueness Check Using Last 4 Digits of Phone Number:**<br>
+**:information_source: Justification: Reliable Uniqueness Check Using Last 4 Digits of Phone Number**<br>
 
 * A reservation with the same date, time, and last 4 digits of the phone number is considered a duplicate and will not be allowed. This is highly unlikely to occur, as the last 4 digits of a phone number are commonly used for verification in systems like banks and telecom services, ensuring uniqueness and preventing accidental duplicates.
 
@@ -212,7 +212,7 @@ Format: `mark RESERVATION_ID`
 Examples:
 * `mark 1803202512341230` 
 
-* The word `Paid` is displayed in the reservation card after the key `Payment status: ` when sample `mark` command has been entered with a specified `RESERVATION_ID`.
+* The word `Paid` is displayed in the reservation card after the key `Payment status: ` when sample `mark` command has been entered with a specified `RESERVATION_ID`.<br><br>
 ![mark](images/Mark.png)
  
 Notes:
@@ -229,7 +229,7 @@ Format: `unmark RESERVATION_ID`
 Examples:
 * `unmark 1803202512341230`
 
-* The word `Not Paid` is displayed in the reservation card after the key `Payment status: ` when sample `unmark` command has been entered with a specified `RESERVATION_ID`.
+* The word `Not Paid` is displayed in the reservation card after the key `Payment status: ` when sample `unmark` command has been entered with a specified `RESERVATION_ID`.<br><br>
   ![unmark](images/Unmark.png)
 
 Notes:
@@ -292,23 +292,24 @@ Shows a list of all reservations for today and tomorrow made by regulars.
 Format: `listr`
 
 Notes:
-* Below is the GUI displayed when the `listr` command is entered. Sample data is not preloaded for this feature, but you can test it by adding reservations with the same phone number three or more times. Then, use `listr` to view the Regulars.
+* Below is the GUI displayed when the `listr` command is entered. Sample data is not preloaded for this feature, but you can test it by adding reservations with the same phone number three or more times. Then, use `listr` to view the Regulars. <br><br>
 ![listr](images/listr.png)
 
 
-* Yellow reservation card indicates reservation made by a regular.
+* Yellow reservation card indicates reservation made by a regular.<br><br>
 ![regular](images/regular.png)
 
 
-* White reservation card indicates reservation made by a non-regular.
+* White reservation card indicates reservation made by a non-regular. <br><br>
 ![nonregular](images/nonregular.png)
+
 
 
 :bulb: **Note:** Definition of a Regular.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Who is a Regular ? **<br>
+**:information_source: Who is a Regular ?**<br>
 
 * A Regular refers to a customer who has made three or more reservations, including past reservations by adding, `add` the reservations into the system. Regulars are identified by phone number—regardless of the name used since it is possible that different family members use the same phone number for reservations. Even if different names are provided, as long as the phone number is the same, they are treated as the same entity (i.e., one regular) by the system.
 
@@ -396,22 +397,34 @@ GastroBook data are saved automatically as a JSON file `[JAR file location]/data
 
 ## Constraints
 1. The threshold for a customer to become a Regular is hardcoded in the system at 3 reservations.
+
 2. All fields are fixed.
+
 3. Identification of reservation is unique and it is auto-generated by system. Editing, `edit` the last 4 digits of the phone number or the reservation date or time, will result in a change to the `RESERVATION_ID` accordingly.
+
 4. Last 4 digits of a phone number entered to the system must be unique. For example, if "1234" is already in the system, "12341234" will not be allowed by the system, as the probability of such a duplication of last 4 digits of phone number occurring in real life is extremely low.
+
 5. Guest records will still be present in persons list for history purposes even after clearing, `clear` the reservations. Thus, the reservation card will still change their color accordingly to indicate whether the guest is a regular or non-regular based on the unclear past reservation counts records in the persons list.
+
 6. `add` and `edit` features are not able to modify if a reservation is paid or unpaid.
+
 7. `add` and `edit` features are not able to modify the remark of a reservation 
+
 8. The system does not handle table clashes automatically; it is up to the admin's discretion and knowledge to manage overlapping reservations.
+
 9. Editing tags will overwrite the existing ones, so you will need to add the previous tags back before adding new ones.
+
 10. The only way to delete a remark of reservation in the system is by using "remark r/" which is to set the remark to null.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Reminder
 1. For compatibility reasons, avoid copying commands directly from the User Guide PDF into the command window for testing purposes. This may lead to errors or unexpected behavior since this is a real-time system.
+
 2. Since the `RESERVATION_ID` is defined based on the reservation date + the last 4 digits of the phone number + reservation time, duplication checks are performed using this combination rather than the customer's name or phone number alone.
+
 3. This is essential for understanding how Regulars are defined: a customer with the same phone number but different names is considered the same entity, while a different phone number (even with the same name) or a different phone number and name pair will be treated as separate entities in the persons list.
+
 4. Do not overwrite or replace the data in  `gastrobook.json` and `personslist.json` files under `/data` directory directly to avoid unexpected behavior and ensure the system can read them properly. Overwriting these files may result in lost records and prevent the system from booting correctly, causing reservation data to not display properly. Instead, follow the normal procedure to input data so that it is properly recorded into the `gastrobook.json` and `personslist.json` files.
 
 --------------------------------------------------------------------------------------------------------------------
