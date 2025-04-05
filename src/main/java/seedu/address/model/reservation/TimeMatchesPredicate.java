@@ -25,7 +25,7 @@ public class TimeMatchesPredicate implements Predicate<Reservation> {
 
         // If reservation spans overnight, clip endTime to 11:59
         if (endTime.isBefore(startTime)) {
-            endTime = LocalTime.of(23, 59);
+            endTime = LocalTime.of(23, 59, 59);
         }
 
         // The reservation is ongoing at searchTime if startTime <= searchTime < endTime.
