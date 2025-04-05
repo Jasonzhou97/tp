@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 
 import seedu.address.logic.commands.FindByTimeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.reservation.StartTime;
 import seedu.address.model.reservation.TimeMatchesPredicate;
 
 /**
@@ -29,7 +30,7 @@ public class FindByTimeCommandParser implements Parser<FindByTimeCommand> {
         }
 
         String[] timeKeyword = trimmedArgs.split("\\s+");
-        if (timeKeyword.length != 1) {
+        if (timeKeyword.length != 1 || !StartTime.isValidTime(timeKeyword[0])) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindByTimeCommand.MESSAGE_USAGE));
         }
