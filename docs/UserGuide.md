@@ -293,15 +293,15 @@ Format: `listr`
 
 Notes:
 * Below is the GUI displayed when the `listr` command is entered. Sample data is not preloaded for this feature, but you can test it by adding reservations with the same phone number three or more times. Then, use `listr` to view the Regulars.
-![listr](images\listr.png)
+![listr](images/listr.png)
 
 
 * Yellow reservation card indicates reservation made by a regular.
-![regular](images\regular.png)
+![regular](images/regular.png)
 
 
 * White reservation card indicates reservation made by a non-regular.
-![nonregular](images\nonregular.png)
+![nonregular](images/nonregular.png)
 
 
 :bulb: **Note:** Definition of a Regular.
