@@ -21,7 +21,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* AddressBook 3
+* ChatGPT 4.0
+* EPOS Systems
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -675,8 +677,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
 2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
@@ -686,17 +686,17 @@ testers are expected to do more *exploratory* testing.
 
 3. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a reservation
 
-1. Deleting a person while all persons are being shown
+1. Deleting a reservation while all reservations are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all reservations of today or tomorrow using the `list` command. Multiple reservations in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `delete 0101202512341100`<br>
+      Expected: Reservation with ID 0101202512341100 is deleted from the list. Details of the deleted reservation shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No reservation is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
