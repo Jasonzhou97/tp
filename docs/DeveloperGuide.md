@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Developer Guide
+title: GastroBook Developer Guide
 ---
 ## Table of Contents
 
@@ -105,7 +105,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 0101202512341800")` API call as an example.
 
-![Interactions Inside the Logic Component for the `delete 0101202512341800` Command](images/DeleteSequenceDiagram1.png)
+![Interactions Inside the Logic Component for the `delete 0101202512341800` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </div>
@@ -677,8 +677,9 @@ Use case ends.
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+
+1. Testers should not modify the JSON file directly, as doing so may cause errors.
 
 </div>
 

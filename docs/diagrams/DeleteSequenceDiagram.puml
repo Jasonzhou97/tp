@@ -14,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant "m:Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete [id]")
+[-> LogicManager : execute("delete 0604202598761700")
 activate LogicManager
 
-LogicManager -> GastroBookParser : parseCommand("delete [id]")
+LogicManager -> GastroBookParser : parseCommand("delete 0604202598761700")
 activate GastroBookParser
 
 create DeleteCommandParser
@@ -27,7 +27,7 @@ activate DeleteCommandParser
 DeleteCommandParser --> GastroBookParser
 deactivate DeleteCommandParser
 
-GastroBookParser -> DeleteCommandParser : parse("[id]")
+GastroBookParser -> DeleteCommandParser : parse("0604202598761700")
 activate DeleteCommandParser
 
 create DeleteCommand
@@ -49,7 +49,7 @@ deactivate GastroBookParser
 LogicManager -> DeleteCommand : execute(m)
 activate DeleteCommand
 
-DeleteCommand -> Model : deleteReservation(id)
+DeleteCommand -> Model : deleteReservation(...)
 activate Model
 
 Model --> DeleteCommand
