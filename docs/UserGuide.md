@@ -7,7 +7,7 @@ title: GastroBook User Guide
 - [Introduction](#introduction)
 - [Quick start](#quick-start)
 - [Input Field Table](#input-field-table)
-- [Constraints](#constraints)
+- [Design decision](#design-decision-)
 - [Features](#features)
     - [Viewing help : `help`](#viewing-help--help)
     - [Adding a reservation: `add`](#adding-a-reservation-add)
@@ -23,8 +23,8 @@ title: GastroBook User Guide
     - [Listing all reservations by regulars : `listr`](#listing-all-reservations-by-regulars--listr)
     - [Finding reservations by name: `findn`](#finding-reservations-by-name-findn)
     - [Finding reservations by phone number: `findp`](#finding-reservations-by-phone-number-findp)
-    - [Clearing the reservations: `clear`](#clearing-the-reservations--clear)
     - [Finding reservations by time: `findt`](#finding-reservations-by-time-findt)
+    - [Clearing the reservations: `clear`](#clearing-the-reservations--clear)
     - [Exiting the program : `exit`](#exiting-the-program--exit)
 - [Saving the data](#saving-the-data)
 - [Editing the data file](#editing-the-data-file)
@@ -43,28 +43,90 @@ GastroBook is a **desktop application designed for small to medium scale restaur
 
 ## **Quick start**
 
-1. Ensure you have Java `17` or above installed in your Computer.<br>
-   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+### 1. Install Java (if you don’t have it already)
 
-2. Download the latest `.jar` file from our website. // Maybe our website needed to be added here 
+To use **GastroBook**, you’ll need **Java 17** installed on your computer. If you're not sure whether you have it yet, don’t worry — here’s how you can check and install it!
 
-3. Copy the file to the folder you want to use as the _home folder_ for your GastroBook.
+#### 1.1 **For Mac Users**:
+- Follow this easy guide to install **Java 17** on your Mac:  
+  [Java Installation Guide for Mac](https://se-education.org/guides/tutorials/javaInstallationMac.html)
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar gastrobook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds.<br><br>
-   ![Ui](images/Ui1.png) 
+#### 1.2 **For Windows Users**:
+- You can download and install **Java 17** from the official Oracle website:  
+  [Download Java 17](https://www.oracle.com/java/technologies/downloads/#java17?er=221886)
+- Just make sure to choose **Java 17** or a later version.
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-   * `list` : Lists all reservations for today and tomorrow.
+#### 1.3 **Not Sure Which Version You Have?**
+- If you're unsure whether Java is already installed or which version you have, you can check it by opening your Command Prompt or Terminal and typing:
+  ```bash
+  java -version
+  ```
+- If you see something like **`java version "17.x.x"`**, you're good to go! If not, just follow the download links above to install the right version.
 
-   * `listrt` : Lists all reservations for today.
-   
-   * `listp` : Lists all previous reservations (ie: Reservations from the day before).
+:bulb: **Note:** Information related to Java 17.
 
-   * `exit` : Exits the app.
+<div markdown="block" class="alert alert-info">
 
-6. Refer to the [Features](#features) below for details of each command.
+**:information_source: Notes: What is Java 17?**<br>
+
+* Java 17 is a version of the Java programming language. It’s the latest stable version, offering improvements in performance, security, and new features. It’s the version required to run applications like GastroBook.
+
+</div>
+
+### 2. **Download the Latest `GastroBook` File**  
+- Visit our [GitHub page](https://github.com/AY2425S2-CS2103T-T09-3/tp) and download the most recent `.jar` file for `GastroBook`.
+
+
+### 3. **Copy the file**
+- First, download the **gastrobook.jar** file and **copy** it to the folder where you want to keep the app. This will be your **home folder** for GastroBook.
+
+
+### 4. **Open the Command Prompt**
+- On **Windows**:
+  - Press the **Windows key** + **R**, type `cmd`, and press **Enter** to open the **Command Prompt**.
+
+
+- On **Mac OS**:
+  - Open the **Terminal** application (you can find it by searching in Spotlight or under Applications > Utilities).
+
+
+### 5. **Go to the folder with the file**
+- In the Command Prompt or Terminal, you'll need to "go to" the folder that contains **gastrobook.jar**.
+
+- To do this, type the following command:
+
+
+  - **For Windows**:
+    ```bash
+    cd C:\Users\YourName\Downloads
+    ```
+
+  - **For Mac OS**:
+    ```bash
+    cd /Users/YourName/Downloads
+    ```
+
+
+
+### 7. **Using the app**
+- Upon launching the app, you'll see a command box where you can type commands and press **Enter** to execute them.
+![UiScreenshot](images\Ui1.png)
+
+
+- **Example command**: Type `help` and press **Enter** to see a list of useful commands.
+
+Here are some commands you can try:
+- `list` – Shows all reservations for today and tomorrow.
+- `listrt` – Shows all reservations for today only.
+- `listp` – Shows all past reservations (from the day before).
+- `exit` – Closes the application.
+
+### 6. **Features Details**
+- Refer to the [Features](#features) below for details of each command.
+
+### Need Help?
+If you encounter any problems, don't worry! Just reach out to us via our phone number `88574167`, and we'll be happy to assist you.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
