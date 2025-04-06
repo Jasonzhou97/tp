@@ -16,31 +16,31 @@ public interface GastroBookStorage {
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getGastroBookFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyGastroBook}.
+     * Returns GastroBook data as a {@link ReadOnlyGastroBook}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws DataLoadingException if loading the data from storage failed.
      */
-    Optional<ReadOnlyGastroBook> readAddressBook() throws DataLoadingException;
+    Optional<ReadOnlyGastroBook> readGastroBook() throws DataLoadingException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getGastroBookFilePath()
      */
-    Optional<ReadOnlyGastroBook> readAddressBook(Path filePath) throws DataLoadingException;
+    Optional<ReadOnlyGastroBook> readGastroBook(Path filePath) throws DataLoadingException;
 
     /**
      * Saves the given {@link ReadOnlyGastroBook} to the storage.
-     * @param addressBook cannot be null.
+     * @param gastroBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyGastroBook addressBook) throws IOException;
+    void saveGastroBook(ReadOnlyGastroBook gastroBook) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyGastroBook)
+     * @see #saveGastroBook(ReadOnlyGastroBook)
      */
-    void saveAddressBook(ReadOnlyGastroBook addressBook, Path filePath) throws IOException;
+    void saveGastroBook(ReadOnlyGastroBook gastroBook, Path filePath) throws IOException;
 
 }

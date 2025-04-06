@@ -43,7 +43,7 @@ class JsonAdaptedReservation {
     private final boolean isPaid;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedReservation} with the given reservation details.
      */
     @JsonCreator
     public JsonAdaptedReservation(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
@@ -68,7 +68,7 @@ class JsonAdaptedReservation {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Reservation} into this class for Jackson use.
      */
     public JsonAdaptedReservation(Reservation source) {
         name = source.getName().getFullName();
@@ -87,9 +87,9 @@ class JsonAdaptedReservation {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted reservation object into the model's {@code Reservation} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted reservation.
      */
     public Reservation toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
