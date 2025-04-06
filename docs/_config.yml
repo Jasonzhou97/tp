@@ -9,7 +9,7 @@ header_pages:
 markdown: kramdown
 
 baseUrl: "/tp"
-repository: "se-edu/addressbook-level3"
+repository: "AY2425S2-CS2103T-T09-3/tp"
 github_icon: "images/github-icon.png"
 
 plugins:
