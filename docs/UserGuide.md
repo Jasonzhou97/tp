@@ -28,6 +28,8 @@ title: GastroBook User Guide
     - [Exiting the program : `exit`](#exiting-the-program--exit)
 - [Saving the data](#saving-the-data)
 - [Editing the data file](#editing-the-data-file)
+- [Constraints](#constraints)
+- [Reminder](#reminder)
 - [Command summary](#command-summary)
 
 
