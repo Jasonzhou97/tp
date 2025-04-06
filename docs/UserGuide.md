@@ -43,7 +43,7 @@ GastroBook is a **desktop application designed for small to medium scale restaur
 
 ## **Quick start**
 
-### 1. Install Java (if you don’t have it already)
+### 1. **Install Java (if you don’t have it already)**
 
 To use **GastroBook**, you’ll need **Java 17** installed on your computer. If you're not sure whether you have it yet, don’t worry — here’s how you can check and install it!
 
