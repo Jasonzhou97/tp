@@ -230,8 +230,9 @@ Notes:
 
 * A reservation with the same date, time, and last 4 digits of the phone number is considered a duplicate and will not be allowed. This is highly unlikely to occur, as the last 4 digits of a phone number are commonly used for verification in systems like banks and telecom services, ensuring uniqueness and preventing accidental duplicates.
 
-
 * For instance, the Chinese robotaxi service, Luobo Kuaipao, uses the last 4 digits of a passenger's phone number as a verification method to unlock the vehicle. This is a secure and efficient way to authenticate users, leveraging the low probability of two people having the same last 4 digits. [LuoBoKuaiPao](https://www.sixthtone.com/news/1015767)
+
+* The application gives the user full freedom in adding reservations as long as there are no duplicates, hence **organisation of reservations and resolving of table clashes will be up to the user to handle**.
 </div>
 
 
