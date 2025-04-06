@@ -20,7 +20,7 @@ import seedu.address.testutil.ReservationBuilder;
 import seedu.address.testutil.TypicalReservations;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for RemarkCommand.
+ * Contains integration tests (interaction with the Model) for {@code RemarkCommand}.
  */
 public class RemarkCommandTest {
 
