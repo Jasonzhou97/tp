@@ -1,15 +1,5 @@
 package seedu.address.testutil;
 
-/*
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-
- */
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -37,32 +27,6 @@ public class TypicalReservations {
     private static LocalDate today = LocalDate.now();
     private static LocalDate tomorrow = today.plusDays(1);
 
-    //    public static final Reservation ALICE = new ReservationBuilder().withName("Alice Pauline")
-    //            .withPhone("94351253").withRemark("She likes aardvarks.")
-    //            .withTags("friends").build();
-    //    public static final Reservation BENSON = new ReservationBuilder().withName("Benson Meier")
-    //            .withRemark("He can't take beer!")
-    //            .withTags("owesMoney", "friends").build();
-    //    public static final Reservation CARL = new ReservationBuilder().withName("Carl Kurz")
-    //    .withPhone("95352563").build();
-    //    public static final Reservation DANIEL = new ReservationBuilder().withName("Daniel Meier")
-    //    .withPhone("87652533")
-    //            .withTags("friends").build();
-    //    public static final Reservation ELLE = new ReservationBuilder().withName("Elle Meyer")
-    //    .withPhone("9482224")
-    //            .build();
-    //    public static final Reservation FIONA = new ReservationBuilder().withName("Fiona Kunz")
-    //    .withPhone("9482427")
-    //            .build();
-    //    public static final Reservation GEORGE = new ReservationBuilder().withName("George Best")
-    //    .withPhone("9482442")
-    //            .build();
-    //
-    //    // Manually added
-    //    public static final Reservation HOON = new ReservationBuilder().withName("Hoon Meier").withPhone("8482424")
-    //            .build();
-    //    public static final Reservation IDA = new ReservationBuilder().withName("Ida Mueller").withPhone("8482131")
-    //            .build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     // TODO work on the ReservationBuilder() constructor

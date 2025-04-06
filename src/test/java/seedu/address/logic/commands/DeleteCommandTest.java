@@ -1,108 +1,70 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.PersonsList;
+import seedu.address.model.reservation.Identification;
+import seedu.address.model.reservation.Name;
+import seedu.address.model.reservation.Person;
+import seedu.address.model.reservation.Phone;
+import seedu.address.model.reservation.Reservation;
+import seedu.address.testutil.ReservationBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * Contains integration tests (interaction with the Model) for {@code DeleteCommand}.
  */
 public class DeleteCommandTest {
-    /*
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model;
+    private Model expectedModel;
+    private Reservation testReservation;
+    private Identification testId;
+
+    @BeforeEach
+    public void setUp() {
+        // Create model and add a test reservation
+        model = new ModelManager();
+        expectedModel = new ModelManager();
+
+        // Create a test reservation
+        testReservation = new ReservationBuilder().build();
+        testId = testReservation.getId();
+
+        // Add the reservation to the model
+        model.addReservation(testReservation);
+        expectedModel.addReservation(testReservation);
+    }
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
-        Reservation reservationToDelete = model.getFilteredReservationList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+    public void execute_validId_success() {
+        DeleteCommand deleteCommand = new DeleteCommand(testId);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_RESERVATION_SUCCESS,
+                Messages.format(testReservation));
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(reservationToDelete));
-
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deleteReservation(reservationToDelete);
+        // Delete from expected model
+        expectedModel.deleteReservation(testReservation);
+        expectedModel.updatePersonsListAfterDelete(testReservation);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
-    @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredReservationList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_RESERVATION_DISPLAYED_INDEX);
-    }
-
-    @Test
-    public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
-        Reservation reservationToDelete = model.getFilteredReservationList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(reservationToDelete));
-
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deleteReservation(reservationToDelete);
-        showNoPerson(expectedModel);
-
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getReservationList().size());
-
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
-
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_RESERVATION_DISPLAYED_INDEX);
-    }
-
-    @Test
-    public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
-
-        // same object -> returns true
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
-
-        // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON);
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
-
-        // different types -> returns false
-        assertFalse(deleteFirstCommand.equals(1));
-
-        // null -> returns false
-        assertFalse(deleteFirstCommand.equals(null));
-
-        // different person -> returns false
-        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
-    }
-
-    @Test
-    public void toStringMethod() {
-        Index targetIndex = Index.fromOneBased(1);
-        DeleteCommand deleteCommand = new DeleteCommand(targetIndex);
-        String expected = DeleteCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
-        assertEquals(expected, deleteCommand.toString());
-    }
-
-
-     */
     /**
-     * Updates {@code model}'s filtered list to show no one.
+     * Helper method to get a person's booking count from the model's persons list
      */
-    private void showNoPerson(Model model) {
-        model.updateFilteredReservationList(p -> false);
-
-        assertTrue(model.getFilteredReservationList().isEmpty());
+    private int getBookingCount(Model model, Name name, Phone phone) {
+        PersonsList personsList = model.getPersonsList();
+        for (Person person : personsList.getRegularCustomers()) {
+            if (person.getName().equals(name) && person.getPhone().equals(phone)) {
+                return person.getCounter();
+            }
+        }
+        return 0;
     }
 }
