@@ -34,7 +34,6 @@ public class AddCommand extends Command {
             + PREFIX_PAX + "PAX "
             + PREFIX_TABLE + "TABLE "
             + "[" + PREFIX_TAG + "TAG]... "
-            + "[" + PREFIX_REMARK + "REMARK]. "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "

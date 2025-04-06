@@ -34,8 +34,6 @@ import seedu.address.model.tag.Tag;
  */
 public class AddCommandParser implements Parser<AddCommand> {
 
-
-
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -45,7 +43,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_DATE, PREFIX_TIME, PREFIX_DURATION,
-                        PREFIX_PAX, PREFIX_TABLE, PREFIX_TAG, PREFIX_REMARK);
+                        PREFIX_PAX, PREFIX_TABLE, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_DATE, PREFIX_TIME, PREFIX_DURATION,
                 PREFIX_PAX, PREFIX_TABLE)
@@ -55,7 +53,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_DATE, PREFIX_TIME, PREFIX_DURATION,
-                PREFIX_PAX, PREFIX_TABLE, PREFIX_REMARK);
+                PREFIX_PAX, PREFIX_TABLE);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         StartDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
@@ -63,7 +61,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Duration duration = ParserUtil.parseDuration(argMultimap.getValue(PREFIX_DURATION).get());
         Pax pax = ParserUtil.parsePax(argMultimap.getValue(PREFIX_PAX).get());
         Table table = ParserUtil.parseTable(argMultimap.getValue(PREFIX_TABLE).get());
-        Remark remark = ParserUtil.parseRemark(getValueOrEmpty(argMultimap, PREFIX_REMARK));
+        Remark remark = new Remark("");
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         // Make use of current date ddMMyyyy and last 4 digits of phone and current reservation count
         // to form a unique key id
