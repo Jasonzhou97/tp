@@ -7,7 +7,7 @@ title: GastroBook User Guide
 - [Introduction](#introduction)
 - [Quick start](#quick-start)
 - [Input Field Table](#input-field-table)
-- [Design decision](#design-decision-)
+- [Design decision](#design-decision)
 - [Features](#features)
     - [Viewing help : `help`](#viewing-help--help)
     - [Adding a reservation: `add`](#adding-a-reservation-add)
