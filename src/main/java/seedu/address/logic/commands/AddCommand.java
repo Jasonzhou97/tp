@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PAX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TABLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
@@ -18,13 +17,13 @@ import seedu.address.model.Model;
 import seedu.address.model.reservation.Reservation;
 
 /**
- * Adds a person to the address book.
+ * Adds a reservation to the gastro book.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reservation to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reservation to GastroBook.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -33,8 +32,7 @@ public class AddCommand extends Command {
             + PREFIX_DURATION + "DURATION "
             + PREFIX_PAX + "PAX "
             + PREFIX_TABLE + "TABLE "
-            + "[" + PREFIX_TAG + "TAG]... "
-            + "[" + PREFIX_REMARK + "REMARK]. "
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
@@ -47,7 +45,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "event ";
 
     public static final String MESSAGE_SUCCESS = "New reservation added: %1$s";
-    public static final String MESSAGE_DUPLICATE_RESERVATION = "This reservation already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_RESERVATION = "This reservation already exists in the GastroBook";
 
     private final Reservation toAdd;
 
