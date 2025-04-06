@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 
 import seedu.address.logic.commands.FindByTimeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.reservation.StartTime;
 import seedu.address.model.reservation.TimeMatchesPredicate;
 
 /**
@@ -32,6 +33,10 @@ public class FindByTimeCommandParser implements Parser<FindByTimeCommand> {
         if (timeKeyword.length != 1) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindByTimeCommand.MESSAGE_USAGE));
+        }
+
+        if (!StartTime.isValidTime(timeKeyword[0])) {
+            throw new ParseException(StartTime.MESSAGE_CONSTRAINTS);
         }
 
         LocalTime searchTime = LocalTime.parse(timeKeyword[0], TIME_FORMATTER);

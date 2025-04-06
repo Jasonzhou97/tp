@@ -12,7 +12,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of GastroBook data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -46,33 +46,33 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ GatroBook methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return gastroBookStorage.getAddressBookFilePath();
+    public Path getGastroBookFilePath() {
+        return gastroBookStorage.getGastroBookFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyGastroBook> readAddressBook() throws DataLoadingException {
-        return readAddressBook(gastroBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyGastroBook> readGastroBook() throws DataLoadingException {
+        return readGastroBook(gastroBookStorage.getGastroBookFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyGastroBook> readAddressBook(Path filePath) throws DataLoadingException {
+    public Optional<ReadOnlyGastroBook> readGastroBook(Path filePath) throws DataLoadingException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return gastroBookStorage.readAddressBook(filePath);
+        return gastroBookStorage.readGastroBook(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyGastroBook addressBook) throws IOException {
-        saveAddressBook(addressBook, gastroBookStorage.getAddressBookFilePath());
+    public void saveGastroBook(ReadOnlyGastroBook gastroBook) throws IOException {
+        saveGastroBook(gastroBook, gastroBookStorage.getGastroBookFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyGastroBook addressBook, Path filePath) throws IOException {
+    public void saveGastroBook(ReadOnlyGastroBook gastroBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        gastroBookStorage.saveAddressBook(addressBook, filePath);
+        gastroBookStorage.saveGastroBook(gastroBook, filePath);
     }
 
 }
