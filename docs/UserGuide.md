@@ -135,7 +135,7 @@ If you encounter any problems, don't worry! Just reach out to us via our phone n
 
 | **Field**          | **Example**           | **Description**                                                           | **Restriction**                                                                                                          |
 |--------------------|-----------------------|---------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| `NAME`             | n/John                | Name of the person making the reservation (e.g., `John`)                  | Names should only contain printable Unicode-Characters                                                                   |
+| `NAME`             | n/John                | Name of the person making the reservation (e.g., `John`)                  | Names should only contain printable Unicode-Characters, and length must be at least 1 and at most 50                     |
 | `PHONE_NUMBER`     | p/98765432            | Contact number of the person (e.g., `12345`)                              | Phone must be of numeric only and length must be at least 4 and at most 20                                               |    
 | `DATE`             | date/01/04/2025       | Date of reservation (e.g., `01/03/2025`)                                  | Date must be of today or tomorrow only in the format of dd/MM/yyyy                                                       |
 | `TIME`             | time/1200             | Time of reservation (e.g., `1800` for 6:00 PM)                            | Time must be of 24 hour format in the form of HHMM                                                                       |  
@@ -143,7 +143,7 @@ If you encounter any problems, don't worry! Just reach out to us via our phone n
 | `NUMBER_OF_PEOPLE` | pax/2                 | Number of people included in the reservation    (e.g., `10`)              | Pax number must be of numeric only, at least 1 and at most 9999                                                          |
 | `TABLE_NUMBER`     | table/A1              | Assigned table number (e.g., `A2`)                                        | Table number must be in the form of 1 uppercase English letter followed by 1-3 digits                                    |
 | `REMARK`           | r/Allergic to Peanuts | Any additional remarks about the reservation (e.g., `Likes cheese` )      | Remark must be of alphanumeric only and length must be at most 30                                                        |
-| `TAG`              | t/event               | Tags to categorize the reservation (e.g., `regular`, `birthday`, `event`) | Tag must be of alphanumeric only and length must be at least 0 and at most 15                                            |
+| `TAG`              | t/event               | Tags to categorize the reservation (e.g., `regular`, `birthday`, `event`) | Tag must be of alphanumeric only and length must be at least 1 and at most 15                                            |
 
 ## Design decision
 
