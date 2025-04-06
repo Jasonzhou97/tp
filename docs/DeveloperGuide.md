@@ -402,7 +402,7 @@ unless specified otherwise
 ### **U1: Add a reservation**
 
 **MSS** (Main Success Scenario)
-1. User inputs reservation details (name, phone, date, time, duration, number of people, table number, special requests). 
+1. User inputs reservation details (name, phone, date, time, duration, number of people, table number, tags). 
 2. System adds the reservation to the schedule. 
 3. System displays a successful reservation message. 
 
@@ -410,11 +410,11 @@ Use case ends.
 
 **Extensions** <br>
 1a. User input invalid parameters.<br>
-&ensp; 1a1. System indicates input parameters are invalid. <br>
+&ensp; 1a1. System indicates input parameters are invalid and shows the correct example of use. <br>
 &ensp; Use case resumes at step 1. 
 
 2a. The reservation has existed in the system.<br>
-&ensp; 2a1. System indicates that the reservation already exists in the address book. <br>
+&ensp; 2a1. System indicates that the reservation already exists in the GastroBook. <br>
 &ensp; Use case resumes at step 1.
 
 ---
@@ -485,7 +485,7 @@ Use case ends.
 &ensp; Use case resumes at step 1.
 
 2b. The reservation has already been marked as unpaid. <br>
-&ensp; 2b1. System indicates that reservation has already been marked as paid. <br>
+&ensp; 2b1. System indicates that reservation has already been marked as unpaid. <br>
 &ensp; Use case resumes at step1.
 
 ---
