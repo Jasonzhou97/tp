@@ -21,7 +21,7 @@ title: GastroBook Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+This project was adapted from [AB3](https://se-education.org/addressbook-level3/) (source code are provide [here](https://github.com/nus-cs2103-AY2425S2/tp))
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -63,9 +63,9 @@ The bulk of the app's work is done by the following four components:
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 0101202512341800`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 0101202554321800`.
 
-<img src="images/ArchitectureSequenceDiagram1.png" width="574" />
+<img src="images/ArchitectureSequenceDiagram.png" width="700" />
 
 Each of the four main components (also shown in the diagram above),
 
@@ -103,9 +103,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 0101202512341800")` API call as an example.
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 0604202598761700")` API call as an example.
 
-![Interactions Inside the Logic Component for the `delete 0101202512341800` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete 0604202598761700` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </div>
@@ -670,7 +670,7 @@ Use case ends.
 * **Valid ID**: The id for which edit, mark, unmark, delete, remark take as parameter which has a form of "[dateOfTodayOrTomorrow(ddMMyyyy)] + [UNIQUE last4DigitsOfPhoneNumber(xxxx)] + [time(HHMM)]".
 * **Valid Phone Number**: A phone number that has at least 4 digits.
 * **Valid Table Number**: A table number that starts with a capital letter, followed by 1-3 numbers.
-
+* **Regular**: A customer will be classified as a Regular if their phone number has been used to successfully make at least three reservations.As long as the phone number is the same, the reservation count will be incremented regardless of other customer information.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**

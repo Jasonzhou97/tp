@@ -8,10 +8,10 @@ Participant ":Logic" as logic LOGIC_COLOR
 Participant ":Model" as model MODEL_COLOR
 Participant ":Storage" as storage STORAGE_COLOR
 
-user -[USER_COLOR]> ui : "delete [id]"
+user -[USER_COLOR]> ui : "delete 0101202554321800"
 activate ui UI_COLOR
 
-ui -[UI_COLOR]> logic : execute("delete [id]")
+ui -[UI_COLOR]> logic : execute("delete 0101202554321800")
 activate logic LOGIC_COLOR
 
 logic -[LOGIC_COLOR]> model : deleteReservation(r)
