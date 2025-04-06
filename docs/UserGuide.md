@@ -483,6 +483,8 @@ GastroBook data are saved automatically as a JSON file `[JAR file location]/data
 
 10. The only way to delete a remark of reservation in the system is by using `remark r/` which is to set the remark to null.
 
+11. If an invalid prefix is followed by arguments, the system will interpret it as an error caused by the last valid prefix and its associated arguments.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Reminder
