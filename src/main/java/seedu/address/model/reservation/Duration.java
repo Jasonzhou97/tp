@@ -11,9 +11,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Duration {
     public static final String MESSAGE_CONSTRAINTS =
             "Duration should be positive intervals of half an hour greater than 0 and less than 12, given in hours.";
-    public static final String VALIDATION_REGEX = "^(0|0\\.5|1|1\\.5|2|2\\.5|3|3\\.5|4|4\\.5|5|5\\.5|6|6\\.5|7|7"
+    public static final String VALIDATION_REGEX = "^(0\\.5|1|1\\.5|2|2\\.5|3|3\\.5|4|4\\.5|5|5\\.5|6|6\\.5|7|7"
             + "\\.5|8|8\\.5|9|9\\.5|10|10\\.5|11|11\\.5|12)$";
-
 
     public final String value;
 
