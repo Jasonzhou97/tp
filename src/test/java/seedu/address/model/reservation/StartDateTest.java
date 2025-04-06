@@ -23,6 +23,12 @@ public class StartDateTest {
     }
 
     @Test
+    public void isValidDate_validDates_retrunTrue() {
+        assertTrue(StartDate.isValidDate("11/04/2025"));
+        assertTrue(StartDate.isValidDate("12/04/2025"));
+    }
+
+    @Test
     public void isValidDateRange_validDates_returnTrue() {
         LocalDate today = LocalDate.now();
         LocalDate tomorrow = today.plusDays(1);
