@@ -281,8 +281,8 @@ Shows a list of all reservations made prior to the current system date (i.e., to
 Format: `listp`
 
 Notes:
-* Below is the GUI that appears when the `listp` command is entered, displaying some sample previous reservation data for demonstration purposes.
-  // Image here XinYang
+* Below is the GUI that appears when the `listp` command is entered, displaying some sample previous reservation data that is preloaded into `gastrobook`for demonstration purposes. Upon entering `listp`, you should be able to see this displayed GUI.<br><br>
+![listp](images/listp.png)
 
 
 ### Listing all reservations by regulars : `listr`
@@ -314,7 +314,10 @@ Notes:
 * A Regular refers to a customer who has made three or more reservations, including past reservations by adding, `add` the reservations into the system. Regulars are identified by phone number—regardless of the name used since it is possible that different family members use the same phone number for reservations. Even if different names are provided, as long as the phone number is the same, they are treated as the same entity (i.e., one regular) by the system.
 
 
-* Editing, `edit` a Regular's reservation card (indicated by a yellow reservation card) may cause the reservation to become a white card and the customer to lose Regular status if, after the `edit`, their total reservation count falls below the threshold of 3 which is the minimum bar to become a Regular.
+* Editing, `edit` a Regular's reservation card (indicated by a yellow card) may cause all related reservation cards (booked under the same phone number) to turn white, and the customer to lose Regular status if, after the `edit`, their total number of reservations — including both past and current — falls below the threshold of 3, which is the minimum required to be considered a Regular.
+
+
+* Deleting, `delete` a Regular's reservation card (indicated by a yellow card) may cause all related reservation cards (booked under the same phone number) to turn white, and the customer to lose Regular status if, after the `delete`, their total number of reservations — including both past and current — falls below the threshold of 3, which is the minimum required to be considered a Regular.
 
 </div>
 
@@ -396,7 +399,7 @@ GastroBook data are saved automatically as a JSON file `[JAR file location]/data
 --------------------------------------------------------------------------------------------------------------------
 
 ## Constraints
-1. The threshold for a customer to become a Regular is hardcoded in the system at 3 reservations.
+1. The threshold for a customer to be classified as a Regular is currently hardcoded at 3 reservations. Future refinements will depend on the customer base served.
 
 2. All fields are fixed.
 
@@ -426,6 +429,14 @@ GastroBook data are saved automatically as a JSON file `[JAR file location]/data
 3. This is essential for understanding how Regulars are defined: a customer with the same phone number but different names is considered the same entity, while a different phone number (even with the same name) or a different phone number and name pair will be treated as separate entities in the persons list.
 
 4. Do not overwrite or replace the data in  `gastrobook.json` and `personslist.json` files under `/data` directory directly to avoid unexpected behavior and ensure the system can read them properly. Overwriting these files may result in lost records and prevent the system from booting correctly, causing reservation data to not display properly. Instead, follow the normal procedure to input data so that it is properly recorded into the `gastrobook.json` and `personslist.json` files.
+
+5. Each time `gastrobook` is loaded, only today’s reservations are displayed, provided the data for today's reservations has already been entered. This supports efficient service and preparation. The GUI is identical to `listrt`.
+
+6. The preloaded past sample reservation data shown when `listp` is entered is solely for demo purposes and does not have corresponding reservation counts in `personslist.json`. 
+
+7. It is recommended to use `clear` to remove all past sample reservation data to start fresh as a user after running `listp` to get a grasp of what `listp` does when you first use `gastrobook`.
+
+8. After using `clear`, the past sample reservation data will be removed completely and cannot be retrieved back.
 
 --------------------------------------------------------------------------------------------------------------------
 
