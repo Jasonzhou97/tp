@@ -11,7 +11,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Table {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Table number should start with a capital letter, followed by 1-3 numbers.";
+            "Table number should start with an upper case capital letter, followed by 1-3 numbers.";
     public static final String VALIDATION_REGEX = "^[A-Z]\\d{1,3}$";
 
     public final String value;

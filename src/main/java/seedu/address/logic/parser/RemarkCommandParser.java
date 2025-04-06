@@ -29,12 +29,6 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_REMARK);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_REMARK)
-                || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE));
-        }
-
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_REMARK);
         Identification id;
 
         try {
@@ -44,10 +38,18 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
                     RemarkCommand.MESSAGE_USAGE), ive);
         }
 
-        String remark = argMultimap.getValue(PREFIX_REMARK).orElse("");
+        if (!arePrefixesPresent(argMultimap, PREFIX_REMARK)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE));
+        }
 
-        return new RemarkCommand(id, new Remark(remark));
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_REMARK);
+
+        Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).orElse(""));
+
+        return new RemarkCommand(id, remark);
     }
+
+
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given

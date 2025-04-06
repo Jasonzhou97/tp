@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable; is always valid
  */
 public class Remark {
-    public static final String VALIDATION_REGEX = "\\p{Alnum}{0,30}";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}\\s]{0,30}";
     public static final String MESSAGE_CONSTRAINTS = "Remark length should be below 30 characters";
     public final String value;
 
