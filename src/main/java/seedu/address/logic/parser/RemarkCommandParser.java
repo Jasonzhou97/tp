@@ -27,7 +27,9 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_REMARK);
 
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_REMARK);
         Identification id;
+
         try {
             id = ParserUtil.parseID(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
