@@ -17,7 +17,7 @@ import seedu.address.model.Model;
 import seedu.address.model.reservation.Reservation;
 
 /**
- * Adds a person to the address book.
+ * Adds a reservation to the gastro book.
  */
 public class AddCommand extends Command {
 
