@@ -9,23 +9,23 @@ title: GastroBook User Guide
 - [Input Field Table](#input-field-table)
 - [Design decision](#design-decision)
 - [Features](#features)
-    - [Viewing help : `help`](#viewing-help--help)
-    - [Adding a reservation: `add`](#adding-a-reservation-add)
-    - [Editing a reservation: `edit`](#editing-a-reservation-edit)
-    - [Deleting a reservation : `delete`](#deleting-a-reservation--delete)
-    - [Marking a reservation as paid : `mark`](#marking-a-reservation-as-paid--mark)
-    - [Unmarking a reservation as paid : `unmark`](#unmarking-a-reservation-as-paid--unmark)
-    - [Remarking a reservation : `remark`](#remarking-a-reservation--remark)
-    - [Listing all reservations : `list`](#listing-all-reservations--list)
-    - [Listing today's reservations : `listrt`](#listing-todays-reservations--listrt)
-    - [Listing tomorrow's reservations : `listrn`](#listing-tomorrows-reservations--listrn)
-    - [Listing all previous reservations : `listp`](#listing-all-previous-reservations--listp)
-    - [Listing all reservations by regulars : `listr`](#listing-all-reservations-by-regulars--listr)
-    - [Finding reservations by name: `findn`](#finding-reservations-by-name-findn)
-    - [Finding reservations by phone number: `findp`](#finding-reservations-by-phone-number-findp)
-    - [Finding reservations by time: `findt`](#finding-reservations-by-time-findt)
-    - [Clearing the reservations: `clear`](#clearing-the-reservations--clear)
-    - [Exiting the program : `exit`](#exiting-the-program--exit)
+  - [Viewing help : `help`](#viewing-help--help)
+  - [Adding a reservation: `add`](#adding-a-reservation-add)
+  - [Editing a reservation: `edit`](#editing-a-reservation-edit)
+  - [Deleting a reservation : `delete`](#deleting-a-reservation--delete)
+  - [Marking a reservation as paid : `mark`](#marking-a-reservation-as-paid--mark)
+  - [Unmarking a reservation as paid : `unmark`](#unmarking-a-reservation-as-paid--unmark)
+  - [Remarking a reservation : `remark`](#remarking-a-reservation--remark)
+  - [Listing all reservations : `list`](#listing-all-reservations--list)
+  - [Listing today's reservations : `listrt`](#listing-todays-reservations--listrt)
+  - [Listing tomorrow's reservations : `listrn`](#listing-tomorrows-reservations--listrn)
+  - [Listing all previous reservations : `listp`](#listing-all-previous-reservations--listp)
+  - [Listing all reservations by regulars : `listr`](#listing-all-reservations-by-regulars--listr)
+  - [Finding reservations by name: `findn`](#finding-reservations-by-name-findn)
+  - [Finding reservations by phone number: `findp`](#finding-reservations-by-phone-number-findp)
+  - [Finding reservations by time: `findt`](#finding-reservations-by-time-findt)
+  - [Clearing the reservations: `clear`](#clearing-the-reservations--clear)
+  - [Exiting the program : `exit`](#exiting-the-program--exit)
 - [Saving the data](#saving-the-data)
 - [Editing the data file](#editing-the-data-file)
 - [Constraints](#constraints)
@@ -73,7 +73,7 @@ To use **GastroBook**, you’ll need **Java 17** installed on your computer. If 
 
 </div>
 
-### 2. **Download the Latest `GastroBook` File**  
+### 2. **Download the Latest `GastroBook` File**
 - Visit our [GitHub page](https://github.com/AY2425S2-CS2103T-T09-3/tp) and download the most recent `.jar` file for `GastroBook`.
 
 
@@ -96,21 +96,21 @@ To use **GastroBook**, you’ll need **Java 17** installed on your computer. If 
 - To do this, type the following command:
 
 
-  - **For Windows**:
-    ```bash
-    cd C:\Users\YourName\Downloads
-    ```
+- **For Windows**:
+  ```bash
+  cd C:\Users\YourName\Downloads
+  ```
 
-  - **For Mac OS**:
-    ```bash
-    cd /Users/YourName/Downloads
-    ```
+- **For Mac OS**:
+  ```bash
+  cd /Users/YourName/Downloads
+  ```
 
 
 
 ### 7. **Using the app**
 - Upon launching the app, you'll see a command box where you can type commands and press **Enter** to execute them.
-![UiScreenshot](images\Ui1.png)
+  ![UiScreenshot](images\Ui1.png)
 
 
 - **Example command**: Type `help` and press **Enter** to see a list of useful commands.
@@ -135,17 +135,17 @@ If you encounter any problems, don't worry! Just reach out to us via our phone n
 
 | **Field**          | **Example**           | **Description**                                                           | **Restriction**                                                                                                          |
 |--------------------|-----------------------|---------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| `NAME`             | n/John                | Name of the person making the reservation (e.g., `John`)                  | Name must be of alphanumeric only and length must be at least 1 and at most 20                                           |
-| `PHONE_NUMBER`     | p/98765432            | Contact number of the person (e.g., `12345`)                              | Phone must be of numeric only and length must be at least 4 and at most 15                                               |    
+| `NAME`             | n/John                | Name of the person making the reservation (e.g., `John`)                  | Names should only contain printable Unicode-Characters                                                                   |
+| `PHONE_NUMBER`     | p/98765432            | Contact number of the person (e.g., `12345`)                              | Phone must be of numeric only and length must be at least 4 and at most 20                                               |    
 | `DATE`             | date/01/04/2025       | Date of reservation (e.g., `01/03/2025`)                                  | Date must be of today or tomorrow only in the format of dd/MM/yyyy                                                       |
 | `TIME`             | time/1200             | Time of reservation (e.g., `1800` for 6:00 PM)                            | Time must be of 24 hour format in the form of HHMM                                                                       |  
 | `DURATION`         | duration/2            | Duration in hours (e.g., `0.5` for 30 minutes or `1` for 1 hour)          | Duration must be a floating-point value and in the form of an hour or half an hour interval, at least 0.5 and at most 12 |    
-| `NUMBER_OF_PEOPLE` | pax/2                 | Number of people included in the reservation    (e.g., `10`)              | Pax number must be of numeric only, at least 1 and at most 20                                                            |
+| `NUMBER_OF_PEOPLE` | pax/2                 | Number of people included in the reservation    (e.g., `10`)              | Pax number must be of numeric only, at least 1 and at most 9999                                                          |
 | `TABLE_NUMBER`     | table/A1              | Assigned table number (e.g., `A2`)                                        | Table number must be in the form of 1 uppercase English letter followed by 1-3 digits                                    |
-| `REMARK`           | r/Allergic to Peanuts | Any additional remarks about the reservation (e.g., `Likes cheese` )      | Remark must be of alphanumeric only and length must be at most 30                                                        |
-| `TAG`              | t/event               | Tags to categorize the reservation (e.g., `regular`, `birthday`, `event`) | Tag must be of alphanumeric only and length must be at least 0 and at most 15                                            |
+| `REMARK`           | r/Allergic to Peanuts | Any additional remarks about the reservation (e.g., `Likes cheese` )      | Remark must be of alphanumeric only and length must be at most 50                                                        |
+| `TAG`              | t/event               | Tags to categorize the reservation (e.g., `regular`, `birthday`, `event`) | Tag must be of alphanumeric only and length must be at least 0 and at most 30                                            |
 
-## Design decision 
+## Design decision
 
 :bulb: **Note:** Information related to `RESERVATION_ID`.
 
@@ -274,11 +274,11 @@ Marks a specific reservation as paid at the payment status in the reservation ca
 Format: `mark RESERVATION_ID`
 
 Examples:
-* `mark 1803202512341230` 
+* `mark 1803202512341230`
 
 * The word `Paid` is displayed in the reservation card after the key `Payment status: ` when sample `mark` command has been entered with a specified `RESERVATION_ID`.<br><br>
-![mark](images/Mark.png)
- 
+  ![mark](images/Mark.png)
+
 Notes:
 * `RESERVATION_ID` is a must specified field and can be obtained either from details given by customer via call in or the list of reservation.
 * Can only mark today or tomorrow reservations as paid but not past reservations.
@@ -346,7 +346,7 @@ Format: `listp`
 
 Notes:
 * Below is the GUI that appears when the `listp` command is entered, displaying some sample previous reservation data that is preloaded into `gastrobook`for demonstration purposes. Upon entering `listp`, you should be able to see this displayed GUI.<br><br>
-![listp](images/listp.png)
+  ![listp](images/listp.png)
 
 
 ### Listing all reservations by regulars : `listr`
@@ -357,15 +357,15 @@ Format: `listr`
 
 Notes:
 * Below is the GUI displayed when the `listr` command is entered. Sample data is not preloaded for this feature, but you can test it by adding reservations with the same phone number three or more times. Then, use `listr` to view the Regulars. <br><br>
-![listr](images/listr.png)
+  ![listr](images/listr.png)
 
 
 * Yellow reservation card indicates reservation made by a regular.<br><br>
-![regular](images/regular.png)
+  ![regular](images/regular.png)
 
 
 * White reservation card indicates reservation made by a non-regular. <br><br>
-![nonregular](images/nonregular.png)
+  ![nonregular](images/nonregular.png)
 
 
 
@@ -415,7 +415,7 @@ Examples:
 * `findp 98765432` returns all reservations made by the person with phone number 98765432 for today and tomorrow.
 * `findp 91234567 98765432` returns all reservations made by the people with phone numbers 91234567 and 98765432 for today and tomorrow.
 
-Notes: 
+Notes:
 * More than one phone number parameter is allowed.
 * The search is based on exact matching but not partial matching. e.g., `9123` will not match `91234567` and only `91234567` will match for `91234567`.
 * Can only search for reservations by customer phone number for today and tomorrow; past reservations are excluded.
@@ -475,7 +475,7 @@ GastroBook data are saved automatically as a JSON file `[JAR file location]/data
 
 6. `add` and `edit` features are not able to modify if a reservation is paid or unpaid.
 
-7. `add` and `edit` features are not able to modify the remark of a reservation 
+7. `add` and `edit` features are not able to modify the remark of a reservation
 
 8. The system does not handle table clashes automatically; it is up to the admin's discretion and knowledge to manage overlapping reservations.
 
@@ -496,7 +496,7 @@ GastroBook data are saved automatically as a JSON file `[JAR file location]/data
 
 5. Each time `gastrobook` is loaded, only today’s reservations are displayed, provided the data for today's reservations has already been entered. This supports efficient service and preparation. The GUI is identical to `listrt`.
 
-6. The preloaded past sample reservation data shown when `listp` is entered is solely for demo purposes and does not have corresponding reservation counts in `personslist.json`. 
+6. The preloaded past sample reservation data shown when `listp` is entered is solely for demo purposes and does not have corresponding reservation counts in `personslist.json`.
 
 7. It is recommended to use `clear` to remove all past sample reservation data to start fresh as a user after running `listp` to get a grasp of what `listp` does when you first use `gastrobook`.
 
