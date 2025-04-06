@@ -21,12 +21,12 @@ public interface Storage extends GastroBookStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getGastroBookFilePath();
 
     @Override
-    Optional<ReadOnlyGastroBook> readAddressBook() throws DataLoadingException;
+    Optional<ReadOnlyGastroBook> readGastroBook() throws DataLoadingException;
 
     @Override
-    void saveAddressBook(ReadOnlyGastroBook addressBook) throws IOException;
+    void saveGastroBook(ReadOnlyGastroBook gastroBook) throws IOException;
 
 }

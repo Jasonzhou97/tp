@@ -15,7 +15,7 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyGastroBook;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access GastroBook data stored as a json file on the hard disk.
  */
 public class JsonGastroBookStorage implements GastroBookStorage {
 
@@ -27,32 +27,32 @@ public class JsonGastroBookStorage implements GastroBookStorage {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getGastroBookFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyGastroBook> readAddressBook() throws DataLoadingException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyGastroBook> readGastroBook() throws DataLoadingException {
+        return readGastroBook(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readGastroBook()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataLoadingException if loading the data from storage failed.
      */
-    public Optional<ReadOnlyGastroBook> readAddressBook(Path filePath) throws DataLoadingException {
+    public Optional<ReadOnlyGastroBook> readGastroBook(Path filePath) throws DataLoadingException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableGastroBook> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableGastroBook> jsonGastroBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableGastroBook.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonGastroBook.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonGastroBook.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataLoadingException(ive);
@@ -60,21 +60,21 @@ public class JsonGastroBookStorage implements GastroBookStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyGastroBook addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveGastroBook(ReadOnlyGastroBook gastroBook) throws IOException {
+        saveGastroBook(gastroBook, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyGastroBook)}.
+     * Similar to {@link #saveGastroBook(ReadOnlyGastroBook)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyGastroBook addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveGastroBook(ReadOnlyGastroBook gastroBook, Path filePath) throws IOException {
+        requireNonNull(gastroBook);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableGastroBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableGastroBook(gastroBook), filePath);
     }
 
 }

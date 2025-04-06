@@ -14,17 +14,17 @@ import seedu.address.model.ReadOnlyGastroBook;
 import seedu.address.model.reservation.Reservation;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable GastroBook that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "gastrobook")
 class JsonSerializableGastroBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Reservation list contains duplicate reservation(s).";
 
     private final List<JsonAdaptedReservation> persons = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableGastroBook} with the given persons.
      */
     @JsonCreator
     public JsonSerializableGastroBook(@JsonProperty("persons") List<JsonAdaptedReservation> persons) {
@@ -32,9 +32,9 @@ class JsonSerializableGastroBook {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyGastroBook} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableGastroBook}.
      */
     public JsonSerializableGastroBook(ReadOnlyGastroBook source) {
         persons.addAll(source.getReservationList()
@@ -42,7 +42,7 @@ class JsonSerializableGastroBook {
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this gastro book into the model's {@code GastroBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
