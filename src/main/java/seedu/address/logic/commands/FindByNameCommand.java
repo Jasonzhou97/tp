@@ -18,7 +18,7 @@ public class FindByNameCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names match any of "
             + "the specified names (case-insensitive) and displays reservations made by them for today or "
-            + "tomorrow as a list with index numbers.\n"
+            + "tomorrow as a list with reservation IDs.\n"
             + "Parameters: NAME [MORE NAMES]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 

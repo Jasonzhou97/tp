@@ -18,7 +18,7 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the ID used in the displayed reservation list.\n"
+            + ": Deletes the reservation identified by the ID used in the displayed reservation list.\n"
             + "Parameters: ID ([6 figures of date (ie: ddMMyyyy) of TODAY or TOMORROW] "
             + "+ [last 4 digits of customer phone number (ie: xxxx)] "
             + "+ [time of reservation in HHMM format])\n"
