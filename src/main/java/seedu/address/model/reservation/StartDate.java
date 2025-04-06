@@ -13,7 +13,7 @@ import java.util.Objects;
  */
 public class StartDate {
     public static final String MESSAGE_CONSTRAINTS =
-            "Date should only be today or tomorrow in the form of DD/MM/YYYY, with leading zeros for single digits.";
+            "Date must be of today or tomorrow only in the format of dd/MM/yyyy, with leading 0 for single digits";
     public static final String VALIDATION_REGEX = "^(?:(?:31/(?:0[13578]|1[02]))|"
             + "(?:(?:29|30)/(?:0[13-9]|1[0-2]))|"
             + "(?:29/02/(?:(?:(?:1[6-9]|[2-9]\\d)"

@@ -8,7 +8,8 @@ import static java.util.Objects.requireNonNull;
  */
 public class Remark {
     public static final String VALIDATION_REGEX = "[\\p{Alnum}\\s]{0,30}";
-    public static final String MESSAGE_CONSTRAINTS = "Remark length should be below 30 characters";
+    public static final String MESSAGE_CONSTRAINTS = "Remark must be of alphanumeric only and "
+            + "length must be at least 1 and at most 30";
     public final String value;
 
     /**
