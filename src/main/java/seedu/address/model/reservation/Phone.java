@@ -11,8 +11,8 @@ public class Phone {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 4 digits long";
-    public static final String VALIDATION_REGEX = "\\d{4,}";
+            "Phone numbers should only contain numbers, and it should be 4-20 digits long.";
+    public static final String VALIDATION_REGEX = "\\d{4,20}";
 
     public final String value;
 
