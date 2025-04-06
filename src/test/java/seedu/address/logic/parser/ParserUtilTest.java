@@ -94,6 +94,12 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseRemark_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseRemark("123451234512345123451234512345123451234512345123451234512345123451234512345"));
+    }
+
+    @Test
     public void parseTag_validValue_success() throws Exception {
         String input = "Vegan";
         Tag expected = new Tag(input);
