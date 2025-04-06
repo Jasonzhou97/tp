@@ -93,6 +93,11 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseTable("-1"));
     }
 
+    @Test
+    public void parseRemark_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseRemark("123451234512345123451234512345123451234512345123451234512345123451234512345"));
+    }
 
     @Test
     public void parseTag_validValue_success() throws Exception {
