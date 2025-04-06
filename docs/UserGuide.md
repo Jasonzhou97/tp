@@ -484,6 +484,8 @@ GastroBook data are saved automatically as a JSON file `[JAR file location]/data
 
 10. The only way to delete a remark of reservation in the system is by using `remark r/` which is to set the remark to null.
 
+11. The only way to delete all tags of reservation in the system is by using `t/` when editing the reservation, which sets all tags to null.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Reminder
