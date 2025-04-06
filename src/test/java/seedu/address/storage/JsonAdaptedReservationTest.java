@@ -16,7 +16,7 @@ public class JsonAdaptedReservationTest {
 
     private static final Reservation BENSON = TypicalReservations.BENSON;
 
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_NAME = "R@chelR@chelR@chelR@chelR@chelR@chelR@chelR@chelR@chelR@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_DATE = "32-12-2024";
     private static final String INVALID_TIME = "25:61";

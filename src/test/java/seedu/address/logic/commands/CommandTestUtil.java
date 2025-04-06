@@ -79,7 +79,8 @@ public class CommandTestUtil {
     public static final String ID_DESC_BOB = " " + PREFIX_ID + VALID_ID_BOB;
 
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME
+            + "James&James&James&James&James&James&James&James&James&James&"; // name length exceeded
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_PAX_DESC = " " + PREFIX_PAX + "s"; // 's' not allowed in pax
