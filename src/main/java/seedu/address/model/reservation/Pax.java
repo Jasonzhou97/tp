@@ -10,8 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Pax {
     public static final String MESSAGE_CONSTRAINTS =
-            "Number of people should be a whole number greater than 0.";
-    public static final String VALIDATION_REGEX = "^[1-9]\\d*$";
+            "Number of people should be a whole number greater than 0 and less than 10000";
+    public static final String VALIDATION_REGEX = "^[1-9]\\d{0,3}$";
 
     public final String value;
 
