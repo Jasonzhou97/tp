@@ -4,7 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 
+import java.util.stream.Stream;
+
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.reservation.Identification;
@@ -27,6 +30,11 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_REMARK);
 
+        if (!arePrefixesPresent(argMultimap, PREFIX_REMARK)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE));
+        }
+
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_REMARK);
         Identification id;
 
@@ -40,5 +48,13 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
         String remark = argMultimap.getValue(PREFIX_REMARK).orElse("");
 
         return new RemarkCommand(id, new Remark(remark));
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
