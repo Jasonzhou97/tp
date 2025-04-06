@@ -486,7 +486,8 @@ GastroBook data are saved automatically as a JSON file `[JAR file location]/data
 
 11. The only way to delete all tags of reservation in the system is by using `t/` when editing the reservation, which sets all tags to null.
 
---------------------------------------------------------------------------------------------------------------------
+12. If an invalid prefix is followed by arguments, the system will interpret it as an error caused by the last valid prefix and its associated arguments.
+
 
 ## Reminder
 1. For compatibility reasons, avoid copying commands directly from the User Guide PDF into the command window for testing purposes. This may lead to errors or unexpected behavior since this is a real-time system.

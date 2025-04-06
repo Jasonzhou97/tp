@@ -1,4 +1,3 @@
-
 package seedu.address.storage;
 
 import java.util.ArrayList;
@@ -120,7 +119,16 @@ class JsonAdaptedReservation {
         if (!StartDate.isValidDate(date)) {
             throw new IllegalValueException(StartDate.MESSAGE_CONSTRAINTS);
         }
-        final StartDate modelDate = new StartDate(date);
+
+        // Enable bypass for date range validation to inject sample past data
+        StartDate.enableBypassForSampleData();
+        final StartDate modelDate;
+        try {
+            modelDate = new StartDate(date);
+        } finally {
+            // disable bypass after injecting the sample
+            StartDate.disableBypassForSampleData();
+        }
 
         if (time == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -171,9 +179,9 @@ class JsonAdaptedReservation {
         if (!Identification.isValidId(id)) {
             throw new IllegalValueException(Identification.MESSAGE_CONSTRAINTS);
         }
-        final Identification modelId = new Identification(new StartDate(date), new Phone(phone), new StartTime(time));
 
-
+        // Use the existing modelDate, modelPhone, modelTime instead of creating new ones
+        final Identification modelId = new Identification(modelDate, modelPhone, modelTime);
 
         return new Reservation(modelName, modelPhone, modelDate, modelTime, modelDuration, modelPax, modelTable,
                 modelRemark, modelTags, modelId, this.isPaid);
