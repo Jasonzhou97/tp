@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Developer Guide
+title: GastroBook Developer Guide
 ---
 ## Table of Contents
 
@@ -21,10 +21,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* AddressBook 3
+* This project was adapted from [AB3](https://se-education.org/addressbook-level3/) (source code are provide [here](https://github.com/nus-cs2103-AY2425S2/tp))
 * ChatGPT 4.0
 * EPOS Systems
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -65,9 +64,9 @@ The bulk of the app's work is done by the following four components:
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 0101202512341800`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 0101202554321800`.
 
-<img src="images/ArchitectureSequenceDiagram1.png" width="574" />
+<img src="images/ArchitectureSequenceDiagram.png" width="700" />
 
 Each of the four main components (also shown in the diagram above),
 
@@ -105,9 +104,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 0101202512341800")` API call as an example.
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 0604202598761700")` API call as an example.
 
-![Interactions Inside the Logic Component for the `delete 0101202512341800` Command](images/DeleteSequenceDiagram1.png)
+![Interactions Inside the Logic Component for the `delete 0604202598761700` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </div>
@@ -403,25 +402,19 @@ unless specified otherwise
 ### **U1: Add a reservation**
 
 **MSS** (Main Success Scenario)
-1. User inputs reservation details (name, phone, date, time, duration, number of people, table number, special requests).
-2. System confirms if the reservation slot is available.
-3. User is prompted to confirm the reservation.
-4. System adds the reservation to the schedule.
+1. User inputs reservation details (name, phone, date, time, duration, number of people, table number, tags). 
+2. System adds the reservation to the schedule. 
+3. System displays a successful reservation message. 
 
 Use case ends.
 
 **Extensions** <br>
-1a. User input invalid parameters <br>
-&ensp; 1a1. System indicates input parameters are invalid. <br>
-&ensp; Use case resumes at step 1.
+1a. User input invalid parameters.<br>
+&ensp; 1a1. System indicates input parameters are invalid and shows the correct example of use. <br>
+&ensp; Use case resumes at step 1. 
 
-2a. The provided timeslot is not available. <br>
-&ensp; 2a1. System indicates that the provided timeslot is not available. <br>
-&ensp; 2a2. System shows available slots. <br>
-&ensp; Use case resumes at step 1.
-
-3a. The user rejects the confirmation of the reservation <br>
-&ensp; 3a1. Confirmation prompt closes. <br>
+2a. The reservation has existed in the system.<br>
+&ensp; 2a1. System indicates that the reservation already exists in the GastroBook. <br>
 &ensp; Use case resumes at step 1.
 
 ---
@@ -430,67 +423,69 @@ Use case ends.
 
 **MSS**
 1. User inputs the reservation they want to cancel.
-2. System asks for confirmation to delete the reservation.
-3. User confirms the cancellation.
-4. System removes the reservation from the schedule.
+2. System removes the reservation from the schedule.
+3. System displays a successful cancellation message.
 
 Use case ends.
 
 **Extensions** <br>
-1a. The reservation does not exist. <br>
+1a. The user inputs invalid parameters or invalid command. <br>
 &ensp; 1a1. System displays an error message. <br>
 &ensp; Use case resumes at step 1.
 
-3a. The user rejects the confirmation of the deletion <br>
-&ensp; 3a1. Confirmation prompt closes. <br>
+2a. The reservation does not exist. <br>
+&ensp; 2a1. System displays an error message. <br>
 &ensp; Use case resumes at step 1.
+
+
+
 
 ---
 
 ### **U3: Mark a reservation as paid**
 
 **MSS**
-1. User finds the reservation they want to mark.
-2. User marks the reservation as paid.
-3. System updates the reservation's payment status as paid.
+1. User inputs the reservation they want to mark as paid.
+2. System updates the reservation's payment status as paid.
+3. System display a message indicating the reservation has been successfully marked
 
 Use case ends.
 
 **Extensions** <br>
-1a. The reservation does not exist. <br>
+1a. User types in invalid command. <br>
 &ensp; 1a1. System displays an error message. <br>
 &ensp; Use case resumes at step 1. <br>
 
-1b. User types in invalid command. <br>
-&ensp; 1a1. System displays an error message. <br>
+2a. The reservation does not exist. <br>
+&ensp; 2a1. System displays an error message. <br>
 &ensp; Use case resumes at step 1. <br>
 
-2a. The reservation has already been marked as paid. <br>
-&ensp; 2a1. System indicates that reservation has already been marked as paid. <br>
+2b. The reservation has already been marked as paid. <br>
+&ensp; 2b1. System indicates that reservation has already been marked as paid. <br>
 &ensp; Use case resumes at step1.
 
 ---
 
-### **U4: Unmark a reservation as paid**
+### **U4: Mark a reservation as unpaid (Unmark)**
 
 **MSS**
-1. User finds the reservation they want to unmark.
-2. User unmarks the reservation as paid.
-3. System updates the reservation's payment status as unpaid.
+1. User inputs the reservation they want to mark as unpaid.
+2. System updates the reservation's payment status as unpaid.
+3. System display a message indicating the reservation has been successfully unmarked.
 
 Use case ends.
 
 **Extensions** <br>
-1a. The reservation does not exist. <br>
+1a. User types in invalid command. <br>
 &ensp; 1a1. System displays an error message. <br>
 &ensp; Use case resumes at step 1.
 
-1b .User types in invalid commands. <br>
-&ensp; 1a1. System displays an error message. <br>
+2a. The reservation does not exist. <br>
+&ensp; 2a1. System displays an error message. <br>
 &ensp; Use case resumes at step 1.
 
-2a. The reservation has already been marked as unpaid. <br>
-&ensp; 2a1. System indicates that reservation has already been marked as paid. <br>
+2b. The reservation has already been marked as unpaid. <br>
+&ensp; 2b1. System indicates that reservation has already been marked as unpaid. <br>
 &ensp; Use case resumes at step1.
 
 ---
@@ -518,7 +513,7 @@ Use case ends.
 &ensp; Use case resumes at step 1.
 
 1b. The user enters an invalid phone number.<br>
-&ensp; 1a1. System displays an error message. <br>
+&ensp; 1b1. System displays an error message. <br>
 &ensp; Use case resumes at step 1.
 
 2a. The name does not exist. <br>
@@ -540,7 +535,7 @@ Use case ends.
 &ensp; Use case resumes at step 1.
 
 1b. The user enters an invalid phone number.<br>
-&ensp; 1a1. System displays an error message. <br>
+&ensp; 1b1. System displays an error message. <br>
 &ensp; Use case resumes at step 1.
 
 2a. The user enters a phone number that does not exist. <br>
@@ -579,16 +574,13 @@ Use case ends.
 &ensp; 1a1. System displays an error message. <br>
 &ensp; Use case resumes at step 1.
 
-1b. No reservations exist on the day queried. <br>
-&ensp; 1b1. System indicates that there are no reservations on given day. <br>
-&ensp; Use case resumes at step 1.
-
 ---
 ### **U10: Edit specific reservations**
 
 **MSS**
 1. User queries to edit the reservation with ID.
-2. System displays all reservations for today and tomorrow with a reservation edited message.
+2. System edit the reservation.
+3. System displays all reservations for today and tomorrow with a reservation edited message.
 
 Use case ends.
 
@@ -600,6 +592,28 @@ Use case ends.
 1b. Reservation ID is invalid. <br>
 &ensp; 1b1. System displays an invalid command message and provides an example of correct edit usage. <br>
 &ensp; Use case resumes at step 1.
+
+1c. User doesn't provide at least one field to edit. <br>
+&ensp; 1c1. System displays error message. <br>
+&ensp; Use case resumes at step 1.
+
+2a. User tries to edit the phone number, time or date of the reservation. <br>
+&ensp; 2a1. System generates a new reservation ID based on the updated info. <br>
+&ensp; 2a2. System checks if the new reservation ID already exists. <br>
+&ensp; - if it exists: <br>
+&ensp; System displays an error message. <br>
+&ensp; Use case resumes at step 1. <br>
+
+&ensp; - if it does not exists: <br>
+&ensp; System edits the reservation. <br>
+&ensp; Use case resumes at step 3.
+
+2b. The reservation does not exist. <br>
+&ensp; 2b1. System display reservation not exist message. <br>
+&ensp; Use case resumes at step 1.
+
+
+
 
 ---
 ### **U11: Add remark to a reservation**
@@ -651,7 +665,6 @@ Use case ends.
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Reservation ID**: A unique identifier (e.g., 0204202598761300) assigned to each reservation.
 * **CLI (Command-Line Interface)**: A text-based interface that allows users to interact with the system using typed commands.
 * **Valid Command**: A command that the system recognizes and processes correctly.
@@ -659,15 +672,16 @@ Use case ends.
 * **Valid ID**: The id for which edit, mark, unmark, delete, remark take as parameter which has a form of "[dateOfTodayOrTomorrow(ddMMyyyy)] + [UNIQUE last4DigitsOfPhoneNumber(xxxx)] + [time(HHMM)]".
 * **Valid Phone Number**: A phone number that has at least 4 digits.
 * **Valid Table Number**: A table number that starts with a capital letter, followed by 1-3 numbers.
-
+* **Regular**: A customer will be classified as a Regular if their phone number has been used to successfully make at least three reservations.As long as the phone number is the same, the reservation count will be incremented regardless of other customer information.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+
+1. Testers should not modify the JSON file directly, as doing so may cause errors.
 
 </div>
 
