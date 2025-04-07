@@ -691,3 +691,9 @@ Given below are instructions to test the app manually.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+### Saving data
+
+1. Dealing with missing/corrupted data files
+   
+   1. if the data files are corrupted, users can delete the data files and the system will automatically generate new ones.
+   2. The system will automatically generate data files when they are missing.
