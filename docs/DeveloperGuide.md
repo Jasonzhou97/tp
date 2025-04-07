@@ -23,7 +23,7 @@ title: GastroBook Developer Guide
 
 * This project was adapted from [AB3](https://se-education.org/addressbook-level3/) (source code are provide [here](https://github.com/nus-cs2103-AY2425S2/tp))
 * ChatGPT 4.0
-* EPOS Systems
+* [EPOS Systems](https://www.epos.com.sg/?srsltid=AfmBOoqk46mgTm5Jm2iB55V9SJaIpyZVAWl805JZ42O38A6vZdHRIkqq)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -153,13 +153,13 @@ The `Model` component,
 <br>
 <br>
 
-<img src="images/PersonListClassDiagram1.png" width="200" /> <br>
+<img src="images/PersonListClassDiagram1.png" width="200" /> <br> <br>
 
 The `PersonsList` class and related components manage customers who have made reservations, tracking their booking frequency and regular customer status.
 </div>
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** An interaction between `PersonsList` and `PersonsListManager` in `Model` component is given as sequence diagram below.
+:information_source: **Note:** An interaction between `PersonsList` and `PersonsListManager` in `Model` component is given as sequence diagram below.<br><br>
 
 
 <img src="images/PersonListSequenceDiagram.png" width="900" /> <br><br>
@@ -402,18 +402,18 @@ unless specified otherwise
 ### **U1: Add a reservation**
 
 **MSS** (Main Success Scenario)
-1. User inputs reservation details (name, phone, date, time, duration, number of people, table number, tags). 
+1. User inputs reservation details. 
 2. System adds the reservation to the schedule. 
 3. System displays a successful reservation message. 
 
 Use case ends.
 
 **Extensions** <br>
-1a. User input invalid parameters.<br>
-&ensp; 1a1. System indicates input parameters are invalid and shows the correct example of use. <br>
+1a. User input invalid parameters or invalid command.<br>
+&ensp; 1a1. System displays an error message. <br>
 &ensp; Use case resumes at step 1. 
 
-2a. The reservation has existed in the system.<br>
+2a. The reservation exists in the system.<br>
 &ensp; 2a1. System indicates that the reservation already exists in the GastroBook. <br>
 &ensp; Use case resumes at step 1.
 
@@ -422,14 +422,14 @@ Use case ends.
 ### **U2: Delete a reservation**
 
 **MSS**
-1. User inputs the reservation they want to cancel.
+1. User inputs the valid reservation ID they want to cancel.
 2. System removes the reservation from the schedule.
 3. System displays a successful cancellation message.
 
 Use case ends.
 
 **Extensions** <br>
-1a. The user inputs invalid parameters or invalid command. <br>
+1a. The user inputs invalid parameters or invalid command or invalid ID. <br>
 &ensp; 1a1. System displays an error message. <br>
 &ensp; Use case resumes at step 1.
 
@@ -437,22 +437,19 @@ Use case ends.
 &ensp; 2a1. System displays an error message. <br>
 &ensp; Use case resumes at step 1.
 
-
-
-
 ---
 
 ### **U3: Mark a reservation as paid**
 
 **MSS**
-1. User inputs the reservation they want to mark as paid.
+1. User inputs the valid reservation ID they want to mark as paid.
 2. System updates the reservation's payment status as paid.
 3. System display a message indicating the reservation has been successfully marked
 
 Use case ends.
 
 **Extensions** <br>
-1a. User types in invalid command. <br>
+1a.The user inputs invalid parameters or invalid command or invalid ID. <br>
 &ensp; 1a1. System displays an error message. <br>
 &ensp; Use case resumes at step 1. <br>
 
@@ -469,14 +466,14 @@ Use case ends.
 ### **U4: Mark a reservation as unpaid (Unmark)**
 
 **MSS**
-1. User inputs the reservation they want to mark as unpaid.
+1. User inputs the valid reservation ID they want to mark as unpaid.
 2. System updates the reservation's payment status as unpaid.
 3. System display a message indicating the reservation has been successfully unmarked.
 
 Use case ends.
 
 **Extensions** <br>
-1a. User types in invalid command. <br>
+1a. The user inputs invalid parameters or invalid command or invalid ID. <br>
 &ensp; 1a1. System displays an error message. <br>
 &ensp; Use case resumes at step 1.
 
@@ -508,12 +505,8 @@ Use case ends.
 Use case ends.
 
 **Extensions** <br>
-1a. The user enters invalid command format. <br>
+1a. The user inputs invalid command. <br>
 &ensp; 1a1. System displays an error message. <br>
-&ensp; Use case resumes at step 1.
-
-1b. The user enters an invalid phone number.<br>
-&ensp; 1b1. System displays an error message. <br>
 &ensp; Use case resumes at step 1.
 
 2a. The name does not exist. <br>
@@ -524,18 +517,14 @@ Use case ends.
 ### **U7: Find a reservation by phone**
 
 **MSS**
-1. User finds the reservation by phone.
+1. User finds the reservation by valid phone.
 2. System displays all reservations that are made under the queried phone number.
 
 Use case ends.
 
 **Extensions** <br>
-1a. The user enters invalid command format. <br>
+1a. The user inputs invalid parameters or invalid command. <br>
 &ensp; 1a1. System displays an error message. <br>
-&ensp; Use case resumes at step 1.
-
-1b. The user enters an invalid phone number.<br>
-&ensp; 1b1. System displays an error message. <br>
 &ensp; Use case resumes at step 1.
 
 2a. The user enters a phone number that does not exist. <br>
@@ -546,13 +535,13 @@ Use case ends.
 ### **U8: Find a reservation by time**
 
 **MSS**
-1. User finds the reservation by time.
+1. User finds the reservation by valid time.
 2. System displays all reservations that are ongoing at specified time.
 
 Use case ends.
 
 **Extensions** <br>
-1a. The user enters invalid command format. <br>
+1a. The user inputs invalid parameters or invalid command. <br>
 &ensp; 1a1. System displays an error message. <br>
 &ensp; Use case resumes at step 1.
 
@@ -570,7 +559,7 @@ Use case ends.
 Use case ends.
 
 **Extensions** <br>
-1a. The user enters invalid command format. <br>
+1a. The user inputs invalid parameters or invalid command. <br>
 &ensp; 1a1. System displays an error message. <br>
 &ensp; Use case resumes at step 1.
 
@@ -578,18 +567,18 @@ Use case ends.
 ### **U10: Edit specific reservations**
 
 **MSS**
-1. User queries to edit the reservation with ID.
+1. User inputs the valid reservation ID they want to edit and its parameters.
 2. System edit the reservation.
 3. System displays all reservations for today and tomorrow with a reservation edited message.
 
 Use case ends.
 
 **Extensions** <br>
-1a. Reservation is not for today or tomorrow. <br>
+1a. Reservation is not for today or tomorrow or it does not exist. <br>
 &ensp; 1a1. System displays reservation not found message. <br>
 &ensp; Use case resumes at step 1.
 
-1b. Reservation ID is invalid. <br>
+1b. The user inputs invalid parameters or invalid command or invalid ID. <br>
 &ensp; 1b1. System displays an invalid command message and provides an example of correct edit usage. <br>
 &ensp; Use case resumes at step 1.
 
@@ -597,40 +586,32 @@ Use case ends.
 &ensp; 1c1. System displays error message. <br>
 &ensp; Use case resumes at step 1.
 
-2a. User tries to edit the phone number, time or date of the reservation. <br>
-&ensp; 2a1. System generates a new reservation ID based on the updated info. <br>
-&ensp; 2a2. System checks if the new reservation ID already exists. <br>
-&ensp; - if it exists: <br>
-&ensp; System displays an error message. <br>
-&ensp; Use case resumes at step 1. <br>
-
-&ensp; - if it does not exists: <br>
-&ensp; System edits the reservation. <br>
-&ensp; Use case resumes at step 3.
-
-2b. The reservation does not exist. <br>
-&ensp; 2b1. System display reservation not exist message. <br>
-&ensp; Use case resumes at step 1.
-
-
+2a. User edits the phone number, time or date of the reservation. <br>
+&ensp; 2a1. System validates that ID does not exist in the system. <br>
+&ensp; &ensp; 2a1a. System generates new reservation ID for reservation. <br>
+&ensp; &ensp; Use case resumes at step 3. <br>
+&ensp; 2a2. System recognizes that ID exists in the system. <br>
+&ensp; &ensp; 2a2a. System displays an error message. <br>
+&ensp; &ensp; Use case resumes at step 1. <br>
 
 
 ---
 ### **U11: Add remark to a reservation**
 
 **MSS**
-1. User queries to remark the reservation with valid ID.
+1. User queries to remark the reservation.
 2. System updates or adds the remark to the reservation.
 
 Use case ends.
 
 **Extensions** <br>
-1a. Reservations to be remarked queried with ID that does not exist. <br>
-&ensp; 1a1. System displays an error message.  <br>
+1a. The user inputs invalid command or invalid parameter. <br>
+&ensp; 1a1. System displays an error message. <br>
 &ensp; Use case resumes at step 1.
 
-1b. Reservation to be remarked queried with invalid ID. <br>
-&ensp; 1b1. System displays an error message and output correct use of remark command.  <br>
+--- Need to update 
+2a. The reservation does not exist. <br>
+&ensp; 2a1. System displays reservation not exist. <br>
 &ensp; Use case resumes at step 1.
 
 ---
@@ -645,20 +626,19 @@ Use case ends.
 6. **Storage Access**: The system should be able to retrieve data with the given storage requirements in under 1 second.
 7. **User Access**: The system should be able to run locally with no more than 1 user with 1 database.
 8. **Phone Number**: Last 4 digits of phone number of every customer input to the system must be of unique combination.
-9. **Customisation**: Threshold for a customer becoming a regular customer is hardcoded. (3 currently)
-     9.1 **All fields are fixed**
+9. **Customisation**: Threshold for a customer becoming a regular customer is hardcoded (3 currently) and all fields are fixed.
 10. **Clearing**: All customer details in persons list will preserve even after clear function.
 11. **Duplicate Reservations**: Duplicate reservations are not allowed to be added into the database. Reservations are considered to be duplicates only if: <br>
     &ensp; - The last 4 digit of the phone numbers of both reservations are the same <br>
     &ensp; - The booking date of both reservations are the same <br>
     &ensp; - The booking time of both reservations are the same <br>
     &ensp;The above situation is unlikely to happen(<0.001%).
-12. **Time**: The time of reservations is not limited and is subjected to user discretion.
+12. **Time**: The time of reservations is in 24 hr format and it is assigned to the reservation via user discretion.
     &ensp; - No earliest or latest time limit placed (e.g. 0000 is also allowed)
     &ensp; - Reservations before current time are allowed (e.g. reservation at 1400 today can be made even if current time is 1600)
-13. **Duration**: The duration of reservations must be <12h and are in intervals of 30 minutes or 1 hour.
-14. **Pax**: Number of people per reservation is not limited and is subjected to user discretion.
-15. **Table Number**: Table number assigned to each reservation is subjected to user discretion.
+13. **Duration**: The duration of reservations must be > 0 hr and <= 12h and are in intervals of 30 minutes or 1 hour.
+14. **Pax**: Number of people per reservation is > 0 and < 10000.
+15. **Table Number**: Table number assigned to each reservation is subjected to user discretion with one uppercase English letter followed by 1-3 digits.
 
 *{More to be added}*
 
@@ -669,10 +649,12 @@ Use case ends.
 * **CLI (Command-Line Interface)**: A text-based interface that allows users to interact with the system using typed commands.
 * **Valid Command**: A command that the system recognizes and processes correctly.
 * **Invalid Command**: A command that is unrecognized or improperly formatted by the system.
+* **Valid Parameter**: A prefix that is recognized by system followed by correctly-formatted arguments or solely correctly formatted arguments for `findt`,`findn` and `findp`. 
+* **Invalid Parameter**: An unrecognized prefix with correctly or incorrectly formatted arguments, or recognized prefix with incorrectly formatted arguments, or redundant arguments for `list`, `mark`, `unmark`, `delete`.
 * **Valid ID**: The id for which edit, mark, unmark, delete, remark take as parameter which has a form of "[dateOfTodayOrTomorrow(ddMMyyyy)] + [UNIQUE last4DigitsOfPhoneNumber(xxxx)] + [time(HHMM)]".
-* **Valid Phone Number**: A phone number that has at least 4 digits.
-* **Valid Table Number**: A table number that starts with a capital letter, followed by 1-3 numbers.
-* **Regular**: A customer will be classified as a Regular if their phone number has been used to successfully make at least three reservations.As long as the phone number is the same, the reservation count will be incremented regardless of other customer information.
+* **Valid Phone Number**: A phone number that has at least 4 digits and at most 20 digits.
+* **Valid Time**: A 24 hr format time.
+* **Regular customer**: A customer will be classified as a Regular if their phone number has been used to successfully make at least three reservations. As long as the phone number is the same, the reservation count will be incremented regardless of other customer information.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
