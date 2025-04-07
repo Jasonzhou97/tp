@@ -14,7 +14,6 @@ You can reach us at the email `e1121279.nus.edu.sg` (Leonard's Email for tempora
 <img src="images/frozennfishh.png" width="200px">
 
 [[github](https://github.com/Frozennfishh)]
-[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibility: Project Management, Quality Assurance
@@ -32,7 +31,6 @@ You can reach us at the email `e1121279.nus.edu.sg` (Leonard's Email for tempora
 <img src="images/cvincent0907.png" width="200px">
 
 [[github](http://github.com/CVincent0907)]
-[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Project Management
@@ -43,7 +41,6 @@ You can reach us at the email `e1121279.nus.edu.sg` (Leonard's Email for tempora
 <img src="images/caroline1233456.png" width="200px">
 
 [[github](http://github.com/caroline1233456)]
-[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Data
@@ -53,7 +50,6 @@ You can reach us at the email `e1121279.nus.edu.sg` (Leonard's Email for tempora
 <img src="images/geeliette.png" width="200px">
 
 [[github](https://github.com/geeliette)]
-
 
 * Role: Developer
 * Responsibilities: Design, UI, Testing
