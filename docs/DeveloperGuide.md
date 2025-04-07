@@ -390,9 +390,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `**`         | Admin       | Remark reservations                         | Further customise and tailor each reservation to customer needs               |
 | `**`         | Admin       | Clear all reservations                      | Reset the schedule for a new reservation plan                                 |
 
-
-*{More to be added}*
-
 ### Use cases
 
 For all use cases below: <br>
@@ -640,8 +637,6 @@ Use case ends.
 14. **Pax**: Number of people per reservation is > 0 and < 10000.
 15. **Table Number**: Table number assigned to each reservation is subjected to user discretion with one uppercase English letter followed by 1-3 digits.
 
-*{More to be added}*
-
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
@@ -681,8 +676,6 @@ Given below are instructions to test the app manually.
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-3. _{ more test cases …​ }_
-
 ### Deleting a reservation
 
 1. Deleting a reservation while all reservations are being shown
@@ -698,12 +691,8 @@ Given below are instructions to test the app manually.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
