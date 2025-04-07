@@ -48,11 +48,11 @@ GastroBook is a **desktop application designed for small to medium scale restaur
 To use **GastroBook**, you’ll need **Java 17** installed on your computer. If you're not sure whether you have it yet, don’t worry — here’s how you can check and install it!
 
 #### 1.1 **For Mac Users**:
-- Follow this easy guide to install **Java 17** on your Mac:  
+- Follow this easy guide to install **Java 17** on your Mac:
   [Java Installation Guide for Mac](https://se-education.org/guides/tutorials/javaInstallationMac.html)
 
 #### 1.2 **For Windows Users**:
-- You can download and install **Java 17** from the official Oracle website:  
+- You can download and install **Java 17** from the official Oracle website:
   [Download Java 17](https://www.oracle.com/java/technologies/downloads/#java17?er=221886)
 - Just make sure to choose **Java 17** or a later version.
 
@@ -136,10 +136,10 @@ If you encounter any problems, don't worry! Just reach out to us via our phone n
 | **Field**          | **Example**           | **Description**                                                           | **Restriction**                                                                                                          |
 |--------------------|-----------------------|---------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | `NAME`             | n/John                | Name of the person making the reservation (e.g., `John`)                  | Names should only contain printable Unicode-Characters, and length must be at least 1 and at most 30                     |
-| `PHONE_NUMBER`     | p/98765432            | Contact number of the person (e.g., `12345`)                              | Phone must be of numeric only and length must be at least 4 and at most 20                                               |    
+| `PHONE_NUMBER`     | p/98765432            | Contact number of the person (e.g., `12345`)                              | Phone must be of numeric only and length must be at least 4 and at most 20                                               |
 | `DATE`             | date/01/04/2025       | Date of reservation (e.g., `01/03/2025`)                                  | Date must be of today or tomorrow only in the format of dd/MM/yyyy, with leading 0 for single digits                     |
-| `TIME`             | time/1200             | Time of reservation (e.g., `1800` for 6:00 PM)                            | Time must be of 24 hour format in the form of HHMM                                                                       |  
-| `DURATION`         | duration/2            | Duration in hours (e.g., `0.5` for 30 minutes or `1` for 1 hour)          | Duration must be a floating-point value and in the form of an hour or half an hour interval, at least 0.5 and at most 12 |    
+| `TIME`             | time/1200             | Time of reservation (e.g., `1800` for 6:00 PM)                            | Time must be of 24 hour format in the form of HHMM                                                                       |
+| `DURATION`         | duration/2            | Duration in hours (e.g., `0.5` for 30 minutes or `1` for 1 hour)          | Duration must be a floating-point value and in the form of an hour or half an hour interval, at least 0.5 and at most 12 |
 | `NUMBER_OF_PEOPLE` | pax/2                 | Number of people included in the reservation    (e.g., `10`)              | Pax number must be of numeric values only, at least 1 and at most 9999                                                   |
 | `TABLE_NUMBER`     | table/A1              | Assigned table number (e.g., `A2`)                                        | Table number must be in the form of 1 uppercase English letter followed by 1-3 digits                                    |
 | `REMARK`           | r/Allergic to Peanuts | Any additional remarks about the reservation (e.g., `Likes cheese` )      | Remark must be of alphanumeric only and length must be at least 1 and at most 30                                         |
