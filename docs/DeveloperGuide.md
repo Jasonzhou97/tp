@@ -24,6 +24,7 @@ title: GastroBook Developer Guide
 * This project was adapted from [AB3](https://se-education.org/addressbook-level3/) (source code are provide [here](https://github.com/nus-cs2103-AY2425S2/tp))
 * ChatGPT 4.0
 * [EPOS Systems](https://www.epos.com.sg/?srsltid=AfmBOoqk46mgTm5Jm2iB55V9SJaIpyZVAWl805JZ42O38A6vZdHRIkqq)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -655,6 +656,7 @@ Use case ends.
 * **Valid Phone Number**: A phone number that has at least 4 digits and at most 20 digits.
 * **Valid Time**: A 24 hr format time.
 * **Regular customer**: A customer will be classified as a Regular if their phone number has been used to successfully make at least three reservations. As long as the phone number is the same, the reservation count will be incremented regardless of other customer information.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
