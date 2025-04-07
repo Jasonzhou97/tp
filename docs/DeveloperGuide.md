@@ -697,4 +697,3 @@ Given below are instructions to test the app manually.
 
    1. if the data files are corrupted, users can delete the data files and the system will automatically generate new ones.
    2. The system will automatically generate data files when they are missing.
-   
