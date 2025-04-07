@@ -610,7 +610,6 @@ Use case ends.
 &ensp; 1a1. System displays an error message. <br>
 &ensp; Use case resumes at step 1.
 
---- Need to update 
 2a. The reservation does not exist. <br>
 &ensp; 2a1. System displays reservation not exist. <br>
 &ensp; Use case resumes at step 1.
@@ -627,15 +626,15 @@ Use case ends.
 6. **Storage Access**: The system should be able to retrieve data with the given storage requirements in under 1 second.
 7. **User Access**: The system should be able to run locally with no more than 1 user with 1 database.
 8. **Phone Number**: Last 4 digits of phone number of every customer input to the system must be of unique combination.
-9. **Customisation**: Threshold for a customer becoming a regular customer is hardcoded (3 currently) and all fields are fixed.
+9. **Customisation**: Threshold for a customer becoming a regular customer is hardcoded (3 reservations booked) and all fields are fixed.
 10. **Clearing**: All customer details in persons list will preserve even after clear function.
 11. **Duplicate Reservations**: Duplicate reservations are not allowed to be added into the database. Reservations are considered to be duplicates only if: <br>
     &ensp; - The last 4 digit of the phone numbers of both reservations are the same <br>
     &ensp; - The booking date of both reservations are the same <br>
     &ensp; - The booking time of both reservations are the same <br>
-    &ensp;The above situation is unlikely to happen(<0.001%).
-12. **Time**: The time of reservations is in 24 hr format and it is assigned to the reservation via user discretion.
-    &ensp; - No earliest or latest time limit placed (e.g. 0000 is also allowed)
+    &ensp; The above situation is unlikely to happen(<0.001%).
+12. **Time**: The time of reservations is in 24 hr format and it is assigned to the reservation via user discretion. <br>
+    &ensp; - No earliest or latest time limit placed (e.g. 0000 is also allowed) <br>
     &ensp; - Reservations before current time are allowed (e.g. reservation at 1400 today can be made even if current time is 1600)
 13. **Duration**: The duration of reservations must be > 0 hr and <= 12h and are in intervals of 30 minutes or 1 hour.
 14. **Pax**: Number of people per reservation is > 0 and < 10000.
