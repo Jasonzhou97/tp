@@ -636,7 +636,7 @@ Use case ends.
 12. **Time**: The time of reservations is in 24 hr format and it is assigned to the reservation via user discretion. <br>
     &ensp; - No earliest or latest time limit placed (e.g. 0000 is also allowed) <br>
     &ensp; - Reservations before current time are allowed (e.g. reservation at 1400 today can be made even if current time is 1600)
-13. **Duration**: The duration of reservations must be > 0 hr and <= 12h and are in intervals of 30 minutes or 1 hour.
+13. **Duration**: The duration of reservations must be > 0 hr and <= 12hr and are in intervals of 30 minutes or 1 hour.
 14. **Pax**: Number of people per reservation is > 0 and < 10000.
 15. **Table Number**: Table number assigned to each reservation is subjected to user discretion with one uppercase English letter followed by 1-3 digits.
 
