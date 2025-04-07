@@ -400,16 +400,16 @@ unless specified otherwise
 ### **U1: Add a reservation**
 
 **MSS** (Main Success Scenario)
-1. User inputs reservation details. 
-2. System adds the reservation to the schedule. 
-3. System displays a successful reservation message. 
+1. User inputs reservation details.
+2. System adds the reservation to the schedule.
+3. System displays a successful reservation message.
 
 Use case ends.
 
 **Extensions** <br>
 1a. User input invalid parameters or invalid command.<br>
 &ensp; 1a1. System displays an error message. <br>
-&ensp; Use case resumes at step 1. 
+&ensp; Use case resumes at step 1.
 
 2a. The reservation exists in the system.<br>
 &ensp; 2a1. System indicates that the reservation already exists in the GastroBook. <br>
@@ -644,7 +644,7 @@ Use case ends.
 * **CLI (Command-Line Interface)**: A text-based interface that allows users to interact with the system using typed commands.
 * **Valid Command**: A command that the system recognizes and processes correctly.
 * **Invalid Command**: A command that is unrecognized or improperly formatted by the system.
-* **Valid Parameter**: A prefix that is recognized by system followed by correctly-formatted arguments or solely correctly formatted arguments for `findt`,`findn` and `findp`. 
+* **Valid Parameter**: A prefix that is recognized by system followed by correctly-formatted arguments or solely correctly formatted arguments for `findt`,`findn` and `findp`.
 * **Invalid Parameter**: An unrecognized prefix with correctly or incorrectly formatted arguments, or recognized prefix with incorrectly formatted arguments, or redundant arguments for `list`, `mark`, `unmark`, `delete`.
 * **Valid ID**: The id for which edit, mark, unmark, delete, remark take as parameter which has a form of "[dateOfTodayOrTomorrow(ddMMyyyy)] + [UNIQUE last4DigitsOfPhoneNumber(xxxx)] + [time(HHMM)]".
 * **Valid Phone Number**: A phone number that has at least 4 digits and at most 20 digits.
@@ -657,7 +657,7 @@ Use case ends.
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
 
 1. Testers should not modify the JSON file directly, as doing so may cause errors.
 
@@ -695,4 +695,5 @@ Given below are instructions to test the app manually.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. if the data files are corrupted, users can delete the data files and the system will automatically generate new ones.
+   2. The system will automatically generate data files when they are missing.
