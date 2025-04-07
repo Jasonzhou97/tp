@@ -401,7 +401,7 @@ Examples:
 Notes:
 * More than one name parameter is allowed.
 * The name could be first name, middle name or last name.
-* The search is based on exact matching but not partial matching — either the first name, middle name or last name must match exactly for results to be displayed.
+* The search is based on exact matching but not partial matching — either the first name, middle name or last name must match exactly for results to be displayed. e.g.,`findn Do` will not match `John Doe`
 * The search is case-insensitive. e.g., `findn john doe` will match `John Doe`
 * Can only search for reservations by customer name for today and tomorrow; past reservations are excluded.
 
